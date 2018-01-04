@@ -1,0 +1,1 @@
+<% response.sendRedirect("https://rchivrreports.in/app/#!/login"); %>

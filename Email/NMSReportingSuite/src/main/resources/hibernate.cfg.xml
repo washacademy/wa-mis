@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- DB schema will be updated if needed -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="com.beehyv.wareporting.model.User"/>
+        <mapping class="com.beehyv.wareporting.model.ModificationTracker"/>
+        <mapping class="com.beehyv.wareporting.model.Location"/>
+        <mapping class="com.beehyv.wareporting.model.State"/>
+        <mapping class="com.beehyv.wareporting.model.District"/>
+        <mapping class="com.beehyv.wareporting.model.Block"/>
+        <mapping class="com.beehyv.wareporting.model.Circle"/>
+        <mapping class="com.beehyv.wareporting.model.AnonymousUsers"/>
+        <mapping class="com.beehyv.wareporting.model.FrontLineWorkers"/>
+        <mapping class="com.beehyv.wareporting.model.KilkariLowUsage"/>
+        <mapping class="com.beehyv.wareporting.model.KilkariSelfDeactivated"/>
+        <mapping class="com.beehyv.wareporting.model.KilkariDeactivationOther"/>
+        <mapping class="com.beehyv.wareporting.model.StateCircle"/>
+
+
+    </session-factory>
+</hibernate-configuration>

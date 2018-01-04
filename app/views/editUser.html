@@ -1,0 +1,161 @@
+<div ng-controller="EditUserController" class="editUser">
+	<div class="block">
+		<div class="block">
+			<h1>Edit User</h1>
+		</div>
+
+		<form name="editUserForm" class="form-horizontal" novalidate>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.fullName.$invalid && !editUserForm.fullName.$pristine}">
+				<label class="control-label col-xs-2">Full Name</label>
+				<div class="col-xs-10">
+					<input name="fullName" id="fullName" type="text" class="form-control input input-sm" placeholder="Name" ng-model="editUser.fullName" required 
+					ng-pattern="/^[A-Za-z ]*$/" ng-minlength="3">
+
+					<div class="errorMessage" ng-messages="editUserForm.fullName.$error" role="alert" ng-show="!editUserForm.fullName.$pristine">
+						<div ng-message="required">This field cannot be empty</div>
+						<div ng-message="pattern">Name should only contain alphabetical characters</div>
+						<div ng-message="minlength">Name is too short</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error':editUserForm.username.$invalid && !editUserForm.username.$pristine}">
+				<label class="control-label col-xs-2">Username</label>
+				<div class="col-xs-10">
+					<input name="username" type="text" class="form-control input input-sm" placeholder="Username" ng-model="editUser.username" ng-disabled="true">
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.accessType.$invalid && !editUserForm.accessType.$pristine}">
+				<label class="control-label col-xs-2">Access Type</label>
+				<div class="col-xs-10">
+					<select name="accessType" id="accessType" class="form-control input input-sm" ng-class="{'loading': roleLoading}" ng-model="editUser.roleId" ng-options="item.roleId as item.roleDescription for item in accessTypeList | filter: filterAccessType" required>
+					</select>
+
+					<div class="errorMessage" ng-messages="editUserForm.accessType.$error" role="alert" ng-show="!editUserForm.accessType.$pristine">
+						<div ng-message="required">Select an option</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.accessLevel.$invalid && !editUserForm.accessLevel.$pristine}">
+				<label class="control-label col-xs-2">Access Level</label>
+				<div class="col-xs-10">
+					<select name="accessLevel" id="accessLevel" class="form-control input input-sm" ng-model="editUser.accessLevel" ng-options="item for item in accessLevelList | filter: filterAccessLevel" required>
+					</select>
+
+					<div class="errorMessage" ng-messages="editUserForm.accessLevel.$error" role="alert" ng-show="!editUserForm.accessLevel.$pristine">
+						<div ng-message="required">Select an option</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group" ng-class="{'has-error':editUserForm.state.$invalid && !editUserForm.state.$pristine}">
+				<label class="control-label col-xs-2">State</label>
+				<div class="col-xs-10">
+					<select name="state" id="state" class="form-control input input-sm" ng-class="{'loading': stateLoading}" ng-model="place.stateId" ng-options="item.stateId as item.stateName for item in states | orderBy : 'stateName'" ng-disabled="getAccessLevel(1)" ng-required="!getAccessLevel(1)">
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.district.$invalid && !editUserForm.district.$pristine}">
+				<label class="control-label col-xs-2">District</label>
+				<div class="col-xs-10">
+					<select name="district" id="district" class="form-control input input-sm" ng-class="{'loading': districtLoading}" ng-model="place.districtId" ng-options="item.districtId as item.districtName for item in districts | orderBy : 'districtName'" ng-disabled="getAccessLevel(2)" ng-required="!getAccessLevel(2)">
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.block.$invalid && !editUserForm.block.$pristine}">
+				<label class="control-label col-xs-2">Block</label>
+				<div class="col-xs-10">
+					<select name="block" id="block" class="form-control input input-sm" ng-class="{'loading': blockLoading}" ng-model="place.blockId" ng-options="item.blockId as item.blockName for item in blocks | orderBy : 'blockName'" ng-disabled="getAccessLevel(3)" ng-required="!getAccessLevel(3)">
+					</select>
+				</div>
+			</div>
+			<hr>
+			<div class="form-group" ng-class="{'has-error':editUserForm.emailId.$invalid && !editUserForm.emailId.$pristine}">
+				<label class="control-label col-xs-2">Email Id</label>
+				<div class="col-xs-10">
+					<input name="emailId" id="emailId" type="email" class="form-control input input-sm" ng-model="editUser.emailId" placeholder="Email" required>
+
+					<div class="errorMessage" ng-messages="editUserForm.emailId.$error" role="alert" ng-show="!editUserForm.emailId.$pristine">
+						<div ng-message="required">This field cannot be empty</div>
+						<div ng-message="emailId">Enter a valid emailId</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.phoneNumber.$invalid && !editUserForm.phoneNumber.$pristine}">
+				<label class="control-label col-xs-2">Contact no.</label>
+				<div class="col-xs-10">
+					<input name="phoneNumber" id="phoneNumber" type="text" class="form-control input input-sm" ng-model="editUser.phoneNumber" placeholder="Contact no." required
+					ng-pattern="/^[0-9]*$/" ng-minlength="10" ng-maxlength="10">
+
+					<div class="errorMessage" ng-messages="editUserForm.phoneNumber.$error" role="alert" ng-show="!editUserForm.phoneNumber.$pristine">
+						<div ng-message="required">This field cannot be empty</div>
+						<div ng-message="pattern">Input contains non-numeric characters</div>
+						<div ng-message="minlength">Number is too short</div>
+						<div ng-message="maxlength">Number is too long</div>
+					</div>
+				</div>
+
+			</div>
+<!-- 
+			<div class="form-group" ng-class="{'has-error':editUserForm.newPassword.$invalid && !editUserForm.newPassword.$pristine}">
+				<label class="control-label col-xs-2">New Password</label>
+				<div class="col-xs-10">
+					<input name="newPassword" id="newPassword" type="password" class="form-control input input-sm" ng-model="editUser.newPassword" placeholder="New Password" required
+					tooltip-placement="top" uib-tooltip="Errors: {{editUserForm.newPassword.$error|json}}">
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{'has-error':editUserForm.confirmPassword.$invalid && !editUserForm.confirmPassword.$pristine && (editUserForm.newPassword != editUserForm.confirmPassword)}">
+				<label class="control-label col-xs-2">Confirm Password</label>
+				<div class="col-xs-10">
+					<input name="confirmPassword" id="confirmPassword" type="password" class="form-control input input-sm" ng-model="confirmPassword" placeholder="Confirm Password" required 
+					ui-validate="'$value==editUser.newPassword'" ui-validate-watch=" 'newPassword'"
+					tooltip-placement="top" uib-tooltip="Errors: {{editUserForm.confirmPassword.$error|json}}">
+				</div>
+			</div>
+ -->		<hr>
+ 			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-10">
+					<button type="button" class="btn btn-sm btn-default" ui-sref="userManagement.userTable">Cancel</button>
+					<button type="button" ng-click="editUserSubmit()" class="btn btn-sm btn-primary">Update User</button>
+					<button ng-click="deactivateUserSubmit()" ng-if="!editUser.loggedAtLeastOnce" type="button" class="btn btn-sm btn-primary floatR">Delete User</button>
+					<button ng-click="resetPasswordSubmit()" type="button" class="btn btn-sm btn-primary floatR">Reset Password</button>
+				</div>
+			</div>
+
+
+
+			<!--<div class="form-group">-->
+				<!--<div class="col-xs-offset-2 col-xs-10">-->
+
+				<!--</div>-->
+			<!--</div>-->
+
+		</form>
+<!-- 
+		<div>
+			<script type="text/ng-template" id="myModalContent.html">
+				<div class="modal-header">
+					<h3>I'm a modal!</h3>
+				</div>
+				<div class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+				</div>
+			</script>
+
+			<button class="btn" ng-click="open()">Open me!</button>
+		</div>
+ -->
+	</div>
+	
+</div>

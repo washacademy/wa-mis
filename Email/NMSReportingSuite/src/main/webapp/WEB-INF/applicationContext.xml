@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+    <!-- Enable annotation configuration -->
+    <context:annotation-config/>
+
+    <!-- Scan sample packages for Spring annotations -->
+    <context:component-scan base-package="com.beehyv.wareporting"/>
+    <context:component-scan base-package="com.beehyv.wareporting.dao"/>
+    <context:component-scan base-package="com.beehyv.wareporting.security"/>
+    <context:component-scan base-package="com.beehyv.wareporting.business"/>
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/static/**" location="/static/" cache-period="3600000"/>
+    <!-- Spring AOP auto-proxy creation (required to support Shiro annotations) -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+
+    <!-- Sample RDBMS data source that would exist in any application.  Sample is just using an in-memory HSQLDB
+         instance.  Change to your application's settings for a real app. -->
+    <context:property-placeholder location="classpath:app.properties"/>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="${mysql.url}"/>
+        <property name="username" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+    </bean>
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- Scan packages for JPA annotations -->
+        <property name="packagesToScan" value="com.beehyv.wareporting.model"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.jdbc.fetch_size">100</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <!-- Because we're using an in-memory database for demo purposes (which is lost every time the app
+                     shuts down), we have to ensure that the HSQLDB DDL is run each time the app starts.  The
+                     DDL is auto-generated based on the *.hbm.xml mapping definitions below. -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Transaction support beans -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven/>
+
+
+    <!-- =========================================================
+         Shiro Components
+         ========================================================= -->
+
+    <!-- Shiro's main business-tier object for web-enabled applications
+         (use org.apache.shiro.web.mgt.DefaultWebSecurityManager instead when there is no web environment)-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- Single realm app (realm configured next, below).  If you have multiple realms, use the 'realms'
+      property instead. -->
+        <property name="realm" ref="waRepRealm"/>
+    </bean>
+
+    <bean id="waRepRealm" class="com.beehyv.wareporting.security.NMSRepRealm"/>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- Post processor that automatically invokes init() and destroy() methods -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- Define the Shiro Filter here (as a FactoryBean) instead of directly in web.xml -
+         web.xml uses the DelegatingFilterProxy to access this bean.  This allows us
+         to wire things with more control as well utilize nice Spring things such as
+         PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/wa/login"/>
+        <property name="successUrl" value="/wa/index"/>
+        <property name="unauthorizedUrl" value="/wa/unauthorized"/>
+        <!-- The 'filters' property is usually not necessary unless performing an override, which we
+             want to do here (make authc point to a PassthruAuthenticationFilter instead of the
+             default FormAuthenticationFilter: -->
+        <property name="filters">
+            <util:map>
+                <entry key="authc">
+                    <bean class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter"/>
+                </entry>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /** = anon
+            </value>
+        </property>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="268435456"/>
+    </bean>
+
+    <!-- Spring Mail Sender -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="username" value="${mail.username}"/>
+        <property name="password" value="${mail.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.host">smtp.bizmail.yahoo.com</prop>
+                <prop key="mail.smtp.port">465</prop>
+                <prop key="mail.smtp.email">nsp-reports@beehyv.com</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.ssl.enable">true</prop>
+                <prop key="mail.smtp.ssl.required">true</prop>
+                <!--for server using email SSL -->
+                <prop key="mail.smtp.ssl.trust">smtp.bizmail.yahoo.com</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="autoReportMail" class="com.beehyv.wareporting.job.AutoReportEmailGeneration"/>
+    <task:scheduled-tasks>
+        <!--<task:scheduled ref="autoReportMail" method="executeInternal" cron="0 0 9 1 * ?"/>-->
+        <task:scheduled ref="autoReportMail" method="sendFirstMail" cron="0 0 16 2 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendSecondMail" cron="0 0 16 3 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendThirdMail" cron="0 0 16 4 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendFourthMail" cron="0 0 16 5 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendFifthMail" cron="0 0 16 6 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendSixthMail" cron="0 0 16 7 * ?"/>
+        <task:scheduled ref="autoReportMail" method="sendWeeklyFirstMail" cron="0 0 9 ? * TUE"/>
+        <!--<task:scheduled ref="autoReportMail" method="sendWeeklyThirdMail" cron="0 0 9 ? * WED *"/>-->
+        <!--<task:scheduled ref="autoReportMail" method="test" cron="0 0 16 3 * ?"/>-->
+    </task:scheduled-tasks>
+</beans>

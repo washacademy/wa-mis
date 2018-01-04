@@ -1,0 +1,87 @@
+[
+	{
+		"title":"Overview",
+		"icon":{
+			"reg":"../images/nav3-3.png",
+			"active":"../images/nav3.png"
+		},
+	},
+	/*{
+		"title":"Mobile Academy Records",
+		"icon":{
+			"reg":"../images/nav1.png",
+			"active":"../images/nav1-1.png"
+		},
+		"options":[
+			{
+				"title":"Cumulative Summary Report", 
+				"click":"ma-cumulative-summary-report"
+			},
+			{
+				"title":"Cumulative Completion Report", 
+				"click":"ma-cumulative-completion-report"
+			},
+			{
+				"title":"Circle-Wise Anonymous Report", 
+				"click":"ma-circle-anon-report"
+			},
+			{
+				"title":"Cumulative Inactive Users",
+				"click":"ma-cumulative-inactive-report"
+			}
+		],
+	},
+	{
+		"title":"Kilkari Reports",
+		"icon":{
+			"reg":"../images/nav1.png",
+			"active":"../images/nav1-1.png"
+		},
+		"options":[
+			{
+				"title":"Cumulative Summary Report",
+				"click":" "
+			},
+			{
+				"title":"Aggregate Beneficiary Report", 
+				"click":" "
+			},
+			{
+				"title":"Beneficiary Listenership Report", 
+				"click":" "
+			},
+			{
+				"title":"Repeat Listener Report",
+				"click":" "
+			},
+			{
+				"title":"Monthly Thematic Content Report",
+				"click":" "
+			},
+			{
+				"title":"Kilkari Call Report",
+				"click":" "
+			},
+			{
+				"title":"Deactivations for not answering",
+				"click":" "
+			},
+			{
+				"title":"Beneficiaries listening to <25% that month",
+				"click":" "
+			},
+			{
+				"title":"Beneficiaries who deactivated themselves",
+				"click":" "
+			}
+		]
+	},
+	{
+		"title":"User Management",
+		"icon":{
+			"reg":"../images/nav2.png",
+			"active":"../images/nav2-2.png"
+		},
+		"click":"user-management",
+	}*/
+]

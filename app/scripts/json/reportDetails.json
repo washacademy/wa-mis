@@ -1,0 +1,94 @@
+[
+  {
+    "service": "M",
+    "name": "Wash Academy Reports",
+    "icon": "images/drop-down-3.png",
+    "options": [
+      {
+        "name": "Cumulative Course Completion",
+        "reportEnum": "MA_Cumulative_Course_Completion",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "Circle wise Anonymous Users",
+        "reportEnum": "MA_Anonymous_Users",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "Cumulative Inactive Users",
+        "reportEnum": "MA_Cumulative_Inactive_Users",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "Swachchagrahi Rejected Records",
+        "reportEnum": "MA_Swachchagrahi_Import_Rejects",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "Cumulative Summary Report",
+        "reportEnum": "Cummulative_Summary_Report",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "MA Subscriber Report",
+        "reportEnum": "MA_Subscriber_Report",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      },
+      {
+        "name": "MA Performance Report",
+        "reportEnum": "MA_Performance_Report",
+        "icon": "images/drop-down-3.png",
+        "service": "M"
+      }
+    ]
+  }/*,
+  {
+    "service": "K",
+    "name": "Kilkari Reports",
+    "icon": "images/drop-down-3.png",
+    "options": [
+      {
+        "name": "Deactivated for not answering",
+        "reportEnum": "Kilkari_Six_Weeks_No_Answer",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      },
+      {
+        "name": "Deactivated for Low Listenership",
+        "reportEnum": "Kilkari_Low_Listenership_Deactivation",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      },
+      {
+        "name": "Listen to < 25% this month",
+        "reportEnum": "Kilkari_Low_Usage",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      },
+      {
+        "name": "Self Deactivations",
+        "reportEnum": "Kilkari_Self_Deactivated",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      },
+      {
+        "name": "Mother Rejected Records",
+        "reportEnum": "Kilkari_Mother_Import_Rejects",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      },
+      {
+        "name": "Child Rejected Records",
+        "reportEnum": "Kilkari_Child_Import_Rejects",
+        "icon": "images/drop-down-3.png",
+        "service": "K"
+      }
+    ]
+  }*/
+]

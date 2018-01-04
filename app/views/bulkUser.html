@@ -1,0 +1,56 @@
+<div ng-controller="BulkUserController" class="bulkUpload">
+	<div class="block">
+<!--
+		<div class="form-group" style="display: inline-block; width: 300px;">
+			<input type="file" class="form-control" name="bulkCsv" value="Select .csv file" ng-files="getTheFiles($files)" />
+		</div>
+		<button type="submit" class="btn btn-primary" name="uploadCsv">Upload File</button>
+		<button class="btn btn-primary" name="uploadCsv" ng-click="uploadFiles()">Upload File</button>
+
+		<br>
+		
+ -->
+		<div class="bulkUpload-header block">
+			
+			<label for="file-upload" class="btn btn-sm btn-default custom-file-upload">
+				<i class="fa fa-cloud-upload"></i>
+				<span ng-if="!myFile">Click here to select CSV file</span>
+				<span ng-if="myFile">{{myFile.name}}</span>
+			</label>
+			<input id="file-upload" class="input input-sm" type="file" name="bulkCsv" file-model="myFile" style="display: none;" />
+
+			<button class="btn btn-sm btn-primary" ng-click="uploadFile()">Upload Bulk User</button>
+
+			<a class="btn btn-sm btn-primary" href="{{downloadTemplateUrl}}">
+				<span class="glyphicon glyphicon-disk-save"></span>
+				Download Template
+			</a>
+			<br>
+			<p>Note: Document should be in CSV format.</p>
+		</div>
+		
+
+	</div>
+	<hr>
+	<div class="bulkUpload-body block" ng-if="errorsObj.length > 0 && uploadedFlag">
+		<!-- <ul>
+			<li ng-repeat="row in listErrors()">{{row}}</li>
+		</ul> -->
+		<p class="grey">Status of Document Import</p>
+		<p class="red">Error : given rows not imported</p>
+		<table class="table table-bordered">
+			<tr>
+				<th>Row no.</th>
+				<th>Error Message</th>
+			</tr>
+			<tr ng-repeat="row in errorsObj">
+				<td>{{row.line}}</td>
+				<td>{{row.name}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="bulkUpload-body block" ng-if="errorsObj.length == 0 && uploadedFlag">
+		<p class="grey">Status of Document Import</p>
+		<p class="green">Records successfully imported</p>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+package com.beehyv.wareporting.dao.impl;
+
+import com.beehyv.wareporting.dao.AbstractDao;
+import com.beehyv.wareporting.dao.MACourseAttemptDao;
+import com.beehyv.wareporting.model.MACourseFirstCompletion;
+import com.beehyv.wareporting.model.User;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+
+/**
+ * Created by beehyv on 17/5/17.
+ */
+@Repository("maCourseAttemptDao")
+public class MACourseAttemptDaoImpl extends AbstractDao<Integer, User> implements MACourseAttemptDao {
+
+    @Override
+    public Long getCountForGivenDistrict(Date toDate, Integer districtId) {
+        Criteria criteria= getSession().createCriteria(MACourseFirstCompletion.class);
+        criteria.add(Restrictions.lt("firstCompletionDate",toDate))
+                .add(Restrictions.eq("districtId",districtId))
+                .setProjection(Projections.rowCount());
+
+        return (Long) criteria.uniqueResult();
+
+    }
+}

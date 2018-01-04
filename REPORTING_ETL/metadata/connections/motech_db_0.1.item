@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TalendMetadata:DatabaseConnection xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmi:id="_v530gCpbEeed2NP7fH7gnw" name="motech_db" id="_hMn88CpbEeed2NP7fH7gnw" label="motech_db" ContextMode="true" ContextId="_qNdrUCpbEeed2NP7fH7gnw" contextName="Default" DatabaseType="MySQL" DriverClass="org.gjt.mm.mysql.Driver" URL="jdbc:mysql://null:null/null?null" dbVersionString="MYSQL_5" Port="context.motech_db_Port" Username="context.motech_db_Login" Password="context.motech_db_Password" ServerName="context.motech_db_Server" DatasourceName="" FileFieldName="" SID="context.motech_db_Database" SqlSynthax="SQL Syntax" DbmsId="mysql_id" ProductId="MYSQL" AdditionalParams="context.motech_db_AdditionalParams" StandardSQL="true" SQLMode="false" UiSchema="">
+  <taggedValue xmi:id="_v55psCpbEeed2NP7fH7gnw" tag="Is Conn Need Reload" value="false"/>
+  <taggedValue xmi:id="_v6F28CpbEeed2NP7fH7gnw" tag="package filter" value=""/>
+  <taggedValue xmi:id="_v6VukCpbEeed2NP7fH7gnw" tag="Status" value=""/>
+  <taggedValue xmi:id="_v6VukSpbEeed2NP7fH7gnw" tag="Version" value="0.1"/>
+  <taggedValue xmi:id="_v6VukipbEeed2NP7fH7gnw" tag="Purpose" value=""/>
+  <taggedValue xmi:id="_v6WVoCpbEeed2NP7fH7gnw" tag="Description" value=""/>
+  <taggedValue xmi:id="_v6WVoSpbEeed2NP7fH7gnw" tag="Author" value=""/>
+  <taggedValue xmi:id="_v6WVoipbEeed2NP7fH7gnw" tag="otherParameter"/>
+  <parameters xmi:id="_v55psSpbEeed2NP7fH7gnw" key="CONN_PARA_KEY_USERNAME" value="context.motech_db_Login"/>
+</TalendMetadata:DatabaseConnection>

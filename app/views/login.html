@@ -1,0 +1,52 @@
+<div class="block login"  ng-controller="LoginController">
+	
+	<div class='login-header'>
+		<!-- <img src="images/NHM_Logo.png"> -->
+	</div>
+
+	<div class="container-fluid login-body">
+		<div class="form-horizontal col-xs-offset-4 col-xs-4">
+			<h1>Login</h1>
+
+			<form  id="loginForm" name="loginForm" ng-submit="login($event)">
+			<!-- <form> -->
+				<div class="form-group">
+					<p class="error">{{errorMessage}}</p>
+				</div>
+
+				<div class="form-group" >
+					<input type="text" class="form-control input input-sm" ng-model="user.username" name="username" placeholder="Username" >
+
+				</div>
+				<div class="form-group" >
+					<input type="password" class="form-control input input-sm" ng-model="user.password" name="password" placeholder="Password" >
+
+				</div>
+				<div class="captcha">
+					<botdetect-captcha styleName="AncientMosaic"></botdetect-captcha>
+					<div id="tapa" style="background-color: #ffffff; height: 10px;width: 250px;position: relative;top: -10px;"></div>
+					<input type="text" id="captchaCode"  class ="captchaCode" name="captchaCode" ng-model="user.captchaCode" correct-captcha>
+
+				</div>
+
+
+				<!--<div class="form-group">-->
+					<!--<a ui-sref="forgotPassword">Forgot Password?</a>-->
+				<!--</div>-->
+				<!--
+				<div class="form-group checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.rememberMe">
+						Remember me
+					</label>
+				</div>
+				-->
+				<div class="form-group login-submit">
+					<button type="submit"  class="btn btn-sm btn-primary">Login</button>
+					<a ui-sref="forgotPassword">Forgot Password?</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

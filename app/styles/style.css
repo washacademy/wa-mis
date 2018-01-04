@@ -1,0 +1,673 @@
+.block{
+	padding: 10px;
+}
+h1{
+	font-size: 1.5em;
+}
+
+.non-footer{
+	min-height: 94%;
+}
+
+body div.main{
+    min-width: 1300px;
+    overflow-x: auto;
+}
+
+body .login .login-header{
+	text-align: center;
+}
+body .login .login-header img{
+	height: 300px;
+}
+body .login .login-body{
+	height: 285px;
+}
+body .login .login-body .error{
+	color: #a94442;
+}
+body .login .login-body .checkbox{
+	padding: 0px 0px 20px;
+}
+body .login .login-body .checkbox label{
+	height: 30px;
+}
+
+body .nav-bar .nav-header{
+
+}
+body .nav-bar .nav-header{
+	padding: 15px;
+	background-image: url("../images/header.png");
+	background-size: 100%;
+}
+body .nav-bar .nav-header span{
+	color: #ffffff;
+	float: right;
+	padding: 25px;
+}
+
+/*navbar*/
+
+div.nav-bar .nav{
+	background-color: #1cb1d2;
+	height: 41px;
+}
+
+div.nav-bar ul.breadcrumb {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px 0px 0px 50px;
+	overflow: hidden;
+	background-color: inherit;
+	color: #ffffff;
+}
+div.nav-bar ul.breadcrumb > li + li:before{
+	content: ">" !important;
+	color: #000000;
+}
+
+div.nav .aggregate-bread-crumb > li + li:before{
+    content: ">" !important;
+    color: #23527c;
+
+}
+
+div.nav-bar .breadcrumb li a{
+	text-decoration: none;
+	color: #ffffff;
+	display: inline-block;
+	text-align: center;
+	padding: 12px 16px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.aggregate-submit{
+    margin-top : 25px;
+}
+
+
+a.active{
+	cursor:pointer;
+}
+
+div.nav-bar .breadcrumb li a.active{
+	color: #000000;
+	cursor:pointer;
+}
+
+div.nav .aggregate-bread-crumb li a.active{
+	color: #23527c;
+	cursor:pointer ;
+
+}
+
+.aggregate-bread-crumb{
+    background : #eaeade !important ;
+    padding : 7px 21px !important;
+}
+
+.aggregate-bread-crumb li a{
+   cursor:pointer ;
+}
+
+div.nav-bar ul.nav-menu {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	background-color: #1cb1d2;
+	float: right;
+}
+div.nav-bar .nav-menu li {
+	float:right;
+	color: #000000;
+}
+div.nav-bar .nav-menu li.active{
+	background-color: #2164b2;
+	color: #ffffff;
+}
+
+div.nav-bar .nav-menu li a {
+	display: block;
+	color: #000000;
+	text-align: center;
+	padding: 12px 16px;
+	text-decoration: none;
+	font-size: 12px;
+}
+div.nav-bar .nav-menu li.active a{
+	color: #ffffff;
+}
+
+div ul.sundays-list{
+    position: absolute;
+    top: 90%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 60px;
+    left: 278px;
+    list-style-type: none;
+    border: 1px solid #bfcbcf;
+    background-color: #ffffff;
+    border-radius:4px;
+    padding:0px 0;
+
+}
+
+div ul.sundays-list li.sunday-list-items:active{
+   background-color:#eeeeee;
+   color:green;
+
+}
+
+div ul.sundays-list li.sunday-list-items:hover{
+   background-color:#d4d4d4;
+   color :#31708f;
+   cursor : pointer;
+   border-color: #8c8c8c;
+
+}
+
+.uib-datepicker-current{
+   display:none;
+}
+
+.uib-clear{
+   border-radius : 3px !important;
+}
+
+div ul li.sunday-list-items{
+    height:35px;
+    text-align:center;
+    border-bottom:1px solid grey;
+    color: black;
+    vertical-align:center;
+    padding-top: 1px;
+}
+
+div ul li.sunday-list-items p{
+     padding:5px
+}
+
+div ul li.sunday-list-header{
+    height: 30px;
+    text-align:center;
+    border-bottom:1px solid grey;
+    color: #ffffff;
+    background: #31b0d5;
+    padding:5px;
+}
+
+#newpass-btn-login{
+    margin-left:64%;
+}
+
+#back-to-login{
+  margin-left : 12px;
+}
+
+
+div.login .login-header{
+	min-height: 60px;
+}
+
+div.userTable > .header > .inputs{
+	padding: 30px 0px 30px 10px;
+}
+div.userTable > .header > .inputs > *{
+	margin: 0px;
+	display: inline-block;
+	width: 15%;
+}
+div.userTable > .header > .inputs > h1{
+	width: 54%;
+}
+div.userTable > .header > .inputs > input{
+
+}
+
+div.userTable .resetButton{
+	float: right;
+}
+
+div.userTable table th{
+	background-color: #2164b2;
+}
+div.userTable table th:nth-child(1) {
+	width: 3%;
+}
+div.userTable table th:nth-child(2) {
+	width: 12%;
+}
+div.userTable table th:nth-child(3) {
+	width: 10%;
+}
+div.userTable table th:nth-child(4) {
+	width: 9%;
+}
+div.userTable table th:nth-child(5) {
+	width: 16%;
+}
+div.userTable table th:nth-child(6) {
+	width: 9%;
+}
+div.userTable table th:nth-child(7) {
+	width: 9%;
+}
+div.userTable table th:nth-child(8) {
+	width: 9%;
+}
+div.userTable table th:nth-child(9) {
+	width: 9%;
+}
+div.userTable table th:nth-child(10) {
+	width: 9%;
+}
+div.userTable table th:nth-child(11) {
+	width: 4%;
+}
+div.userTable table th a{
+	text-decoration: none;
+	font-size: 12px;
+}
+
+div.userTable table th ul a{
+	color: #000000;
+}
+div.userTable table th.sortable-columns{
+	cursor: pointer;
+}
+div.userTable table th a{
+	color: #ffffff;
+}
+div.userTable table th.th-dropdown{
+	padding: 0px;
+}
+div.userTable table th.th-dropdown > span > div{
+	padding: 8px;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+div.userTable table th > span,
+div.userTable table th > span > div > a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+div.userTable table th > span > div > a span.caret{
+	float: right;
+	margin-top: 7px;
+}
+
+div.userTable table td{
+	font-size: 12px; 
+	background-color: #e6e6fa;
+}
+div.userTable table td *{
+	font-size: 12px; 
+	color: #000000;
+}
+
+div.userTable .pagination{
+	text-align: right;
+	margin: 0px;
+	padding: 10px;
+}
+div.userTable .pagination *{
+	margin: 0px;
+}
+
+div.userTable .dropdown-menu > li > a{
+	max-width: 160px;
+}
+div.userTable .dropdown-menu.small > li > a{
+
+}
+
+
+
+div.reports-header{
+	margin-top: 15px;
+}
+div.reports-header *,
+div.reports-header input,
+div.reports-header select{
+	text-overflow: ellipsis;
+}
+
+div.reports-header .left,
+div.reports-header .right{
+	padding: 0px;
+}
+div.reports-header .left > * > .btn-group > button,
+div.reports-header .right > * > .btn-group > button{
+	white-space: inherit;
+}
+div.reports-header .left > * > .btn-group,
+div.reports-header .right > * > .btn-group,
+div.reports-header .left > * > .btn-group > button,
+div.reports-header .right > * > .btn-group > button{
+	width: 100%;
+}
+
+div.reports-header .right button,
+div.reports-header .left button{	
+	text-align: left;
+}
+div.reports-header .right button.loading,
+div.reports-header .left button.loading{	
+	cursor: wait;
+}
+div.reports-header .right button span.caret,
+div.reports-header .left button span.caret{
+	float: right;
+	margin-top: 7px;
+}
+
+div.reports-header .left > * > .btn-group >button,
+div.reports-header .left > * > .input-group > p{
+	min-width: 200px;
+}
+div.reports-header .right * > .btn-group > button,
+div.reports-header .right * > .input-group > p{
+	min-width: 130px;
+}
+
+div.reports .dropdown-menu > li > a{
+	min-width: 200px;
+}
+div.reports .dropdown-menu.small > li > a{
+	max-width: 150px;
+}
+
+div.reports-header ul li a,
+div.reports-header label{
+	font-size: 12px;
+}
+
+div.reports-body{
+	text-align: center;
+}
+
+
+div.editUser .loading,
+div.createUser .loading,
+div.profile .loading{
+	cursor: wait;
+}
+div.editUser label,
+div.createUser label,
+div.profile label{
+	font-size: 12px;
+}
+div.editUser button,
+div.createUser button,
+div.profile button{
+	margin-right: 12px;
+}
+div.editUser button.floatR,
+div.createUser button.floatR,
+div.profile button.floatR{
+	margin-left: 12px;
+	float:right;
+	margin-right:0;
+}
+
+div.createUser .errorMessage,
+div.editUser .errorMessage,
+div.profile .errorMessage{
+	color: #a94442;
+}
+
+div.bulkUpload-header{
+	margin-top: 15px;
+	text-align: center;
+}
+div.bulkUpload-header > *{
+	display: inline-block;
+	width: 20%;
+}
+div.bulkUpload-header > input[type="file"] {
+    display: none;
+}
+div.bulkUpload-header > p{
+	padding-top: 10px;
+}
+
+div.bulkUpload p{
+	font-size: 12px;
+}
+div.bulkUpload p.grey{
+	color: #4d4d4d;
+}
+div.bulkUpload p.green{
+	color: green;
+}
+div.bulkUpload p.red{
+	color: #ff0000;
+}
+div.bulkUpload table th{
+	background-color: #2164b2;
+	color: #ffffff;
+	font-size: 13px;
+}
+div.bulkUpload table th:nth-child(1) {
+	width: 20%;
+}
+div.bulkUpload table th:nth-child(2) {
+	width: 80%;
+}
+div.bulkUpload table td{
+	font-size: 12px;
+}
+div.bulkUpload table td:nth-child(1) {
+	color: #ff0000;
+}
+
+div.footer{
+	background-color: #b3b3b3;
+	text-align: center;
+	font-size: 13px;
+	color: #4d4d4d;
+	padding: 5px;
+}
+
+.dropdown-menu{
+   max-height: 300px; /*Provide height in pixels or in other units as per your layout*/
+   overflow-y: auto; /*Provide an auto overflow to diaply scroll*/
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active{
+	background-color: #2164b2;
+}
+
+.btn-info, 
+.btn-success,
+.btn-danger,{
+	display: none;
+}
+
+div.loading{
+	text-align: center;
+}
+
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+body > .main {
+	min-height:100%;
+	position:relative;
+}
+body > .main > .nav-bar {
+}
+body > .main > .content {
+	padding-bottom: 40px;
+}
+body > .main > .footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+body *{
+	/*border: 1px solid black;*/
+	font-family: 'Roboto', sans-serif;
+}
+
+.grid {
+  width: 97%;
+  margin : auto;
+}
+
+.reportheader{
+    margin-top : 20px;
+    margin-left: 15px;
+    color: #463f3f;
+    font-weight: bold;
+}
+
+.aggregate-calender{
+    color: #2164b2;
+    float: right;
+    margin-right: 35px;
+    font-weight: 600;
+    font-size : 13px;
+}
+
+.calender-date{
+    font-family:'Roboto', sans-serif;
+}
+.ui-grid-header-cell {
+background-color:#2164b2 !important;
+color: white !important;
+}
+
+.ui-grid-header-cell .ui-grid-cell-contents {
+ white-space: normal;
+ -ms-text-overflow: clip;
+ -o-text-overflow: clip;
+ text-overflow: clip;
+ overflow: visible;
+ text-align : center;
+
+ }
+
+.ui-grid-header-cell-label{
+ font-size : 13px;
+}
+.ui-grid-cell{
+ text-align : center;
+}
+
+.ui-grid, .ui-grid-viewport, .ui-grid-canvas {
+  height: auto !important;
+}
+
+.ui-grid-column-menu-button{
+  display : none;
+}
+.select_report{
+    padding : 3px 14px !important;
+}
+.report_category{
+    padding : 10px 25px !important;
+}
+.report-type{
+    width : 221px;
+}
+.non-aggregate{
+    width : 180px;
+}
+.report-dropdown-menu, .type-aggregate{
+    width : 264px;
+}
+.type-aggregate>li>a{
+    padding : 5px 20px !important;
+}
+
+
+.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }
+
+.dialogdemoBasicUsage button {
+  width: 200px; }
+
+.dialogdemoBasicUsage div#status {
+  color: #c60008; }
+
+.dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+  margin-bottom: 0; }
+
+.md-button{
+    width : 88px !important;
+}
+
+.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
+    background-color:rgba(30, 107, 124, 0.8) !important;
+    color : white !important;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+    color : rgb(248, 249, 255);
+    background-color: #2164b2 !important;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary{
+    background-color:##2164b2 !important;
+}
+
+md-dialog{
+    min-width : 340px !important;
+}
+
+.matrixHeader{
+    text-align : center;
+}
+
+.BDC_CaptchaImageDiv a{
+    display : none !important;
+}
+
+.captcha{
+    margin-left : -15px;
+}
+
+.login-submit{
+    padding-top : 15px;
+}
+
+.ui-grid-cell-contents span.ui-grid-invisible{
+    display : none;
+}
+
+.serial-no{
+    padding-top : 6px;
+}
+
+.ui-grid-footer-panel{
+    text-align : center;
+}
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/

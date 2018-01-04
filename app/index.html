@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="waReports" ng-controller="MainController">
+<head>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+	
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-validate/dist/validate.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-grid/ui-grid.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+	<script type="text/javascript" src="bower_components/angularjs-captcha/dist/angularjs-captcha.min.js"></script>
+	<script type="text/javascript" src="bower_components/re-tree/re-tree.js"></script>
+	<script type="text/javascript" src="bower_components/ng-device-detector/ng-device-detector.js"></script>
+
+	<script type="text/javascript" src="scripts/global/urls.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- main -->
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/json/user.json"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="scripts/controllers/main.js"></script>
+	<script type="text/javascript" src="scripts/controllers/userManagement.js"></script>
+	<script type="text/javascript" src="scripts/controllers/userTable.js"></script>
+	<script type="text/javascript" src="scripts/controllers/editUser.js"></script>
+	<script type="text/javascript" src="scripts/controllers/bulkUser.js"></script>
+	<script type="text/javascript" src="scripts/controllers/createUser.js"></script>
+	<script type="text/javascript" src="scripts/controllers/reports.js"></script>
+	<script type="text/javascript" src="scripts/controllers/profile.js"></script>
+	<script type="text/javascript" src="scripts/controllers/login.js"></script>
+	<script type="text/javascript" src="scripts/controllers/forgotPassword.js"></script>
+    <script type="text/javascript" src="scripts/controllers/changePassword.js"></script>
+	<!-- Factory -->
+	<!-- <script type="text/javascript" src="scripts/factories/navbar.js"></script> -->
+	<script type="text/javascript" src="scripts/factories/userTable.js"></script>
+	<script type="text/javascript" src="scripts/factories/auth.js"></script>
+	<script type="text/javascript" src="scripts/factories/userForm.js"></script>
+	
+	<!-- Directives -->
+	<script type="text/javascript" src="scripts/directives/pagination.js"></script>
+
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="styleSheet" href="bower_components/angular-ui-grid/ui-grid.min.css"/>
+	<link rel="styleSheet" href="bower_components/angular-material/angular-material.min.css"/>
+
+	<link rel="stylesheet" href="styles/style.css">
+
+	<title>WA Reporting - {{getTitle($state.current.name)}}</title>
+
+</head>
+<body>
+	<div class="main" >
+		<div class='nav-bar'>
+			<div class="nav-header">
+				<img alt="Wash Academy & information System" src="images/logo.png">
+				<span ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" ||  currentUser.default || currentUser.default == null '><b>Hello {{currentUser.fullName}}</b></span>
+			</div>
+
+			<div class="nav">
+				<ul class="breadcrumb" ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" || currentUser.default || currentUser.default == null'>
+					<li ng-repeat="item in getBreadCrumb($state.current.name)">
+						<a ui-sref='{{item.sref}}' ng-class="{'active': {{item.active}} }" >{{item.name}} </a>
+					</li>
+
+				</ul>
+				<ul class="nav-menu" ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" || currentUser.default  || currentUser.default == null '>
+					<li>
+						<a href={{logoutUrl}}>Logout</a>
+					</li>
+                    <li ng-class="{active: activeTab('changePassword')}">
+                        <a ui-sref="changePassword">Change Password</a>
+                    </li>
+					<li ng-class="{active: activeTab('profile')}">
+						<a ui-sref="profile">My Profile</a>
+					</li>
+					<li ng-class="{active: activeTab('userManagement')}" ng-if="currentUser.roleId!= null && currentUser.roleName != 'USER'">
+						<a ui-sref="userManagement.userTable">User Management</a>
+					</li>
+					<li ng-class="{active: activeTab('reports')}">
+						<a ui-sref="reports">Reports</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div ui-view class="content">
+		</div>
+
+		<div class='footer'>
+			<span>2017 all rights reserved - Wash Academy Information system</span>
+		</div>
+	</div>
+
+	
+
+</body>
+</html> 

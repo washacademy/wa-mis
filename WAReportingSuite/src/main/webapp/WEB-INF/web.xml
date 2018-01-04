@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/applicationContext.xml
+    </param-value>
+  </context-param>
+
+  <!--<context-param>
+    <param-name>quartz:config-file</param-name>
+    <param-value>quartz.properties</param-value>
+  </context-param>-->
+  <!--<context-param>
+    <param-name>quartz:shutdown-on-unload</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>quartz:wait-on-shutdown</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>quartz:start-on-load</param-name>
+    <param-value>true</param-value>
+  </context-param>-->
+  <!--<listener>
+    <listener-class>com.beehyv.wareporting.job.QuartzListener</listener-class>
+  </listener>-->
+  <!-- ===================================================================
+-  Servlet listeners
+-  =================================================================== -->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- ===================================================================
+-  Filters
+-  =================================================================== -->
+  <!-- Shiro Filter is defined in the spring application context: -->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+  <!--<filter>-->
+    <!--<filter-name>TimeOutFilter</filter-name>-->
+    <!--<filter-class>-->
+      <!--com.beehyv.wareporting.job.TimeOutFilter-->
+    <!--</filter-class>-->
+  <!--</filter>-->
+  <!--<filter>-->
+    <!--<filter-name>CorsFilter</filter-name>-->
+    <!--<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>CorsFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
+  <!--<filter>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- ===================================================================
+-  Servlets
+-  =================================================================== -->
+  <servlet>
+    <servlet-name>waRep</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>waRep</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>BotDetect Captcha</servlet-name>
+    <servlet-class>com.captcha.botdetect.web.servlet.SimpleCaptchaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>BotDetect Captcha</servlet-name>
+    <url-pattern>/botdetectcaptcha</url-pattern>
+  </servlet-mapping>
+
+  <!--<filter-mapping>-->
+    <!--<filter-name>TimeOutFilter</filter-name>-->
+    <!--<url-pattern>*.html</url-pattern>-->
+  <!--</filter-mapping>-->
+
+  <!--<filter-mapping>-->
+    <!--<filter-name>TimeOutFilter</filter-name>-->
+    <!--<servlet-name>Faces Servlet</servlet-name>-->
+  <!--</filter-mapping>-->
+  <!-- ===================================================================
+   -  Welcome file list
+   -  =================================================================== -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <error-page>
+    <error-code>401</error-code>
+    <location>/unauthorized.jsp</location>
+  </error-page>
+
+  <session-config>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-config>
+</web-app>
