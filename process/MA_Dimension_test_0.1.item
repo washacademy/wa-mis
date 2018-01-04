@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default">
+  <context confirmationNeeded="false" name="Default">
+    <contextParameter comment="" name="report_port" prompt="report_port?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="report_server" prompt="report_server?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="report_database" prompt="report_database?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="report_login" prompt="report_login?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="report_password" prompt="report_password?" promptNeeded="false" type="id_Password" value="RRyLGfljUdg="/>
+    <contextParameter comment="" name="report_AdditionalParams" prompt="report_AdditionalParams?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="reporting_db_Password" prompt="reporting_db_Password?" promptNeeded="false" repositoryContextId="_bRF9MCpcEeed2NP7fH7gnw" type="id_Password" value=""/>
+    <contextParameter comment="" name="reporting_db_Server" prompt="reporting_db_Server?" promptNeeded="false" repositoryContextId="_bRF9MCpcEeed2NP7fH7gnw" type="id_String" value="null"/>
+    <contextParameter comment="" name="reporting_db_Login" prompt="reporting_db_Login?" promptNeeded="false" repositoryContextId="_bRF9MCpcEeed2NP7fH7gnw" type="id_String" value="null"/>
+    <contextParameter comment="" name="reporting_db_Database" prompt="reporting_db_Database?" promptNeeded="false" repositoryContextId="_bRF9MCpcEeed2NP7fH7gnw" type="id_String" value="null"/>
+    <contextParameter comment="" name="reporting_db_AdditionalParams" prompt="reporting_db_AdditionalParams?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="reporting_db_Port" prompt="reporting_db_Port?" promptNeeded="false" repositoryContextId="_bRF9MCpcEeed2NP7fH7gnw" type="id_String" value="null"/>
+  </context>
+  <parameters>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
+    <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_HADOOP_VERSION" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USERNAME" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_GROUP" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_USE_KEYTAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KT_PRINCIPAL" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_KEY_TAB" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_ENABLE_OO_KERBEROS" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_NAME_NODE_END_POINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_JOB_TRACKER_ENDPOINT" value="" show="false"/>
+    <elementParameter field="TEXT" name="OOZIE_END_POINT" value="" show="false"/>
+    <elementParameter field="CHECK" name="IMPLICITCONTEXT_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="STATANDLOG_USE_PROJECT_SETTINGS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="MULTI_THREAD_EXECATION" value="false"/>
+    <elementParameter field="CHECK" name="IMPLICIT_TCONTEXTLOAD" value="false"/>
+    <elementParameter field="RADIO" name="FROM_FILE_FLAG_IMPLICIT_CONTEXT" value="false" show="false"/>
+    <elementParameter field="RADIO" name="FROM_DATABASE_FLAG_IMPLICIT_CONTEXT" value="false" show="false"/>
+    <elementParameter field="FILE" name="IMPLICIT_TCONTEXTLOAD_FILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:PROPERTY_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" value="" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" value="" show="false"/>
+    <elementParameter field="TEXT" name="URL_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR_IMPLICIT_CONTEXT" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning" show="false"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_STATCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_LOGCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false"/>
+    <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" value="false" show="false"/>
+    <elementParameter field="CHECK" name="ON_FILES_FLAG" value="false" show="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;/home/vishnu/Desktop/TOS_BD-20151214_1327-V6.1.1/workspace/.metadata&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_STATS" value="&quot;stats_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_LOGS" value="&quot;logs_file.txt&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FILENAME_METTER" value="&quot;meter_file.txt&quot;" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="ISO-8859-15" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
+    <elementParameter field="CHECK" name="ON_DATABASE_FLAG" value="false" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_TYPE" value="tJDBCOutput" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ORACLE_11" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
+    <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DBNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="LOCAL_SERVICE_NAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="DBTABLE" name="TABLE_METER" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_RUNTIME_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_ERRORS" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_USER_WARNING" value="true" show="false"/>
+    <elementParameter field="CHECK" name="CATCH_REALTIME_STATS" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_HEADERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="HEADER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADER_IMPORT" value="" show="false"/>
+    <elementParameter field="TEXT" name="HEADERFOOTER_FOOTERID" value="" show="false"/>
+    <elementParameter field="CHECK" name="FOOTER_ENABLED" value="false" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_LIBRARY" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_CODE" value="" show="false"/>
+    <elementParameter field="TEXT" name="FOOTER_IMPORT" value="" show="false"/>
+    <routinesParameter id="_HTvlIEmYEeaikNhzEEO1fg" name="TalendDate"/>
+    <routinesParameter id="_HU1KQEmYEeaikNhzEEO1fg" name="StringHandling"/>
+    <routinesParameter id="_HU3mgEmYEeaikNhzEEO1fg" name="Numeric"/>
+    <routinesParameter id="_HU5bsEmYEeaikNhzEEO1fg" name="Relational"/>
+    <routinesParameter id="_HU8fAEmYEeaikNhzEEO1fg" name="DataOperation"/>
+    <routinesParameter id="_HVAJYEmYEeaikNhzEEO1fg" name="TalendDataGenerator"/>
+    <routinesParameter id="_HVDMsEmYEeaikNhzEEO1fg" name="Mathematical"/>
+    <routinesParameter id="_HVGQAEmYEeaikNhzEEO1fg" name="TalendString"/>
+    <routinesParameter id="_4VbhYEJcEeWkYKCbJLMUFA" name="ReportingHelper"/>
+  </parameters>
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
+    <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;../db_connection.txt&quot;"/>
+    <elementParameter field="CHECK" name="CSV_OPTION" value="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
+    <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;"/>
+    <elementParameter field="TEXT" name="ESCAPE_CHAR" value="&quot;&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="TEXT_ENCLOSURE" value="&quot;&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="HEADER" value="0"/>
+    <elementParameter field="TEXT" name="FOOTER" value="0"/>
+    <elementParameter field="TEXT" name="LIMIT" value=""/>
+    <elementParameter field="CHECK" name="REMOVE_EMPTY_ROW" value="true"/>
+    <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="DIRECTORY" name="TEMP_DIR" value="&quot;/home/vishnu/Desktop/TOS_BD-20151214_1327-V6.1.1/workspace&quot;" show="false"/>
+    <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
+    <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
+    <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" value="&quot;.&quot;" show="false"/>
+    <elementParameter field="CHECK" name="RANDOM" value="false"/>
+    <elementParameter field="TEXT" name="NB_RANDOM" value="10" show="false"/>
+    <elementParameter field="CHECK" name="TRIMALL" value="false"/>
+    <elementParameter field="TABLE" name="TRIMSELECT">
+      <elementValue elementRef="SCHEMA_COLUMN" value="key"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="TRIM" value="false"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="CHECK_FIELDS_NUM" value="false"/>
+    <elementParameter field="CHECK" name="CHECK_DATE" value="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="CHECK" name="SPLITRECORD" value="false"/>
+    <elementParameter field="CHECK" name="ENABLE_DECODE" value="false"/>
+    <elementParameter field="TABLE" name="DECODE_COLS" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="key"/>
+      <elementValue elementRef="DECODE" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
+      <elementValue elementRef="DECODE" value="false"/>
+    </elementParameter>
+    <elementParameter field="TEXT" name="DESTINATION" value="" show="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFileInputDelimited_1">
+      <column comment="" key="false" length="-1" name="key" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="-1" name="key" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="value" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextLoad_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
+    <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
+    <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="DISABLE_WARNINGS" value="true"/>
+    <elementParameter field="CHECK" name="DISABLE_INFO" value="true"/>
+    <elementParameter field="CHECK" name="DIEONERROR" value="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tContextLoad_1">
+      <column defaultValue="" key="false" length="255" name="key" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="value" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tMysqlRow" componentVersion="0.102" offsetLabelX="-3" offsetLabelY="0" posX="416" posY="224">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlRow_1" show="false"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
+    <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_4Z9mQCpbEeed2NP7fH7gnw" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="MYSQL_5"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="false"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="context.reporting_db_Server"/>
+    <elementParameter field="TEXT" name="PORT" value="context.reporting_db_Port"/>
+    <elementParameter field="TEXT" name="DBNAME" value="context.reporting_db_Database"/>
+    <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
+    <elementParameter field="TEXT" name="USER" value="context.reporting_db_Login"/>
+    <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kuc9p/xfCccm1qVicJRYPVM92ggU87Wnj9E="/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;dim_ma&quot;"/>
+    <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
+    <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;INSERT INTO `dim_ma` (`id`,`content_name`,`file_name`,`type`,`duration`) &#xA;VALUES (1,'Chapter01_Lesson01','ch1_l1.wav','NULL',120),&#xA;(2,'Chapter01_Lesson02','ch1_l2.wav','NULL',120),&#xA;(3,'Chapter02_Lesson01','ch2_l1.wav','NULL',120),&#xA;(4,'Chapter02_Lesson02','ch2_l2.wav','NULL',120),&#xA;(5,'Chapter02_Lesson03','ch2_l3.wav','NULL',120),&#xA;(6,'Chapter02_Question01','ch2_q1.wav','NULL',120),&#xA;(7,'Chapter02_Question02','ch2_q2.wav','NULL',120),&#xA;(8,'Chapter02_Question03','ch2_q3.wav','NULL',120),&#xA;(9,'Chapter02_Question04','ch2_q4.wav','NULL',120),&#xA;(10,'Chapter03_Lesson01','ch3_l1.wav','NULL',120),&#xA;(11,'Chapter01_Lesson03','ch1_l3.wav','NULL',120),&#xA;(12,'Chapter01_Lesson04','ch1_l4.wav','NULL',120),&#xA;(13,'Chapter01_Question01','ch1_q1.wav','NULL',120),&#xA;(14,'Chapter01_Question02','ch1_q2.wav','NULL',120),&#xA;(15,'Chapter01_Question03','ch1_q3.wav','NULL',120),&#xA;(16,'Chapter01_Question04','ch1_q4.wav','NULL',120),&#xA;(17,'Chapter07_Lesson03','ch7_l3.wav','NULL',120),&#xA;(18,'Chapter07_Lesson04','ch7_l4.wav','NULL',120),&#xA;(19,'Chapter02_Lesson04','ch2_l4.wav','NULL',120),&#xA;(20,'Chapter09_Question03','ch9_q3.wav','NULL',120),&#xA;(21,'Chapter09_Question04','ch9_q4.wav','NULL',120),&#xA;(22,'Chapter10_Lesson01','ch10_l1.wav','NULL',120),&#xA;(23,'Chapter10_Lesson02','ch10_l2.wav','NULL',120),&#xA;(24,'Chapter10_Lesson03','ch10_l3.wav','NULL',120),&#xA;(25,'Chapter10_Lesson04','ch10_l4.wav','NULL',120),&#xA;(26,'Chapter10_Question01','ch10_q1.wav','NULL',120),&#xA;(27,'Chapter10_Question02','ch10_q2.wav','NULL',120),&#xA;(28,'Chapter03_Lesson02','ch3_l2.wav','NULL',120),&#xA;(29,'Chapter03_Lesson03','ch3_l3.wav','NULL',120),&#xA;(30,'Chapter03_Lesson04','ch3_l4.wav','NULL',120),&#xA;(31,'Chapter03_Question01','ch3_q1.wav','NULL',120),&#xA;(32,'Chapter03_Question02','ch3_q2.wav','NULL',120),&#xA;(33,'Chapter03_Question03','ch3_q3.wav','NULL',120),&#xA;(34,'Chapter03_Question04','ch3_q4.wav','NULL',120),&#xA;(35,'Chapter04_Lesson01','ch4_l1.wav','NULL',120),&#xA;(36,'Chapter04_Lesson02','ch4_l2.wav','NULL',120),&#xA;(37,'Chapter04_Lesson03','ch4_l3.wav','NULL',120),&#xA;(38,'Chapter04_Lesson04','ch4_l4.wav','NULL',120),&#xA;(39,'Chapter04_Question01','ch4_q1.wav','NULL',120),&#xA;(40,'Chapter04_Question02','ch4_q2.wav','NULL',120),&#xA;(41,'Chapter04_Question03','ch4_q3.wav','NULL',120),&#xA;(42,'Chapter04_Question04','ch4_q4.wav','NULL',120),&#xA;(43,'Chapter05_Lesson01','ch5_l1.wav','NULL',120),&#xA;(44,'Chapter05_Lesson02','ch5_l2.wav','NULL',120),&#xA;(45,'Chapter05_Lesson03','ch5_l3.wav','NULL',120),&#xA;(46,'Chapter05_Lesson04','ch5_l4.wav','NULL',120),&#xA;(47,'Chapter05_Question01','ch5_q1.wav','NULL',120),&#xA;(48,'Chapter05_Question02','ch5_q2.wav','NULL',120),&#xA;(49,'Chapter05_Question03','ch5_q3.wav','NULL',120),&#xA;(50,'Chapter05_Question04','ch5_q4.wav','NULL',120),&#xA;(51,'Chapter06_Lesson01','ch6_l1.wav','NULL',120),&#xA;(52,'Chapter06_Lesson02','ch6_l2.wav','NULL',120),&#xA;(53,'Chapter06_Lesson03','ch6_l3.wav','NULL',120),&#xA;(54,'Chapter06_Lesson04','ch6_l4.wav','NULL',120),&#xA;(55,'Chapter06_Question01','ch6_q1.wav','NULL',120),&#xA;(56,'Chapter06_Question02','ch6_q2.wav','NULL',120),&#xA;(57,'Chapter06_Question03','ch6_q3.wav','NULL',120),&#xA;(58,'Chapter06_Question04','ch6_q4.wav','NULL',120),&#xA;(59,'Chapter07_Lesson01','ch7_l1.wav','NULL',120),&#xA;(60,'Chapter07_Lesson02','ch7_l2.wav','NULL',120),&#xA;(61,'Chapter07_Question01','ch7_q1.wav','NULL',120),&#xA;(62,'Chapter07_Question02','ch7_q2.wav','NULL',120),&#xA;(63,'Chapter07_Question03','ch7_q3.wav','NULL',120),&#xA;(64,'Chapter07_Question04','ch7_q4.wav','NULL',120),&#xA;(65,'Chapter08_Lesson01','ch8_l1.wav','NULL',120),&#xA;(66,'Chapter08_Lesson02','ch8_l2.wav','NULL',120),&#xA;(67,'Chapter08_Lesson03','ch8_l3.wav','NULL',120),&#xA;(68,'Chapter08_Lesson04','ch8_l4.wav','NULL',120),&#xA;(69,'Chapter08_Question01','ch8_q1.wav','NULL',120),&#xA;(70,'Chapter08_Question02','ch8_q2.wav','NULL',120),&#xA;(71,'Chapter08_Question03','ch8_q3.wav','NULL',120),&#xA;(72,'Chapter08_Question04','ch8_q4.wav','NULL',120),&#xA;(73,'Chapter09_Lesson01','ch9_l1.wav','NULL',120),&#xA;(74,'Chapter09_Lesson02','ch9_l2.wav','NULL',120),&#xA;(75,'Chapter09_Lesson03','ch9_l3.wav','NULL',120),&#xA;(76,'Chapter09_Lesson04','ch9_l4.wav','NULL',120),&#xA;(77,'Chapter09_Question01','ch9_q1.wav','NULL',120),&#xA;(78,'Chapter09_Question02','ch9_q2.wav','NULL',120),&#xA;(79,'Chapter10_Question03','ch10_q3.wav','NULL',120),&#xA;(80,'Chapter10_Question04','ch10_q4.wav','NULL',120),&#xA;(81,'Chapter11_Lesson01','ch11_l1.wav','NULL',120),&#xA;(82,'Chapter11_Lesson02','ch11_l2.wav','NULL',120),&#xA;(83,'Chapter11_Lesson03','ch11_l3.wav','NULL',120),&#xA;(84,'Chapter11_Lesson04','ch11_l4.wav','NULL',120),&#xA;(85,'Chapter11_Question01','ch11_q1.wav','NULL',120),&#xA;(86,'Chapter11_Question02','ch11_q2.wav','NULL',120),&#xA;(87,'Chapter11_Question03','ch11_q3.wav','NULL',120),&#xA;(88,'Chapter11_Question04','ch11_q4.wav','NULL',120)&#xA;ON DUPLICATE KEY UPDATE    &#xA;content_name=VALUES(content_name), &#xA;file_name=VALUES(file_name),&#xA;duration=VALUES(duration);&quot;"/>
+    <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
+    <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
+    <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="TEXT" name="PROPERTIES" value="context.reporting_db_AdditionalParams"/>
+    <elementParameter field="CHECK" name="PROPAGATE_RECORD_SET" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="RECORD_SET_COLUMN" value="" show="false"/>
+    <elementParameter field="CHECK" name="USE_PREPAREDSTATEMENT" value="false"/>
+    <elementParameter field="TABLE" name="SET_PREPAREDSTATEMENT_PARAMETERS" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;ISO-8859-15&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15"/>
+    <elementParameter field="TEXT" name="COMMIT_EVERY" value="10000"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tMysqlRow_1"/>
+    <metadata connector="REJECT" name="REJECT">
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="FLOW" label="row1" lineStyle="0" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tContextLoad_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row1" show="false"/>
+  </connection>
+  <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tFileInputDelimited_1" offsetLabelX="0" offsetLabelY="0" source="tFileInputDelimited_1" target="tMysqlRow_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>
+  </connection>
+  <subjob>
+    <elementParameter field="CHECK" name="COLLAPSED" value="true" show="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="220;220;250"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlRow_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="220;220;250"/>
+  </subjob>
+</talendfile:ProcessType>
