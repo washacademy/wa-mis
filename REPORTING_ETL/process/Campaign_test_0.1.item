@@ -143,12 +143,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.motech_db_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kufmL0voFfcaLfpYZz8hJcagDArYUJhioP4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wa_subscription_packs&quot;, &quot;wa_subscription_pack_messages&quot;, &quot;ETL_info_table&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_subscription_packs&quot;, &quot;nms_subscription_pack_messages&quot;, &quot;ETL_info_table&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select nsm.id, nsm.weekId, nsm.duration,&#xA; nsm.modificationDate&#xA;from wa_subscription_pack_messages as nsm&#xA;INNER JOIN wa_subscription_packs as nsp&#xA;ON nsp.id = nsm.messages_id_OWN &amp;&amp;&#xA;nsp.name = '72WeeksPack'&#xA;WHERE nsm.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;OR nsm.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select nsm.id, nsm.weekId, nsm.duration,&#xA; nsm.modificationDate&#xA;from nms_subscription_pack_messages as nsm&#xA;INNER JOIN nms_subscription_packs as nsp&#xA;ON nsp.id = nsm.messages_id_OWN &amp;&amp;&#xA;nsp.name = '72WeeksPack'&#xA;WHERE nsm.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;OR nsm.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>

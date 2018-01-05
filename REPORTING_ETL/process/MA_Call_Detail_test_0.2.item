@@ -143,12 +143,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.motech_db_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kufmL0voFfcaLfpYZz8hJcagDArYUJhioP4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wa_flw_cdrs&quot;,&quot;wa_circles&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_flw_cdrs&quot;,&quot;nms_circles&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cdr.id,cdr.frontLineWorker_id_OID as 'flw_id',cdr.callingNumber,&#xA;cdr.operator,cir.id as circle_id,cdr.callStartTime,cdr.callEndTime,&#xA;TIMESTAMPDIFF(SECOND,cdr.callStartTime, cdr.callEndTime) as 'duration',&#xA;cdr.callDurationInPulses,cdr.callId,&#xA;cdr.modificationDate&#xA;FROM wa_flw_cdrs cdr&#xA;JOIN wa_circles cir on cdr.circle=cir.name&#xA;WHERE cdr.service='MOBILE_ACADEMY' &#xA;AND cdr.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY cdr.creationDate ASC&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cdr.id,cdr.frontLineWorker_id_OID as 'flw_id',cdr.callingNumber,&#xA;cdr.operator,cir.id as circle_id,cdr.callStartTime,cdr.callEndTime,&#xA;TIMESTAMPDIFF(SECOND,cdr.callStartTime, cdr.callEndTime) as 'duration',&#xA;cdr.callDurationInPulses,cdr.callId,&#xA;cdr.modificationDate&#xA;FROM nms_flw_cdrs cdr&#xA;JOIN nms_circles cir on cdr.circle=cir.name&#xA;WHERE cdr.service='MOBILE_ACADEMY' &#xA;AND cdr.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY cdr.creationDate ASC&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -391,12 +391,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.motech_db_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kufmL0voFfcaLfpYZz8hJcagDArYUJhioP4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wa_call_content&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_call_content&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cc.id,cc.callDetailRecord_id_OID,cc.completionFlag,cc.correctAnswerEntered, &#xA;TIMESTAMPDIFF(SECOND,cc.startTime, cc.endTime) as 'duration',&#xA;cc.startTime,cc.contentName,cc.contentFile,cc.type,cc.endTime,&#xA;cdr.frontLineWorker_id_OID as 'flw_id',&#xA;cc.modificationDate&#xA;FROM wa_call_content cc&#xA;LEFT OUTER JOIN wa_flw_cdrs cdr on cc.callDetailRecord_id_OID=cdr.id&#xA;WHERE cc.mobileKunjiCardCode IS NULL&#xA;AND cc.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY cc.creationDate ASC&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cc.id,cc.callDetailRecord_id_OID,cc.completionFlag,cc.correctAnswerEntered, &#xA;TIMESTAMPDIFF(SECOND,cc.startTime, cc.endTime) as 'duration',&#xA;cc.startTime,cc.contentName,cc.contentFile,cc.type,cc.endTime,&#xA;cdr.frontLineWorker_id_OID as 'flw_id',&#xA;cc.modificationDate&#xA;FROM nms_call_content cc&#xA;LEFT OUTER JOIN nms_flw_cdrs cdr on cc.callDetailRecord_id_OID=cdr.id&#xA;WHERE cc.mobileKunjiCardCode IS NULL&#xA;AND cc.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY cc.creationDate ASC&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -683,12 +683,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.motech_db_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kufmL0voFfcaLfpYZz8hJcagDArYUJhioP4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wa_call_content&quot;,&quot;wa_flw_cdrs&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_call_content&quot;,&quot;nms_flw_cdrs&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cc.id,cc.startTime,SUBSTRING_INDEX(cc.contentName, '_', 1),&#xA;SUBSTRING_INDEX(cc.contentFile, '_', 1),&#xA;cdr.frontLineWorker_id_OID as 'flw_id'&#xA;FROM wa_call_content cc&#xA;LEFT OUTER JOIN wa_flw_cdrs cdr on cc.callDetailRecord_id_OID=cdr.id&#xA;WHERE cc.mobileKunjiCardCode IS NULL&#xA;AND cc.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;' &#xA;AND contentName like 'Chapter%%_Question04' AND correctAnswerEntered IS NOT NULL AND contentFile like 'ch%%_q4.wav'&#xA;order by cc.creationDate&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT cc.id,cc.startTime,SUBSTRING_INDEX(cc.contentName, '_', 1),&#xA;SUBSTRING_INDEX(cc.contentFile, '_', 1),&#xA;cdr.frontLineWorker_id_OID as 'flw_id'&#xA;FROM nms_call_content cc&#xA;LEFT OUTER JOIN nms_flw_cdrs cdr on cc.callDetailRecord_id_OID=cdr.id&#xA;WHERE cc.mobileKunjiCardCode IS NULL&#xA;AND cc.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;' &#xA;AND contentName like 'Chapter%%_Question04' AND correctAnswerEntered IS NOT NULL AND contentFile like 'ch%%_q4.wav'&#xA;order by cc.creationDate&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -826,12 +826,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="context.motech_db_Login"/>
     <elementParameter field="PASSWORD" name="PASS" value="8pW6Nmy2kufmL0voFfcaLfpYZz8hJcagDArYUJhioP4="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;MTRAINING_MODULE_ACTIVITYRECORD&quot;,&quot;wa_front_line_workers&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;MTRAINING_MODULE_ACTIVITYRECORD&quot;,&quot;nms_front_line_workers&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * FROM(SELECT ar.id, ar.creationDate ,ar.creationDate as 'complete_time',flw.id as 'flw_id'&#xA;FROM MTRAINING_MODULE_ACTIVITYRECORD ar&#xA;INNER JOIN wa_front_line_workers flw ON flw.contactNumber=ar.externalId&#xA;WHERE ar.state='COMPLETED'&#xA;AND ar.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY ar.creationDate ASC) main &#xA;CROSS JOIN (SELECT MAX(modificationDate) AS modificationDate FROM MTRAINING_MODULE_ACTIVITYRECORD&#xA;WHERE state='COMPLETED') act&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT * FROM(SELECT ar.id, ar.creationDate ,ar.creationDate as 'complete_time',flw.id as 'flw_id'&#xA;FROM MTRAINING_MODULE_ACTIVITYRECORD ar&#xA;INNER JOIN nms_front_line_workers flw ON flw.contactNumber=ar.externalId&#xA;WHERE ar.state='COMPLETED'&#xA;AND ar.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY ar.creationDate ASC) main &#xA;CROSS JOIN (SELECT MAX(modificationDate) AS modificationDate FROM MTRAINING_MODULE_ACTIVITYRECORD&#xA;WHERE state='COMPLETED') act&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -983,7 +983,7 @@
     <elementParameter field="CHECK" name="REMOVE_EMPTY_ROW" value="true"/>
     <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
-    <elementParameter field="DIRECTORY" name="TEMP_DIR" value="&quot;/home/wa/ETL&quot;" show="false"/>
+    <elementParameter field="DIRECTORY" name="TEMP_DIR" value="&quot;/home/nms/ETL&quot;" show="false"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
     <elementParameter field="TEXT" name="DECIMAL_SEPARATOR" value="&quot;.&quot;" show="false"/>
