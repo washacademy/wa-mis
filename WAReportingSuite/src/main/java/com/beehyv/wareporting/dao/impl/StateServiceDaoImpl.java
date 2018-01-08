@@ -36,18 +36,18 @@ public class StateServiceDaoImpl extends AbstractDao<Integer, StateService> impl
 //        return  states;
     }
 
-    @Override
-    public List<String> getServiceTypeOfState(Integer stateId){
-        Criteria criteria = getSession().createCriteria(StateService.class);
-        criteria.add(
-                Restrictions.eq("stateId", stateId)
-        );
-        List<String> serviceList = new ArrayList<>();
-        for(StateService stateService : (List<StateService>) criteria.list()){
-            serviceList.add(stateService.getServiceType());
-        }
-        return serviceList;
-    }
+//    @Override
+//    public List<String> getServiceTypeOfState(Integer stateId){
+//        Criteria criteria = getSession().createCriteria(StateService.class);
+//        criteria.add(
+//                Restrictions.eq("stateId", stateId)
+//        );
+//        List<String> serviceList = new ArrayList<>();
+//        for(StateService stateService : (List<StateService>) criteria.list()){
+//            serviceList.add(stateService.getServiceType());
+//        }
+//        return serviceList;
+//    }
 
     @Override
     public Date getServiceStartDateForState(Integer stateId, String type) {

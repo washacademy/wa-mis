@@ -34,6 +34,7 @@ import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
 /**
  * Created by beehyv on 15/3/17.
  */
+
 @Controller
 @RequestMapping("/wa/admin")
 public class AdminController {
@@ -171,7 +172,7 @@ public class AdminController {
         adminService.createFiles(waCourse.getReportType());
         adminService.createFolders(ReportType.waAnonymous.getReportType());
         adminService.createFiles(ReportType.waInactive.getReportType());
-        adminService.createFiles(ReportType.flwRejected.getReportType());
+        adminService.createFiles(ReportType.swcRejected.getReportType());
     }
 
     @RequestMapping(value = "/generateReports/{reportType}/{relativeMonth}", method = RequestMethod.GET)
@@ -186,7 +187,7 @@ public class AdminController {
         Calendar aCalendar = Calendar.getInstance();
         Date fromDate=new Date();
         Date toDate;
-        if(tempReportType.getReportType().equals(ReportType.flwRejected.getReportType())) {
+        if(tempReportType.getReportType().equals(ReportType.swcRejected.getReportType())) {
             aCalendar.add( Calendar.DAY_OF_WEEK, -(aCalendar.get(Calendar.DAY_OF_WEEK)-1));
             aCalendar.add(Calendar.DATE,-(7*(relativeMonth-1)));
             toDate=aCalendar.getTime();
@@ -218,8 +219,8 @@ public class AdminController {
                 adminService.getCumulativeInactiveFiles(toDate);
                 break;
             }
-            case flwRejected:{
-                adminService.createFlwImportRejectedFiles(toDate);
+            case swcRejected:{
+                adminService.createSwcImportRejectedFiles(toDate);
                 break;
             }
 

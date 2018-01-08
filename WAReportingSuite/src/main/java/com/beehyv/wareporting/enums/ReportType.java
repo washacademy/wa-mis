@@ -17,7 +17,7 @@ public enum ReportType {
     waCourse("WA_Cumulative_Course_Completion", "Cumulative Course Completion", "M","WA Completion Line-Listing Report"),
     waAnonymous("WA_Anonymous_Users", "Circle wise Anonymous Users", "M", "WA Circle Wise Anonymous Line-Listing Report"),
     waInactive("WA_Cumulative_Inactive_Users", "Cumulative Inactive Users", "M", "WA Inactive Users Line-Listing Report"),
-    flwRejected("WA_Swachchagrahi_Import_Rejects","Swachchagrahi Rejected Records", "M", "WA Rejected Line-Listing Report");
+    swcRejected("WA_Swachchagrahi_Import_Rejects","Swachchagrahi Rejected Records", "M", "WA Rejected Line-Listing Report");
 
     private String reportType;
     private String reportName;

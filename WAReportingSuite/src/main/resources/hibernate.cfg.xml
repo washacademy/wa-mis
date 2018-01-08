@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <mapping class="com.beehyv.wareporting.model.User"/>
         <mapping class="com.beehyv.wareporting.model.ModificationTracker"/>
@@ -16,10 +16,9 @@
         <mapping class="com.beehyv.wareporting.model.District"/>
         <mapping class="com.beehyv.wareporting.model.Block"/>
         <mapping class="com.beehyv.wareporting.model.Circle"/>
-        <!--<mapping class="com.beehyv.wareporting.model.HealthFacility"/>
-        <mapping class="com.beehyv.wareporting.model.HealthSubFacility"/>-->
+        <mapping class="com.beehyv.wareporting.model.Languages"/>
         <mapping class="com.beehyv.wareporting.model.AnonymousUsers"/>
-        <mapping class="com.beehyv.wareporting.model.FrontLineWorkers"/>
+        <mapping class="com.beehyv.wareporting.model.Swachchagrahi"/>
         <mapping class="com.beehyv.wareporting.model.WACourseCompletion"/>
         <mapping class="com.beehyv.wareporting.model.StateCircle"/>
         <mapping class="com.beehyv.wareporting.model.StateService"/>
@@ -27,7 +26,6 @@
         <mapping class="com.beehyv.wareporting.model.WACumulativeSummary"/>
         <mapping class="com.beehyv.wareporting.model.Panchayat"/>
         <mapping class="com.beehyv.wareporting.model.BeneficiaryCallMeasure"/>
-
 
     </session-factory>
 </hibernate-configuration>

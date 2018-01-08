@@ -64,10 +64,10 @@ public class AutoReportEmailGeneration {
             aCalendar.add(Calendar.DAY_OF_WEEK, -(aCalendar.get(Calendar.DAY_OF_WEEK) - 1));
             Date toDate = aCalendar.getTime();
 
-            adminService.createFiles(ReportType.flwRejected.getReportType());
+            adminService.createFiles(ReportType.swcRejected.getReportType());
 
-            adminService.createFlwImportRejectedFiles(toDate);
-            System.out.println("FLW_Rejection reports generated");
+            adminService.createSwcImportRejectedFiles(toDate);
+            System.out.println("SW_Rejection reports generated");
             
             return true;
         }
@@ -96,8 +96,8 @@ public class AutoReportEmailGeneration {
     }
 
     public HashMap sendWeeklyThirdMail() {
-        HashMap reports = emailService.sendAllMails(ReportType.flwRejected);
-        System.out.println("Flw Rejected reports: ");
+        HashMap reports = emailService.sendAllMails(ReportType.swcRejected);
+        System.out.println("Swc Rejected reports: ");
         System.out.println(reports.toString());
         return reports;
     }

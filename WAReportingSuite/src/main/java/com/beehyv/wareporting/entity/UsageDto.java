@@ -13,7 +13,7 @@ public class UsageDto {
     private Long calls_50_75;
     private Long calls_25_50;
     private Long calls_1_25;
-    private Long answeredCall;
+    private Long answceredCall;
     private Long calledInbox;
 
     public Long getCalledInbox() {
@@ -88,11 +88,11 @@ public class UsageDto {
         this.calls_1_25 = calls_1_25;
     }
 
-    public Long getAnsweredCall() {
-        return answeredCall;
+    public Long getAnswceredCall() {
+        return answceredCall;
     }
 
-    public void setAnsweredCall(Long answeredCall) {
-        this.answeredCall = answeredCall;
+    public void setAnswceredCall(Long answceredCall) {
+        this.answceredCall = answceredCall;
     }
 }

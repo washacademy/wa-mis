@@ -7,10 +7,13 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/ReportRequest.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/State.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/BlockDao.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/BasicValidationResult.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/EmailInfo.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/StateCircleDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/UserDaoImpl.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/SwcImportRejectionDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/AggregateCumulativeWADto.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/PanchayatDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/LoginTrackerDao.java
@@ -26,7 +29,6 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/StateCircle.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/DistrictDao.java
-/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/WACircleWiseInactiveLineListing.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/EmailTracker.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/EmailTrackerDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/PermissionsService.java
@@ -56,10 +58,11 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/WACourseAttemptDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/PanchayatDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/Languages.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/FrontLineWorkersDaoImpl.java
-/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/FlwImportRejectionDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/DistrictDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/Circle.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/UserDto.java
@@ -79,7 +82,6 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/utils/Global.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/UserDao.java
-/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/FlwImportRejectionDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/Role.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/BreadCrumbService.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/RoleService.java
@@ -94,6 +96,7 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/CircleDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/ReportService.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/Report.java
+/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/impl/PermissionsDaoImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/impl/ReportServiceImpl.java
@@ -105,11 +108,9 @@
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/controller/UserController.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/WASubscriberDao.java
-/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/FrontLineWorkers.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/entity/PasswordDto.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/Block.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/enums/AccessLevel.java
-/home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/model/FlwImportRejection.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/dao/ReportTypeDao.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/controller/LocationController.java
 /home/beehyv/WAReporting/wa-mis/WAReportingSuite/src/main/java/com/beehyv/wareporting/business/impl/UserServiceImpl.java

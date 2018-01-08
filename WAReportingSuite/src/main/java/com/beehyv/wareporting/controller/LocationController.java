@@ -50,7 +50,7 @@ public class LocationController {
         return states;
     }
 
-    @RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
     public @ResponseBody List<StateObject> getStatesByServiceType(@PathVariable("serviceType") String serviceType) {
         User user = userService.getCurrentUser();
         List<State> states;
@@ -72,7 +72,7 @@ public class LocationController {
             stateObjects.add(stateObject);
         }
         return stateObjects;
-    }
+    }*/
 
 //    @RequestMapping(value = {"/myStates"}, method = RequestMethod.GET)
 //    public @ResponseBody List<StateObject> getUserStateObjects() {

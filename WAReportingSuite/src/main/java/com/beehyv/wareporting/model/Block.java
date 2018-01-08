@@ -6,13 +6,14 @@ import java.sql.Date;
 /**
  * Created by beehyv on 4/5/17.
  */
+
 @Entity
 @Table(name="dim_block")
 public class Block {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "INT")
+    @Column(name="block_id", columnDefinition = "INT")
     private Integer blockId;
 
     @Column(name="block_name")
@@ -23,6 +24,9 @@ public class Block {
 
     @Column(name="loc_id", columnDefinition = "BIGINT(20)")
     private Long locationId;
+
+    @Column(name="code", columnDefinition = "BIGINT(20)")
+    private Long code;
 
     @Column(name="district_id", columnDefinition = "SMALLINT")
     private Integer districtOfBlock;
@@ -60,6 +64,14 @@ public class Block {
 
     public void setLocationId(Long locationId) {
         this.locationId = locationId;
+    }
+
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
     }
 
     public Integer getDistrictOfBlock() {

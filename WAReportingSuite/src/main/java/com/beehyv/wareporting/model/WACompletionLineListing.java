@@ -8,41 +8,53 @@ import java.util.Date;
 public class WACompletionLineListing {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long Id;
 
-    @Column(name="mobile_no",columnDefinition = "BIGINT")
+    @Column(name = "mobile_no", columnDefinition = "BIGINT")
     private Long mobileNumber;
 
-    @Column(name="state_name",columnDefinition = "VARCHAR(45)")
-    private String state;
+    @Column(name = "state_id", columnDefinition = "TINYINT")
+    private Integer stateId;
 
-    @Column(name="district_name")
-    private String district;
+    @Column(name = "state_name")
+    private String stateName;
 
-    @Column(name="block_name")
-    private String block;
+    @Column(name = "district_id", columnDefinition = "SMALLINT")
+    private Integer districtId;
 
-    @Column(name="panchayat_name")
-    private String panchayat;
+    @Column(name = "district_name")
+    private String districtName;
 
-    @Column(name="swachchagrahi_name")
+    @Column(name = "block_id", columnDefinition = "INT")
+    private Integer blockId;
+
+    @Column(name = "block_name")
+    private String blockName;
+
+    @Column(name = "panchayat_id", columnDefinition = "SMALLINT")
+    private Integer panchayatId;
+
+    @Column(name = "panchayat_name")
+    private String panchayatName;
+
+    @Column(name = "swachchagrahi_name")
     private String swachchagrahiName;
 
-    @Column(name="swachchagrahi_id")
+    @Column(name = "swachchagrahi_id")
     private Long swachchagrahiId;
 
-    @Column(name="swachchagrahi_creation_date")
+    @Column(name = "swachchagrahi_creation_date")
     private Date swachchagrahiCreationDate;
 
-    @Column(name="course_start_date")
+    @Column(name = "course_start_date")
     private Date courseStartDate;
 
-    @Column(name="first_completion_date")
+    @Column(name = "first_completion_date")
     private Date firstCompletionDate;
 
-    @Column(name="SMS_sent_notification")
+    @Column(name = "SMS_sent_notification")
     private String SMSSentNotification;
 
     public Long getId() {
@@ -61,36 +73,68 @@ public class WACompletionLineListing {
         this.mobileNumber = mobileNumber;
     }
 
-    public String getState() {
-        return state;
+    public Integer getStateId() {
+        return stateId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
-    public String getBlock() {
-        return block;
+    public Integer getDistrictId() {
+        return districtId;
     }
 
-    public void setBlock(String block) {
-        this.block = block;
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
     }
 
-    public String getPanchayat() {
-        return panchayat;
+    public String getDistrictName() {
+        return districtName;
     }
 
-    public void setPanchayat(String panchayat) {
-        this.panchayat = panchayat;
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public Integer getBlockId() {
+        return blockId;
+    }
+
+    public void setBlockId(Integer blockId) {
+        this.blockId = blockId;
+    }
+
+    public String getBlockName() {
+        return blockName;
+    }
+
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
+
+    public Integer getPanchayatId() {
+        return panchayatId;
+    }
+
+    public void setPanchayatId(Integer panchayatId) {
+        this.panchayatId = panchayatId;
+    }
+
+    public String getPanchayatName() {
+        return panchayatName;
+    }
+
+    public void setPanchayatName(String panchayatName) {
+        this.panchayatName = panchayatName;
     }
 
     public String getSwachchagrahiName() {

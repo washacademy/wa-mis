@@ -696,7 +696,7 @@ public class UserController {
                 }
             }
             String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
-            if (reportRequest.getReportType().equals(ReportType.flwRejected.getReportType())) {
+            if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
                 filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
             }
             reportPath = reports + reportRequest.getReportType() + "/" + rootPath;
@@ -772,10 +772,10 @@ public class UserController {
                 ReportType.waInactive.getServiceType())
         );
         maList.add(new Report(
-                ReportType.flwRejected.getReportName(),
-                ReportType.flwRejected.getReportType(),
+                ReportType.swcRejected.getReportName(),
+                ReportType.swcRejected.getReportType(),
                 "images/drop-down-3.png",
-                ReportType.flwRejected.getServiceType())
+                ReportType.swcRejected.getServiceType())
         );
         maList.add(new Report(
                 ReportType.waPerformance.getReportName(),
@@ -806,9 +806,9 @@ public class UserController {
         }
         else{
             State state = locationService.findStateById(currentUser.getStateId());
-            if(state.getServiceType().equals("M") || state.getServiceType().equals("ALL")){
-                l.add(maMenu);
-            }
+//            if(state.getServiceType().equals("M") || state.getServiceType().equals("ALL")){
+//                l.add(maMenu);
+//            }
         }
         return l;
     }

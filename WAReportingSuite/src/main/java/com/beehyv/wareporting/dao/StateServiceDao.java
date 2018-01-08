@@ -11,7 +11,7 @@ import java.util.List;
 public interface StateServiceDao {
     List<StateService> getStatesByServiceType(String serviceType);
 
-    List<String> getServiceTypeOfState(Integer stateId);
+   // List<String> getServiceTypeOfState(Integer stateId);
 
     Date getServiceStartDateForState(Integer stateId, String type);
 }

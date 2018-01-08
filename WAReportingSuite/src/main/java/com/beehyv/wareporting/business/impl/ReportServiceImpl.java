@@ -77,7 +77,7 @@ public class ReportServiceImpl implements ReportService{
             }
         }
         String filename= reportRequest.getReportType()+"_"+place+"_"+getMonthYear(reportRequest.getToDate())+".xlsx";
-        if(reportRequest.getReportType().equals(ReportType.flwRejected.getReportType())) {
+        if(reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename=reportRequest.getReportType()+"_"+place+"_"+this.getDateMonthYear(reportRequest.getToDate())+".xlsx";
         }
         rootPath = reports+reportRequest.getReportType()+"/"+rootPath+filename;

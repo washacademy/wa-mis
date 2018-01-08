@@ -53,7 +53,7 @@ public class EmailServiceImpl implements EmailService{
     @Autowired
     FrontLineWorkersDao frontLineWorkersDao;
     @Autowired
-    FlwImportRejectionDao flwImportRejectionDao;
+    SwcImportRejectionDao swcImportRejectionDao;
 
     @Override
     public String sendMail(EmailInfo mailInfo) {
@@ -196,7 +196,7 @@ public class EmailServiceImpl implements EmailService{
         calendar.set(Calendar.DAY_OF_MONTH,1);
 
         Date toDate = calendar.getTime();
-        if(reportType.equals(ReportType.flwRejected.getReportType())){
+        if(reportType.equals(ReportType.swcRejected.getReportType())){
             calendar.add(Calendar.DAY_OF_MONTH, -7);
         } else {
             calendar.add(Calendar.MONTH, -1);
@@ -236,9 +236,9 @@ public class EmailServiceImpl implements EmailService{
                         + "<td>" +frontLineWorkersDao.getCountOfInactiveFrontLineWorkersForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
             }
         }
-        else if(reportType.equals(ReportType.flwRejected.getReportType())){
+        else if(reportType.equals(ReportType.swcRejected.getReportType())){
             body+="<pre>   </pre>Please find attached the list of SWACHCHAGRAHIs rejected due to one of the following rejection reasons " +
-                    "viz.,MSISDN_ALREADY_IN_USE,FLW_TYPE_NOT_SWACHCHAGRAHI,FLW_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
+                    "viz.,MSISDN_ALREADY_IN_USE,SW_TYPE_NOT_SWACHCHAGRAHI,SW_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
 
             body+= "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
@@ -248,7 +248,7 @@ public class EmailServiceImpl implements EmailService{
             for (District district:districts
                     ) {
                 body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" +flwImportRejectionDao.getCountOfFlwRejectedRecordsForDistrict(fromDate, toDate, district.getDistrictId())+ "</td>"
+                        + "<td>" +swcImportRejectionDao.getCountOfSwcRejectedRecordsForDistrict(fromDate, toDate, district.getDistrictId())+ "</td>"
                         +"</tr>";
             }
 
@@ -276,7 +276,7 @@ public class EmailServiceImpl implements EmailService{
             * else find file with previous month and year(MM-YY format) */
 
             /* previous sunday */
-            if(reportType.getReportType().equals(ReportType.flwRejected.getReportType())) {
+            if(reportType.getReportType().equals(ReportType.swcRejected.getReportType())) {
                 c.add( Calendar.DAY_OF_WEEK, -(c.get(Calendar.DAY_OF_WEEK)-1));
                 reportRequest.setToDate(c.getTime());
 

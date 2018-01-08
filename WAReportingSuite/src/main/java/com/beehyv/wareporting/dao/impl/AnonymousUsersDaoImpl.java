@@ -18,7 +18,7 @@ import java.util.List;
 public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,AnonymousUsers> implements AnonymousUsersDao{
 
     @Override
-    public List<AnonymousUsers> getAnonymousUsers(Date fromDate,Date toDate) {
+    public List<AnonymousUsers> getAnonymousUsers(Date fromDate, Date toDate) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCalledTime"));
         criteria.add(Restrictions.and(
                 Restrictions.lt("lastCalledTime",toDate),

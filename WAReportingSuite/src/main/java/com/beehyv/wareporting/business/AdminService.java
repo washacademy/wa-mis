@@ -27,6 +27,6 @@ public interface AdminService {
 
   void createSpecificReport(ReportRequest reportRequest);
 
-  void createFlwImportRejectedFiles(Date toDate);
+  void createSwcImportRejectedFiles(Date toDate);
 
 }
