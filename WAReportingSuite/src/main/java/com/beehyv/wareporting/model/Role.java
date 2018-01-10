@@ -7,14 +7,14 @@ import javax.persistence.*;
 public class Role {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="role_id")
+	@Column(name="role_id", columnDefinition = "INT(11)")
 	private Integer roleId;
 	
-	@Column(name="role_desc")
+	@Column(name="role_desc", columnDefinition = "VARCHAR(255)")
 	private String roleDescription;
 
 	@ManyToOne
-	@JoinColumn(name="permission_id")
+	@JoinColumn(name="permission_id", columnDefinition = "INT(11)")
 	private Permissions permissionId;
 
 	public Integer getRoleId() {

@@ -26,7 +26,7 @@ public class Swachchagrahi {
     @Column(name = "gender", columnDefinition = "VARCHAR(45)")
     private String gender;
 
-    @Column(name = "age")
+    @Column(name = "age", columnDefinition = "int(11)")
     private Integer age;
 
     @Column(name = "qualification", columnDefinition = "VARCHAR(255)")
@@ -47,7 +47,7 @@ public class Swachchagrahi {
     @Column(name = "job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
 
-    @Column(name = "state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
     private Integer state;
 
     @Column(name = "district_id", columnDefinition = "SMALLINT(6)")

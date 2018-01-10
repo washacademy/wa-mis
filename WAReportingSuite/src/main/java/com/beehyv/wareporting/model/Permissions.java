@@ -10,10 +10,10 @@ import javax.persistence.*;
 public class Permissions{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="permission_id")
+    @Column(name="permission_id", columnDefinition = "INT(11)")
     private Integer permissionId;
 
-    @Column(name="permission_desc")
+    @Column(name="permission_desc", columnDefinition = "VARCHAR(255)")
     private String permission;
 
     public Integer getPermissionId() {

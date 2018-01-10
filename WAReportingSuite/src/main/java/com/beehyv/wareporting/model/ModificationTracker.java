@@ -10,28 +10,28 @@ import java.util.Date;
 public class ModificationTracker {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="id", columnDefinition = "INT(11)")
 	private Integer modificationId;
 	
-	@Column(name="modification_type")
+	@Column(name="modification_type", columnDefinition = "VARCHAR(255)")
 	private String modificationType = ModificationType.CREATE.getModificationType();
 	
-	@Column(name="modified_field")
+	@Column(name="modified_field", columnDefinition = "VARCHAR(255)")
 	private String modifiedField;
 
-	@Column(name="previous_value")
+	@Column(name="previous_value", columnDefinition = "VARCHAR(255)")
 	private String previousValue;
 
-	@Column(name="new_value")
+	@Column(name="new_value", columnDefinition = "VARCHAR(255)")
 	private String newValue;
 	
-	@Column(name="modification_date")
+	@Column(name="modification_date", columnDefinition = "DATETIME")
 	private Date modificationDate;
 	
-	@Column(name="modified_user_id")
+	@Column(name="modified_user_id", columnDefinition = "INT(11)")
 	private Integer modifiedUserId;
 
-	@Column(name="modified_by_user_id")
+	@Column(name="modified_by_user_id", columnDefinition = "INT(11)")
 	private Integer modifiedByUserId;
 
 	public Integer getModificationId() {
