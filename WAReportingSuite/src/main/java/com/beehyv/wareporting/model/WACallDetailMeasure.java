@@ -12,7 +12,7 @@ public class WACallDetailMeasure {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", columnDefinition = "BIGINT(20)")
     private Long Id;
 
     @Column(name="swc_id" ,columnDefinition = "BIGINT(20)")
