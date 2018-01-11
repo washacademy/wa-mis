@@ -47,7 +47,7 @@ public class User {
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="created_by_user")
+	@JoinColumn(name="created_by_user", columnDefinition = "VARCHAR(45)")
 	private User createdByUser;
 
 //	@OneToMany(mappedBy="createdByUser")
@@ -55,31 +55,31 @@ public class User {
 //	@JsonIgnore
 //	private Set<User> createdUsers = new HashSet<>();
 
-	@Column(name="role_id")
+	@Column(name="role_id", columnDefinition = "INT(11)")
 	private Integer roleId;
 
-	@Column(name="account_status")
+	@Column(name="account_status", columnDefinition = "VARCHAR(255)")
 	private String accountStatus = AccountStatus.ACTIVE.getAccountStatus();
 
-	@Column(name="access_level")
+	@Column(name="access_level", columnDefinition = "VARCHAR(45)")
 	private  String accessLevel;
 
-	@Column(name = "state_name")
+	@Column(name = "state_name", columnDefinition = "VARCHAR(45)")
 	private  String stateName;
 
-	@Column(name = "district_name")
+	@Column(name = "district_name", columnDefinition = "VARCHAR(45)")
 	private String districtName;
 
-	@Column(name = "block_name")
+	@Column(name = "block_name", columnDefinition = "VARCHAR(45)")
 	private String blockName;
 
-	@Column(name = "role_name")
+	@Column(name = "role_name", columnDefinition = "VARCHAR(45)")
 	private String roleName;
 
-	@Column(name = "isLoggedOnce")
+	@Column(name = "isLoggedOnce", columnDefinition = "BIT(1)")
 	private Boolean loggedAtLeastOnce;
 
-	@Column(name = "isPasswordDefault")
+	@Column(name = "isPasswordDefault", columnDefinition = "BIT(1)")
 	private Boolean isDefault;
 
 	public Integer getUserId() {

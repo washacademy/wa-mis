@@ -11,7 +11,7 @@ import java.util.Date;
 public class WACourseCompletion {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", columnDefinition = "INT(11)")
     private Long Id;
 
     @Column(name="swc_id", columnDefinition = "BIGINT(20)")

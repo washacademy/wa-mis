@@ -28,7 +28,7 @@ public class WAAggregateDaily {
     private Integer swachchagrahisStarted;
 
     @Column(name="swachchagrahis_completed", columnDefinition = "INT(11)")
-    private Integer swachchagrahisCompleted; //5.2.3:7 , 5.2.2:6
+    private Integer swachchagrahisCompleted;
 
     @Column(name="swachchagrahis_failed", columnDefinition = "INT(11)")
     private Integer swachchagrahisFailed;
