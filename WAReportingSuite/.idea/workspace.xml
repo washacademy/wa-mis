@@ -3,31 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsersSummary.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsersSummary.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Block.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Block.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Circle.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Circle.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/District.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/District.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/EmailTracker.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/EmailTracker.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Languages.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Languages.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/LoginTracker.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/LoginTracker.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Panchayat.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Panchayat.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Permissions.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Permissions.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateCircle.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateCircle.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -491,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515676276667</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated datatypes in model classes">
+      <created>1515683912759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1515683912759</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -530,7 +512,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed model and Dto classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed model and Dto classes" />
+    <MESSAGE value="updated datatypes in model classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated datatypes in model classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
