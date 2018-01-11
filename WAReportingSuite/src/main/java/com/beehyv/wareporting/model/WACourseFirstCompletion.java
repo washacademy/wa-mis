@@ -13,7 +13,7 @@ public class WACourseFirstCompletion {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", columnDefinition = "INT(11)")
     private Integer Id;
 
     @Column(name="swc_id", columnDefinition = "BIGINT(20)")
@@ -40,13 +40,13 @@ public class WACourseFirstCompletion {
     @Column(name="job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
 
-    @Column(name="creation_date", columnDefinition = "DATE")
+    @Column(name="creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
 
-    @Column(name="first_completion", columnDefinition = "DATE")
+    @Column(name="first_completion", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
 
-    @Column(name="sent_notification")
+    @Column(name="sent_notification", columnDefinition = "BIT(1)")
     private Boolean sentNotification;
 
     public Integer getId() {

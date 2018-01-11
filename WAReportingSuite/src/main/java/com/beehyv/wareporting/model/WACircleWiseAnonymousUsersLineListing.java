@@ -12,37 +12,37 @@ public class WACircleWiseAnonymousUsersLineListing {
     @Column(name="id")
     private Long Id;
 
-    @Column(name="mobile_no",columnDefinition = "BIGINT")
+    @Column(name="mobile_no",columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
-    @Column(name="operator")
+    @Column(name="operator", columnDefinition = "VARCHAR(45)")
     private String operator;
 
-    @Column(name="circle")
+    @Column(name="circle", columnDefinition = "VARCHAR(45)")
     private String circle;
 
-    @Column(name="course_start_date")
+    @Column(name="course_start_date", columnDefinition = "DATETIME")
     private Date courseStartDate;
 
-    @Column(name="first_completion_date")
+    @Column(name="first_completion_date", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
 
-    @Column(name="last_call_end_date")
+    @Column(name="last_call_end_date", columnDefinition = "DATETIME")
     private Date lastCallEndDate;
 
-    @Column(name="last_call_end_time")
+    @Column(name="last_call_end_time", columnDefinition = "TIMESTAMP")
     private String lastCallEndTime;
 
-    @Column(name="total_minutes_used")
+    @Column(name="total_minutes_used", columnDefinition = "INT(11)")
     private Long totalMinutesUsed;
 
-    @Column(name="SMS_sent")
-    private String SMSSent;
+    @Column(name="SMS_sent", columnDefinition = "BIT(1)")
+    private Boolean SMSSent;
 
-    @Column(name="SMS_reference_no")
-    private Long SMSReferenceNo;
+    @Column(name="SMS_reference_no", columnDefinition = "VARCHAR(45)")
+    private String SMSReferenceNo;
 
-    @Column(name="no_of_attempts")
+    @Column(name="no_of_attempts", columnDefinition = "SMALLINT(6)")
     private Integer NoOfAttempts;
 
     public Long getId() {
@@ -117,19 +117,19 @@ public class WACircleWiseAnonymousUsersLineListing {
         this.totalMinutesUsed = totalMinutesUsed;
     }
 
-    public String getSMSSent() {
+    public Boolean getSMSSent() {
         return SMSSent;
     }
 
-    public void setSMSSent(String SMSSent) {
+    public void setSMSSent(Boolean SMSSent) {
         this.SMSSent = SMSSent;
     }
 
-    public Long getSMSReferenceNo() {
+    public String getSMSReferenceNo() {
         return SMSReferenceNo;
     }
 
-    public void setSMSReferenceNo(Long SMSReferenceNo) {
+    public void setSMSReferenceNo(String SMSReferenceNo) {
         this.SMSReferenceNo = SMSReferenceNo;
     }
 

@@ -13,13 +13,13 @@ public class StateService {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "TINYINT")
+    @Column(name="id", columnDefinition = "TINYINT(4)")
     private Integer id;
 
-    @Column(name="state_id", columnDefinition = "TINYINT")
+    @Column(name="state_id", columnDefinition = "TINYINT(4)")
     private Integer stateId;
 
-    @Column(name = "start_Date",columnDefinition = "DATE")
+    @Column(name = "start_Date",columnDefinition = "DATETIME")
     private Date serviceStartDate;
 
     public Integer getId() {

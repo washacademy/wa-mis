@@ -7,18 +7,19 @@ import java.util.Date;
 @Entity
 @Table(name = "login_tracker")
 public class LoginTracker {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition = "INT(11)")
     private Integer loginId;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", columnDefinition = "INT(11)")
     private Integer userId;
 
-    @Column(name = "login_time")
+    @Column(name = "login_time", columnDefinition = "TIMESTAMP")
     private Date loginTime;
 
-    @Column(name = "login_successful")
+    @Column(name = "login_successful", columnDefinition = "BIT(1)")
     private boolean loginSuccessful;
 
 

@@ -11,10 +11,10 @@ import java.sql.Date;
 public class District {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "district_id", columnDefinition = "SMALLINT")
+    @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtId;
 
-    @Column(name = "district_name")
+    @Column(name = "district_name", columnDefinition = "VARCHAR(45)")
     private String districtName;
 
     @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
@@ -26,10 +26,10 @@ public class District {
     @Column(name = "code", columnDefinition = "BIGINT(20)")
     private Long code;
 
-    @Column(name = "state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
     private Integer stateOfDistrict;
 
-    @Column(name = "circle_id", columnDefinition = "TINYINT")
+    @Column(name = "circle_id", columnDefinition = "TINYINT(4)")
     private Integer circleOfDistrict;
 
     public Integer getDistrictId() {

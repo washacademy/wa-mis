@@ -12,7 +12,7 @@ public class AnonymousUsersSummary {
     @Column(name = "id", columnDefinition = "INT(11)")
     private Integer id;
 
-    @Column(name = "circle_name")
+    @Column(name = "circle_name", columnDefinition = "VARCHAR(45)")
     private Integer circleName;
 
     @Column(name = "anonymous_users_started_course", columnDefinition = "INT(11)")

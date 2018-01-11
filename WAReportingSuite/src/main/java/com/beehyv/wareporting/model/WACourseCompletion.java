@@ -14,22 +14,22 @@ public class WACourseCompletion {
     @Column(name="id")
     private Long Id;
 
-    @Column(name="swc_id")
+    @Column(name="swc_id", columnDefinition = "BIGINT(20)")
     private Long swcId;
 
-    @Column(name="score")
+    @Column(name="score", columnDefinition = "INT(11)")
     private Integer score;
 
-    @Column(name="has_passed")
+    @Column(name="has_passed", columnDefinition = "BIT(1)")
     private Boolean passed;
 
-    @Column(name="last_delivery_status")
+    @Column(name="last_delivery_status", columnDefinition = "VARCHAR(255)")
     private String lastDeliveryStatus;
 
-    @Column(name="sent_notification")
+    @Column(name="sent_notification", columnDefinition = "BIT(1)")
     private Boolean sentNotification;
 
-    @Column(name="last_modified")
+    @Column(name="last_modified", columnDefinition = "TIMESTAMP")
     private Date lastModifiedDate;
 
     public Long getId() {

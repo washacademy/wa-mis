@@ -8,46 +8,46 @@ public class WARejectedLineListing {
 
     @javax.persistence.Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", columnDefinition = "INT(11)")
     private Long Id;
 
-    @Column(name="mobile_no",columnDefinition = "BIGINT")
+    @Column(name="mobile_no", columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
-    @Column(name="state_id", columnDefinition = "TINYINT")
+    @Column(name="state_id", columnDefinition = "TINYINT(4)")
     private Integer stateId;
 
-    @Column(name="state_name")
+    @Column(name="state_name", columnDefinition = "VARCHAR(45)")
     private String stateName;
 
-    @Column(name="district_id", columnDefinition = "SMALLINT")
+    @Column(name="district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtId;
 
-    @Column(name="district_name")
+    @Column(name="district_name", columnDefinition = "VARCHAR(45)")
     private String districtName;
 
     @Column(name="block_id", columnDefinition = "INT(11)")
     private Integer blockId;
 
-    @Column(name="block_name")
+    @Column(name="block_name", columnDefinition = "VARCHAR(45)")
     private String blockName;
 
     @Column(name="panchayat_id", columnDefinition = "BIGINT(20)")
     private Integer panchayatId;
 
-    @Column(name="panchayat_name")
+    @Column(name="panchayat_name", columnDefinition = "VARCHAR(45)")
     private String panchayatName;
 
-    @Column(name="swachchagrahi_name")
+    @Column(name="swachchagrahi_name", columnDefinition = "VARCHAR(255)")
     private String swachchagrahiName;
 
-    @Column(name="swachchagrahi_id")
+    @Column(name="swachchagrahi_id", columnDefinition = "BIGINT(20)")
     private String swcId;
 
-    @Column(name="status")
+    @Column(name="status", columnDefinition = "VARCHAR(255)")
     private String status;
 
-    @Column(name="reason_for_rejection")
+    @Column(name="reason_for_rejection", columnDefinition = "VARCHAR(255)")
     private String reasonForRejection;
 
     public Long getId() {

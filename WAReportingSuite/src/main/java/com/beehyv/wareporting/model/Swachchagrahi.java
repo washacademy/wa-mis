@@ -47,7 +47,7 @@ public class Swachchagrahi {
     @Column(name = "job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
 
-    @Column(name = "state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
     private Integer state;
 
     @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
@@ -59,16 +59,16 @@ public class Swachchagrahi {
     @Column(name = "panchayat_id", columnDefinition = "BIGINT(20)")
     private Integer panchayat;
 
-    @Column(name = "creation_date", columnDefinition = "DATE")
+    @Column(name = "creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
 
-    @Column(name = "last_modified", columnDefinition = "DATE")
+    @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
     private Date lastModifiedDate;
 
-    @Column(name = "course_first_completion_date", columnDefinition = "DATE")
+    @Column(name = "course_first_completion_date", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
 
-    @Column(name = "course_start_date", columnDefinition = "DATE")
+    @Column(name = "course_start_date", columnDefinition = "DATETIME")
     private Date courseStartDate;
 
     public Long getId() {

@@ -12,7 +12,7 @@ public class Panchayat {
     @Column(name = "id", columnDefinition = "BIGINT(20)")
     private Integer panchayatId;
 
-    @Column(name = "panchayat_name")
+    @Column(name = "panchayat_name", columnDefinition = "VARCHAR(45)")
     private String panchayatName;
 
     @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
@@ -24,13 +24,13 @@ public class Panchayat {
     @Column(name = "code", columnDefinition = "BIGINT(20)")
     private Long code;
 
-    @Column(name = "block_id", columnDefinition = "INT")
+    @Column(name = "block_id", columnDefinition = "INT(11)")
     private Integer blockOfpanchayat;
 
-    @Column(name = "district_id", columnDefinition = "SMALLINT")
+    @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtOfpanchayat;
 
-    @Column(name = "state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
     private Integer stateOfpanchayat;
 
     public Integer getPanchayatId() {

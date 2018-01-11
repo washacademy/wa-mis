@@ -16,13 +16,13 @@ public class WACumulativeSummary {
     @Column(name = "id", columnDefinition = "INT(11)")
     private Integer id;
 
-    @Column(name = "state")
+    @Column(name = "state", columnDefinition = "VARCHAR(45)")
     private String state;
 
     @Column(name="loc_id", columnDefinition = "BIGINT(20)")
     private Long locationId;
 
-    @Column(name="loc_type")
+    @Column(name="loc_type", columnDefinition = "VARCHAR(45)")
     private String locationType;
 
     @Column(name = "swachchagrahis_registered", columnDefinition = "INT(11)")

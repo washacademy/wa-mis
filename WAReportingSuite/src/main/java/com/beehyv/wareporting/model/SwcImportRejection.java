@@ -16,7 +16,7 @@ import java.util.Date;
 public class SwcImportRejection {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition = "BIGINT(20)")
     private Long id;
 
     @Column(name = "name", columnDefinition = "VARCHAR(255)")
@@ -28,7 +28,7 @@ public class SwcImportRejection {
     @Column(name = "gender", columnDefinition = "VARCHAR(45)")
     private String gender;
 
-    @Column(name = "age")
+    @Column(name = "age", columnDefinition = "TINYINT(4)")
     private Integer age;
 
     @Column(name = "qualification", columnDefinition = "VARCHAR(255)")
@@ -40,7 +40,7 @@ public class SwcImportRejection {
     @Column(name = "swc_designation", columnDefinition = "VARCHAR(255)")
     private String swcDesignation;
 
-    @Column(name = "language", columnDefinition = "VARCHAR(255)")
+    @Column(name = "language", columnDefinition = "VARCHAR(45)")
     private String language;
 
     @Column(name = "course_status", columnDefinition = "VARCHAR(255)")
@@ -49,40 +49,40 @@ public class SwcImportRejection {
     @Column(name = "job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
 
-    @Column(name="state_id", columnDefinition = "TINYINT")
+    @Column(name="state_id", columnDefinition = "TINYINT(4)")
     private Integer stateId;
 
-    @Column(name="state_name")
+    @Column(name="state_name", columnDefinition = "VARCHAR(45)")
     private String stateName;
 
-    @Column(name="district_id", columnDefinition = "SMALLINT")
+    @Column(name="district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtId;
 
-    @Column(name="district_name")
+    @Column(name="district_name", columnDefinition = "VARCHAR(45)")
     private String districtName;
 
-    @Column(name="block_id", columnDefinition = "INT")
+    @Column(name="block_id", columnDefinition = "INT(11)")
     private Integer blockId;
 
-    @Column(name="block_name")
+    @Column(name="block_name", columnDefinition = "VARCHAR(45)")
     private String blockName;
 
     @Column(name="panchayat_id", columnDefinition = "BIGINT(20)")
     private Integer panchayatId;
 
-    @Column(name="panchayat_name")
+    @Column(name="panchayat_name", columnDefinition = "VARCHAR(45)")
     private String panchayatName;
 
-    @Column(name = "creation_date", columnDefinition = "DATE")
+    @Column(name = "creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
 
-    @Column(name = "accepted")
+    @Column(name = "accepted", columnDefinition = "BIT(1)")
     private Boolean accepted;
 
-    @Column(name = "rejection_reason")
+    @Column(name = "rejection_reason", columnDefinition = "VARCHAR(255)")
     private String rejectionReason;
 
-    @Column(name = "modification_date")
+    @Column(name = "modification_date", columnDefinition = "DATETIME")
     private Date modificationDate;
 
     public Long getId() {

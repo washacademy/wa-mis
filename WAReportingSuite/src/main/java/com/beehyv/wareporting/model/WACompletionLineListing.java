@@ -9,53 +9,53 @@ public class WACompletionLineListing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition = "INT(11)")
     private Long Id;
 
-    @Column(name = "mobile_no", columnDefinition = "BIGINT")
+    @Column(name = "mobile_no", columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
-    @Column(name = "state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
     private Integer stateId;
 
-    @Column(name = "state_name")
+    @Column(name = "state_name", columnDefinition = "VARCHAR(45)")
     private String stateName;
 
-    @Column(name = "district_id", columnDefinition = "SMALLINT")
+    @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtId;
 
-    @Column(name = "district_name")
+    @Column(name = "district_name", columnDefinition = "VARCHAR(45)")
     private String districtName;
 
-    @Column(name = "block_id", columnDefinition = "INT")
+    @Column(name = "block_id", columnDefinition = "INT(11)")
     private Integer blockId;
 
-    @Column(name = "block_name")
+    @Column(name = "block_name", columnDefinition = "VARCHAR(45)")
     private String blockName;
 
-    @Column(name = "panchayat_id", columnDefinition = "BIGINT")
+    @Column(name = "panchayat_id", columnDefinition = "BIGINT(20)")
     private Integer panchayatId;
 
-    @Column(name = "panchayat_name")
+    @Column(name = "panchayat_name", columnDefinition = "VARCHAR(45)")
     private String panchayatName;
 
-    @Column(name = "swachchagrahi_name")
+    @Column(name = "swachchagrahi_name", columnDefinition = "VARCHAR(255)")
     private String swachchagrahiName;
 
-    @Column(name = "swachchagrahi_id")
+    @Column(name = "swachchagrahi_id", columnDefinition = "BIGINT(20)")
     private Long swcId;
 
-    @Column(name = "swachchagrahi_creation_date")
+    @Column(name = "swachchagrahi_creation_date", columnDefinition = "DATETIME")
     private Date swachchagrahiCreationDate;
 
-    @Column(name = "course_start_date")
+    @Column(name = "course_start_date", columnDefinition = "DATETIME")
     private Date courseStartDate;
 
-    @Column(name = "first_completion_date")
+    @Column(name = "first_completion_date", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
 
-    @Column(name = "SMS_sent_notification")
-    private String SMSSentNotification;
+    @Column(name = "SMS_sent_notification", columnDefinition = "BIT(1)")
+    private Boolean SMSSentNotification;
 
     public Long getId() {
         return Id;
@@ -177,11 +177,11 @@ public class WACompletionLineListing {
         this.firstCompletionDate = firstCompletionDate;
     }
 
-    public String getSMSSentNotification() {
+    public Boolean getSMSSentNotification() {
         return SMSSentNotification;
     }
 
-    public void setSMSSentNotification(String SMSSentNotification) {
+    public void setSMSSentNotification(Boolean SMSSentNotification) {
         this.SMSSentNotification = SMSSentNotification;
     }
 }

@@ -11,38 +11,38 @@ import java.util.Date;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name="user_id", columnDefinition = "INT(11)")
 	private Integer userId;
 
-	@Column(name="username")
+	@Column(name="username", columnDefinition = "VARCHAR(25)")
 	private String username;
 
-	@Column(name="password")
+	@Column(name="password", columnDefinition = "VARCHAR(25)")
 	private String password;
 
-	@Column(name="full_name")
+	@Column(name="full_name", columnDefinition = "VARCHAR(255)")
 	private String fullName;
 
-	@Column(name="phone_no")
+	@Column(name="phone_no", columnDefinition = "BIGINT(20)")
 	private String phoneNumber;
 
-	@Column(name="email_id")
+	@Column(name="email_id", columnDefinition = "VARCHAR(45)")
 	private String emailId;
 
 //	@ManyToOne
 //	@JoinColumn(name="location",insertable = false,updatable = false)
 //	private Location locationId;
 
-	@Column(name="state",columnDefinition = "TINYINT")
+	@Column(name="state",columnDefinition = "TINYINT(4)")
 	private Integer stateId;
 
-	@Column(name="district", columnDefinition = "SMALLINT")
+	@Column(name="district", columnDefinition = "SMALLINT(6)")
 	private Integer districtId;
 
-	@Column(name="block", columnDefinition = "INT")
+	@Column(name="block", columnDefinition = "INT(11)")
 	private Integer blockId;
 
-	@Column(name="creation_date")
+	@Column(name="creation_date", columnDefinition = "DATETIME")
 	private Date creationDate;
 
 	@JsonIgnore

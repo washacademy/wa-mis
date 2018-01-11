@@ -24,7 +24,7 @@ public class WACallDetailMeasure {
     @Column(name="operator_id",columnDefinition = "BIGINT(20)")
     private Long operatorId;
 
-    @Column(name="circle_id",columnDefinition = "TINYINT")
+    @Column(name="circle_id",columnDefinition = "TINYINT(4)")
     private String circleId;
 
     @Column(name="start_time",columnDefinition = "DATETIME")

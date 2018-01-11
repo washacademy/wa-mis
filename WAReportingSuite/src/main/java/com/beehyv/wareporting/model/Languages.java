@@ -8,10 +8,10 @@ public class Languages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "language_id")
+    @Column(name = "language_id", columnDefinition = "TINYINT(4)")
     private Integer languageId;
 
-    @Column(name = "language")
+    @Column(name = "language", columnDefinition = "VARCHAR(45)")
     private String language;
 
     public Integer getLanguageId() {

@@ -15,7 +15,7 @@ public class Circle {
     @Column(name="circle_id", columnDefinition = "TINYINT(4)")
     private Integer circleId;
 
-    @Column(name="circle_name", columnDefinition = "VARCHAR(255)")
+    @Column(name="circle_name", columnDefinition = "VARCHAR(45)")
     private String circleName;
 
     @Column(name = "last_modified",columnDefinition = "TIMESTAMP")
