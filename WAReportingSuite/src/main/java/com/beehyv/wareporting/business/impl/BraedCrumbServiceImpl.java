@@ -48,7 +48,7 @@ public class BraedCrumbServiceImpl implements BreadCrumbService {
                 breadCrumbDtos.add(bread3) ;
             }
             if(reportRequest.getBlockId()!=0){
-                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByblockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
+                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
                 breadCrumbDtos.add(bread4);
             }
         }
@@ -62,7 +62,7 @@ public class BraedCrumbServiceImpl implements BreadCrumbService {
                 breadCrumbDtos.add(bread3) ;
             }
             if(reportRequest.getBlockId()!=0){
-                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByblockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
+                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
                 breadCrumbDtos.add(bread4);
             }
         }
@@ -73,13 +73,13 @@ public class BraedCrumbServiceImpl implements BreadCrumbService {
                 breadCrumbDtos.add(bread3) ;
             }
             if(reportRequest.getBlockId()!=0){
-                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByblockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
+                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
                 breadCrumbDtos.add(bread4);
             }
         }
         if(currentUser.getAccessLevel().equals(AccessLevel.BLOCK.getAccessLevel())){
             if(reportRequest.getBlockId()!=0){
-                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByblockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
+                BreadCrumbDto bread4 = new BreadCrumbDto("Block",blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName(),reportRequest.getBlockId());
                 breadCrumbDtos.add(bread4);
             }
         }

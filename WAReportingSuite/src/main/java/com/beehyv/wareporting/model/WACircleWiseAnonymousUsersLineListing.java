@@ -12,9 +12,6 @@ public class WACircleWiseAnonymousUsersLineListing {
     @Column(name="id")
     private Long Id;
 
-    @Column(name="serial_no",columnDefinition = "BIGINT")
-    private Long serialNumber;
-
     @Column(name="mobile_no",columnDefinition = "BIGINT")
     private Long mobileNumber;
 
@@ -54,14 +51,6 @@ public class WACircleWiseAnonymousUsersLineListing {
 
     public void setId(Long id) {
         Id = id;
-    }
-
-    public Long getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(Long serialNumber) {
-        this.serialNumber = serialNumber;
     }
 
     public Long getMobileNumber() {

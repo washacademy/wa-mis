@@ -2,7 +2,8 @@ package com.beehyv.wareporting.dao.impl;
 
 import com.beehyv.wareporting.dao.AbstractDao;
 import com.beehyv.wareporting.dao.AnonymousUsersDao;
-import com.beehyv.wareporting.model.AnonymousUsers;
+import com.beehyv.wareporting.entity.AnonymousUser;
+import com.beehyv.wareporting.model.AnonymousUsersSummary;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -15,26 +16,26 @@ import java.util.List;
  * Created by beehyv on 23/5/17.
  */
 @Repository("anonymousUsersDao")
-public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,AnonymousUsers> implements AnonymousUsersDao{
+public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,AnonymousUsersSummary> implements AnonymousUsersDao{
 
     @Override
-    public List<AnonymousUsers> getAnonymousUsers(Date fromDate, Date toDate) {
+    public List<AnonymousUser> getAnonymousUsers(Date fromDate, Date toDate) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCalledTime"));
         criteria.add(Restrictions.and(
                 Restrictions.lt("lastCalledTime",toDate),
                 Restrictions.ge("lastCalledTime",fromDate)
         ));
-        return (List<AnonymousUsers>)criteria.list();
+        return (List<AnonymousUser>)criteria.list();
     }
 
     @Override
-    public List<AnonymousUsers> getAnonymousUsersCircle(Date fromDate,Date toDate,String circleName) {
+    public List<AnonymousUser> getAnonymousUsersCircle(Date fromDate, Date toDate, String circleName) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCalledDate"));
         criteria.add(Restrictions.and(
                 Restrictions.lt("lastCalledTime",toDate),
                 Restrictions.ge("lastCalledTime",fromDate),
                 Restrictions.eq("circleName",circleName)));
-        return (List<AnonymousUsers>)criteria.list();
+        return (List<AnonymousUser>)criteria.list();
     }
 
 

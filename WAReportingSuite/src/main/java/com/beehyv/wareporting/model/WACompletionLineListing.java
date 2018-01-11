@@ -33,7 +33,7 @@ public class WACompletionLineListing {
     @Column(name = "block_name")
     private String blockName;
 
-    @Column(name = "panchayat_id", columnDefinition = "SMALLINT")
+    @Column(name = "panchayat_id", columnDefinition = "BIGINT")
     private Integer panchayatId;
 
     @Column(name = "panchayat_name")
@@ -43,7 +43,7 @@ public class WACompletionLineListing {
     private String swachchagrahiName;
 
     @Column(name = "swachchagrahi_id")
-    private Long swachchagrahiId;
+    private Long swcId;
 
     @Column(name = "swachchagrahi_creation_date")
     private Date swachchagrahiCreationDate;
@@ -145,12 +145,12 @@ public class WACompletionLineListing {
         this.swachchagrahiName = swachchagrahiName;
     }
 
-    public Long getSwachchagrahiId() {
-        return swachchagrahiId;
+    public Long getSwcId() {
+        return swcId;
     }
 
-    public void setSwachchagrahiId(Long swachchagrahiId) {
-        this.swachchagrahiId = swachchagrahiId;
+    public void setSwcId(Long swcId) {
+        this.swcId = swcId;
     }
 
     public Date getSwachchagrahiCreationDate() {

@@ -20,11 +20,11 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.ge("modificationDate",fromDate))
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","SW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","SW_IMPORT_ERROR"))
-                .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"));
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","JOB_STATUS_INACTIVE"));
 
-        return criteria.list();
+        return (List<SwcImportRejection>)criteria.list();
     }
 
     @Override
@@ -35,10 +35,10 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.eq("stateId", stateId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","SW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","SW_IMPORT_ERROR"))
-                .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"));
-        return criteria.list();
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","JOB_STATUS_INACTIVE"));
+        return (List<SwcImportRejection>) criteria.list();
     }
     @Override
     public List<SwcImportRejection> getAllRejectedSwcImportRecordsWithDistrictId(Date fromDate, Date toDate, Integer districtId) {
@@ -48,11 +48,11 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.eq("districtId", districtId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","SW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","SW_IMPORT_ERROR"))
-                .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"));
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","JOB_STATUS_INACTIVE"));
 
-        return criteria.list();
+        return (List<SwcImportRejection>) criteria.list();
     }
 
     @Override
@@ -63,11 +63,11 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.eq("healthBlockId", blockId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","SW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","SW_IMPORT_ERROR"))
-                .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"));
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","JOB_STATUS_INACTIVE"));
 
-        return criteria.list();
+        return (List<SwcImportRejection>) criteria.list();
     }
 
     @Override
@@ -78,9 +78,9 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.eq("districtId", districtId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","SW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","SW_IMPORT_ERROR"))
-                .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"))
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","JOB_STATUS_INACTIVE"))
                 .setProjection(Projections.rowCount());
 
         return (Long) criteria.uniqueResult();

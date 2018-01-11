@@ -1,42 +1,24 @@
 package com.beehyv.wareporting.entity;
 
-import java.util.Date;
-
 /**
  * Created by beehyv on 21/9/17.
  */
 public class WASubscriberDto {
 
-    int id;
-    String locationType;
-    String locationName;
-    Long locationId;
-    Integer swachchagrahisRegistered;
-    Integer swachchagrahisStarted;
-    Integer swachchagrahisNotStarted;
-    Integer swachchagrahisCompleted;
-    Integer swachchagrahisFailed;
-    Integer swachchagrahisRejected;
-    Integer recordsReceived;
-    Integer registeredNotCompletedStart;
-    Integer registeredNotCompletedend;
-
-
-    public Integer getRegisteredNotCompletedStart() {
-        return registeredNotCompletedStart;
-    }
-
-    public void setRegisteredNotCompletedStart(Integer registeredNotCompletedStart) {
-        this.registeredNotCompletedStart = registeredNotCompletedStart;
-    }
-
-    public Integer getRegisteredNotCompletedend() {
-        return registeredNotCompletedend;
-    }
-
-    public void setRegisteredNotCompletedend(Integer registeredNotCompletedend) {
-        this.registeredNotCompletedend = registeredNotCompletedend;
-    }
+    private int id;
+    private String locationType;
+    private String locationName;
+    private Long locationId;
+    private Integer swachchagrahisRegistered;
+    private Integer swachchagrahisStarted;
+    private Integer swachchagrahisNotStarted;
+    private Integer swachchagrahisCompleted;
+    private Integer swachchagrahisFailed;
+    private Integer recordsRejected;
+    private Integer recordsReceived;
+    private Integer registeredNotCompletedStart;
+    private Integer registeredNotCompletedEnd;
+    private Integer successfullyFirstCompleted;
 
     public int getId() {
         return id;
@@ -70,20 +52,20 @@ public class WASubscriberDto {
         this.locationId = locationId;
     }
 
-    public Integer getSwachchagrahisStarted() {
-        return swachchagrahisStarted;
-    }
-
-    public void setSwachchagrahisStarted(Integer swachchagrahisStarted) {
-        this.swachchagrahisStarted = swachchagrahisStarted;
-    }
-
     public Integer getSwachchagrahisRegistered() {
         return swachchagrahisRegistered;
     }
 
     public void setSwachchagrahisRegistered(Integer swachchagrahisRegistered) {
         this.swachchagrahisRegistered = swachchagrahisRegistered;
+    }
+
+    public Integer getSwachchagrahisStarted() {
+        return swachchagrahisStarted;
+    }
+
+    public void setSwachchagrahisStarted(Integer swachchagrahisStarted) {
+        this.swachchagrahisStarted = swachchagrahisStarted;
     }
 
     public Integer getSwachchagrahisNotStarted() {
@@ -110,12 +92,12 @@ public class WASubscriberDto {
         this.swachchagrahisFailed = swachchagrahisFailed;
     }
 
-    public Integer getSwachchagrahisRejected() {
-        return swachchagrahisRejected;
+    public Integer getRecordsRejected() {
+        return recordsRejected;
     }
 
-    public void setSwachchagrahisRejected(Integer swachchagrahisRejected) {
-        this.swachchagrahisRejected = swachchagrahisRejected;
+    public void setRecordsRejected(Integer recordsRejected) {
+        this.recordsRejected = recordsRejected;
     }
 
     public Integer getRecordsReceived() {
@@ -125,4 +107,30 @@ public class WASubscriberDto {
     public void setRecordsReceived(Integer recordsReceived) {
         this.recordsReceived = recordsReceived;
     }
+
+    public Integer getRegisteredNotCompletedStart() {
+        return registeredNotCompletedStart;
+    }
+
+    public void setRegisteredNotCompletedStart(Integer registeredNotCompletedStart) {
+        this.registeredNotCompletedStart = registeredNotCompletedStart;
+    }
+
+    public Integer getRegisteredNotCompletedEnd() {
+        return registeredNotCompletedEnd;
+    }
+
+    public void setRegisteredNotCompletedEnd(Integer registeredNotCompletedEnd) {
+        this.registeredNotCompletedEnd = registeredNotCompletedEnd;
+    }
+
+    public Integer getSuccessfullyFirstCompleted() {
+        return successfullyFirstCompleted;
+    }
+
+    public void setSuccessfullyFirstCompleted(Integer successfullyFirstCompleted) {
+        this.successfullyFirstCompleted = successfullyFirstCompleted;
+    }
 }
+
+

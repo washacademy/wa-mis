@@ -4,6 +4,7 @@ package com.beehyv.wareporting.enums;
  * Created by beehyv on 5/5/17.
  */
 public enum AccessLevel {
+
     NATIONAL("NATIONAL"),
     STATE("STATE"),
     DISTRICT("DISTRICT"),
@@ -35,7 +36,7 @@ public enum AccessLevel {
     }
 
 
-    private AccessLevel(String accessLevel){this.accessLevel=accessLevel;}
+    AccessLevel(String accessLevel){this.accessLevel=accessLevel;}
 
     public String getAccessLevel(){return accessLevel;}
 }

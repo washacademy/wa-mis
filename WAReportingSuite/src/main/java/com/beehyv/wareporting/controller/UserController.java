@@ -433,9 +433,9 @@ public class UserController {
                             WAPerformanceDto summaryDto1 = new WAPerformanceDto();
                             summaryDto1.setId(a.getId());
                             summaryDto1.setLocationId(a.getLocationId());
-                            summaryDto1.setSwachchagrahisCompleted(a.getSwachchagrahisCompleted() - b.getSwachchagrahisCompleted());
+                            summaryDto1.setSwachchagrahisCompletedCourse(a.getSwachchagrahisCompleted() - b.getSwachchagrahisCompleted());
 //                            summaryDto1.setSwachchagrahisFailed(a.getSwachchagrahisFailed() - b.getSwachchagrahisFailed());
-                            summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted() - b.getSwachchagrahisStarted());
+                            summaryDto1.setSwachchagrahisStartedCourse(a.getSwachchagrahisStarted() - b.getSwachchagrahisStarted());
                             summaryDto1.setLocationType(a.getLocationType());
 
                             String locationType = a.getLocationType();
@@ -446,7 +446,7 @@ public class UserController {
                                 summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
                             }
                             if (locationType.equalsIgnoreCase("Block")) {
-                                summaryDto1.setLocationName(blockDao.findByblockId(a.getLocationId().intValue()).getBlockName());
+                                summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
                             }
                             if (locationType.equalsIgnoreCase("Panchayat")) {
                                 summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
@@ -465,14 +465,14 @@ public class UserController {
                                 summaryDto1.setLocationId((long) -1);
 
                             }
-                            summaryDto1.setSwachchagrahisFailed(waPerformanceService.getSwachchagrahisFailed(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
-                            summaryDto1.setSwachchagrahisAccessed(waPerformanceService.getAccessedCount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
+                            summaryDto1.setSwachchagrahisFailedCourse(waPerformanceService.getSwachchagrahisFailed(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
+                            summaryDto1.setSwachchagrahisPursuingCourse(waPerformanceService.getAccessedCount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
 //                        summaryDto1.setCompletedPercentage(a.getSwachchagrahisCompleted()*100/a.getSwachchagrahisStarted());
 //                        summaryDto1.setFailedpercentage(a.getSwachchagrahisFailed()*100/a.getSwachchagrahisStarted());
 //                        summaryDto1.setNotStartedpercentage(a.getSwachchagrahisNotStarted()*100/a.getSwachchagrahisRegistered());
-                            summaryDto1.setSwachchagrahisNotAccessed(waPerformanceService.getNotAccessedcount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
+                            summaryDto1.setSwachchagrahisNotPursuingCourse(waPerformanceService.getNotAccessedcount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
 
-                            if (summaryDto1.getSwachchagrahisCompleted() + summaryDto1.getSwachchagrahisFailed() + summaryDto1.getSwachchagrahisStarted() + summaryDto1.getSwachchagrahisAccessed() + summaryDto1.getSwachchagrahisNotAccessed() != 0) {
+                            if (summaryDto1.getSwachchagrahisCompletedCourse() + summaryDto1.getSwachchagrahisFailedCourse() + summaryDto1.getSwachchagrahisStartedCourse() + summaryDto1.getSwachchagrahisPursuingCourse() + summaryDto1.getSwachchagrahisNotPursuingCourse() != 0) {
                                 summaryDto.add(summaryDto1);
                             }
                         }
@@ -528,10 +528,10 @@ public class UserController {
                             summaryDto1.setSwachchagrahisRegistered(a.getSwachchagrahisRegistered() - b.getSwachchagrahisRegistered());
                             summaryDto1.setSwachchagrahisNotStarted(a.getSwachchagrahisNotStarted() - b.getSwachchagrahisNotStarted());
                             summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted() - b.getSwachchagrahisStarted());
-                            summaryDto1.setSwachchagrahisRejected(a.getSwachchagrahisRejected() - b.getSwachchagrahisRejected());
+                            summaryDto1.setRecordsRejected(a.getSwachchagrahisRejected() - b.getSwachchagrahisRejected());
                             summaryDto1.setLocationType(a.getLocationType());
                             summaryDto1.setRegisteredNotCompletedStart(b.getSwachchagrahisRegistered() - b.getSwachchagrahisCompleted());
-                            summaryDto1.setRegisteredNotCompletedend(a.getSwachchagrahisRegistered() - a.getSwachchagrahisCompleted());
+                            summaryDto1.setRegisteredNotCompletedEnd(a.getSwachchagrahisRegistered() - a.getSwachchagrahisCompleted());
                             summaryDto1.setRecordsReceived((a.getSwachchagrahisRegistered() + a.getSwachchagrahisRejected()) - (b.getSwachchagrahisRejected() + b.getSwachchagrahisRegistered()));
                             String locationType = a.getLocationType();
                             if (locationType.equalsIgnoreCase("State")) {
@@ -541,7 +541,7 @@ public class UserController {
                                 summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
                             }
                             if (locationType.equalsIgnoreCase("Block")) {
-                                summaryDto1.setLocationName(blockDao.findByblockId(a.getLocationId().intValue()).getBlockName());
+                                summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
                             }
                             if (locationType.equalsIgnoreCase("Panchayat")) {
                                 summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
@@ -562,8 +562,8 @@ public class UserController {
 
                             }
                             notAvailable = false;
-                            if (summaryDto1.getSwachchagrahisCompleted() + summaryDto1.getSwachchagrahisStarted() + summaryDto1.getSwachchagrahisFailed() + summaryDto1.getSwachchagrahisRejected()
-                                    + summaryDto1.getSwachchagrahisRegistered() + summaryDto1.getRegisteredNotCompletedend()
+                            if (summaryDto1.getSwachchagrahisCompleted() + summaryDto1.getSwachchagrahisStarted() + summaryDto1.getSwachchagrahisFailed() + summaryDto1.getRecordsRejected()
+                                    + summaryDto1.getSwachchagrahisRegistered() + summaryDto1.getRegisteredNotCompletedEnd()
                                     + summaryDto1.getRegisteredNotCompletedStart() + summaryDto1.getRecordsReceived() + summaryDto1.getSwachchagrahisNotStarted() != 0) {
                                 summaryDto.add(summaryDto1);
                             }
@@ -624,7 +624,7 @@ public class UserController {
                         summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
                     }
                     if (locationType.equalsIgnoreCase("Block")) {
-                        summaryDto1.setLocationName(blockDao.findByblockId(a.getLocationId().intValue()).getBlockName());
+                        summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
                     }
                     if (locationType.equalsIgnoreCase("Panchayat")) {
                         summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
@@ -718,7 +718,7 @@ public class UserController {
     @RequestMapping(value = "/downloadReport", method = RequestMethod.GET,produces = "application/vnd.ms-excel")
     @ResponseBody
     public String getBulkDataImportCSV(HttpServletResponse response, @DefaultValue("") @QueryParam("fileName") String fileName,
-                                       @DefaultValue("") @QueryParam("rootPath") String rootPath) throws ParseException, java.text.ParseException {
+                                       @DefaultValue("") @QueryParam("rootPath") String rootPath) throws ParseException {
 //        adminService.getBulkDataImportCSV();
         response.setContentType("APPLICATION/OCTECT-STREAM");
         if (StringUtils.isEmpty(fileName) || StringUtils.isEmpty(rootPath)) {
@@ -749,7 +749,7 @@ public class UserController {
     public @ResponseBody List<Map<String, Object>> getReportsMenu() {
         User currentUser = userService.getCurrentUser();
         Map<String, Object> maMenu = new HashMap<>();
-        maMenu.put("name", "Mobile Academy Reports");
+        maMenu.put("name", "WASH Academy Reports");
         maMenu.put("icon", "images/drop-down-3.png");
 
         List<Report> maList = new ArrayList<>();

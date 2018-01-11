@@ -4,6 +4,7 @@ package com.beehyv.wareporting.entity;
  * Created by beehyv on 16/5/17.
  */
 public class EmailInfo {
+
     private String from = "", to = "", subject = "", body = "";
     private String fileName = "";
     private String rootPath = "";

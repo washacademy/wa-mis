@@ -29,7 +29,7 @@ public interface LocationService {
 
     List<State> getStatesByServiceType(String serviceType);
 
-    Date getServiceStartdateForState(Integer stateId,String serviceType);
+    Date getServiceStartDateForState(Integer stateId,String serviceType);
 
     List<District> getSwachchagrahiDistricts(Integer stateId);
 
@@ -71,5 +71,5 @@ public interface LocationService {
     List<CircleDto> getCircleObjectList(User user, String serviceType);
 
 
-    public User SetLocations(User user);
+    User SetLocations(User user);
 }

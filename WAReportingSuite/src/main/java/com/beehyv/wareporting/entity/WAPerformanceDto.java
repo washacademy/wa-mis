@@ -1,6 +1,5 @@
 package com.beehyv.wareporting.entity;
 
-import java.util.Date;
 
 /**
  * Created by beehyv on 21/9/17.
@@ -8,37 +7,15 @@ import java.util.Date;
 
 public class WAPerformanceDto {
 
-    int id;
-    String locationType;
-    String locationName;
-    Long locationId;
-    Integer swachchagrahisStarted;
-    Long swachchagrahisNotAccessed;
-    Long swachchagrahisAccessed;
-    Integer swachchagrahisCompleted;
-    Integer swachchagrahisFailed;
-
-//    Integer swachchagrahisRejected;
-//    Integer recordsReceived;
-//    Integer registeredNotCompletedStart;
-//    Integer registeredNotCompletedend;
-
-
-    public Long getSwachchagrahisNotAccessed() {
-        return swachchagrahisNotAccessed;
-    }
-
-    public void setSwachchagrahisNotAccessed(Long swachchagrahisNotAccessed) {
-        this.swachchagrahisNotAccessed = swachchagrahisNotAccessed;
-    }
-
-    public Long getSwachchagrahisAccessed() {
-        return swachchagrahisAccessed;
-    }
-
-    public void setSwachchagrahisAccessed(Long swachchagrahisAccessed) {
-        this.swachchagrahisAccessed = swachchagrahisAccessed;
-    }
+    private int id;
+    private String locationType;
+    private String locationName;
+    private Long locationId;
+    private Integer swachchagrahisStartedCourse;
+    private Long swachchagrahisPursuingCourse;
+    private Long swachchagrahisNotPursuingCourse;
+    private Integer swachchagrahisCompletedCourse;
+    private Integer swachchagrahisFailedCourse;
 
     public int getId() {
         return id;
@@ -72,27 +49,43 @@ public class WAPerformanceDto {
         this.locationId = locationId;
     }
 
-    public Integer getSwachchagrahisStarted() {
-        return swachchagrahisStarted;
+    public Integer getSwachchagrahisStartedCourse() {
+        return swachchagrahisStartedCourse;
     }
 
-    public void setSwachchagrahisStarted(Integer swachchagrahisStarted) {
-        this.swachchagrahisStarted = swachchagrahisStarted;
+    public void setSwachchagrahisStartedCourse(Integer swachchagrahisStartedCourse) {
+        this.swachchagrahisStartedCourse = swachchagrahisStartedCourse;
     }
 
-    public Integer getSwachchagrahisCompleted() {
-        return swachchagrahisCompleted;
+    public Long getSwachchagrahisPursuingCourse() {
+        return swachchagrahisPursuingCourse;
     }
 
-    public void setSwachchagrahisCompleted(Integer swachchagrahisCompleted) {
-        this.swachchagrahisCompleted = swachchagrahisCompleted;
+    public void setSwachchagrahisPursuingCourse(Long swachchagrahisPursuingCourse) {
+        this.swachchagrahisPursuingCourse = swachchagrahisPursuingCourse;
     }
 
-    public Integer getSwachchagrahisFailed() {
-        return swachchagrahisFailed;
+    public Long getSwachchagrahisNotPursuingCourse() {
+        return swachchagrahisNotPursuingCourse;
     }
 
-    public void setSwachchagrahisFailed(Integer swachchagrahisFailed) {
-        this.swachchagrahisFailed = swachchagrahisFailed;
+    public void setSwachchagrahisNotPursuingCourse(Long swachchagrahisNotPursuingCourse) {
+        this.swachchagrahisNotPursuingCourse = swachchagrahisNotPursuingCourse;
+    }
+
+    public Integer getSwachchagrahisCompletedCourse() {
+        return swachchagrahisCompletedCourse;
+    }
+
+    public void setSwachchagrahisCompletedCourse(Integer swachchagrahisCompletedCourse) {
+        this.swachchagrahisCompletedCourse = swachchagrahisCompletedCourse;
+    }
+
+    public Integer getSwachchagrahisFailedCourse() {
+        return swachchagrahisFailedCourse;
+    }
+
+    public void setSwachchagrahisFailedCourse(Integer swachchagrahisFailedCourse) {
+        this.swachchagrahisFailedCourse = swachchagrahisFailedCourse;
     }
 }

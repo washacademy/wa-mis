@@ -2,10 +2,12 @@ com/beehyv/wareporting/enums/AccountStatus.class
 com/beehyv/wareporting/dao/DistrictDao.class
 com/beehyv/wareporting/business/impl/RoleServiceImpl.class
 com/beehyv/wareporting/security/WARepRealm.class
+com/beehyv/wareporting/entity/AnonymousUser.class
 com/beehyv/wareporting/entity/WASubscriberDto.class
 com/beehyv/wareporting/entity/UsageDto.class
 com/beehyv/wareporting/business/impl/EmailServiceImpl$2.class
 com/beehyv/wareporting/business/EmailService.class
+com/beehyv/wareporting/dao/SwachchagrahiDao.class
 com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class
 com/beehyv/wareporting/model/WACourseFirstCompletion.class
 com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.class
@@ -22,7 +24,6 @@ com/beehyv/wareporting/business/AggregateReportsService.class
 com/beehyv/wareporting/business/BreadCrumbService.class
 com/beehyv/wareporting/entity/BasicValidationResult.class
 com/beehyv/wareporting/entity/StateObject.class
-com/beehyv/wareporting/dao/impl/FrontLineWorkersDaoImpl.class
 com/beehyv/wareporting/model/Languages.class
 com/beehyv/wareporting/entity/CircleDto.class
 com/beehyv/wareporting/dao/impl/LoginTrackerDaoImpl.class
@@ -41,6 +42,7 @@ com/beehyv/wareporting/business/EmailTrackerService.class
 com/beehyv/wareporting/business/impl/LocationServiceImpl.class
 com/beehyv/wareporting/dao/WAPerformanceDao.class
 com/beehyv/wareporting/model/StateCircle.class
+com/beehyv/wareporting/dao/impl/SwachchagrahiDaoImpl.class
 com/beehyv/wareporting/model/WARejectedLineListing.class
 com/beehyv/wareporting/entity/ForgotPasswordDto.class
 com/beehyv/wareporting/entity/EmailInfo.class
@@ -124,12 +126,11 @@ com/beehyv/wareporting/job/AutoReportEmailGeneration.class
 com/beehyv/wareporting/business/impl/UserServiceImpl.class
 com/beehyv/wareporting/entity/Report.class
 com/beehyv/wareporting/dao/SwcImportRejectionDao.class
-com/beehyv/wareporting/model/AnonymousUsers.class
 com/beehyv/wareporting/dao/impl/StateCircleDaoImpl.class
 com/beehyv/wareporting/dao/AggregateCumulativeWADao.class
-com/beehyv/wareporting/dao/FrontLineWorkersDao.class
 com/beehyv/wareporting/business/impl/EmailServiceImpl$3.class
 com/beehyv/wareporting/enums/ReportType.class
 com/beehyv/wareporting/controller/LogoutController.class
 com/beehyv/wareporting/controller/LocationController.class
+com/beehyv/wareporting/model/AnonymousUsersSummary.class
 com/beehyv/wareporting/business/ModificationTrackerService.class

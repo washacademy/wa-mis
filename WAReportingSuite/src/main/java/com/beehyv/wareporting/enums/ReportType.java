@@ -5,12 +5,7 @@ package com.beehyv.wareporting.enums;
  */
 public enum ReportType {
 
-//    waCourse("CumulativeCourseCompletion"),
-//    waAnonymous("Circle wise Anonymous Users"),
-//    waInactive("waInactive"),
-//    lowUsage("KillowUsage"),
-//    selfDeactivated("selfDeactivated"),
-//    sixWeeks("sixWeeks");
+
     waPerformance("WA_Performance","WA Performance","M","WA Performance Aggregate Report"),
     waSubscriber("WA_Subscriber","WA Subscriber","M","WA Subscriber Aggregate Report"),
     waCumulative("WA_Cumulative_Summary","WA Cumulative Summary","M","WA Cumulative Summery Aggregate Report"),

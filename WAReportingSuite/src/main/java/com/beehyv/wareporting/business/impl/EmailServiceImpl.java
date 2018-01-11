@@ -29,31 +29,40 @@ import static com.beehyv.wareporting.utils.ServiceFunctions.getMonthYear;
 /**
  * Created by beehyv on 25/5/17.
  */
+
 @Service("emailService")
 @Transactional
 public class EmailServiceImpl implements EmailService{
 
     @Autowired
-    JavaMailSender mailSender;
-    @Autowired
-    ServletContext context;
+    private JavaMailSender mailSender;
 
     @Autowired
-    UserService userService;
+    private ServletContext context;
+
     @Autowired
-    ReportService reportService;
+    private UserService userService;
+
     @Autowired
-    LocationService locationService;
+    private ReportService reportService;
+
+    @Autowired
+    private LocationService locationService;
+
     @Autowired
     private EmailTrackerService emailTrackerService;
+
     @Autowired
-    DistrictDao districtDao;
+    private DistrictDao districtDao;
+
     @Autowired
-    WACourseAttemptDao waCourseAttemptDao;
+    private WACourseAttemptDao waCourseAttemptDao;
+
     @Autowired
-    FrontLineWorkersDao frontLineWorkersDao;
+    private SwachchagrahiDao swachchagrahiDao;
+
     @Autowired
-    SwcImportRejectionDao swcImportRejectionDao;
+    private SwcImportRejectionDao swcImportRejectionDao;
 
     @Override
     public String sendMail(EmailInfo mailInfo) {
@@ -161,22 +170,22 @@ public class EmailServiceImpl implements EmailService{
         body+= "NSP Support Team \n \n \n";
         body+= "P.S: This an auto-generated email. Please do not reply";*/
         if(reportName.equalsIgnoreCase(ReportType.waCourse.getReportName())) {
-            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have completed the Mobile Academy course.\n\n" +
+            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have completed the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
         }
         else if(reportName.equalsIgnoreCase(ReportType.waAnonymous.getReportName())) {
-            body+="\tPlease find attached the list of anonymous callers to the Mobile Academy course from the telecom " +
+            body+="\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
                     "circle of " + place + ". We presume that these numbers are used by SWACHCHAGRAHIs working in your state but " +
                     "have not been registered in RCH Application. Please contact these numbers and if they belong " +
                     "to a registered SWACHCHAGRAHI in " + place + " then please tell them to either use their registered number " +
-                    "to access the Mobile Academy course or register their correct numbers in the RCH Application so " +
-                    "that they can access the Mobile Academy course.\n\n" +
+                    "to access the WASH Academy course or register their correct numbers in the RCH Application so " +
+                    "that they can access the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
         }
         else if(reportName.equalsIgnoreCase(ReportType.waInactive.getReportName())) {
-            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have not yet started the Mobile Academy course.\n\n" +
+            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have not yet started the WASH Academy course.\n\n" +
                     "\tYou are requested to kindly instruct your field level workers and ask them to start accessing " +
-                    "the Mobile Academy course and complete the course which has been designed to provide effective " +
+                    "the WASH Academy course and complete the course which has been designed to provide effective " +
                     "training for their operations.\n\n";
         }
         body+="Regards\n";
@@ -205,7 +214,7 @@ public class EmailServiceImpl implements EmailService{
 
         List<District> districts=districtDao.getDistrictsOfState(stateId);
         if(reportType.equals(ReportType.waCourse.getReportType())){
-            body+= "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have successfully completed the Mobile Academy" +
+            body+= "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have successfully completed the WASH Academy" +
                     " course. The line listing of the SWACHCHAGRAHIs have been sent to the respective district and block users.";
 
             body+=  "<br><br><table width='100%' border='1' align='center'>"
@@ -220,7 +229,7 @@ public class EmailServiceImpl implements EmailService{
                         + "<td>" +waCourseAttemptDao.getCountForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
             }
         } else if(reportType.equals(ReportType.waInactive.getReportType())){
-            body+="<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have not yet started the Mobile Academy course." +
+            body+="<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have not yet started the WASH Academy course." +
                     " The line listing of the SWACHCHAGRAHIs have been sent to the respective district and block users.";
 
             body+="<br><br><table width='100%' border='1' align='center'>"
@@ -233,12 +242,12 @@ public class EmailServiceImpl implements EmailService{
                     ) {
 
                 body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" +frontLineWorkersDao.getCountOfInactiveFrontLineWorkersForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
+                        + "<td>" + swachchagrahiDao.getCountOfInactiveSwachchagrahisForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
             }
         }
         else if(reportType.equals(ReportType.swcRejected.getReportType())){
             body+="<pre>   </pre>Please find attached the list of SWACHCHAGRAHIs rejected due to one of the following rejection reasons " +
-                    "viz.,MSISDN_ALREADY_IN_USE,SW_TYPE_NOT_SWACHCHAGRAHI,SW_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
+                    "viz.,MSISDN_ALREADY_IN_USE,SWC_TYPE_NOT_SWACHCHAGRAHI,SWC_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
 
             body+= "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"

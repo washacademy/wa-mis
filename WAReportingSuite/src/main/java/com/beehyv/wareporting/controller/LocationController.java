@@ -68,7 +68,7 @@ public class LocationController {
         for(State s : states){
             StateObject stateObject = new StateObject(s);
             stateObject.setServiceType(serviceType);
-            stateObject.setServiceStartDate(locationService.getServiceStartdateForState(s.getStateId(), serviceType));
+            stateObject.setServiceStartDate(locationService.getServiceStartDateForState(s.getStateId(), serviceType));
             stateObjects.add(stateObject);
         }
         return stateObjects;
@@ -89,7 +89,7 @@ public class LocationController {
 //        for(State s : states){
 //            StateObject stateObject = new StateObject(s);
 //            stateObject.setServiceType(s.getServiceType());
-//            stateObject.setServiceStartDate(locationService.getServiceStartdateForState(s.getStateId(), s.getServiceType()));
+//            stateObject.setServiceStartDate(locationService.getServiceStartDateForState(s.getStateId(), s.getServiceType()));
 //            stateObjects.add(stateObject);
 //        }
 //        return stateObjects;
@@ -156,7 +156,7 @@ public class LocationController {
     @RequestMapping(value = {"/panchayats/{blockId}"}, method = RequestMethod.GET)
     public @ResponseBody List<Panchayat> getpanchayatsOfBlock(@PathVariable("blockId") Integer blockId) {
         User user = userService.getCurrentUser();
-        List<Panchayat> panchayats = new ArrayList<>();;
+        List<Panchayat> panchayats = new ArrayList<>();
         if(user.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
             panchayats = locationService.getSwachchagrahiPanchayats(blockId);
         }

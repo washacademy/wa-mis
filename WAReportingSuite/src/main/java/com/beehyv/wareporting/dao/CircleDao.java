@@ -10,5 +10,8 @@ import java.util.List;
 public interface CircleDao {
 
     List<Circle> getAllCircles();
+
+    Circle findByLocationId(Long locationId);
+
     Circle getByCircleId(Integer circleId);
 }

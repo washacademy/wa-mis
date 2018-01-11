@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * Created by beehyv on 13/9/17.
  */
+
 @Entity
 @Table(name="WA_aggregate_cumulative_summary")
 public class WACumulativeSummary {
@@ -14,9 +15,6 @@ public class WACumulativeSummary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "INT(11)")
     private Integer id;
-
-    @Column(name = "serialNumber", columnDefinition = "BIGINT")
-    private Long serialNumber;
 
     @Column(name = "state")
     private String state;
@@ -47,7 +45,6 @@ public class WACumulativeSummary {
 
     public WACumulativeSummary(Integer id, Long serialNumber, String state, Long locationId, String locationType, Integer swachchagrahisRegistered, Integer swachchagrahisStarted, Integer swachchagrahisNotStarted, Integer swachchagrahisCompleted, Integer swachchagrahisFailed, Integer swachchagrahisRejected) {
         this.id = id;
-        this.serialNumber = serialNumber;
         this.state = state;
         this.locationId = locationId;
         this.locationType = locationType;
@@ -67,14 +64,6 @@ public class WACumulativeSummary {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Long getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(Long serialNumber) {
-        this.serialNumber = serialNumber;
     }
 
     public String getState() {

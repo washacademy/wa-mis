@@ -4,6 +4,7 @@ package com.beehyv.wareporting.entity;
  * Created by beehyv on 4/6/17.
  */
 public class Report {
+
     private String name;
 
     private String reportEnum;

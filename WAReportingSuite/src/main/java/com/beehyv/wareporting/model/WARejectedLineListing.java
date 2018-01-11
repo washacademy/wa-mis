@@ -42,7 +42,7 @@ public class WARejectedLineListing {
     private String swachchagrahiName;
 
     @Column(name="swachchagrahi_id")
-    private String swachchagrahiId;
+    private String swcId;
 
     @Column(name="status")
     private String status;
@@ -138,12 +138,12 @@ public class WARejectedLineListing {
         this.swachchagrahiName = swachchagrahiName;
     }
 
-    public String getSwachchagrahiId() {
-        return swachchagrahiId;
+    public String getSwcId() {
+        return swcId;
     }
 
-    public void setSwachchagrahiId(String swachchagrahiId) {
-        this.swachchagrahiId = swachchagrahiId;
+    public void setSwcId(String swcId) {
+        this.swcId = swcId;
     }
 
     public String getStatus() {

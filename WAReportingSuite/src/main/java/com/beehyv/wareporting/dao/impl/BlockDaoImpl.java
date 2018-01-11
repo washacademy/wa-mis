@@ -15,7 +15,7 @@ import java.util.List;
 @Repository("blockDao")
 public class BlockDaoImpl extends AbstractDao<Integer, Block> implements BlockDao {
     @Override
-    public Block findByblockId(Integer blockId) {
+    public Block findByBlockId(Integer blockId) {
         return getByKey(blockId);
     }
 

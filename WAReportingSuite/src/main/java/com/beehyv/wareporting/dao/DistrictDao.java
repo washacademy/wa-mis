@@ -11,11 +11,10 @@ public interface DistrictDao {
 
     District findByDistrictId(Integer districtId);
 
-    District findByLocationId(Long stateId);
-
+    District findByLocationId(Long locationId);
 
     List<District> findByName(String districtName);
 
-    List<District> getDistrictsOfState(Integer state);
+    List<District> getDistrictsOfState(Integer stateId);
 
 }

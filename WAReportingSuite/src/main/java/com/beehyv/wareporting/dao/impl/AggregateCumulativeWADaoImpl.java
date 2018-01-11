@@ -24,8 +24,8 @@ public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulat
                            Restrictions.eq("date",toDate)
                    ));
                 if(criteria.list().isEmpty()){
-                    WACumulativeSummary WACumulativeSummary = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0);
-                    return WACumulativeSummary;
+                    WACumulativeSummary WACumulativeSummary1 = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0);
+                    return WACumulativeSummary1;
                 }
                 
                 WACumulativeSummary WACumulativeSummary1 = (WACumulativeSummary)criteria.list().get(0);
@@ -40,5 +40,5 @@ public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulat
                    return WACumulativeSummary1;
 
 
-            };
+            }
         }

@@ -5,9 +5,9 @@ package com.beehyv.wareporting.entity;
  */
 public class BreadCrumbDto {
 
-    String locationType;
-    String locationName;
-    Integer locationId;
+    private String locationType;
+    private String locationName;
+    private Integer locationId;
 
     public BreadCrumbDto(String locationType,String locationName, Integer locationId) {
         this.locationType = locationType;

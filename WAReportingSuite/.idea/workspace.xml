@@ -1,7 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="" />
+    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="fixed model and Dto classes">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/SwachchagrahiDao.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwachchagrahiDaoImpl.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AnonymousUser.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsersSummary.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/LocationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/LocationService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/LocationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/LocationServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/ReportServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/ReportServiceImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/AnonymousUsersDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/AnonymousUsersDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/BlockDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/BlockDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/CircleDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/CircleDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/DistrictDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/DistrictDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/FrontLineWorkersDao.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/StateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/StateDao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/BlockDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/BlockDaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/CircleDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/CircleDaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/FrontLineWorkersDaoImpl.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateCumulativeWADto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateCumulativeWADto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateResponseDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateResponseDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BasicValidationResult.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BasicValidationResult.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BreadCrumbDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BreadCrumbDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/EmailInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/EmailInfo.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/ForgotPasswordDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/ForgotPasswordDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/Report.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/Report.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UsageDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UsageDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UserDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UserDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WAPerformanceDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WAPerformanceDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WASubscriberDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WASubscriberDto.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessLevel.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessLevel.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessType.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessType.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccountStatus.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccountStatus.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ModificationType.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ModificationType.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ReportType.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ReportType.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/job/AutoReportEmailGeneration.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/job/AutoReportEmailGeneration.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsers.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java" />
+      <change beforePath="$PROJECT_DIR$/target/WAReportingSuite.war" afterPath="$PROJECT_DIR$/target/WAReportingSuite.war" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LocationService.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LocationService.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$1.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$2.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$2.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$3.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl$3.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LocationServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LocationServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/BlockDao.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/BlockDao.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/CircleDao.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/CircleDao.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/FrontLineWorkersDao.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/BlockDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/BlockDaoImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/CircleDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/CircleDaoImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/FrontLineWorkersDaoImpl.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateCumulativeWADto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateCumulativeWADto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateResponseDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateResponseDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/BasicValidationResult.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/BasicValidationResult.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/BreadCrumbDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/BreadCrumbDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/EmailInfo.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/EmailInfo.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ForgotPasswordDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ForgotPasswordDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/Report.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/Report.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/UsageDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/UsageDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/UserDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/UserDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WAPerformanceDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WAPerformanceDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WASubscriberDto.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WASubscriberDto.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/AnonymousUsers.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Swachchagrahi.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Swachchagrahi.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/SwcImportRejection.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/SwcImportRejection.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAInactiveLineListing.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAInactiveLineListing.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WARejectedLineListing.class" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WARejectedLineListing.class" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,27 +118,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Swachchagrahi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-181">
-              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwcImportRejection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwcImportRejectionDao.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SwcImportRejectionDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/SwcImportRejectionDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
@@ -42,71 +128,93 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2427">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WAAggregateDaily.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAAggregateDaily.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SwcImportRejectionDaoImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="-13">
+              <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java">
+      <file leaf-file-name="LocationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/LocationService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="235">
+              <caret line="73" column="4" lean-forward="true" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="State.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java">
+      <file leaf-file-name="AdminServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="-202">
+              <caret line="505" column="36" lean-forward="false" selection-start-line="505" selection-start-column="36" selection-end-line="505" selection-end-column="36" />
+              <folding>
+                <element signature="e#2333#2350#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="165" column="56" lean-forward="false" selection-start-line="165" selection-start-column="56" selection-end-line="165" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StateCircle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateCircle.java">
+      <file leaf-file-name="LocationServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/LocationServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="242">
+              <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StateService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-33">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="153" column="80" lean-forward="true" selection-start-line="153" selection-start-column="80" selection-end-line="153" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccessType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AggregateReportsServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="162" column="5" lean-forward="true" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="158" column="55" lean-forward="true" selection-start-line="158" selection-start-column="55" selection-end-line="158" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -123,24 +231,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NMS</find>
-      <find>percen</find>
-      <find>Flw</find>
-      <find>externalSw</find>
-      <find>Child</find>
-      <find>exter</find>
-      <find>FLW</find>
-      <find>Pass</find>
-      <find>Passwc</find>
-      <find>passwc</find>
-      <find>msisdn</find>
-      <find>Msisdn</find>
-      <find>SwId</find>
-      <find>blockId</find>
-      <find>flw_import_rejection</find>
-      <find>swachcha</find>
-      <find>update</find>
-      <find>flw</find>
       <find>swcachchagrahi</find>
       <find>com.beehyv.nmsreporting.business.impl.AdminServiceImpl.circleDao</find>
       <find>swca</find>
@@ -148,14 +238,31 @@
       <find>SwI</find>
       <find>SwR</find>
       <find>sw</find>
-      <find>SW_</find>
-      <find>Sw</find>
       <find>Sw</find>
       <find>Rejection</find>
+      <find>SW_</find>
+      <find>Swc</find>
+      <find>ma</find>
+      <find>SWACHCHAGRAHIs</find>
+      <find>mobile</find>
+      <find>Wash</find>
+      <find>swc_status</find>
+      <find>swcStatus</find>
+      <find>locationId</find>
+      <find>Byblock</find>
+      <find>Circle</find>
+      <find>Completedend</find>
+      <find>FirstCompleted</find>
+      <find>swachchagrahisStarted</find>
+      <find>SwachchagrahisStarted</find>
+      <find>Persuing</find>
+      <find>answcered</find>
+      <find>Answcer</find>
+      <find>swachchagrahId</find>
+      <find>swachchagrahiId</find>
+      <find>SwachchagrahiId</find>
     </findStrings>
     <replaceStrings>
-      <replace>WA</replace>
-      <replace>gender</replace>
       <replace>sw</replace>
       <replace>Sw</replace>
       <replace>SW</replace>
@@ -164,20 +271,37 @@
       <replace>passw</replace>
       <replace>mobileNumber</replace>
       <replace>MobileNumber</replace>
-      <replace>SwcId</replace>
       <replace>swachchagrahi</replace>
       <replace>Swachchagrahi</replace>
       <replace>SwcI</replace>
       <replace>SwcR</replace>
       <replace>SWC</replace>
-      <replace>SWC_</replace>
-      <replace>SWC</replace>
       <replace>Swc</replace>
+      <replace>SWC_</replace>
+      <replace />
+      <replace>swachchagrahis</replace>
+      <replace>WASH</replace>
+      <replace>course_status</replace>
+      <replace>courseStatus</replace>
+      <replace>ByBlock</replace>
+      <replace>CircleName</replace>
+      <replace>CompletedEnd</replace>
+      <replace>swachchagrahisStartedCourse</replace>
+      <replace>sSwachchagrahisStartedCourse</replace>
+      <replace>Pursuing</replace>
+      <replace>answered</replace>
+      <replace>Answer</replace>
+      <replace>swcId</replace>
+      <replace>SwcId</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -187,45 +311,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/security/NMSRepRealm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/BlockDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/BraedCrumbServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseInactiveLineListing.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/FlwImportRejectionDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/AnonymousUsersDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Circle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Permissions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Languages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Panchayat.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/District.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwImportRejection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/StateServiceDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/StateServiceDaoImpl.java" />
         <option value="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/AdminService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Block.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/DistrictDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/CircleDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/CircleDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/StateDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/BlockDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/AnonymousUsersDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AnonymousUser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsersSummary.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WAPerformanceDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/WAPerformanceServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateResponseDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/AggregateCumulativeWADto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BasicValidationResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/BreadCrumbDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/EmailInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/ForgotPasswordDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/Report.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UsageDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/UserDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WASubscriberDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/SwachchagrahiDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ReportType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ModificationType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccountStatus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessLevel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/job/AutoReportEmailGeneration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/LocationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/LocationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -234,6 +370,9 @@
     <option name="y" value="-4" />
     <option name="width" value="649" />
     <option name="height" value="764" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -291,7 +430,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="wareporting" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WAReportingSuite" type="b2602c69:ProjectViewProjectNode" />
@@ -300,7 +439,26 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="wareporting" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WAReportingSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WAReportingSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wareporting" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WAReportingSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WAReportingSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wareporting" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WAReportingSuite" type="b2602c69:ProjectViewProjectNode" />
@@ -329,13 +487,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -391,12 +549,6 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -431,9 +583,18 @@
       <properties />
       <listeners />
     </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -446,184 +607,101 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
-    <editor active="true" />
+    <frame x="715" y="-4" width="1303" height="780" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7953488" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3919129" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24143426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281493" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39224806" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24143426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed model and Dto classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed model and Dto classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/AnonymousUsersDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WASubscriberDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ehcache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        <state relative-caret-position="360">
+          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding>
-            <element signature="e#1533#1534#0" expanded="false" />
-            <element signature="e#1568#1569#0" expanded="false" />
+            <element signature="e#692#693#0" expanded="false" />
+            <element signature="e#717#718#0" expanded="false" />
+            <element signature="e#750#751#0" expanded="false" />
+            <element signature="e#778#779#0" expanded="false" />
+            <element signature="e#817#818#0" expanded="false" />
+            <element signature="e#852#853#0" expanded="false" />
+            <element signature="e#908#909#0" expanded="false" />
+            <element signature="e#956#957#0" expanded="false" />
+            <element signature="e#995#996#0" expanded="false" />
+            <element signature="e#1030#1031#0" expanded="false" />
+            <element signature="e#1086#1087#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1169#1170#0" expanded="false" />
+            <element signature="e#1202#1203#0" expanded="false" />
+            <element signature="e#1252#1253#0" expanded="false" />
+            <element signature="e#1296#1297#0" expanded="false" />
+            <element signature="e#1348#1349#0" expanded="false" />
+            <element signature="e#1395#1396#0" expanded="false" />
+            <element signature="e#1597#1598#0" expanded="false" />
+            <element signature="e#1641#1642#0" expanded="false" />
+            <element signature="e#1834#1835#0" expanded="false" />
+            <element signature="e#1881#1882#0" expanded="false" />
+            <element signature="e#2085#2086#0" expanded="false" />
+            <element signature="e#2131#2132#0" expanded="false" />
+            <element signature="e#2328#2329#0" expanded="false" />
+            <element signature="e#2371#2372#0" expanded="false" />
+            <element signature="e#2551#2552#0" expanded="false" />
+            <element signature="e#2589#2590#0" expanded="false" />
+            <element signature="e#2652#2653#0" expanded="false" />
+            <element signature="e#2706#2707#0" expanded="false" />
+            <element signature="e#2749#2750#0" expanded="false" />
+            <element signature="e#2787#2788#0" expanded="false" />
+            <element signature="e#2850#2851#0" expanded="false" />
+            <element signature="e#2904#2905#0" expanded="false" />
+            <element signature="e#2959#2960#0" expanded="false" />
+            <element signature="e#3009#3010#0" expanded="false" />
+            <element signature="e#3227#3228#0" expanded="false" />
+            <element signature="e#3275#3276#0" expanded="false" />
+            <element signature="e#3486#3487#0" expanded="false" />
+            <element signature="e#3535#3536#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="61" column="38" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="51" column="28" lean-forward="false" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-          <folding>
-            <element signature="e#1420#1421#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
-          <caret line="208" column="10" lean-forward="false" selection-start-line="208" selection-start-column="10" selection-end-line="208" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-351">
-          <caret line="74" column="7" lean-forward="false" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/app.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/StateServiceDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="810" column="15" lean-forward="false" selection-start-line="810" selection-start-column="15" selection-end-line="810" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -636,15 +714,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/StateServiceDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -652,241 +722,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WAReportingSuite.iml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ehcache.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1134">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="69" lean-forward="true" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/app.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="148">
+          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/entity/WAPerformanceDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="34" column="47" lean-forward="true" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="249">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="e#500#501#0" expanded="false" />
+            <element signature="e#525#526#0" expanded="false" />
+            <element signature="e#558#559#0" expanded="false" />
+            <element signature="e#586#587#0" expanded="false" />
+            <element signature="e#625#626#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="false" />
+            <element signature="e#716#717#0" expanded="false" />
+            <element signature="e#764#765#0" expanded="false" />
+            <element signature="e#803#804#0" expanded="false" />
+            <element signature="e#838#839#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
+            <element signature="e#942#943#0" expanded="false" />
+            <element signature="e#977#978#0" expanded="false" />
+            <element signature="e#1010#1011#0" expanded="false" />
+            <element signature="e#1060#1061#0" expanded="false" />
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1159#1160#0" expanded="false" />
+            <element signature="e#1209#1210#0" expanded="false" />
+            <element signature="e#1427#1428#0" expanded="false" />
+            <element signature="e#1478#1479#0" expanded="false" />
+            <element signature="e#1700#1701#0" expanded="false" />
+            <element signature="e#1754#1755#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+            <element signature="e#2041#2042#0" expanded="false" />
+            <element signature="e#2268#2269#0" expanded="false" />
+            <element signature="e#2317#2318#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WARejectedLineListing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1491">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#2942#2943#0" expanded="true" />
-            <element signature="e#2982#2983#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="139" column="21" lean-forward="false" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
-          <folding>
-            <element signature="e#3171#3172#0" expanded="true" />
-            <element signature="e#3211#3212#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="131" column="33" lean-forward="true" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
-          <folding>
-            <element signature="e#2902#2903#0" expanded="true" />
-            <element signature="e#2942#2943#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/AdminService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="250" column="66" lean-forward="false" selection-start-line="250" selection-start-column="66" selection-end-line="250" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="807" column="71" lean-forward="false" selection-start-line="807" selection-start-column="71" selection-end-line="807" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/job/AutoReportEmailGeneration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="99" column="28" lean-forward="false" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/AnonymousUsers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="e#893#894#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Circle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/District.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-          <folding>
-            <element signature="e#966#967#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/EmailTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Languages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/LoginTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/ModificationTracker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Panchayat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="35" column="37" lean-forward="false" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-          <folding>
-            <element signature="e#1030#1031#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Permissions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
+        <state relative-caret-position="-216">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WAInactiveLineListing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        <state relative-caret-position="1350">
+          <caret line="138" column="26" lean-forward="false" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateCircle.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACumulativeSummary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
+        <state relative-caret-position="-75">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseFirstCompletion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2427">
+        <state relative-caret-position="180">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACourseCompletion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACompletionLineListing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/WACallDetailMeasure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
@@ -900,26 +845,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-181">
-          <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="26" />
+        <state relative-caret-position="108">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/SwcImportRejection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+        <state relative-caret-position="198">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Swachchagrahi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/StateCircle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Permissions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Panchayat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/EmailTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/District.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Circle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Languages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/LoginTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/model/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/SwachchagrahiDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwachchagrahiDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ReportType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-409">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/ModificationType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccountStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/job/AutoReportEmailGeneration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1367">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/CircleDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="27" column="47" lean-forward="false" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/EmailServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="298" column="32" lean-forward="true" selection-start-line="298" selection-start-column="32" selection-end-line="298" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -928,6 +1049,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/LocationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="73" column="4" lean-forward="true" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AdminServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-202">
+          <caret line="505" column="36" lean-forward="false" selection-start-line="505" selection-start-column="36" selection-end-line="505" selection-end-column="36" />
+          <folding>
+            <element signature="e#2333#2350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="165" column="56" lean-forward="false" selection-start-line="165" selection-start-column="56" selection-end-line="165" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/LocationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="162" column="5" lean-forward="true" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/LocationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="158" column="55" lean-forward="true" selection-start-line="158" selection-start-column="55" selection-end-line="158" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/enums/AccessType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="153" column="80" lean-forward="true" selection-start-line="153" selection-start-column="80" selection-end-line="153" selection-end-column="80" />
           <folding />
         </state>
       </provider>

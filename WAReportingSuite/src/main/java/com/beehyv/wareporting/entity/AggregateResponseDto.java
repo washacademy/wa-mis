@@ -8,8 +8,9 @@ import java.util.Map;
  */
 public class AggregateResponseDto {
 
-    List<BreadCrumbDto> breadCrumbData;
-    Object tableData;
+    private List<BreadCrumbDto> breadCrumbData;
+
+    private Object tableData;
 
     public List<BreadCrumbDto> getBreadCrumbData() {
         return breadCrumbData;

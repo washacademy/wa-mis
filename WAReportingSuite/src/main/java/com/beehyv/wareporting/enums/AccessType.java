@@ -4,6 +4,7 @@ package com.beehyv.wareporting.enums;
  * Created by beehyv on 5/5/17.
  */
 public enum AccessType {
+
     MASTER_ADMIN("MASTER ADMIN"),
     ADMIN("ADMIN"),
     USER("USER");
@@ -29,7 +30,7 @@ public enum AccessType {
     }
 
 
-    private AccessType(String accessType){this.accessType = accessType;}
+    AccessType(String accessType){this.accessType = accessType;}
 
     public String getAccessType(){return accessType;}
 

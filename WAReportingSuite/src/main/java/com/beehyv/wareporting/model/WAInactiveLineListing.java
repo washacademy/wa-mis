@@ -43,7 +43,7 @@ public class WAInactiveLineListing {
     private String swachchagrahiName;
 
     @Column(name="swachchagrahi_id")
-    private Long swachchagrahiId;
+    private Long swcId;
 
     @Column(name="swachchagrahi_creation_date")
     private Date swachchagrahiCreationDate;
@@ -136,12 +136,12 @@ public class WAInactiveLineListing {
         this.swachchagrahiName = swachchagrahiName;
     }
 
-    public Long getSwachchagrahiId() {
-        return swachchagrahiId;
+    public Long getSwcId() {
+        return swcId;
     }
 
-    public void setSwachchagrahiId(Long swachchagrahiId) {
-        this.swachchagrahiId = swachchagrahiId;
+    public void setSwcId(Long swcId) {
+        this.swcId = swcId;
     }
 
     public Date getSwachchagrahiCreationDate() {

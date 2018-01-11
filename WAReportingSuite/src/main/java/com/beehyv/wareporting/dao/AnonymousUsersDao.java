@@ -1,6 +1,8 @@
 package com.beehyv.wareporting.dao;
 
-import com.beehyv.wareporting.model.AnonymousUsers;
+import com.beehyv.wareporting.entity.AnonymousUser;
+import com.beehyv.wareporting.model.AnonymousUsersSummary;
+import com.beehyv.wareporting.model.WACircleWiseAnonymousUsersLineListing;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +12,8 @@ import java.util.List;
  */
 public interface AnonymousUsersDao {
 
-    List<AnonymousUsers> getAnonymousUsers(Date fromDate, Date toDate);
+    List<AnonymousUser> getAnonymousUsers(Date fromDate, Date toDate);
 
-    List<AnonymousUsers> getAnonymousUsersCircle(Date fromDate,Date toDate,String circleName);
+    List<AnonymousUser> getAnonymousUsersCircle(Date fromDate, Date toDate, String circleName);
 
 }

@@ -17,11 +17,13 @@ import static com.beehyv.wareporting.utils.Global.isAutoGenerate;
  */
 
 public class AutoReportEmailGeneration {
-    @Autowired
-    AdminService adminService;
 
     @Autowired
-    EmailService emailService;
+    private AdminService adminService;
+
+    @Autowired
+    private EmailService emailService;
+
     public boolean executeInternal() {
         if(isAutoGenerate()) {
             Calendar aCalendar = Calendar.getInstance();
@@ -67,7 +69,7 @@ public class AutoReportEmailGeneration {
             adminService.createFiles(ReportType.swcRejected.getReportType());
 
             adminService.createSwcImportRejectedFiles(toDate);
-            System.out.println("SW_Rejection reports generated");
+            System.out.println("SWC_Rejection reports generated");
             
             return true;
         }

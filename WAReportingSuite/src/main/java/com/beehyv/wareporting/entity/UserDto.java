@@ -5,18 +5,18 @@ package com.beehyv.wareporting.entity;
  */
 
 public class UserDto {
-    int id;
-    String name;
-    String username;
-    String phoneNumber;
-    String email;
-    String accessType;
-    String accessLevel;
-    String state= "";
-    String district= "";
-    String block= "";
-    boolean createdBy;
 
+    private int id;
+    private String name;
+    private String username;
+    private String phoneNumber;
+    private String email;
+    private String accessType;
+    private String accessLevel;
+    private String state= "";
+    private String district= "";
+    private String block= "";
+    private boolean createdBy;
 
     public int getId() {
         return id;

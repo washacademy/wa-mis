@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BlockDao {
 
-    Block findByblockId(Integer blockId);
+    Block findByBlockId(Integer blockId);
 
     Block findByLocationId(Long stateId);
 

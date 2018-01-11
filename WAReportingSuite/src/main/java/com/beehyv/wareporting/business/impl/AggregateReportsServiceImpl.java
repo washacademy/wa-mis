@@ -68,14 +68,14 @@ public class AggregateReportsServiceImpl implements AggregateReportsService {
                 Integer swachchagrahisFailed = 0;
                 Integer swachchagrahisRejected = 0;
                 for(District d:districts){
-                    WACumulativeSummary distrcitCount = aggregateCumulativeWADao.getWACumulativeSummery(d.getDistrictId(),locationType,toDate);
+                    WACumulativeSummary districtCount = aggregateCumulativeWADao.getWACumulativeSummery(d.getDistrictId(),locationType,toDate);
                     CumulativeSummery.add(aggregateCumulativeWADao.getWACumulativeSummery(d.getDistrictId(),locationType,toDate));
-                    swachchagrahisStarted+=distrcitCount.getSwachchagrahisStarted();
-                    swachchagrahisCompleted+=distrcitCount.getSwachchagrahisCompleted();
-                    swachchagrahisFailed+=distrcitCount.getSwachchagrahisFailed();
-                    swachchagrahisNotStarted+=distrcitCount.getSwachchagrahisNotStarted();
-                    swachchagrahisRejected+=distrcitCount.getSwachchagrahisRejected();
-                    swachchagrahisRegistered+=distrcitCount.getSwachchagrahisRegistered();
+                    swachchagrahisStarted+=districtCount.getSwachchagrahisStarted();
+                    swachchagrahisCompleted+=districtCount.getSwachchagrahisCompleted();
+                    swachchagrahisFailed+=districtCount.getSwachchagrahisFailed();
+                    swachchagrahisNotStarted+=districtCount.getSwachchagrahisNotStarted();
+                    swachchagrahisRejected+=districtCount.getSwachchagrahisRejected();
+                    swachchagrahisRegistered+=districtCount.getSwachchagrahisRegistered();
                 }
                 WACumulativeSummary noDistrictCount = new WACumulativeSummary();
                 noDistrictCount.setSwachchagrahisRejected(stateCounts.getSwachchagrahisRejected()-swachchagrahisRejected);
@@ -160,7 +160,7 @@ public class AggregateReportsServiceImpl implements AggregateReportsService {
         }
 
         return CumulativeSummery;
-    };
+    }
 
 }
 

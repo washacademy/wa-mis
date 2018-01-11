@@ -5,10 +5,10 @@ package com.beehyv.wareporting.entity;
  */
 public class ForgotPasswordDto {
 
-    String username;
-    String phoneNumber;
-    String newPassword;
-    String confirmPassword;
+    private String username;
+    private String phoneNumber;
+    private String newPassword;
+    private String confirmPassword;
 
     public String getUsername() {
         return username;

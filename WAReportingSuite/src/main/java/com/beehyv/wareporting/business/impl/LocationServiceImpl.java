@@ -19,6 +19,7 @@ import java.util.List;
 @Service("locationService")
 @Transactional
 public class LocationServiceImpl implements LocationService {
+
     @Autowired
     private StateDao stateDao;
 
@@ -88,7 +89,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public Date getServiceStartdateForState(Integer stateId,String serviceType) {
+    public Date getServiceStartDateForState(Integer stateId,String serviceType) {
         Date startDate=stateServiceDao.getServiceStartDateForState(stateId,serviceType);
         return startDate;
     }
@@ -124,6 +125,28 @@ public class LocationServiceImpl implements LocationService {
     /*----------------------Block-------------------------*/
 
     @Override
+    public Block findBlockById(Integer blockId) {
+        return blockDao.findByBlockId(blockId);
+    }
+
+    @Override
+    public Block findBlockByName(String blockName) {
+        return blockDao.findByName(blockName).get(0);
+    }
+
+    @Override
+    public District getDistrictOfBlock(Integer blockId) {
+        return districtDao.findByDistrictId(blockDao.findByBlockId(blockId).getDistrictOfBlock());
+    }
+
+    @Override
+    public List<Panchayat> getSwachchagrahiPanchayats(Integer blockId) {
+        return panchayatDao.getPanchayatsOfBlock(blockDao.findByBlockId(blockId).getBlockId());
+    }
+
+    /*----------------------Panchayat-------------------------*/
+
+    @Override
     public Panchayat findPanchayatById(Integer panchayatId) {
         return panchayatDao.findByPanchayatId(panchayatId);
     }
@@ -135,29 +158,13 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Block getBlockOfPanchayat(Integer panchayatId) {
-//        return districtDao.findByDistrictId(blockDao.findByblockId(blockId).getDistrictOfBlock());
-        return blockDao.findByblockId(panchayatDao.findByPanchayatId(panchayatId).getBlockOfpanchayat());
+//        return districtDao.findByDistrictId(blockDao.findByBlockId(blockId).getDistrictOfBlock());
+        return blockDao.findByBlockId(panchayatDao.findByPanchayatId(panchayatId).getBlockOfpanchayat());
     }
 
-    @Override
-    public List<Panchayat> getSwachchagrahiPanchayats(Integer blockId) {
-        return panchayatDao.getPanchayatsOfBlock(blockDao.findByblockId(blockId).getBlockId());
-    }
 
-    @Override
-    public Block findBlockById(Integer blockId) {
-        return blockDao.findByblockId(blockId);
-    }
+    /*----------------------Circle-------------------------*/
 
-    @Override
-    public Block findBlockByName(String blockName) {
-        return blockDao.findByName(blockName).get(0);
-    }
-
-    @Override
-    public District getDistrictOfBlock(Integer blockId) {
-        return districtDao.findByDistrictId(blockDao.findByblockId(blockId).getDistrictOfBlock());
-    }
     @Override
     public Circle findCircleById(Integer circleId) {
         return circleDao.getByCircleId(circleId);
@@ -226,7 +233,7 @@ public class LocationServiceImpl implements LocationService {
     public User SetLocations(User user){
         user.setStateName(user.getStateId()==null ? "" : stateDao.findByStateId(user.getStateId()).getStateName());
         user.setDistrictName(user.getDistrictId()==null? "" : districtDao.findByDistrictId(user.getDistrictId()).getDistrictName());
-        user.setBlockName(user.getBlockId()==null ? "" :  blockDao.findByblockId(user.getBlockId()).getBlockName());
+        user.setBlockName(user.getBlockId()==null ? "" :  blockDao.findByBlockId(user.getBlockId()).getBlockName());
         user.setRoleName(user.getRoleId()==null ? "" : roleDao.findByRoleId(user.getRoleId()).getRoleDescription());
         return user;
     }

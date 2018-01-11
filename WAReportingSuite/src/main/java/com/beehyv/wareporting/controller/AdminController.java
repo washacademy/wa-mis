@@ -82,7 +82,7 @@ public class AdminController {
                 stream.close();
 
                 User user = userService.getCurrentUser();
-                HashMap object= adminService.startBulkDataImport(user);
+                HashMap object = adminService.startBulkDataImport(user);
                 return object;
 
                 /*return "You successfully uploaded file=" + name;*/
@@ -102,7 +102,7 @@ public class AdminController {
 
     @RequestMapping(value = "/getBulkDataImportCSV", method = RequestMethod.GET,produces = "application/vnd.ms-excel")
     @ResponseBody
-    public String getBulkDataImportCSV(HttpServletResponse response) throws ParseException, java.text.ParseException{
+    public String getBulkDataImportCSV(HttpServletResponse response) throws ParseException {
 
        response.setContentType("APPLICATION/OCTECT-STREAM");
         try {
@@ -163,7 +163,7 @@ public class AdminController {
     }
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     @ResponseBody
-    public String createFolders() throws ParseException, java.text.ParseException{
+    public String createFolders() throws ParseException {
         createAllFiles();
         return "Created Folders";
     }
@@ -242,7 +242,7 @@ public class AdminController {
     Date getStateServiceStartDate(@PathVariable("serviceType") String serviceType,@PathVariable("stateId") Integer stateId) {
 
 
-        return locationService.getServiceStartdateForState(stateId, serviceType);
+        return locationService.getServiceStartDateForState(stateId, serviceType);
     }
 
 

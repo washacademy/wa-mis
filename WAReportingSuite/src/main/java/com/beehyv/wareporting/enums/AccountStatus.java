@@ -7,7 +7,7 @@ public enum AccountStatus {
 	
 	private String accountStatus;
 	
-	private AccountStatus(String accountStatus) {
+	AccountStatus(String accountStatus) {
 		this.accountStatus = accountStatus;
 	}
 	

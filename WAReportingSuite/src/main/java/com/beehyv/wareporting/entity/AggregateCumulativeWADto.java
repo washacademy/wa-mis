@@ -6,20 +6,21 @@ import java.util.Date;
  * Created by beehyv on 19/9/17.
  */
 public class AggregateCumulativeWADto {
-    int id;
-    String locationType;
-    String locationName;
-    Long locationId;
-    Integer swachchagrahisRegistered;
-    Integer swachchagrahisStarted;
-    Integer swachchagrahisNotStarted;
-    Integer swachchagrahisCompleted;
-    Integer swachchagrahisFailed;
-    Integer swachchagrahisRejected;
-    Integer recordsReceived;
-    float notStartedpercentage;
-    float completedPercentage;
-    float failedpercentage;
+
+    private int id;
+    private String locationType;
+    private String locationName;
+    private Long locationId;
+    private Integer swachchagrahisRegistered;
+    private Integer swachchagrahisStarted;
+    private Integer swachchagrahisNotStarted;
+    private Integer swachchagrahisCompleted;
+    private Integer swachchagrahisFailed;
+    private Integer swachchagrahisRejected;
+    private Integer recordsReceived;
+    private float notStartedpercentage;
+    private float completedPercentage;
+    private float failedpercentage;
 
     public Integer getRecordsReceived() {
         return recordsReceived;

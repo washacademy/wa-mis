@@ -22,7 +22,7 @@ public class SwcImportRejection {
     @Column(name = "name", columnDefinition = "VARCHAR(255)")
     private String fullName;
 
-    @Column(name = "mobile_number", columnDefinition = "BIGINT(10)")
+    @Column(name = "mobile_number", columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
     @Column(name = "gender", columnDefinition = "VARCHAR(45)")
@@ -43,8 +43,8 @@ public class SwcImportRejection {
     @Column(name = "language", columnDefinition = "VARCHAR(255)")
     private String language;
 
-    @Column(name = "swc_status", columnDefinition = "VARCHAR(255)")
-    private String swcStatus;
+    @Column(name = "course_status", columnDefinition = "VARCHAR(255)")
+    private String courseStatus;
 
     @Column(name = "job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
@@ -158,11 +158,11 @@ public class SwcImportRejection {
     }
 
     public String getSwStatus() {
-        return swcStatus;
+        return courseStatus;
     }
 
-    public void setSwStatus(String swcStatus) {
-        this.swcStatus = swcStatus;
+    public void setSwStatus(String courseStatus) {
+        this.courseStatus = courseStatus;
     }
 
     public String getJobStatus() {

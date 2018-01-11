@@ -72,7 +72,7 @@ public class ReportServiceImpl implements ReportService{
             }
 
             if (reportRequest.getBlockId() != 0) {
-                place = StReplace(blockDao.findByblockId(reportRequest.getBlockId()).getBlockName());
+                place = StReplace(blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName());
                 rootPath += place + "/";
             }
         }
