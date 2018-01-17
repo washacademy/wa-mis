@@ -560,7 +560,7 @@ public class AdminServiceImpl implements AdminService {
         int districtId=reportRequest.getDistrictId();
         int blockId=reportRequest.getBlockId();
         int circleId=reportRequest.getCircleId();
-        if(reportRequest.getReportType().equals(ReportType.waCourse.getReportType())){
+        if(reportRequest.getReportType().equals(ReportType.waCourseCompletion.getReportType())){
             reportRequest.setFromDate(toDate);
             if(stateId==0){
                 List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate);
@@ -626,7 +626,7 @@ public class AdminServiceImpl implements AdminService {
                 }
             }
         }
-        else if(reportRequest.getReportType().equals(ReportType.waAnonymous.getReportType())){
+        else if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
             reportRequest.setFromDate(toDate);
 
             if(circleId==0){
@@ -835,7 +835,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCourse.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -897,7 +897,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waAnonymous.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -1017,7 +1017,7 @@ public class AdminServiceImpl implements AdminService {
         Cell cell10=row1.createCell(9);
         cell1.setCellValue("Report:");
         cell2.setCellValue(ReportType.getType(reportRequest.getReportType()).getReportHeader());
-        if(reportRequest.getReportType().equals(ReportType.waAnonymous.getReportType())){
+        if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
             String circleName;
             if(reportRequest.getCircleId()!=0) {
                 circleName=circleDao.getByCircleId(reportRequest.getCircleId()).getCircleFullName();
@@ -1155,15 +1155,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void getCumulativeCourseCompletionFiles(Date toDate) {
 
-        List<State> states = stateDao.getStatesByServiceType(ReportType.waCourse.getServiceType());
-        String rootPath = reports+ReportType.waCourse.getReportType()+ "/";
+        List<State> states = stateDao.getStatesByServiceType(ReportType.waCourseCompletion.getServiceType());
+        String rootPath = reports+ReportType.waCourseCompletion.getReportType()+ "/";
         List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate);
         ReportRequest reportRequest=new ReportRequest();
         reportRequest.setFromDate(toDate);
         reportRequest.setBlockId(0);
         reportRequest.setDistrictId(0);
         reportRequest.setStateId(0);
-        reportRequest.setReportType(ReportType.waCourse.getReportType());
+        reportRequest.setReportType(ReportType.waCourseCompletion.getReportType());
         getCumulativeCourseCompletion(successFullCandidates, rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
         for (State state : states) {
             String stateName = StReplace(state.getStateName());
@@ -1215,7 +1215,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void getCircleWiseAnonymousFiles(Date startDate, Date toDate) {
         List<Circle> circleList = circleDao.getAllCircles();
-        String rootPath = reports+ReportType.waAnonymous.getReportType()+ "/";
+        String rootPath = reports+ReportType.waCircleWiseAnonymous.getReportType()+ "/";
         List<AnonymousUser> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(startDate,toDate);
         ReportRequest reportRequest=new ReportRequest();
         reportRequest.setFromDate(toDate);
@@ -1223,7 +1223,7 @@ public class AdminServiceImpl implements AdminService {
         reportRequest.setDistrictId(0);
         reportRequest.setStateId(0);
         reportRequest.setCircleId(0);
-        reportRequest.setReportType(ReportType.waAnonymous.getReportType());
+        reportRequest.setReportType(ReportType.waCircleWiseAnonymous.getReportType());
         getCircleWiseAnonymousUsers(anonymousUsersList, rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
         for (Circle circle : circleList) {
             String circleName = StReplace(circle.getCircleName());

@@ -27,7 +27,7 @@ import java.io.*;
 import java.util.*;
 
 import static com.beehyv.wareporting.enums.AccessType.MASTER_ADMIN;
-import static com.beehyv.wareporting.enums.ReportType.waCourse;
+import static com.beehyv.wareporting.enums.ReportType.waCourseCompletion;
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
 
 
@@ -169,8 +169,8 @@ public class AdminController {
     }
 
     public void createAllFiles(){
-        adminService.createFiles(waCourse.getReportType());
-        adminService.createFolders(ReportType.waAnonymous.getReportType());
+        adminService.createFiles(waCourseCompletion.getReportType());
+        adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
         adminService.createFiles(ReportType.waInactive.getReportType());
         adminService.createFiles(ReportType.swcRejected.getReportType());
     }
@@ -207,11 +207,11 @@ public class AdminController {
         }
 
         switch (tempReportType) {
-            case waCourse: {
+            case waCourseCompletion: {
                 adminService.getCumulativeCourseCompletionFiles(toDate);
                 break;
             }
-            case waAnonymous: {
+            case waCircleWiseAnonymous: {
                 adminService.getCircleWiseAnonymousFiles(fromDate, toDate);
                 break;
             }

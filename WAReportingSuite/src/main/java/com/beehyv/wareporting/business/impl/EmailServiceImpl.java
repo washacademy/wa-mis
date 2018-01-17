@@ -169,11 +169,11 @@ public class EmailServiceImpl implements EmailService{
         body+= "Thank You.\n";
         body+= "NSP Support Team \n \n \n";
         body+= "P.S: This an auto-generated email. Please do not reply";*/
-        if(reportName.equalsIgnoreCase(ReportType.waCourse.getReportName())) {
+        if(reportName.equalsIgnoreCase(ReportType.waCourseCompletion.getReportName())) {
             body+="\tPlease find attached the list of SWACHCHAGRAHIs who have completed the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
         }
-        else if(reportName.equalsIgnoreCase(ReportType.waAnonymous.getReportName())) {
+        else if(reportName.equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportName())) {
             body+="\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
                     "circle of " + place + ". We presume that these numbers are used by SWACHCHAGRAHIs working in your state but " +
                     "have not been registered in RCH Application. Please contact these numbers and if they belong " +
@@ -213,7 +213,7 @@ public class EmailServiceImpl implements EmailService{
         Date fromDate=calendar.getTime();
 
         List<District> districts=districtDao.getDistrictsOfState(stateId);
-        if(reportType.equals(ReportType.waCourse.getReportType())){
+        if(reportType.equals(ReportType.waCourseCompletion.getReportType())){
             body+= "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have successfully completed the WASH Academy" +
                     " course. The line listing of the SWACHCHAGRAHIs have been sent to the respective district and block users.";
 
@@ -297,7 +297,7 @@ public class EmailServiceImpl implements EmailService{
             }
             reportRequest.setReportType(reportType.getReportType());
             String pathName = "",fileName = "",errorMessage = "",place = "";
-            if(reportType.getReportType().equalsIgnoreCase(ReportType.waAnonymous.getReportType())){
+            if(reportType.getReportType().equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportType())){
                 if(user.getAccessLevel().equalsIgnoreCase(AccessLevel.STATE.getAccessLevel())){
                     List<Circle> stateCircleList = reportService.getUserCircles(user);
                     for(Circle circle: stateCircleList){

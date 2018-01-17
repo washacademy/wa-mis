@@ -54,7 +54,7 @@ public class ReportServiceImpl implements ReportService{
         String rootPath = "";
         String place = "NATIONAL";
 
-        if(reportRequest.getReportType().equals(ReportType.waAnonymous.getReportType())){
+        if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
             if(reportRequest.getCircleId()!=0){
                 place=StReplace(circleDao.getByCircleId(reportRequest.getCircleId()).getCircleFullName());
                 rootPath+=place+"/";

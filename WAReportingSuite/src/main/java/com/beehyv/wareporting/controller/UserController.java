@@ -3,8 +3,8 @@ package com.beehyv.wareporting.controller;
 import com.beehyv.wareporting.business.*;
 import com.beehyv.wareporting.dao.BlockDao;
 import com.beehyv.wareporting.dao.DistrictDao;
-import com.beehyv.wareporting.dao.StateDao;
 import com.beehyv.wareporting.dao.PanchayatDao;
+import com.beehyv.wareporting.dao.StateDao;
 import com.beehyv.wareporting.entity.*;
 import com.beehyv.wareporting.enums.AccessLevel;
 import com.beehyv.wareporting.enums.AccessType;
@@ -43,7 +43,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private AggregateReportsService aggregateReportsService;
+    private WAAggregateReportsService WAAggregateReportsService;
 
     @Autowired
     private RoleService roleService;
@@ -80,10 +80,12 @@ public class UserController {
 
     private final Date bigBang = new Date(0);
     private final String documents = retrieveDocuments();
-    private final String reports = documents+"Reports/";
-    private Calendar c =Calendar.getInstance();
+    private final String reports = documents + "Reports/";
+    private Calendar c = Calendar.getInstance();
+
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
-    public @ResponseBody List<User> getAllUsers() {
+    public @ResponseBody
+    List<User> getAllUsers() {
         return userService.findAllActiveUsers();
     }
 
@@ -92,25 +94,29 @@ public class UserController {
 //        return userService.findAllActiveUsersByLocation(locationId);
 //    }
 
-    @RequestMapping(value={"/myUserList"})
-    public @ResponseBody List<User> getMyUsers() {
+    @RequestMapping(value = {"/myUserList"})
+    public @ResponseBody
+    List<User> getMyUsers() {
         return userService.findMyUsers(userService.getCurrentUser());
     }
 
-    @RequestMapping(value={"/roles"})
-    public @ResponseBody List<Role> getRoles() {
+    @RequestMapping(value = {"/roles"})
+    public @ResponseBody
+    List<Role> getRoles() {
         return roleService.getRoles();
     }
 
-    @RequestMapping(value={"/currentUser"})
-    public @ResponseBody User getCurrentUser() {
+    @RequestMapping(value = {"/currentUser"})
+    public @ResponseBody
+    User getCurrentUser() {
         return userService.getCurrentUser();
     }
 
-    @RequestMapping(value={"/profile"})
-    public @ResponseBody UserDto profile() {
+    @RequestMapping(value = {"/profile"})
+    public @ResponseBody
+    UserDto profile() {
         User currentUser = userService.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             UserDto user1 = new UserDto();
             user1.setId(currentUser.getUserId());
             user1.setName(currentUser.getFullName());
@@ -118,22 +124,19 @@ public class UserController {
             user1.setEmail(currentUser.getEmailId());
             user1.setPhoneNumber(currentUser.getPhoneNumber());
             user1.setAccessLevel(currentUser.getAccessLevel());
-            if(currentUser.getStateId() != null){
+            if (currentUser.getStateId() != null) {
                 user1.setState(locationService.findStateById(currentUser.getStateId()).getStateName());
-            }
-            else{
+            } else {
                 user1.setState("");
             }
-            if(currentUser.getDistrictId() != null) {
+            if (currentUser.getDistrictId() != null) {
                 user1.setDistrict(locationService.findDistrictById(currentUser.getDistrictId()).getDistrictName());
-            }
-            else{
+            } else {
                 user1.setDistrict("");
             }
-            if(currentUser.getBlockId() != null) {
+            if (currentUser.getBlockId() != null) {
                 user1.setBlock(locationService.findBlockById(currentUser.getBlockId()).getBlockName());
-            }
-            else{
+            } else {
                 user1.setBlock("");
             }
             user1.setAccessType(currentUser.getRoleName());
@@ -143,27 +146,30 @@ public class UserController {
         return null;
     }
 
-    @RequestMapping(value={"/isLoggedIn"})
-    public @ResponseBody Boolean isLoggedIn() {
+    @RequestMapping(value = {"/isLoggedIn"})
+    public @ResponseBody
+    Boolean isLoggedIn() {
         return userService.getCurrentUser() != null;
     }
 
-    @RequestMapping(value={"/isAdminLoggedIn"})
-    public @ResponseBody Boolean isAdminLoggedIn() {
+    @RequestMapping(value = {"/isAdminLoggedIn"})
+    public @ResponseBody
+    Boolean isAdminLoggedIn() {
         User currentUser = userService.getCurrentUser();
-        if(currentUser == null || currentUser.getRoleName().equals(AccessType.USER.getAccessType())){
+        if (currentUser == null || currentUser.getRoleName().equals(AccessType.USER.getAccessType())) {
             return false;
         }
         return true;
     }
 
     //To be changed
-    @RequestMapping(value={"/tableList"})
-    public @ResponseBody List<UserDto> getTableList() {
+    @RequestMapping(value = {"/tableList"})
+    public @ResponseBody
+    List<UserDto> getTableList() {
         List<UserDto> tabDto = new ArrayList<>();
         List<User> tabUsers = userService.findMyUsers(userService.getCurrentUser());
         String[] levels = {"National", "State", "District", "Block"};
-        for(User user: tabUsers){
+        for (User user : tabUsers) {
             UserDto user1 = new UserDto();
             user1.setId(user.getUserId());
             user1.setName(user.getFullName());
@@ -171,26 +177,26 @@ public class UserController {
             user1.setEmail(user.getEmailId());
             user1.setPhoneNumber(user.getPhoneNumber());
             user1.setAccessLevel(user.getAccessLevel());
-            if(user.getStateId() == null){
+            if (user.getStateId() == null) {
                 user1.setState("");
-            } else{
+            } else {
                 user1.setState(user.getStateName());
             }
-            if(user.getDistrictId() == null){
+            if (user.getDistrictId() == null) {
                 user1.setDistrict("");
-            } else{
+            } else {
                 user1.setDistrict(user.getDistrictName());
             }
-            if(user.getBlockId() == null){
+            if (user.getBlockId() == null) {
                 user1.setBlock("");
-            } else{
+            } else {
                 user1.setBlock(user.getBlockName());
             }
             user1.setAccessType(user.getRoleName());
             int a;
-            try{
+            try {
                 a = user.getCreatedByUser().getUserId();
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 a = 0;
             }
             int b = getCurrentUser().getUserId();
@@ -201,8 +207,9 @@ public class UserController {
         return tabDto;
     }
 
-    @RequestMapping(value={"/user/{userId}"})
-    public @ResponseBody User getUserById(@PathVariable("userId") Integer userId) {
+    @RequestMapping(value = {"/user/{userId}"})
+    public @ResponseBody
+    User getUserById(@PathVariable("userId") Integer userId) {
         return userService.findUserByUserId(userId);
     }
 
@@ -238,11 +245,12 @@ public class UserController {
 //    }
 
     @RequestMapping(value = {"/createUser"}, method = RequestMethod.POST)
-    @ResponseBody public Map<Integer, String> createNewUser(@RequestBody User user) {
+    @ResponseBody
+    public Map<Integer, String> createNewUser(@RequestBody User user) {
 
         user = locationService.SetLocations(user);
-        Map<Integer,String> map = userService.createNewUser(user);
-        if(map.get(0).equals("User Created")){
+        Map<Integer, String> map = userService.createNewUser(user);
+        if (map.get(0).equals("User Created")) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.CREATE.getModificationType());
@@ -254,29 +262,31 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/updateUser"}, method = RequestMethod.POST)
-    @ResponseBody public Map updateExistingUser(@RequestBody User user) {
+    @ResponseBody
+    public Map updateExistingUser(@RequestBody User user) {
 
         user = locationService.SetLocations(user);
         User oldUser = userService.findUserByUserId(user.getUserId());
-        Map<Integer,String> map = userService.updateExistingUser(user);
-        if(map.get(0).equals("User Updated")){
+        Map<Integer, String> map = userService.updateExistingUser(user);
+        if (map.get(0).equals("User Updated")) {
             userService.TrackModifications(oldUser, user);
         }
         return map;
     }
 
     @RequestMapping(value = {"/updateContacts"}, method = RequestMethod.POST)
-    @ResponseBody public Map updateContacts(@RequestBody ContactInfo contactInfo) {
-        User user=userService.findUserByUserId(contactInfo.getUserId());
-        Map<Integer, String> map=userService.updateContacts(contactInfo);
-        if(map.get(0).equals("Contacts Updated")){
+    @ResponseBody
+    public Map updateContacts(@RequestBody ContactInfo contactInfo) {
+        User user = userService.findUserByUserId(contactInfo.getUserId());
+        Map<Integer, String> map = userService.updateContacts(contactInfo);
+        if (map.get(0).equals("Contacts Updated")) {
             TrackContactInfoModifications(user, contactInfo);
         }
         return map;
     }
 
     private void TrackContactInfoModifications(User oldUser, ContactInfo contactInfo) {
-        if(!oldUser.getEmailId().equals(contactInfo.getEmail())) {
+        if (!oldUser.getEmailId().equals(contactInfo.getEmail())) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.UPDATE.getModificationType());
@@ -287,7 +297,7 @@ public class UserController {
             modification.setModifiedByUserId(userService.getCurrentUser().getUserId());
             modificationTrackerService.saveModification(modification);
         }
-        if(!oldUser.getPhoneNumber().equals(contactInfo.getPhoneNumber())){
+        if (!oldUser.getPhoneNumber().equals(contactInfo.getPhoneNumber())) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.UPDATE.getModificationType());
@@ -301,11 +311,12 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/resetPassword"}, method = RequestMethod.POST)
-    @ResponseBody public Map resetPassword(@RequestBody PasswordDto passwordDto){
+    @ResponseBody
+    public Map resetPassword(@RequestBody PasswordDto passwordDto) {
 
-        User user=userService.findUserByUserId(passwordDto.getUserId());
-        Map<Integer, String >map=  userService.changePassword(passwordDto);
-        if(map.get(0).equals("Password changed successfully")){
+        User user = userService.findUserByUserId(passwordDto.getUserId());
+        Map<Integer, String> map = userService.changePassword(passwordDto);
+        if (map.get(0).equals("Password changed successfully")) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.UPDATE.getModificationType());
@@ -320,11 +331,11 @@ public class UserController {
 
     @RequestMapping(value = {"/forgotPassword"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map forgotPassword(@RequestBody ForgotPasswordDto forgotPasswordDto){
+    public Map forgotPassword(@RequestBody ForgotPasswordDto forgotPasswordDto) {
 
-        User user=userService.findUserByUsername(forgotPasswordDto.getUsername());
-        Map<Integer, String >map=  userService.forgotPasswordCredentialChecker(forgotPasswordDto);
-        if(map.get(0).equals("Password changed successfully")){
+        User user = userService.findUserByUsername(forgotPasswordDto.getUsername());
+        Map<Integer, String> map = userService.forgotPasswordCredentialChecker(forgotPasswordDto);
+        if (map.get(0).equals("Password changed successfully")) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.UPDATE.getModificationType());
@@ -337,13 +348,12 @@ public class UserController {
     }
 
 
-
     @RequestMapping(value = {"/deleteUser/{id}"}, method = RequestMethod.GET)
     @ResponseBody
     public Map deleteExistingUser(@PathVariable("id") Integer id) {
 
-        Map<Integer, String> map=userService.deleteExistingUser(id);
-        if(map.get(0).equals("User deleted")) {
+        Map<Integer, String> map = userService.deleteExistingUser(id);
+        if (map.get(0).equals("User deleted")) {
             ModificationTracker modification = new ModificationTracker();
             modification.setModificationDate(new Date(System.currentTimeMillis()));
             modification.setModificationType(ModificationType.DELETE.getModificationType());
@@ -355,12 +365,12 @@ public class UserController {
         return map;
     }
 
-    private String getPrincipal(){
+    private String getPrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
+            userName = ((UserDetails) principal).getUsername();
         } else {
             userName = principal.toString();
         }
@@ -394,328 +404,110 @@ public class UserController {
             return m;
         }
 
-            if (reportRequest.getReportType().equals(ReportType.waPerformance.getReportType())) {
+        if (reportRequest.getReportType().equals(ReportType.waPerformance.getReportType())) {
 
-                Date fromDate = dateAdder(reportRequest.getFromDate(),0);
+            Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
+            Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-                Date toDate = dateAdder(reportRequest.getToDate(),1);
+            Integer stateId = reportRequest.getStateId();
+            Integer districtId = reportRequest.getDistrictId();
+            Integer blockIdId = reportRequest.getBlockId();
+            Integer circleId = reportRequest.getCircleId();
 
-
-                List<WAPerformanceDto> summaryDto = new ArrayList<>();
-                List<WACumulativeSummary> cumulativesummaryReportStart = new ArrayList<>();
-                List<WACumulativeSummary> cumulativesummaryReportEnd = new ArrayList<>();
-
-                if (reportRequest.getStateId() == 0) {
-                    cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(0, "State", fromDate));
-                    cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(0, "State", toDate));
-                } else {
-                    if (reportRequest.getDistrictId() == 0) {
-                        cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getStateId(), "District", fromDate));
-                        cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getStateId(), "District", toDate));
-                    } else {
-                        if (reportRequest.getBlockId() == 0) {
-                            cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getDistrictId(), "Block", fromDate));
-                            cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getDistrictId(), "Block", toDate));
-
-                        } else {
-                            cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getBlockId(), "Panchayat", fromDate));
-                            cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getBlockId(), "Panchayat", toDate));
-
-                        }
-                    }
-                }
-
-                for (int i = 0; i < cumulativesummaryReportEnd.size(); i++) {
-                    for (int j = 0; j < cumulativesummaryReportStart.size(); j++) {
-                        if (cumulativesummaryReportEnd.get(i).getLocationId().equals(cumulativesummaryReportStart.get(j).getLocationId())) {
-                            WACumulativeSummary a = cumulativesummaryReportEnd.get(i);
-                            WACumulativeSummary b = cumulativesummaryReportStart.get(j);
-                            WAPerformanceDto summaryDto1 = new WAPerformanceDto();
-                            summaryDto1.setId(a.getId());
-                            summaryDto1.setLocationId(a.getLocationId());
-                            summaryDto1.setSwachchagrahisCompletedCourse(a.getSwachchagrahisCompleted() - b.getSwachchagrahisCompleted());
-//                            summaryDto1.setSwachchagrahisFailed(a.getSwachchagrahisFailed() - b.getSwachchagrahisFailed());
-                            summaryDto1.setSwachchagrahisStartedCourse(a.getSwachchagrahisStarted() - b.getSwachchagrahisStarted());
-                            summaryDto1.setLocationType(a.getLocationType());
-
-                            String locationType = a.getLocationType();
-                            if (locationType.equalsIgnoreCase("State")) {
-                                summaryDto1.setLocationName(stateDao.findByStateId(a.getLocationId().intValue()).getStateName());
-                            }
-                            if (locationType.equalsIgnoreCase("District")) {
-                                summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
-                            }
-                            if (locationType.equalsIgnoreCase("Block")) {
-                                summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
-                            }
-                            if (locationType.equalsIgnoreCase("Panchayat")) {
-                                summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceState")) {
-                                summaryDto1.setLocationName("No District Count");
-                                summaryDto1.setLocationId((long) -1);
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceDistrict")) {
-                                summaryDto1.setLocationName("No Block Count");
-                                summaryDto1.setLocationId((long) -1);
-
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceBlock")) {
-                                summaryDto1.setLocationName("No Panchayat Count");
-                                summaryDto1.setLocationId((long) -1);
-
-                            }
-                            summaryDto1.setSwachchagrahisFailedCourse(waPerformanceService.getSwachchagrahisFailed(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
-                            summaryDto1.setSwachchagrahisPursuingCourse(waPerformanceService.getAccessedCount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
-//                        summaryDto1.setCompletedPercentage(a.getSwachchagrahisCompleted()*100/a.getSwachchagrahisStarted());
-//                        summaryDto1.setFailedpercentage(a.getSwachchagrahisFailed()*100/a.getSwachchagrahisStarted());
-//                        summaryDto1.setNotStartedpercentage(a.getSwachchagrahisNotStarted()*100/a.getSwachchagrahisRegistered());
-                            summaryDto1.setSwachchagrahisNotPursuingCourse(waPerformanceService.getNotAccessedcount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
-
-                            if (summaryDto1.getSwachchagrahisCompletedCourse() + summaryDto1.getSwachchagrahisFailedCourse() + summaryDto1.getSwachchagrahisStartedCourse() + summaryDto1.getSwachchagrahisPursuingCourse() + summaryDto1.getSwachchagrahisNotPursuingCourse() != 0) {
-                                summaryDto.add(summaryDto1);
-                            }
-                        }
-                    }
-                }
-                aggregateResponseDto.setTableData(summaryDto);
-                aggregateResponseDto.setBreadCrumbData(breadCrumbs);
-                return aggregateResponseDto;
-            }
-
-            if (reportRequest.getReportType().equals(ReportType.waSubscriber.getReportType())) {
-                Date fromDate = dateAdder(reportRequest.getFromDate(),0);
-
-                Date toDate = dateAdder(reportRequest.getToDate(),1);
-
-
-                List<WASubscriberDto> summaryDto = new ArrayList<>();
-                List<WACumulativeSummary> cumulativesummaryReportStart = new ArrayList<>();
-                List<WACumulativeSummary> cumulativesummaryReportEnd = new ArrayList<>();
-
-                if (reportRequest.getStateId() == 0) {
-                    cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(0, "State", fromDate));
-                    cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(0, "State", toDate));
-                } else {
-                    if (reportRequest.getDistrictId() == 0) {
-                        cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getStateId(), "District", fromDate));
-                        cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getStateId(), "District", toDate));
-                    } else {
-                        if (reportRequest.getBlockId() == 0) {
-                            cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getDistrictId(), "Block", fromDate));
-                            cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getDistrictId(), "Block", toDate));
-                        } else {
-                            cumulativesummaryReportStart.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getBlockId(), "Panchayat", fromDate));
-                            cumulativesummaryReportEnd.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getBlockId(), "Panchayat", toDate));
-                        }
-                    }
-
-
-                }
-
-                for (int i = 0; i < cumulativesummaryReportEnd.size(); i++) {
-                    boolean notAvailable = true;
-                    for (int j = 0; j < cumulativesummaryReportStart.size(); j++) {
-
-                        if (cumulativesummaryReportEnd.get(i).getLocationId().equals(cumulativesummaryReportStart.get(j).getLocationId())) {
-                            WACumulativeSummary a = cumulativesummaryReportEnd.get(i);
-                            WACumulativeSummary b = cumulativesummaryReportStart.get(j);
-                            WASubscriberDto summaryDto1 = new WASubscriberDto();
-                            summaryDto1.setId(a.getId());
-                            summaryDto1.setLocationId(a.getLocationId());
-                            summaryDto1.setSwachchagrahisCompleted(a.getSwachchagrahisCompleted() - b.getSwachchagrahisCompleted());
-                            summaryDto1.setSwachchagrahisFailed(a.getSwachchagrahisFailed() - b.getSwachchagrahisFailed());
-                            summaryDto1.setSwachchagrahisRegistered(a.getSwachchagrahisRegistered() - b.getSwachchagrahisRegistered());
-                            summaryDto1.setSwachchagrahisNotStarted(a.getSwachchagrahisNotStarted() - b.getSwachchagrahisNotStarted());
-                            summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted() - b.getSwachchagrahisStarted());
-                            summaryDto1.setRecordsRejected(a.getSwachchagrahisRejected() - b.getSwachchagrahisRejected());
-                            summaryDto1.setLocationType(a.getLocationType());
-                            summaryDto1.setRegisteredNotCompletedStart(b.getSwachchagrahisRegistered() - b.getSwachchagrahisCompleted());
-                            summaryDto1.setRegisteredNotCompletedEnd(a.getSwachchagrahisRegistered() - a.getSwachchagrahisCompleted());
-                            summaryDto1.setRecordsReceived((a.getSwachchagrahisRegistered() + a.getSwachchagrahisRejected()) - (b.getSwachchagrahisRejected() + b.getSwachchagrahisRegistered()));
-                            String locationType = a.getLocationType();
-                            if (locationType.equalsIgnoreCase("State")) {
-                                summaryDto1.setLocationName(stateDao.findByStateId(a.getLocationId().intValue()).getStateName());
-                            }
-                            if (locationType.equalsIgnoreCase("District")) {
-                                summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
-                            }
-                            if (locationType.equalsIgnoreCase("Block")) {
-                                summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
-                            }
-                            if (locationType.equalsIgnoreCase("Panchayat")) {
-                                summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceState")) {
-                                summaryDto1.setLocationName("No District Count");
-                                summaryDto1.setLocationId((long) -1);
-
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceDistrict")) {
-                                summaryDto1.setLocationName("No Block Count");
-                                summaryDto1.setLocationId((long) -1);
-
-                            }
-                            if (locationType.equalsIgnoreCase("DifferenceBlock")) {
-                                summaryDto1.setLocationName("No Panchayat Count");
-                                summaryDto1.setLocationId((long) -1);
-
-                            }
-                            notAvailable = false;
-                            if (summaryDto1.getSwachchagrahisCompleted() + summaryDto1.getSwachchagrahisStarted() + summaryDto1.getSwachchagrahisFailed() + summaryDto1.getRecordsRejected()
-                                    + summaryDto1.getSwachchagrahisRegistered() + summaryDto1.getRegisteredNotCompletedEnd()
-                                    + summaryDto1.getRegisteredNotCompletedStart() + summaryDto1.getRecordsReceived() + summaryDto1.getSwachchagrahisNotStarted() != 0) {
-                                summaryDto.add(summaryDto1);
-                            }
-
-                        }
-
-
-                    }
-                }
-
-                aggregateResponseDto.setTableData(summaryDto);
-                aggregateResponseDto.setBreadCrumbData(breadCrumbs);
-                return aggregateResponseDto;
-
-
-            }
-
-            if (reportRequest.getReportType().equals(ReportType.waCumulative.getReportType())) {
-
-                Date toDate = dateAdder(reportRequest.getToDate(),1);
-                List<AggregateCumulativeWADto> summaryDto = new ArrayList<>();
-                List<WACumulativeSummary> cumulativesummaryReport = new ArrayList<>();
-
-                if (reportRequest.getStateId() == 0) {
-                    cumulativesummaryReport.addAll(aggregateReportsService.getCumulativeSummaryWAReport(0, "State", toDate));
-                } else {
-                    if (reportRequest.getDistrictId() == 0) {
-                        cumulativesummaryReport.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getStateId(), "District", toDate));
-                    } else {
-                        if (reportRequest.getBlockId() == 0) {
-                            cumulativesummaryReport.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getDistrictId(), "Block", toDate));
-                        } else {
-                            cumulativesummaryReport.addAll(aggregateReportsService.getCumulativeSummaryWAReport(reportRequest.getBlockId(), "Panchayat", toDate));
-                        }
-                    }
-
-
-                }
-
-                for (WACumulativeSummary a : cumulativesummaryReport) {
-                    AggregateCumulativeWADto summaryDto1 = new AggregateCumulativeWADto();
-                    summaryDto1.setId(a.getId());
-                    summaryDto1.setLocationId(a.getLocationId());
-                    summaryDto1.setSwachchagrahisCompleted(a.getSwachchagrahisCompleted());
-                    summaryDto1.setSwachchagrahisFailed(a.getSwachchagrahisFailed());
-                    summaryDto1.setSwachchagrahisRegistered(a.getSwachchagrahisRegistered());
-                    summaryDto1.setSwachchagrahisNotStarted(a.getSwachchagrahisNotStarted());
-                    summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted());
-                    summaryDto1.setLocationType(a.getLocationType());
-                    summaryDto1.setCompletedPercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisCompleted() * 10000 / a.getSwachchagrahisStarted())) / 100);
-                    summaryDto1.setFailedpercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisFailed() * 10000 / a.getSwachchagrahisStarted())) / 100);
-                    summaryDto1.setNotStartedpercentage((float) (a.getSwachchagrahisRegistered() == 0 ? 0 : (a.getSwachchagrahisNotStarted() * 10000 / a.getSwachchagrahisRegistered())) / 100);
-                    String locationType = a.getLocationType();
-                    if (locationType.equalsIgnoreCase("State")) {
-                        summaryDto1.setLocationName(stateDao.findByStateId(a.getLocationId().intValue()).getStateName());
-                    }
-                    if (locationType.equalsIgnoreCase("District")) {
-                        summaryDto1.setLocationName(districtDao.findByDistrictId(a.getLocationId().intValue()).getDistrictName());
-                    }
-                    if (locationType.equalsIgnoreCase("Block")) {
-                        summaryDto1.setLocationName(blockDao.findByBlockId(a.getLocationId().intValue()).getBlockName());
-                    }
-                    if (locationType.equalsIgnoreCase("Panchayat")) {
-                        summaryDto1.setLocationName(panchayatDao.findByPanchayatId(a.getLocationId().intValue()).getPanchayatName());
-                    }
-                    if (locationType.equalsIgnoreCase("DifferenceState")) {
-                        summaryDto1.setLocationName("No District");
-                        summaryDto1.setLocationId((long) -1);
-
-                    }
-                    if (locationType.equalsIgnoreCase("DifferenceDistrict")) {
-                        summaryDto1.setLocationName("No Block");
-                        summaryDto1.setLocationId((long) -1);
-
-                    }
-                    if (locationType.equalsIgnoreCase("DifferenceBlock")) {
-                        summaryDto1.setLocationName("No Panchayat");
-                        summaryDto1.setLocationId((long) -1);
-
-                    }
-
-                    if (a.getId() != 0) {
-                        summaryDto.add(summaryDto1);
-                    }
-
-                }
-                aggregateResponseDto.setTableData(summaryDto);
-                aggregateResponseDto.setBreadCrumbData(breadCrumbs);
-                return aggregateResponseDto;
-
-            }
-
-            if (reportRequest.getReportType().equals(ReportType.waAnonymous.getReportType())) {
-                if (!currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel()) && reportRequest.getCircleId() == 0) {
-                    m.put("status", "fail");
-                    return m;
-                }
-
-                if (reportRequest.getCircleId() != 0) {
-                    place = StReplace(locationService.findCircleById(reportRequest.getCircleId()).getCircleFullName());
-                    rootPath += place + "/";
-                }
-            } else {
-                if (currentUser.getAccessLevel().equals(AccessLevel.STATE.getAccessLevel()) && !currentUser.getStateId().equals(reportRequest.getStateId())) {
-                    m.put("status", "fail");
-                    return m;
-                }
-                if (currentUser.getAccessLevel().equals(AccessLevel.DISTRICT.getAccessLevel()) && !currentUser.getDistrictId().equals(reportRequest.getDistrictId())) {
-                    m.put("status", "fail");
-                    return m;
-                }
-                if (currentUser.getAccessLevel().equals(AccessLevel.BLOCK.getAccessLevel()) && !currentUser.getBlockId().equals(reportRequest.getBlockId())) {
-                    m.put("status", "fail");
-                    return m;
-                }
-
-                if (reportRequest.getStateId() != 0) {
-                    place = StReplace(locationService.findStateById(reportRequest.getStateId()).getStateName());
-                    rootPath += place + "/";
-                }
-
-                if (reportRequest.getDistrictId() != 0) {
-                    place = StReplace(locationService.findDistrictById(reportRequest.getDistrictId()).getDistrictName());
-                    rootPath += place + "/";
-                }
-
-                if (reportRequest.getBlockId() != 0) {
-                    place = StReplace(locationService.findBlockById(reportRequest.getBlockId()).getBlockName());
-                    rootPath += place + "/";
-                }
-            }
-            String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
-            if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
-                filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
-            }
-            reportPath = reports + reportRequest.getReportType() + "/" + rootPath;
-            reportName = filename;
-
-            File file = new File(reportPath + reportName);
-            if (!(file.exists())) {
-                adminService.createSpecificReport(reportRequest);
-            }
-
-            m.put("status", "success");
-            m.put("file", reportName);
-            m.put("path", reportRequest.getReportType() + "/" + rootPath);
-            return m;
+            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto1;
         }
-    
+
+        if (reportRequest.getReportType().equals(ReportType.waSubscriber.getReportType())) {
+
+            Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
+            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+
+            Integer stateId = reportRequest.getStateId();
+            Integer districtId = reportRequest.getDistrictId();
+            Integer blockIdId = reportRequest.getBlockId();
+            Integer circleId = reportRequest.getCircleId();
+
+            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto1;
+        }
+
+        if (reportRequest.getReportType().equals(ReportType.waCumulativeSummary.getReportType())) {
+
+            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+
+            Integer stateId = reportRequest.getStateId();
+            Integer districtId = reportRequest.getDistrictId();
+            Integer blockIdId = reportRequest.getBlockId();
+            Integer circleId = reportRequest.getCircleId();
+
+            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto1;
+
+        }
+
+        if (reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())) {
+            if (!currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel()) && reportRequest.getCircleId() == 0) {
+                m.put("status", "fail");
+                return m;
+            }
+
+            if (reportRequest.getCircleId() != 0) {
+                place = StReplace(locationService.findCircleById(reportRequest.getCircleId()).getCircleFullName());
+                rootPath += place + "/";
+            }
+        } else {
+            if (currentUser.getAccessLevel().equals(AccessLevel.STATE.getAccessLevel()) && !currentUser.getStateId().equals(reportRequest.getStateId())) {
+                m.put("status", "fail");
+                return m;
+            }
+            if (currentUser.getAccessLevel().equals(AccessLevel.DISTRICT.getAccessLevel()) && !currentUser.getDistrictId().equals(reportRequest.getDistrictId())) {
+                m.put("status", "fail");
+                return m;
+            }
+            if (currentUser.getAccessLevel().equals(AccessLevel.BLOCK.getAccessLevel()) && !currentUser.getBlockId().equals(reportRequest.getBlockId())) {
+                m.put("status", "fail");
+                return m;
+            }
+
+            if (reportRequest.getStateId() != 0) {
+                place = StReplace(locationService.findStateById(reportRequest.getStateId()).getStateName());
+                rootPath += place + "/";
+            }
+
+            if (reportRequest.getDistrictId() != 0) {
+                place = StReplace(locationService.findDistrictById(reportRequest.getDistrictId()).getDistrictName());
+                rootPath += place + "/";
+            }
+
+            if (reportRequest.getBlockId() != 0) {
+                place = StReplace(locationService.findBlockById(reportRequest.getBlockId()).getBlockName());
+                rootPath += place + "/";
+            }
+        }
+        String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
+        if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
+            filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
+        }
+        reportPath = reports + reportRequest.getReportType() + "/" + rootPath;
+        reportName = filename;
+
+        File file = new File(reportPath + reportName);
+        if (!(file.exists())) {
+            adminService.createSpecificReport(reportRequest);
+        }
+
+        m.put("status", "success");
+        m.put("file", reportName);
+        m.put("path", reportRequest.getReportType() + "/" + rootPath);
+        return m;
+    }
 
 
-    @RequestMapping(value = "/downloadReport", method = RequestMethod.GET,produces = "application/vnd.ms-excel")
+    @RequestMapping(value = "/downloadReport", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
     @ResponseBody
     public String getBulkDataImportCSV(HttpServletResponse response, @DefaultValue("") @QueryParam("fileName") String fileName,
                                        @DefaultValue("") @QueryParam("rootPath") String rootPath) throws ParseException {
@@ -726,8 +518,8 @@ public class UserController {
             rootPath = "";
             return "fail";
         }
-        String reportName=fileName;
-        String reportPath=reports+rootPath;
+        String reportName = fileName;
+        String reportPath = reports + rootPath;
         try {
             ServletOutputStream out = response.getOutputStream();
             String filename = reportName;
@@ -745,8 +537,9 @@ public class UserController {
         return "success";
     }
 
-    @RequestMapping(value={"/reportsMenu"})
-    public @ResponseBody List<Map<String, Object>> getReportsMenu() {
+    @RequestMapping(value = {"/reportsMenu"})
+    public @ResponseBody
+    List<Map<String, Object>> getReportsMenu() {
         User currentUser = userService.getCurrentUser();
         Map<String, Object> maMenu = new HashMap<>();
         maMenu.put("name", "WASH Academy Reports");
@@ -754,16 +547,16 @@ public class UserController {
 
         List<Report> maList = new ArrayList<>();
         maList.add(new Report(
-                ReportType.waCourse.getReportName(),
-                ReportType.waCourse.getReportType(),
+                ReportType.waCourseCompletion.getReportName(),
+                ReportType.waCourseCompletion.getReportType(),
                 "images/drop-down-3.png",
-                ReportType.waCourse.getServiceType())
+                ReportType.waCourseCompletion.getServiceType())
         );
         maList.add(new Report(
-                ReportType.waAnonymous.getReportName(),
-                ReportType.waAnonymous.getReportType(),
+                ReportType.waCircleWiseAnonymous.getReportName(),
+                ReportType.waCircleWiseAnonymous.getReportType(),
                 "images/drop-down-3.png",
-                ReportType.waAnonymous.getServiceType())
+                ReportType.waCircleWiseAnonymous.getServiceType())
         );
         maList.add(new Report(
                 ReportType.waInactive.getReportName(),
@@ -790,10 +583,10 @@ public class UserController {
                 ReportType.waSubscriber.getServiceType())
         );
         maList.add(new Report(
-                ReportType.waCumulative.getReportName(),
-                ReportType.waCumulative.getReportType(),
+                ReportType.waCumulativeSummary.getReportName(),
+                ReportType.waCumulativeSummary.getReportType(),
                 "images/drop-down-2.png",
-                ReportType.waCumulative.getServiceType())
+                ReportType.waCumulativeSummary.getServiceType())
         );
 
         maMenu.put("service", maList.get(0).getService());
@@ -801,10 +594,9 @@ public class UserController {
 
         List<Map<String, Object>> l = new ArrayList<>();
 
-        if(currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())){
+        if (currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
             l.add(maMenu);
-        }
-        else{
+        } else {
             State state = locationService.findStateById(currentUser.getStateId());
 //            if(state.getServiceType().equals("M") || state.getServiceType().equals("ALL")){
 //                l.add(maMenu);
@@ -814,7 +606,8 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/createMaster"}, method = RequestMethod.GET)
-    @ResponseBody String createNewUser() {
+    @ResponseBody
+    String createNewUser() {
 //
 ////        ModificationTracker modification = new ModificationTracker();
 ////        modification.setModificationDate(new Date(System.currentTimeMillis()));
@@ -826,43 +619,41 @@ public class UserController {
 //
         return userService.createMaster();
     }
+
     private String getMonthYear(Date toDate) {
-        Calendar c =Calendar.getInstance();
+        Calendar c = Calendar.getInstance();
         c.setTime(toDate);
-        int month=c.get(Calendar.MONTH)+1;
+        int month = c.get(Calendar.MONTH) + 1;
         String monthString = "";
-        int year=(c.get(Calendar.YEAR))%100;
-    //        String monthString = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH );
-        if(month<10){
-            monthString="0"+String.valueOf(month);
-        }
-        else monthString=String.valueOf(month);
+        int year = (c.get(Calendar.YEAR)) % 100;
+        //        String monthString = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH );
+        if (month < 10) {
+            monthString = "0" + String.valueOf(month);
+        } else monthString = String.valueOf(month);
 
-        String yearString=String.valueOf(year);
+        String yearString = String.valueOf(year);
 
-        return monthString+"_"+yearString;
+        return monthString + "_" + yearString;
     }
 
     private String getDateMonthYear(Date toDate) {
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(toDate);
-        int date=calendar.get(Calendar.DATE);
-        int month=calendar.get(Calendar.MONTH)+1;
-        int year=(calendar.get(Calendar.YEAR))%100;
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = (calendar.get(Calendar.YEAR)) % 100;
         String dateString;
-        if(date<10) {
-            dateString="0"+String.valueOf(date);
-        }
-        else dateString=String.valueOf(date);
+        if (date < 10) {
+            dateString = "0" + String.valueOf(date);
+        } else dateString = String.valueOf(date);
         String monthString;
-        if(month<10){
-            monthString="0"+String.valueOf(month);
-        }
-        else monthString=String.valueOf(month);
+        if (month < 10) {
+            monthString = "0" + String.valueOf(month);
+        } else monthString = String.valueOf(month);
 
-        String yearString=String.valueOf(year);
+        String yearString = String.valueOf(year);
 
-        return dateString + "_" + monthString+"_"+yearString;
+        return dateString + "_" + monthString + "_" + yearString;
 
     }
 
