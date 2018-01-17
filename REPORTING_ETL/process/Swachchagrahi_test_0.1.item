@@ -253,12 +253,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_front_line_workers&quot;,&quot;nms_languages&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wash_swachchagrahi,&quot;wash_languages&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT flw.id,&#xA;flw.name as 'flw_name',&#xA;flw.contactNumber,&#xA;flw.mctsFlwId,&#xA;flw.designation as 'flw_designation',&#xA;lang.name as 'language',&#xA;flw.status, &#xA;flw.state_id_OID as 'state_id',&#xA;flw.district_id_OID as 'district_id',&#xA;flw.taluka_id_OID as 'taluka_id',&#xA;flw.village_id_OID as 'village_id',&#xA;flw.healthBlock_id_OID as 'block_id',&#xA;flw.healthFacility_id_OID as 'facility_id',&#xA;flw.healthSubFacility_id_OID as 'subfacility_id',&#xA;flw.creationDate,&#xA;GREATEST(COALESCE(flw.modificationDate,0),COALESCE(lang.modificationDate,0)) AS 'last_modified',&#xA;flw.jobStatus&#xA;FROM nms_front_line_workers flw&#xA;LEFT OUTER JOIN nms_languages lang on flw.language_id_OID=lang.id&#xA;WHERE flw.creationDate&lt;='&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;AND ((flw.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;') &#xA;OR(lang.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'))&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT flw.id,&#xA;flw.name as 'flw_name',&#xA;flw.contactNumber,&#xA;flw.swcId,&#xA;flw.qualification as 'flw_designation',&#xA;lang.name as 'language',&#xA;flw.state_id_OID as 'state_id',&#xA;flw.district_id_OID as 'district_id',&#xA;flw.panchayat_id_OID as 'taluka_id',&#xA;flw.block_id_OID as 'block_id',&#xA;flw.creationDate,&#xA;GREATEST(COALESCE(flw.modificationDate,0),COALESCE(lang.modificationDate,0)) AS 'last_modified',&#xA;flw.jobStatus&#xA;FROM wash_swachchagrahi flw&#xA;LEFT OUTER JOIN wash_languages lang on flw.language_id_OID=lang.id&#xA;WHERE flw.creationDate&lt;='&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;AND ((flw.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;') &#xA;OR(lang.modificationDate >'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'))&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -410,7 +410,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;front_line_worker&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swachchagrahi&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -575,12 +575,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_front_line_workers&quot;,&quot;nms_languages&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wash_swachchagrahi&quot;,&quot;wash_languages&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT flw.id,&#xA;flw.name as 'flw_name',&#xA;flw.contactNumber,&#xA;flw.mctsFlwId,&#xA;flw.designation as 'flw_designation',&#xA;lang.name as 'language',&#xA;flw.status, &#xA;flw.state_id_OID as 'state_id',&#xA;flw.district_id_OID as 'district_id',&#xA;flw.taluka_id_OID as 'taluka_id',&#xA;flw.village_id_OID as 'village_id',&#xA;flw.healthBlock_id_OID as 'block_id',&#xA;flw.healthFacility_id_OID as 'facility_id',&#xA;flw.healthSubFacility_id_OID as 'subfacility_id',&#xA;flw.creationDate,&#xA;GREATEST(COALESCE(flw.modificationDate,0),COALESCE(lang.modificationDate,0)) AS 'last_modified',&#xA;flw.jobStatus&#xA;FROM nms_front_line_workers flw&#xA;LEFT OUTER JOIN nms_languages lang on flw.language_id_OID=lang.id&#xA;WHERE flw.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT flw.id,&#xA;flw.name as 'flw_name',&#xA;flw.contactNumber,&#xA;flw.swcId,&#xA;flw.qualification as 'flw_designation',&#xA;lang.name as 'language',&#xA;flw.state_id_OID as 'state_id',&#xA;flw.district_id_OID as 'district_id',&#xA;flw.panchayat_id_OID as 'taluka_id',&#xA;flw.block_id_OID as 'block_id',&#xA;flw.creationDate,&#xA;GREATEST(COALESCE(flw.modificationDate,0),COALESCE(lang.modificationDate,0)) AS 'last_modified',&#xA;flw.jobStatus&#xA;FROM wash_swachchagrahi flw&#xA;LEFT OUTER JOIN wash_languages lang on flw.language_id_OID=lang.id&#xA;WHERE flw.creationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -732,7 +732,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;front_line_worker&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swachchagrahi&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -932,12 +932,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;front_line_worker&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;,&quot;dim_taluka&quot;,&quot;dim_healthBlock&quot;,&quot;dim_healthFacility&quot;,&quot;dim_healthSubFacility&quot;,&quot;dim_village&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swachchagrahi&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;,&quot;dim_panchayat&quot;,&quot;dim_block&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select f.flw_id, s.id as 'state_id',&#xA;d.id as 'district_id',&#xA;case when f.taluka_id is null then null else t.id end as 'taluka_id',&#xA;case when f.village_id is null then null else v.id end as 'village_id',&#xA;case when f.block_id is null then null else hb.id end as 'block_id',&#xA;case when f.healthfacility_id is null then null else hf.id end as 'facility_id',&#xA;case when f.healthsubfacility_id is null then null else hs.id end as 'subfacility_id'&#xA;from front_line_worker f&#xA;left join dim_state s on s.loc_id = f.state_id&#xA;left join dim_district d on d.loc_id = f.district_id&#xA;left join dim_taluka t on t.loc_id = f.taluka_id&#xA;left join dim_healthblock hb on hb.id = f.block_id&#xA;left join dim_healthfacility hf on hf.id = f.healthfacility_id&#xA;left join dim_healthsubfacility hs on hs.id = f.healthsubfacility_id&#xA;left join dim_village v on v.loc_id = f.village_id&#xA;where f.last_modified > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select f.flw_id, s.id as 'state_id',&#xA;d.id as 'district_id',&#xA;case when f.taluka_id is null then null else t.id end as 'taluka_id'&#xA;case when f.block_id is null then null else hb.id end as 'block_id'&#xA;from swachchagrahi f&#xA;left join dim_state s on s.loc_id = f.state_id&#xA;left join dim_district d on d.loc_id = f.district_id&#xA;left join dim_panchayat t on t.loc_id = f.taluka_id&#xA;left join dim_block hb on hb.id = f.block_id&#xA;where f.last_modified > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1035,7 +1035,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;front_line_worker&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swachchagrahi&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>

@@ -199,12 +199,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;nms_flw_rejects&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wash_swachgrahi_rejects&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select * from nms_flw_rejects f&#xA;where f.modificationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY f.modificationDate ASC&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select * from wash_swachgrahi_rejects f&#xA;where f.modificationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY f.modificationDate ASC&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -562,7 +562,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE_OR_INSERT"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -1023,12 +1023,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id, s.id as 'state_id'&#xA;from flw_import_rejection b&#xA;left join dim_state s on s.code = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id, s.id as 'state_id'&#xA;from swc_import_rejection b&#xA;left join dim_state s on s.code = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1090,7 +1090,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -1150,12 +1150,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;d.id as 'district_id'&#xA;from flw_import_rejection b&#xA;left join dim_district d on d.code = b.district_id and d.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;d.id as 'district_id'&#xA;from swc_import_rejection b&#xA;left join dim_district d on d.code = b.district_id and d.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1277,12 +1277,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;child_import_rejection&quot;,&quot;dim_state&quot;,&quot;dim_district&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;dim_state&quot;,&quot;dim_district&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.taluka_id is null then null else t.id end as 'taluka_id'&#xA;from flw_import_rejection b&#xA;left join dim_taluka t on t.code = b.taluka_id and t.district_id = b.district_id and t.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.taluka_id is null then null else t.id end as 'taluka_id'&#xA;from swc_import_rejection b&#xA;left join dim_panchayat t on t.code = b.taluka_id and t.district_id = b.district_id and t.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1404,12 +1404,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;child_import_rejection&quot;,&quot;dim_healthblock&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;dim_block&quot;,&quot;swc_import_rejection&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.health_block_id is null then null else hb.id end as 'block_id'&#xA;from flw_import_rejection b&#xA;left join dim_healthblock hb on hb.code = b.health_block_id and hb.taluka_id = b.taluka_id and hb.district_id = b.district_id and hb.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.health_block_id is null then null else hb.id end as 'block_id'&#xA;from swc_import_rejection b&#xA;left join dim_block hb on hb.code = b.health_block_id and hb.taluka_id = b.taluka_id and hb.district_id = b.district_id and hb.state_id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1531,12 +1531,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;child_import_rejection&quot;,&quot;dim_healthblock&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;,&quot;dim_block&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.phc_id is null then null else hf.id end as 'healthfacility_id'&#xA;from flw_import_rejection b&#xA;left join dim_healthfacility hf on hf.id = b.phc_id and hf.healthBlock_id = b.health_block_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id&#xA;from swc_import_rejection b&#xA;left join dim_block hf on hf.id = b.health_block_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1598,7 +1598,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
@@ -1658,12 +1658,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;child_import_rejection&quot;,&quot;dim_healthblock&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;,&quot;dim_block&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.subcentre_id is null then null else hsf.id end as 'healthsubfacility_id'&#xA;from flw_import_rejection b&#xA;left join dim_healthsubfacility hsf on hsf.id = b.subcentre_id and hsf.healthFacility_id = b.phc_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id&#xA;from swc_import_rejection b&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1725,7 +1725,7 @@
     <elementParameter field="TEXT" name="DBNAME" value="&quot;Reporting&quot;"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;flw_import_rejection&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;swc_import_rejection&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="CREATE_IF_NOT_EXISTS"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
