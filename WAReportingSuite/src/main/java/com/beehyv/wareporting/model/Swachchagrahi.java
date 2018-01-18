@@ -48,16 +48,19 @@ public class Swachchagrahi {
     private String jobStatus;
 
     @Column(name = "state_id", columnDefinition = "TINYINT(4)")
-    private Integer state;
+    private Integer stateId;
 
     @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
-    private Integer district;
+    private Integer districtId;
 
     @Column(name = "block_id", columnDefinition = "INT(11)")
-    private Integer block;
+    private Integer blockId;
+
+    @Column(name = "circle_id", columnDefinition = "INT(11)")
+    private Integer circleId;
 
     @Column(name = "panchayat_id", columnDefinition = "BIGINT(20)")
-    private Integer panchayat;
+    private Integer panchayatId;
 
     @Column(name = "creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
@@ -159,36 +162,36 @@ public class Swachchagrahi {
         this.jobStatus = jobStatus;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getStateId() {
+        return stateId;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
     }
 
-    public Integer getDistrict() {
-        return district;
+    public Integer getDistrictId() {
+        return districtId;
     }
 
-    public void setDistrict(Integer district) {
-        this.district = district;
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
     }
 
-    public Integer getBlock() {
-        return block;
+    public Integer getBlockId() {
+        return blockId;
     }
 
-    public void setBlock(Integer block) {
-        this.block = block;
+    public void setBlockId(Integer blockId) {
+        this.blockId = blockId;
     }
 
-    public Integer getPanchayat() {
-        return panchayat;
+    public Integer getPanchayatId() {
+        return panchayatId;
     }
 
-    public void setPanchayat(Integer panchayat) {
-        this.panchayat = panchayat;
+    public void setPanchayatId(Integer panchayatId) {
+        this.panchayatId = panchayatId;
     }
 
     public Date getCreationDate() {

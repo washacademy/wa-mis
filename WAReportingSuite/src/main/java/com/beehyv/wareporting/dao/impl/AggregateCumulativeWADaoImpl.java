@@ -14,7 +14,7 @@ import java.util.Date;
 public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulativeSummary> implements AggregateCumulativeWADao
         {
             @Override
-            public WACumulativeSummary getWACumulativeSummery(Integer locationId, String locationType, Date toDate){
+            public WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate){
 
 
                    Criteria criteria = createEntityCriteria().addOrder(Order.asc("locationId"));

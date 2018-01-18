@@ -43,7 +43,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private WAAggregateReportsService WAAggregateReportsService;
+    private WAAggregateReportsService waAggregateReportsService;
 
     @Autowired
     private RoleService roleService;
@@ -225,19 +225,19 @@ public class UserController {
 //        user1.setPhoneNumber(user.getPhoneNumber());
 //        user1.setAccessLevel(user.getAccessLevel());
 //        try {
-//            user1.setState(locationService.findStateById(user.getStateId()).getStateName());
+//            user1.setStateId(locationService.findStateById(user.getStateId()).getStateName());
 //        } catch(NullPointerException e){
-//            user1.setState("");
+//            user1.setStateId("");
 //        }
 //        try {
-//            user1.setDistrict(locationService.findDistrictById(user.getDistrictId()).getDistrictName());
+//            user1.setDistrictId(locationService.findDistrictById(user.getDistrictId()).getDistrictName());
 //        } catch(NullPointerException e){
-//            user1.setDistrict("");
+//            user1.setDistrictId("");
 //        }
 //        try {
-//            user1.setBlock(locationService.findBlockById(user.getBlockId()).getBlockName());
+//            user1.setBlockId(locationService.findBlockById(user.getBlockId()).getBlockName());
 //        } catch(NullPointerException e){
-//            user1.setBlock("");
+//            user1.setBlockId("");
 //        }
 //        user1.setAccessType(user.getRoleId().getRoleId().toString());
 //        user1.setCreatedBy(true);
@@ -389,7 +389,7 @@ public class UserController {
         Map<String, String> m = new HashMap<>();
         User currentUser = userService.getCurrentUser();
         List<BreadCrumbDto> breadCrumbs = breadCrumbService.getBreadCrumbs(currentUser, reportRequest);
-        AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
+        AggregateResponseDto aggregateResponseDto;
 
         if (currentUser.getAccessLevel().equals(AccessLevel.STATE.getAccessLevel()) && !currentUser.getStateId().equals(reportRequest.getStateId())) {
             m.put("status", "fail");
@@ -414,9 +414,9 @@ public class UserController {
             Integer blockIdId = reportRequest.getBlockId();
             Integer circleId = reportRequest.getCircleId();
 
-            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
-            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
-            return aggregateResponseDto1;
+            aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto;
         }
 
         if (reportRequest.getReportType().equals(ReportType.waSubscriber.getReportType())) {
@@ -429,9 +429,9 @@ public class UserController {
             Integer blockIdId = reportRequest.getBlockId();
             Integer circleId = reportRequest.getCircleId();
 
-            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
-            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
-            return aggregateResponseDto1;
+            aggregateResponseDto = waAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto;
         }
 
         if (reportRequest.getReportType().equals(ReportType.waCumulativeSummary.getReportType())) {
@@ -443,10 +443,25 @@ public class UserController {
             Integer blockIdId = reportRequest.getBlockId();
             Integer circleId = reportRequest.getCircleId();
 
-            AggregateResponseDto aggregateResponseDto1 = WAAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId);
-            aggregateResponseDto1.setBreadCrumbData(breadCrumbs);
-            return aggregateResponseDto1;
+            aggregateResponseDto = waAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto;
 
+        }
+
+        if (reportRequest.getReportType().equals(ReportType.waAnonymousSummary.getReportType())) {
+
+            Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
+            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+
+            Integer stateId = reportRequest.getStateId();
+            Integer districtId = reportRequest.getDistrictId();
+            Integer blockIdId = reportRequest.getBlockId();
+            Integer circleId = reportRequest.getCircleId();
+
+            aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto.setBreadCrumbData(breadCrumbs);
+            return aggregateResponseDto;
         }
 
         if (reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())) {
@@ -489,6 +504,7 @@ public class UserController {
             }
         }
         String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
+
         if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
         }

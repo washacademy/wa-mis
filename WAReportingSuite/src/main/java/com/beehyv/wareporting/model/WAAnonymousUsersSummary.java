@@ -4,8 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="WA_anonymous_users_summary")
-public class AnonymousUsersSummary {
-
+public class WAAnonymousUsersSummary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +12,10 @@ public class AnonymousUsersSummary {
     private Integer id;
 
     @Column(name = "circle_name", columnDefinition = "VARCHAR(45)")
-    private Integer circleName;
+    private String circleName;
+
+    @Column(name = "circle_id", columnDefinition = "INT(11)")
+    private Integer circleId;
 
     @Column(name = "anonymous_users_started_course", columnDefinition = "INT(11)")
     private Integer anonymousUsersStartedCourse;
@@ -30,6 +32,21 @@ public class AnonymousUsersSummary {
     @Column(name = "anonymous_users_failed_course", columnDefinition = "INT(11)")
     private Integer anonymousUsersFailedCourse;
 
+    public WAAnonymousUsersSummary(){
+
+    }
+
+    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersPursuingCourse, Integer anonymousUsersNotPursuingCourse, Integer anonymousUsersCompletedCourse, Integer anonymousUsersFailedCourse){
+        this.id = id;
+        this.circleName = circleName;
+        this.circleId = circleId;
+        this.anonymousUsersStartedCourse = anonymousUsersStartedCourse;
+        this.anonymousUsersPursuingCourse = anonymousUsersPursuingCourse;
+        this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
+        this.anonymousUsersCompletedCourse = anonymousUsersCompletedCourse;
+        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -38,11 +55,11 @@ public class AnonymousUsersSummary {
         this.id = id;
     }
 
-    public Integer getCircleName() {
+    public String getCircleName() {
         return circleName;
     }
 
-    public void setCircleName(Integer circleName) {
+    public void setCircleName(String circleName) {
         this.circleName = circleName;
     }
 
@@ -84,5 +101,13 @@ public class AnonymousUsersSummary {
 
     public void setAnonymousUsersFailedCourse(Integer anonymousUsersFailedCourse) {
         this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
+    }
+
+    public Integer getCircleId() {
+        return circleId;
+    }
+
+    public void setCircleId(Integer circleId) {
+        this.circleId = circleId;
     }
 }
