@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import static com.beehyv.wareporting.enums.ReportType.waCourse;
+import static com.beehyv.wareporting.enums.ReportType.waCourseCompletion;
 import static com.beehyv.wareporting.utils.Global.isAutoGenerate;
 
 /**
@@ -43,8 +43,8 @@ public class AutoReportEmailGeneration {
             Date startDate = new Date(0);
         /*adminService.getCircleWiseAnonymousFiles(fromDate,toDate);*/
             System.out.println("Report generation started");
-            adminService.createFiles(waCourse.getReportType());
-            adminService.createFolders(ReportType.waAnonymous.getReportType());
+            adminService.createFiles(waCourseCompletion.getReportType());
+            adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
             adminService.createFiles(ReportType.waInactive.getReportType());
 
             adminService.getCircleWiseAnonymousFiles(fromDate, toDate);
@@ -77,14 +77,14 @@ public class AutoReportEmailGeneration {
     }
 
     public HashMap sendFirstMail() {
-        HashMap reports = emailService.sendAllMails(ReportType.waAnonymous);
+        HashMap reports = emailService.sendAllMails(ReportType.waCircleWiseAnonymous);
         System.out.println("WA_Anonymous: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendSecondMail() {
-        HashMap reports = emailService.sendAllMails(ReportType.waCourse);
+        HashMap reports = emailService.sendAllMails(ReportType.waCourseCompletion);
         System.out.println("WA_Course: ");
         System.out.println(reports.toString());
         return reports;
