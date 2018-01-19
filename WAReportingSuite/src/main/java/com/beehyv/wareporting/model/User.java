@@ -33,14 +33,20 @@ public class User {
 //	@JoinColumn(name="location",insertable = false,updatable = false)
 //	private Location locationId;
 
-	@Column(name="state",columnDefinition = "TINYINT(4)")
+	@Column(name="state_id",columnDefinition = "TINYINT(4)")
 	private Integer stateId;
 
-	@Column(name="district", columnDefinition = "SMALLINT(6)")
+	@Column(name="district_id", columnDefinition = "SMALLINT(6)")
 	private Integer districtId;
 
-	@Column(name="block", columnDefinition = "INT(11)")
+	@Column(name="block_id", columnDefinition = "INT(11)")
 	private Integer blockId;
+
+	@Column(name="panchayat_id", columnDefinition = "INT(11)")
+	private Integer panchayatId;
+
+    @Column(name="circle_id", columnDefinition = "INT(11)")
+    private Integer circleId;
 
 	@Column(name="creation_date", columnDefinition = "DATETIME")
 	private Date creationDate;
@@ -72,6 +78,12 @@ public class User {
 
 	@Column(name = "block_name", columnDefinition = "VARCHAR(45)")
 	private String blockName;
+
+    @Column(name = "panchayat_name", columnDefinition = "VARCHAR(45)")
+    private String panchayatName;
+
+    @Column(name = "circle_name", columnDefinition = "VARCHAR(45)")
+    private String circleName;
 
 	@Column(name = "role_name", columnDefinition = "VARCHAR(45)")
 	private String roleName;
@@ -170,14 +182,6 @@ public class User {
 		this.createdByUser = createdByUser;
 	}
 
-//	public Set<User> getCreatedUsers() {
-//		return createdUsers;
-//	}
-//
-//	public void setCreatedUsers(Set<User> createdUsers) {
-//		this.createdUsers = createdUsers;
-//	}
-
 	public Integer getRoleId() {
 		return roleId;
 	}
@@ -249,4 +253,36 @@ public class User {
 	public void setDefault(Boolean aDefault) {
 		isDefault = aDefault;
 	}
+
+    public Integer getPanchayatId() {
+        return panchayatId;
+    }
+
+    public void setPanchayatId(Integer panchayatId) {
+        this.panchayatId = panchayatId;
+    }
+
+    public Integer getCircleId() {
+        return circleId;
+    }
+
+    public void setCircleId(Integer circleId) {
+        this.circleId = circleId;
+    }
+
+    public String getPanchayatName() {
+        return panchayatName;
+    }
+
+    public void setPanchayatName(String panchayatName) {
+        this.panchayatName = panchayatName;
+    }
+
+    public String getCircleName() {
+        return circleName;
+    }
+
+    public void setCircleName(String circleName) {
+        this.circleName = circleName;
+    }
 }

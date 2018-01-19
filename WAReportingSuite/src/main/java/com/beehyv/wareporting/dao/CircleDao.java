@@ -14,4 +14,6 @@ public interface CircleDao {
     Circle findByLocationId(Long locationId);
 
     Circle getByCircleId(Integer circleId);
+
+    Circle getByCircleName(String circleName);
 }

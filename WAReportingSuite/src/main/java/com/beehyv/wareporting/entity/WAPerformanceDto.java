@@ -7,7 +7,7 @@ package com.beehyv.wareporting.entity;
 
 public class WAPerformanceDto {
 
-    private int id;
+    private Integer id;
     private String locationType;
     private String locationName;
     private Long locationId;
@@ -17,11 +17,11 @@ public class WAPerformanceDto {
     private Integer swachchagrahisCompletedCourse;
     private Integer swachchagrahisFailedCourse;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

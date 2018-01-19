@@ -637,7 +637,7 @@ public class AdminServiceImpl implements AdminService {
                 String circleName=StReplace(circleDao.getByCircleId(circleId).getCircleName());
                 String circleFullName = StReplace(circleDao.getByCircleId(circleId).getCircleFullName());
                 String rootPathCircle=rootPath+circleFullName+"/";
-                List<AnonymousUser> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersCircle(fromDate,toDate,StReplace(circleDao.getByCircleId(circleId).getCircleName()));
+                List<AnonymousUser> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,StReplace(circleDao.getByCircleId(circleId).getCircleName()));
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
             }
         }
@@ -945,10 +945,10 @@ public class AdminServiceImpl implements AdminService {
         for (Swachchagrahi swachchagrahi : inactiveCandidates) {
             empinfo.put((counter.toString()), new Object[]{
                     (swachchagrahi.getMobileNumber() == null) ? "No Phone":swachchagrahi.getMobileNumber(),
-                    (swachchagrahi.getState() == null) ? "No State":stateDao.findByStateId(swachchagrahi.getState()).getStateName(),
-                    (swachchagrahi.getDistrict() == null) ? "No District":districtDao.findByDistrictId(swachchagrahi.getDistrict()).getDistrictName(),
-                    (swachchagrahi.getBlock() == null) ? "No Block" : blockDao.findByBlockId(swachchagrahi.getBlock()).getBlockName(),
-                    (swachchagrahi.getPanchayat() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(swachchagrahi.getPanchayat()).getPanchayatName(),
+                    (swachchagrahi.getStateId() == null) ? "No State":stateDao.findByStateId(swachchagrahi.getStateId()).getStateName(),
+                    (swachchagrahi.getDistrictId() == null) ? "No District":districtDao.findByDistrictId(swachchagrahi.getDistrictId()).getDistrictName(),
+                    (swachchagrahi.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(swachchagrahi.getBlockId()).getBlockName(),
+                    (swachchagrahi.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(swachchagrahi.getPanchayatId()).getPanchayatName(),
                     (swachchagrahi.getFullName() == null) ? "No Name":swachchagrahi.getFullName(),
                     (swachchagrahi.getSwcId() == null) ? "No SWC_ID":swachchagrahi.getSwcId(),
                     (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate(),
@@ -1258,7 +1258,7 @@ public class AdminServiceImpl implements AdminService {
             int stateId = state.getStateId();
             List<Swachchagrahi> candidatesFromThisState = new ArrayList<>();
             for (Swachchagrahi swachchagrahi : inactiveSwachchagrahis) {
-                if (swachchagrahi.getState() == stateId) {
+                if (swachchagrahi.getStateId() == stateId) {
                     candidatesFromThisState.add(swachchagrahi);
                 }
             }
@@ -1273,7 +1273,7 @@ public class AdminServiceImpl implements AdminService {
                 int districtId = district.getDistrictId();
                 List<Swachchagrahi> candidatesFromThisDistrict = new ArrayList<>();
                 for (Swachchagrahi swachchagrahi : candidatesFromThisState) {
-                    if (swachchagrahi.getDistrict() == districtId) {
+                    if (swachchagrahi.getDistrictId() == districtId) {
                         candidatesFromThisDistrict.add(swachchagrahi);
                     }
                 }
@@ -1288,7 +1288,7 @@ public class AdminServiceImpl implements AdminService {
                     int blockId = block.getBlockId();
                     List<Swachchagrahi> candidatesFromThisBlock = new ArrayList<>();
                     for (Swachchagrahi swachchagrahi : candidatesFromThisDistrict) {
-                        if ((swachchagrahi.getBlock()!=null)&&(swachchagrahi.getBlock() == blockId)) {
+                        if ((swachchagrahi.getBlockId()!=null)&&(swachchagrahi.getBlockId() == blockId)) {
                             candidatesFromThisBlock.add(swachchagrahi);
                         }
                     }
