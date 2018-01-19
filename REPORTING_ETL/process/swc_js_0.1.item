@@ -130,7 +130,7 @@
     <routinesParameter id="_HVGQAEmYEeaikNhzEEO1fg" name="TalendString"/>
     <routinesParameter id="_4VbhYEJcEeWkYKCbJLMUFA" name="ReportingHelper"/>
   </parameters>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="128" posY="64">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="26" offsetLabelY="37" posX="128" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;/home/asha/TOS_BD-20161216_1026-V6.3.1/workspace/db_connection.txt&quot;"/>
@@ -183,7 +183,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="64">
+  <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="544" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextLoad_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
     <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>

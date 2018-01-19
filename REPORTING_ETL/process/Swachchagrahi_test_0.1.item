@@ -679,7 +679,7 @@
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="Insert_FLW_Record">
         <mapperTableEntries name="flw_id" expression="row4.id " type="id_Long"/>
