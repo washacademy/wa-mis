@@ -15,7 +15,7 @@ public class Languages {
     @Column(name = "name", columnDefinition = "VARCHAR(45)")
     private String language;
 
-    @Column(name = "code", columnDefinition = "INT(11)")
+    @Column(name = "code", columnDefinition = "BIGINT(20)")
     private String code;
 
     @Column(name = "creation_date", columnDefinition = "DATETIME")
