@@ -23,11 +23,17 @@ public class WACourseCompletion {
     @Column(name="has_passed", columnDefinition = "BIT(1)")
     private Boolean passed;
 
+    @Column(name="chapter_wise_score", columnDefinition = "VARCHAR(45)")
+    private String chapterWiseScore;
+
     @Column(name="last_delivery_status", columnDefinition = "VARCHAR(255)")
     private String lastDeliveryStatus;
 
     @Column(name="sent_notification", columnDefinition = "BIT(1)")
     private Boolean sentNotification;
+
+    @Column(name="creation_date", columnDefinition = "TIMESTAMP")
+    private Date creationDate;
 
     @Column(name="last_modified", columnDefinition = "TIMESTAMP")
     private Date lastModifiedDate;
@@ -86,5 +92,29 @@ public class WACourseCompletion {
 
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getChapterWiseScore() {
+        return chapterWiseScore;
+    }
+
+    public void setChapterWiseScore(String chapterWiseScore) {
+        this.chapterWiseScore = chapterWiseScore;
+    }
+
+    public Boolean getSentNotification() {
+        return sentNotification;
+    }
+
+    public void setSentNotification(Boolean sentNotification) {
+        this.sentNotification = sentNotification;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }
