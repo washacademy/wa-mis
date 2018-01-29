@@ -1,363 +1,461 @@
-<div  class="container-fluid" ng-controller="ReportsController">
+<div class="container-fluid" ng-controller="ReportsController">
 
-	<div class="block reports-header">
-		<form name="reportsForm" class="form container-fluid block" role="form" novalidate="novalidate">
-			<div class="row">
-				<div class="col-xs-7 left">
-					<div class="form-group col-xs-4">
-						<label>Select Reports Category</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-3" type="button" class="btn btn-sm btn-default" uib-dropdown-toggle ng-disabled="disableReportCategory()" ng-class="{loading: reportsLoading}">
-								{{reportCategory}}
-								<span ng-if="reportCategory == null">Select</span>
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu report-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem" ng-repeat="item in reports">
-									<a class="report_category" ng-click='selectReportCategory(item)'>
-										<span>{{item.name}}</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="form-group col-xs-4">
-						<label>Select Reports</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-4" type="button" class="btn btn-sm btn-default" ng-disabled='disableReport()' uib-dropdown-toggle>
-								<span>{{report.name}}</span>
-								<span ng-if="report.name == null">Select</span>
-								<span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem" ng-repeat="item in reportNames">
-									<a class="select_report" ng-click='selectReport(item)'>
-										<img class='block' src="{{item.icon}}">
-										<span>{{item.name}}</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+    <div class="block reports-header">
+        <form name="reportsForm" class="form container-fluid block" role="form" novalidate="novalidate">
 
-					<div class="form-group col-xs-4" ng-hide = "isAggregateReport()">
-						<label>{{datePickerContent}}</label><br>
-						<p class="input-group" ng-disabled="disableDate()">
-							<input type="text" class="form-control input input-sm" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" datepicker-mode="'month'" ng-required = "true" close-text="Close" alt-input-formats="altInputFormats" ng-disabled='disableDate()' readonly />
-							<span class="input-group-btn">
-							<button type="button" class="btn btn-sm btn-default" ng-click="open1()"  ng-disabled='disableDate()' ><i class="glyphicon glyphicon-calendar" ng-disabled="disableDate()" ></i></button>
+            <div class="row" ng-if="!isLineListingReport()">
+                <div class="col-xs-7">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Select Reports</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body-4" type="button" class="btn btn-sm btn-default btn-block"
+                                        uib-dropdown-toggle>
+                                    <span class="dropHeader">
+                                    <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
+                                    <span ng-if="report.name == null">Select</span>
+                                    <span class="caret"></span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="item in reportNames">
+                                        <a class="select_report" ng-click='selectReport(item)'>
+                                            <img class='block' src="{{item.icon}}">
+                                            <span>{{item.name}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label>Select State</label><br>
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <button id="btn-append-to-body-5" type="button"
+                                                class="btn btn-sm btn-default btn-block"
+                                                ng-disabled="disableStateIfNoLocation()" uib-dropdown-toggle
+                                                ng-class="{loading: statesLoading}">
+								<span class="dropHeader">
+									<span class="dropdownTitle" ng-if="state != null">{{state.stateName}}</span>
+									<span ng-if="state == null">All</span>
+									<span class="caret"></span>
+								</span>
+                                        </button>
+                                        <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
+                                            aria-labelledby="btn-append-to-body">
+                                            <li role="menuitem"><a class="select_state" ng-click="clearState()">All</a>
+                                            <li role="menuitem"
+                                                ng-repeat="item in states | orderBy : 'stateName'">
+                                                <a
+                                                        ng-click='selectState(item)'>{{item.stateName}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <label>Select District</label><br>
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <button id="btn-append-to-body-7" type="button"
+                                                class="btn btn-sm btn-default btn-block"
+                                                ng-disabled="disableDistrict()" uib-dropdown-toggle
+                                                ng-class="{loading: districtsLoading, autoSelected}">
+								<span class="dropHeader">
+									<span class="dropdownTitle" ng-if="district != null">{{cropAggregate(district.districtName)}}</span>
+									<span ng-if="district == null">All</span>
+									<span class="caret"></span>
+								</span>
+                                        </button>
+                                        <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
+                                            aria-labelledby="btn-append-to-body">
+                                            <li role="menuitem"><a class="select_district"
+                                                                   ng-click="clearDistrict()">All</a>
+                                            <li role="menuitem"
+                                                ng-repeat="item in districts | orderBy : 'districtName'"><a
+                                                    ng-click='selectDistrict(item)'>{{cropAggregate(item.districtName)}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <label>Select Block</label><br>
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <button id="btn-append-to-body-8" type="button"
+                                                class="btn btn-sm btn-default btn-block"
+                                                ng-disabled="disableBlock()" uib-dropdown-toggle
+                                                ng-class="{loading: blocksLoading}">
+								<span class="dropHeader">
+									<span class="dropdownTitle"
+                                          ng-if="block != null">{{cropAggregate(block.blockName)}}</span>
+									<span ng-if="block == null">All</span>
+									<span class="caret"></span>
+								</span>
+                                        </button>
+                                        <ul class="dropdown-menu small type-aggregate" uib-dropdown-menu role="menu"
+                                            aria-labelledby="btn-append-to-body">
+                                            <li role="menuitem"><a class="select_block" ng-click="clearBlock()">All</a>
+                                            <li role="menuitem" ng-repeat="item in blocks | orderBy : 'blockName'"><a
+                                                    ng-click='selectBlock(item)'>{{cropAggregate(item.blockName)}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-5">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label>Period Type</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body9" type="button"
+                                        class="btn btn-sm btn-default btn-block"
+                                        uib-dropdown-toggle ng-disabled="disablePeriodType()">
+								<span class="dropHeader">
+									<span>{{periodDisplayType}}</span>
+									<!--<span ng-if="reportDisplayType == null">All</span>-->
+									<span class="caret"></span>
+								</span>
+                                </button>
+                                <ul class="dropdown-menu report-type" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="name in periodType">
+                                        <a ng-click = "selectPeriodType(name)">
+                                            <span>{{name}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-8">
+                            <div class="row">
+                                <div class="form-group col-xs-6"
+                                     ng-hide=" periodDisplayType == '' || (report.name == 'Cumulative Summary Report')">
+                                    <label>{{periodTypeContent}}</label><br>
+                                    <p class="input-group" ng-disabled="disableDate()">
+                                        <input type="text" class="form-control input input-sm"
+                                               ng-change="changeStartDate()"
+                                               uib-datepicker-popup="{{dateFormat}}" ng-model="dt1"
+                                               is-open="popup2.opened" datepicker-options="datePickerOptions"
+                                               ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                                               ng-disabled='disableDate()' readonly/>
+                                        <span class="input-group-btn">
+							<button type="button" class="btn btn-sm btn-default" ng-click="open2()"
+                                    ng-disabled='disableDate()'><i class="glyphicon glyphicon-calendar"
+                                                                   ng-disabled="disableDate()"></i></button>
 							</span>
-						</p>
-						<ul  class="sundays-list"  tabindex="-1" ng-blur="onBlur()" focus="true" ng-if= " (reportCategory == 'Wash Academy Reports') &&  (report.name == 'Swachchagrahi Rejected Records' || report.name =='Mother Rejected Records' || report.name =='Child Rejected Records') && dt != null " ng-show = "sundaysTable">
-							<li class="sunday-list-header"><p>Sun</p></li>
+                                    </p>
+                                </div>
 
-							<li ng-repeat="date in sundays"   ng-click='closeSundaysTable(date)' class="sunday-list-items"><p>{{date}}</p></li>
+                                <div class="form-group col-xs-6"
+                                     ng-if="periodDisplayType == 'Custom Range' || (report.name == 'Cumulative Summary Report')">
+                                    <label>End Date</label><br>
+                                    <p class="input-group" ng-disabled="disableDate()">
+                                        <input type="text" class="form-control input input-sm"
+                                               ng-change="changeEndDate()"
+                                               uib-datepicker-popup="{{dateFormat}}" ng-model="dt2"
+                                               is-open="popup3.opened" datepicker-options="endDatePickerOptions"
+                                               ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                                               ng-disabled='disableDate()' readonly/>
+                                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-default" ng-click="open3()"
+                                    ng-disabled='disableDate()'><i class="glyphicon glyphicon-calendar"
+                                                                   ng-disabled='disableDate()'></i></button>
+							</span>
+                                    </p>
+                                </div>
 
-						</ul>
-					</div>
+                                <div class="form-group col-xs-6" ng-hide="periodDisplayType != 'Quarter'">
+                                    <label>Select Quarter</label><br>
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <button id="btn-append-to-body10" type="button"
+                                                class="btn btn-sm btn-default btn-block"
+                                                uib-dropdown-toggle>
+                        <span class="dropHeader">
+                            <span>{{quarterDisplayType}}</span>
+                            <span ng-if="reportDisplayType == null">All</span>
+                            <span class="caret"></span>
+                        </span>
+                                        </button>
+                                        <ul class="dropdown-menu report-type" uib-dropdown-menu role="menu"
+                                            aria-labelledby="btn-append-to-body">
+                                            <li role="menuitem" ng-repeat="name in quarterType">
+                                                <a ng-click='selectQuarterType(name)'>
+                                                    <span>{{name}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row" ng-if="isLineListingReport()">
+                <div class="col-xs-11">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label>Select Reports</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button" class="btn btn-sm btn-default btn-block"
+                                        ng-disabled='disableReport()' uib-dropdown-toggle>
+                                    <span class="dropHeader">
+                                        <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
+                                        <span ng-if="report.name == null">Select</span>
+                                        <span class="caret"></span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem" ng-repeat="item in reportNames">
+                                        <a class="select_report" ng-click='selectReport(item)'>
+                                            <img class='block' src="{{item.icon}}">
+                                            <span>{{item.name}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-					<div class="form-group col-xs-4" ng-if = "isAggregateReport()">
-						<label for="name">Select State</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-5" type="button" class="btn btn-sm btn-default" ng-disabled="disableStateIfNoLocation()" uib-dropdown-toggle ng-class="{loading: statesLoading}">
-								<span class="block">
-									<span>{{state.stateName}}</span>
-									<span ng-if="state == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem"><a class="select_state" ng-click="clearState()">ALL</a>
-								<li role="menuitem" ng-repeat="item in states | orderBy : 'stateName' | filter:serviceStarted"><a ng-click='selectState(item)'>{{item.stateName}}</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+                        <div class="col-xs-2">
+                            <label>{{datePickerContent}}</label><br>
+                            <p class="input-group" ng-disabled="disableDate()">
+                                <input type="text" class="form-control input input-sm" ng-change="changeMonth()"
+                                       uib-datepicker-popup="{{format}}"
+                                       ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions"
+                                       ng-required="true" close-text="Close"
+                                       alt-input-formats="altInputFormats" ng-disabled='disableDate()' readonly/>
+                                <span class="input-group-btn">
+                                             <button type="button" class="btn btn-sm btn-default btn-block"
+                                                     ng-click="open1()"
+                                                     ng-disabled='disableDate()'><i class="glyphicon glyphicon-calendar"
+                                                                                    ng-disabled="disableDate()"></i></button>
+                                             </span>
+                            </p>
+                            <ul class="sundays-list" tabindex="-1" ng-blur="onBlur()" focus="true"
+                                ng-if="(report.name == 'Academy Rejected Line-Listing Report') && dt != null "
+                                ng-show="sundaysTable">
+                                <li class="sunday-list-header"><p>Sun</p></li>
 
+                                <li ng-repeat="date in sundays" ng-click='closeSundaysTable(date)'
+                                    class="sunday-list-items"><p>{{date}}</p></li>
+                            </ul>
+                        </div>
 
-				<div class="col-xs-5 right" ng-if="!isCircleReport()">
-					<div class="form-group col-xs-4" ng-if = "!isAggregateReport()">
-						<label for="name">Select State</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-6" type="button" class="btn btn-sm btn-default" ng-disabled="disableState()" uib-dropdown-toggle ng-class="{loading: statesLoading}">
-								<span class="block">
-									<span>{{cropState(state.stateName)}}</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu non-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem" ng-repeat="item in states | orderBy : 'stateName' | filter:serviceStarted"><a ng-click='selectState(item)'>{{item.stateName}}</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="form-group col-xs-6" ng-if = "isAggregateReport()" >
-						<!-- <div> -->
-						<label for="email">Select District</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-7" type="button" class="btn btn-sm btn-default" ng-disabled="disableDistrict()" uib-dropdown-toggle ng-class="{loading: districtsLoading, autoSelected}">
-								<span class="block">
-									<span>{{cropAggregate(district.districtName)}}</span>
-									<span ng-if="district == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem"><a class="select_district" ng-click="clearDistrict()">ALL</a>
-								<li role="menuitem" ng-repeat="item in districts | orderBy : 'districtName'"><a ng-click='selectDistrict(item)'>{{cropAggregate(item.districtName)}}</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="form-group col-xs-4" ng-if = "!isAggregateReport()">
-					<!-- <div> -->
-						<label for="email">Select District</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-7" type="button" class="btn btn-sm btn-default" ng-disabled="disableDistrict()" uib-dropdown-toggle ng-class="{loading: districtsLoading, autoSelected}">
-								<span class="block">
-									<span>{{crop(district.districtName)}}</span>
-									<span ng-if="district == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu non-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem"><a class="select_district" ng-click="clearDistrict()">ALL</a>
-								<li role="menuitem" ng-repeat="item in districts | orderBy : 'districtName'"><a ng-click='selectDistrict(item)'>{{crop(item.districtName)}}</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="form-group col-xs-6" ng-if = "isAggregateReport()">
-						<label for="pwd">Select Block</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-8" type="button" class="btn btn-sm btn-default" ng-disabled="disableBlock()" uib-dropdown-toggle ng-class="{loading: blocksLoading}">
-								<span class="block">
-									<span>{{cropAggregate(block.blockName)}}</span>
-									<span ng-if="block == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu small type-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem"><a class="select_block"  ng-click="clearBlock()">ALL</a>
-								<li role="menuitem" ng-repeat="item in blocks | orderBy : 'blockName'"><a ng-click='selectBlock(item)'>{{cropAggregate(item.blockName)}}</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="form-group col-xs-4" ng-if = "!isAggregateReport()">
-						<label for="pwd">Select Block</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body-8" type="button" class="btn btn-sm btn-default" ng-disabled="disableBlock()" uib-dropdown-toggle ng-class="{loading: blocksLoading}">
-								<span class="block">
-									<span>{{crop(block.blockName)}}</span>
-									<span ng-if="block == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu small non-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem"><a class="select_block" ng-click="clearBlock()">ALL</a>
-								<li role="menuitem" ng-repeat="item in blocks | orderBy : 'blockName'"><a ng-click='selectBlock(item)'>{{crop(item.blockName)}}</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>	
-
-				<div class="col-xs-5 right" ng-if="isCircleReport()">
-					<div class="form-group col-xs-4">
-						<label for="name">Select Circle</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body" type="button" class="btn btn-sm btn-default" ng-disabled="disableCircle()" uib-dropdown-toggle ng-class="{loading: circlesLoading}">
+                        <div class="form-group col-xs-2"
+                             ng-if="isCircleReport()">
+                            <label>Select Circle</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body" type="button" class="btn btn-sm btn-default btn-block"
+                                        ng-disabled="disableCircle()" uib-dropdown-toggle
+                                        ng-class="{loading: circlesLoading}">
 								<span class="block">
 									<span>{{circle.circleName}}</span>
-									<!--<span ng-if="circle == null">ALL</span>-->
+                                    <!--<span ng-if="circle == null">ALL</span>-->
 									<span class="caret"></span>
 								</span>
-							</button>
-							<ul class="dropdown-menu small non-aggregate" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<!--<li role="menuitem"><a ng-click="clearCircle()">ALL</a>-->
-								<li role="menuitem" ng-repeat="item in circles | orderBy : 'circleName' | filter:serviceStarted"><a class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a></li>
-							</ul>
-						</div>
-					</div>
+                                </button>
+                                <ul class="dropdown-menu small non-aggregate" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <!--<li role="menuitem"><a ng-click="clearCircle()">ALL</a>-->
+                                    <li role="menuitem"
+                                        ng-repeat="item in circles | orderBy : 'circleName'"><a
+                                            class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-				</div>
+                        <div class="col-xs-2" ng-if="report.name !='Circle-Wise Anonymous Users Line-Listing Report'">
+                            <label>Select State</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body-13" type="button"
+                                        class="btn btn-sm btn-default btn-block"
+                                        ng-disabled="disableStateIfNoLocation()" uib-dropdown-toggle
+                                        ng-class="{loading: statesLoading}">
+                                    <span class="dropHeader">
+                                            <span class="dropdownTitle" ng-if="state != null">{{state.stateName}}</span>
+                                            <span ng-if="state == null">All</span>
+                                            <span class="caret"></span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem"><a class="select_state" ng-click="clearState()">All</a>
+                                    <li role="menuitem"
+                                        ng-repeat="item in states | orderBy : 'stateName'">
+                                        <a
+                                                ng-click='selectState(item)'>{{item.stateName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
 
-			</div>
-
-			<div class="row" ng-hide= "!isAggregateReport() ">
-				<div class="col-xs-12 left">
-
-					<div class="form-group col-xs-2" ng-hide = "report.name == 'MA Cumulative Summary' ">
-						<label for="name">Period Type</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body9" type="button" class="btn btn-sm btn-default"  uib-dropdown-toggle >
-								<span class="block">
-									<span>{{periodDisplayType}}</span>
-									<span ng-if="reportDisplayType == null">ALL</span>
+                        <div class="col-xs-2" ng-if="report.name != 'Circle-Wise Anonymous Users Line-Listing Report'">
+                            <label>Select District</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body-14" type="button"
+                                        class="btn btn-sm btn-default btn-block"
+                                        ng-disabled="disableDistrict()" uib-dropdown-toggle
+                                        ng-class="{loading: districtsLoading, autoSelected}">
+								<span class="dropHeader">
+									<span class="dropdownTitle" ng-if="district != null">{{cropAggregate(district.districtName)}}</span>
+									<span ng-if="district == null">All</span>
 									<span class="caret"></span>
 								</span>
-							</button>
-							<ul class="dropdown-menu report-type" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem" ng-repeat="name in periodType">
-									<a ng-click='selectPeriodType(name)'>
-										<span>{{name}}</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+                                </button>
+                                <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem"><a class="select_district"
+                                                           ng-click="clearDistrict()">All</a>
+                                    <li role="menuitem"
+                                        ng-repeat="item in districts | orderBy : 'districtName'"><a
+                                            ng-click='selectDistrict(item)'>{{cropAggregate(item.districtName)}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-
-                    <div class="form-group col-xs-2" ng-hide = " periodDisplayType == '' || (report.name == 'MA Cumulative Summary' ) ">
-                        <label>{{periodTypeContent}}</label><br>
-                        <p class="input-group" ng-disabled="disableDate()">
-                            <input type="text" class="form-control input input-sm" uib-datepicker-popup="{{dateFormat}}" ng-model="dt1" is-open="popup2.opened" datepicker-options="datePickerOptions"  ng-required = "true" close-text="Close" alt-input-formats="altInputFormats" ng-disabled='disableDate()' readonly />
-                            <span class="input-group-btn">
-							<button type="button" class="btn btn-sm btn-default" ng-click="open2()"  ng-disabled='disableDate()' ><i class="glyphicon glyphicon-calendar" ng-disabled="disableDate()" ></i></button>
-							</span>
-                        </p>
+                        <div class="col-xs-2" ng-if="report.name != 'Circle-Wise Anonymous Users Line-Listing Report'">
+                            <label>Select Block</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="btn-append-to-body-15" type="button"
+                                        class="btn btn-sm btn-default btn-block"
+                                        ng-disabled="disableBlock()" uib-dropdown-toggle
+                                        ng-class="{loading: blocksLoading}">
+								<span class="dropHeader">
+									<span>{{cropAggregate(block.blockName)}}</span>
+									<span ng-if="block == null">All</span>
+									<span class="caret"></span>
+								</span>
+                                </button>
+                                <ul class="dropdown-menu small type-aggregate" uib-dropdown-menu role="menu"
+                                    aria-labelledby="btn-append-to-body">
+                                    <li role="menuitem"><a class="select_block" ng-click="clearBlock()">All</a>
+                                    <li role="menuitem" ng-repeat="item in blocks | orderBy : 'blockName'"><a
+                                            ng-click='selectBlock(item)'>{{cropAggregate(item.blockName)}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="form-group col-xs-2" ng-hide = " (report.name != 'MA Cumulative Summary' && periodDisplayType != 'Custom Range')">
-                        <label>End Date</label><br>
-                        <p class="input-group" ng-disabled="disableDate()">
-                            <input type="text" class="form-control input input-sm" uib-datepicker-popup="{{dateFormat}}" ng-model="dt2" is-open="popup3.opened" datepicker-options="endDatePickerOptions"  ng-required= "true" close-text="Close" alt-input-formats="altInputFormats" ng-disabled='disableDate()' readonly />
-                            <span class="input-group-btn">
-                            <button type="button" class="btn btn-sm btn-default" ng-click="open3()" ng-disabled='disableDate()'><i class="glyphicon glyphicon-calendar" ng-disabled='disableDate()'></i></button>
-							</span>
-                        </p>
-                    </div>
+            <div class="row">
+                <div class="form-group col-xs-3 aggregate-submit">
+                    <button class="btn btn-sm btn-primary" ng-click="getReport()" id="submitButton">Submit</button>
+                    <button class="btn btn-sm btn-primary" ng-click="reset()" id="resetButton">Reset</button>
+                </div>
+            </div>
 
-					<div class="form-group col-xs-2" ng-hide = "periodDisplayType != 'Quarter'">
-						<label for="name">Select Quarter</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button id="btn-append-to-body10" type="button" class="btn btn-sm btn-default"  uib-dropdown-toggle >
-								<span class="block">
-									<span>{{quarterDisplayType}}</span>
-									<span ng-if="reportDisplayType == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu report-type" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li role="menuitem" ng-repeat="name in quarterType">
-									<a ng-click='selectQuarterType(name)'>
-										<span>{{name}}</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="form-group col-xs-2">
-						<label for="name">Report Type</label><br>
-						<div class="btn-group" uib-dropdown dropdown-append-to-body>
-							<button ng-disabled = "true"  id="btn-append-to-body1" type="button" class="btn btn-sm btn-default"  uib-dropdown-toggle >
-								<span class="block">
-									<span>{{reportDisplayType}}</span>
-									<span ng-if="reportDisplayType == null">ALL</span>
-									<span class="caret"></span>
-								</span>
-							</button>
-							<ul class="dropdown-menu report-type" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-								<li ng-click ="isClickAllowed(name)" role="menuitem" ng-repeat="name in reportTypes">
-									<a ng-click='selectReportType(name)'>
-										<span>{{name}}</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="form-group col-xs-2 aggregate-submit">
-						<button class="btn btn-sm btn-primary" ng-click="getReport()">Submit</button>
-						<button class="btn btn-sm btn-primary" ng-click="reset()">Reset</button>
-					</div>
-				</div>
-			</div>
-
-            <!--<div class="row">-->
-                <!--<div class="form-group col-xs-4">-->
-                    <!--<label>final date picker</label><br>-->
-                    <!--<p class="input-group" ng-disabled="disableDate()">-->
-                        <!--<input type="text" class="form-control input input-sm" uib-datepicker-popup="{{finalFormat}}" ng-model="dt3" is-open="popup4.opened" datepicker-options="finalDateOptions" datepicker-mode="'date'" ng-required =="true" close-text="Close" alt-input-formats="altInputFormats" ng-disabled='disableDate()' readonly />-->
-                        <!--<span class="input-group-btn">-->
-							<!--<button type="button" class="btn btn-sm btn-default" ng-click="open4()"  ng-disabled='disableDate()' ><i class="glyphicon glyphicon-calendar" ng-disabled="disableDate()" ></i></button>-->
-							<!--</span>-->
-                    <!--</p>-->
-
-                <!--</div>-->
-            <!--</div>-->
-
-
-			<div class="row" ng-hide= "isAggregateReport() ">
-				<div class="form-group col-xs-4">
-					<button class="btn btn-sm btn-primary" ng-click="getReport()">Submit</button>
-					<button class="btn btn-sm btn-primary" ng-click="reset()">Reset</button>
-				</div>
-			</div>
-		</form>
-	</div>
-
-
-	<div class="block reports-body" ng-if="hideGrid && showEmptyData">
-		<p>{{content}}</p>
-	</div>
-
-    <div class="nav">
-	<ul class="breadcrumb aggregate-bread-crumb"  ng-hide = "hideGrid ">
-		<li ng-repeat="item in reportBreadCrumbData">
-			<a  ng-click = "drillDownData(item.locationId,item.locationType)" ng-class="{'active': item.status }" >{{item.locationName}}</a>
-		</li>
-	</ul>
+        </form>
     </div>
 
-    <div class="reportheader" ng-hide="hideGrid">
-        <p class="ng-binding" style="display: inline-block;"> {{reportCategory}} - {{report.name}}</p>
-		<i class="glyphicon glyphicon-calendar aggregate-calender"> <span class="calender-date">{{ headerFromDate | date:'dd/MM/y'}}</span> <span class="calender-date" style="font-size: 13px" ng-if=" report.name == 'MA Cumulative Summary' ">Up</span><span class="calender-date">to</span> <span class="calender-date">{{headerToDate | date:'dd/MM/y'}}</span></i>
+
+    <div class="block reports-body" ng-if="hideGrid && showEmptyData">
+        <p>{{content}}</p>
     </div>
 
-	<div class="reportheader matrixHeader" ng-hide="hideGrid ">
-		<p class="ng-binding" style="display: inline-block;">{{matrixContent1}}</p>
-	</div>
+    <div class="reportHeader" ng-hide="hideGrid">
+        <p class="ng-binding">{{report.name}}</p>
+    </div>
 
-	<div class="row">
-		<div class="block reports-body loading" ng-if="waiting && isAggregateReport()">
-			<img src="images/pageloader.gif">
-			<p>Aggregate Report is being generated...</p>
-		</div>
-		<div >
-			<div id="grid1" ui-grid=gridOptions class="grid" ng-if ="!hideGrid && !waiting" ui-grid-infinite-scroll></div>
-		</div>
-	</div>
+    <div ng-hide="hideGrid">
+        <ul class="breadcrumb aggregate-bread-crumb">
+            <li ng-repeat="item in reportBreadCrumbData">
+                <a ng-click="drillDownData(item.locationId,item.locationType,item.locationName)"
+                   ng-class="{'active': item.status }">{{item.locationName}}</a>
+            </li>
+        </ul>
+    </div>
 
-	<div class="reportheader matrixHeader" ng-hide="hideMessageMatrix ">
-		<p class="ng-binding" style="display: inline-block;">{{matrixContent2}}</p>
-	</div>
+    <div class="row" ng-hide="hideGrid" id="levelAndIcons">
+        <div class="col-xs-3">
+            <b><p ng-if="reportBreadCrumbData.length>0" id="lastBread">{{lastBread(reportBreadCrumbData)}} Level Data</p></b>
+        </div>
 
-	<div class="row">
-		<div class="block reports-body loading" ng-if="waiting ">
-			<img src="images/pageloader.gif">
-			<p>Aggregate Report is being generated...</p>
-		</div>
-		<div >
-			<div id="grid2" ui-grid=gridOptions_Message_Matrix class="grid" ng-if ="!hideMessageMatrix && !waiting" ui-grid-infinite-scroll></div>
-		</div>
-	</div>
+        <div class="col-xs-6"></div>
 
-	<div class="block reports-body loading" ng-if="waiting && !isAggregateReport()">
-		<img src="images/pageloader.gif">
-		<p>Report is being generated...</p>
-	</div>
+        <div class="col-xs-3">
+            <div class="row">
+                <div class="col-xs-8 reportDate">
+                    <i class=""><img src="images/date.png"><span
+                            class="calender-date">{{ headerFromDate | date:'dd/MM/y'}}</span>
+                        <span class="calender-date" style="font-size: 13px"
+                              ng-if=" report.name == 'Cumulative Summary Report' ">up</span>
+                        <span class="calender-date">to</span>
+                        <span class="calender-date">{{headerToDate | date:'dd/MM/y'}}</span>
+                    </i>
+                </div>
+                <div class="col-xs-4">
 
-	<div class="block reports-body" ng-if="!waiting && status == 'success'">
-		<p>The following report has been generated: </p>
-		<p>{{fileName}}</p>
-		<span ng-click="clearFile()">
-			<a id="downloadReportLink" href="{{downloadReportUrl}}">Click here to download. <img src="images/export3.png"></a>
+                    <img src="images/csv.png" ng-click="exportCSV(report.name)">
+                    <img src="images/pdf.png" ng-click="exportPdf(report.name)">
+                    <img src="images/excel.png" ng-click="exportExcel(report.name)">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="reportheader matrixHeader" ng-hide="hideGrid">
+        <p class="ng-binding" style="display: inline-block;">{{matrixContent1}}</p>
+    </div>
+
+    <div class="row">
+        <div class="block reports-body loading" ng-if="waiting && isAggregateReport()">
+            <img src="images/pageloader.gif">
+            <p>Aggregate Report is being generated...</p>
+        </div>
+        <div>
+            <div id="grid1" ui-grid=gridOptions ui-grid-exporter class="grid" ng-if="!hideGrid && !waiting"
+                 ui-grid-infinite-scroll>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="reportheader matrixHeader" ng-hide="hideMessageMatrix ">
+        <p class="ng-binding" style="display: inline-block;">{{matrixContent2}}</p>
+    </div>
+
+    <div class="row">
+        <div class="block reports-body loading" ng-if="waiting ">
+            <img src="images/pageloader.gif">
+            <p>Aggregate Report is being generated...</p>
+        </div>
+        <div>
+            <div id="grid2" ui-grid=gridOptions_Message_Matrix class="grid" ng-if="!hideMessageMatrix && !waiting"
+                 ui-grid-infinite-scroll>
+
+            </div>
+        </div>
+    </div>-->
+
+    <div class="block reports-body loading" ng-if="waiting && !isAggregateReport()">
+        <img src="images/pageloader.gif">
+        <p>Report is being generated...</p>
+    </div>
+
+    <div class="block reports-body" ng-if="!waiting && status == 'success'">
+        <p>The following report has been generated: </p>
+        <p>{{fileName}}</p>
+        <span ng-click="clearFile()">
+			<a id="downloadReportLink" href="{{downloadReportUrl}}">Click here to download. <img
+                    src="images/export3.png"></a>
 		</span>
+    </div>
 
-	</div>
+    <div class="block reports-body" ng-if="!waiting && status == 'fail'">
+        <p>You do not have access to this report.</p>
+        <p>{{fileName}}</p>
 
-	<div class="block reports-body" ng-if="!waiting && status == 'fail'">
-		<p>You do not have access to this report.</p>
-		<p>{{fileName}}</p>
-
-	</div>
+    </div>
 </div>
