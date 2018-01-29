@@ -1,18 +1,28 @@
 package com.beehyv.wareporting.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "languages")
+@Table(name = "dim_language")
 public class Languages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "language_id", columnDefinition = "TINYINT(4)")
+    @Column(name = "id", columnDefinition = "TINYINT(4)")
     private Integer languageId;
 
-    @Column(name = "language", columnDefinition = "VARCHAR(45)")
+    @Column(name = "name", columnDefinition = "VARCHAR(45)")
     private String language;
+
+    @Column(name = "code", columnDefinition = "BIGINT(20)")
+    private String code;
+
+    @Column(name = "creation_date", columnDefinition = "DATETIME")
+    private Date creationDate;
+
+    @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
+    private Date lastModifiedDate;
 
     public Integer getLanguageId() {
         return languageId;
@@ -28,5 +38,29 @@ public class Languages {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

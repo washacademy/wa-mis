@@ -244,7 +244,7 @@
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;UPDATE ETL_info_table SET ETL_info_table.last_etl_time = (SELECT MAX(last_modified)FROM &#xA; ma_anonymous_users),&#xA;ETL_info_table.record_count=(select count(*) from ma_anonymous_users)&#xA;WHERE ETL_info_table.table_id = 43&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;UPDATE ETL_info_table SET ETL_info_table.last_etl_time = (SELECT MAX(last_modified)FROM &#xA; wa_anonymous_users),&#xA;ETL_info_table.record_count=(select count(*) from wa_anonymous_users)&#xA;WHERE ETL_info_table.table_id = 43&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
