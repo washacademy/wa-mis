@@ -1,7 +1,7 @@
 (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("ReportsController", ['$scope', '$state', '$http', 'UserFormFactory','$window','$q','uiGridConstants', function($scope, $state, $http, UserFormFactory,$window,$q,uiGridConstants){
+		.controller("ReportsController", ['$scope', '$state', '$http', 'UserFormFactory','$window','$q','uiGridConstants','uiGridExporterConstants','uiGridExporterService', function($scope, $state, $http, UserFormFactory,$window,$q,uiGridConstants,uiGridExporterConstants,uiGridExporterService){
 
 			UserFormFactory.isLoggedIn()
 			.then(function(result){
@@ -13,7 +13,7 @@
 					.then(function(result){
 						UserFormFactory.setCurrentUser(result.data);
 
-						$scope.getStatesByService(null);
+						$scope.getStates();
 					})
 				}
 			})
@@ -29,9 +29,10 @@
 			$scope.reportDisplayType = 'TABLE';
 			$scope.gridOptions = {};
 			$scope.gridOptions1 = {};
-			$scope.MA_Performance_Column_Definitions = [];
-			$scope.MA_Cumulative_Column_Definitions = [];
-			$scope.MA_Subscriber_Column_Definitions = [];
+			$scope.WA_Performance_Column_Definitions = [];
+			$scope.WA_Cumulative_Column_Definitions = [];
+			$scope.WA_Subscriber_Column_Definitions = [];
+			$scope.WA_Anonymous_Column_Definitions = [];
 			$scope.hideGrid = true;
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
@@ -61,6 +62,28 @@
             $scope.open2 = function() {
                 $scope.popup2.opened = true;
             };
+
+            $scope.open3 = function() {
+                 $scope.popup3.opened = true;
+            };
+
+            $scope.changeStartDate = function() {
+                $scope.dt1=this.dt1;
+            };
+
+            $scope.changeEndDate = function() {
+                $scope.dt2=this.dt2;
+            };
+
+            $scope.changeMonth = function() {
+                $scope.dt=this.dt;
+            };
+
+            $scope.clearDates = function() {
+                $scope.dt = null;
+                $scope.dt1 = null;
+                $scope.dt2 = null;
+             };
 
             $scope.open3 = function() {
                 $scope.popup3.opened = true;
@@ -101,6 +124,10 @@
 			$scope.disableCircle = function(){
 				return $scope.circles[0]  == null || $scope.userHasOneCircle();
 			}
+
+			$scope.disablePeriodType = function(){
+            	return ($scope.report == null) || (($scope.report!=null) && ($scope.report.name == 'Cumulative Summary Report'));
+            }
 
 
 			$scope.userHasState = function(){
@@ -155,7 +182,7 @@
                 if($scope.periodDisplayType == 'Month'){
                     $scope.periodTypeContent = "Select month";
                     $scope.dateFormat = "yyyy-MM";
-                     $scope.datePickerOptions.minMode = '';
+                    $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'month';
                     $scope.datePickerOptions.minMode ='month';
                     $scope.datePickerOptions.maxDate = new Date().setMonth(new Date().getMonth() -1);
@@ -204,8 +231,8 @@
 				$scope.showEmptyData = false;
 				$scope.clearFile();
 
-				$scope.getStatesByService(item.service);
-				$scope.getCirclesByService(item.service);
+				$scope.getStates();
+				$scope.getCircles();
 			}
 
 			$scope.selectReport = function(item){
@@ -223,6 +250,11 @@
 				$scope.clearCircle();
 				$scope.clearFile();
 				$scope.dt = null;
+				$scope.dt1 = null;
+                $scope.dt2 = null;
+                $scope.changeStartDate();
+                $scope.changeEndDate();
+                $scope.setDate();
 				$scope.setDateOptions();
 				if($scope.userHasOneCircle()){
                 	$scope.selectCircle($scope.circles[0]);
@@ -240,11 +272,12 @@
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
-                if($scope.report.name == 'MA Cumulative Summary'){
+                if($scope.report.name == 'Cumulative Summary Report'){
                     $scope.dateFormat = 'yyyy-MM-dd';
                 }
-
-			}
+                $scope.getCircles();
+                $scope.getStates();
+            }
 
 			$scope.crop = function(name){
 				if(name == null){
@@ -278,57 +311,36 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && $scope.report.reportEnum == 'MA_Anonymous_Users';
+				return $scope.report != null && ($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users');
 			}
 
             $scope.isAggregateReport = function(){
             	return $scope.report != null && $scope.report.icon == 'images/drop-down-2.png';
             }
 
+            $scope.isLineListingReport = function(){
+                return $scope.report != null && $scope.report.icon == 'images/drop-down-3.png';
+            }
+
 			$scope.reportTypes = ['TABLE'];
 
-			$scope.getStatesByService = function(service){
-			    $scope.statesLoading = true;
-			    $scope.states = [];
-			    $scope.clearState();
-                if(service == null){
-                    return UserFormFactory.getStates()
-                    .then(function(result){
-                        $scope.states = result.data;
-                        $scope.districts = [];
-                        $scope.blocks = [];
-                        $scope.statesLoading = false;
+			$scope.getStates = function(){
+            	$scope.statesLoading = true;
+            	$scope.states = [];
+            	$scope.clearState();
+                return UserFormFactory.getStates()
+                .then(function(result){
+                $scope.states = result.data;
+                                    $scope.districts = [];
+                                    $scope.blocks = [];
+                                    $scope.statesLoading = false;
 
-                        if($scope.userHasState()){
-                            $scope.selectState($scope.states[0]);
-                        }
-                    });
-                }
-                else{
-                    return UserFormFactory.getStatesByService(service)
-                    .then(function(result){
-                        $scope.states = result.data;
-                        $scope.districts = [];
-                        $scope.blocks = [];
-                        $scope.statesLoading = false;
+                                    if($scope.userHasState()){
+                                        $scope.selectState($scope.states[0]);
+                                    }
+                                });
 
-                        if($scope.userHasState()){
-                            $scope.selectState($scope.states[0]);
-                        }
-                    });
-                }
-//				return returnFactory()
-//                    .then(function(result){
-//                        $scope.states = result.data;
-//                        $scope.districts = [];
-//                        $scope.blocks = [];
-//                        $scope.statesLoading = false;
-//
-//                        if($scope.userHasState()){
-//                            $scope.selectState($scope.states[0]);
-//                        }
-//                    });
-			}
+            }
 			
 			$scope.getDistricts = function(stateId){
 				$scope.districtsLoading = true;
@@ -357,7 +369,21 @@
 				});
 			}
 
-			$scope.getCirclesByService = function(service){
+			$scope.getCircles = function(){
+            				$scope.circlesLoading = true;
+            				return UserFormFactory.getCircles()
+            				.then(function(result){
+            					$scope.circles = result.data;
+
+            					$scope.circlesLoading = false;
+
+            					if($scope.userHasOneCircle()){
+            						$scope.selectCircle($scope.circles[0]);
+            					}
+            				});
+            }
+
+			/*$scope.getCirclesByService = function(service){
 				$scope.circlesLoading = true;
 				return UserFormFactory.getCirclesByService(service)
 				.then(function(result){
@@ -369,7 +395,7 @@
 						$scope.selectCircle($scope.circles[0]);
 					}
 				});
-			}
+			}*/
 			$scope.isClickAllowed=function(name){
 			    if(name == 'BAR GRAPH' || name == 'PIE CHART'){
 			        return false;
@@ -379,6 +405,18 @@
 			    }
 			}
 
+			$scope.minModePick = function(){
+            				    if(($scope.periodDisplayType == 'Year')||($scope.periodDisplayType == 'Quarter'))
+                                {
+                                    return "year";
+                                }
+                                else if($scope.periodDisplayType == 'Month')
+                                {
+                                    return "month";
+                                }
+                                else return "day";
+            }
+
 
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
@@ -387,34 +425,20 @@
                 else{
                     var minDate = new Date(2015, 09, 01);
                 }
-				if($scope.report != null && $scope.report.service == 'M'){
+				if($scope.report != null){
 					minDate = new Date(2015, 10, 01);
 				}
-				if($scope.report != null && $scope.report.reportEnum == 'MA_Cumulative_Inactive_Users'){
+				if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Inactive_Users'){
                 	minDate = new Date(2017, 04, 30);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'MA_Anonymous_Users'){
+                if($scope.report != null && $scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users'){
                     minDate = new Date(2017, 04, 30);
                 }
-//                if($scope.report != null && $scope.report.reportEnum == 'Kilkari_Low_Usage'){
-//                    minDate = new Date(2017, 03, 30);
-//                }
-//                if($scope.report != null && $scope.report.reportEnum == 'Kilkari_Low_Listenership_Deactivation'){
-//                    minDate = new Date(2017, 08, 30);
-//                }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
-                if($scope.report != null && $scope.report.reportEnum == 'MA_Swachchagrahi_Import_Rejects'){
+                if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
                     minDate = new Date(2017, 10, 01);
-                 }
-//                 if($scope.report != null && $scope.report.reportEnum == 'Kilkari_Mother_Import_Rejects'){
-//                    minDate = new Date(2017, 10, 01);
-//                 }
-//                 if($scope.report != null && $scope.report.reportEnum == 'Kilkari_Child_Import_Rejects'){
-//                    minDate = new Date(2017, 10, 01);
-//                 }
-//                var minDate = $scope.report.minDate;
-//                console.log(minDate);
+                }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
 //					console.log($scope.state.serviceStartDate);
@@ -425,8 +449,8 @@
 //					console.log(minDate);
 				}
 
-
                 $scope.datePickerOptions = {
+                    //minMode: 'year',
                     formatYear: 'yyyy',
                     maxDate: new Date(),
                     minDate: minDate,
@@ -579,7 +603,7 @@
 
 			$scope.getReport = function(){
 
-                if($scope.reportCategory == null){
+                /*if($scope.reportCategory == null){
                     if(UserFormFactory.isInternetExplorer()){
                         alert("Please select a report category")
                          return;
@@ -588,7 +612,8 @@
                         UserFormFactory.showAlert("Please select a report category")
                         return;
                     }
-                }
+                }*/
+
 				if($scope.report == null){
 				    if(UserFormFactory.isInternetExplorer()){
                         alert("Please select a report")
@@ -599,7 +624,7 @@
                         return;
                     }
 				}
-				if($scope.dt == null && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
+				/*if($scope.dt == null && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
 					if(UserFormFactory.isInternetExplorer()){
                         alert("Please select a week")
                          return;
@@ -609,8 +634,9 @@
                         return;
                     }
 
-				}
-				else if($scope.dt == null && (!$scope.isAggregateReport() )){
+				}*/
+
+				if($scope.dt == null && (!$scope.isAggregateReport() )){
                 	if(UserFormFactory.isInternetExplorer()){
                          alert("Please select a month")
                          return;
@@ -621,7 +647,7 @@
                     }
 				}
 				else if($scope.periodDisplayType == '' && ($scope.isAggregateReport() )
-				&& ($scope.report.name != 'MA Cumulative Summary')){
+				&& ($scope.report.name != 'Cumulative Summary Report')){
                    if(UserFormFactory.isInternetExplorer()){
                        alert("Please select a period type")
                        return;
@@ -631,7 +657,7 @@
                        return;
                    }
                 }
-				else if($scope.dt1 == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType != 'Custom Range' && $scope.periodDisplayType != 'Quarter' && $scope.report.name != 'MA Cumulative Summary') ){
+				else if($scope.dt1 == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType != 'Custom Range' && ($scope.periodDisplayType != 'Quarter') && ($scope.report.name != 'Cumulative Summary Report')) ){
                     if(UserFormFactory.isInternetExplorer()){
                           alert("Please select a " +  $scope.periodDisplayType)
                           return;
@@ -663,7 +689,7 @@
                    }
 
                 }
-                else if($scope.dt2 == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'MA Cumulative Summary' )){
+                else if($scope.dt2 == null && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'Cumulative Summary Report')){
                    if(UserFormFactory.isInternetExplorer()){
                          alert("Please select an end date")
                          return;
@@ -704,8 +730,7 @@
 			    reportRequest.stateId = 0;
 			    reportRequest.districtId = 0;
 			    reportRequest.blockId = 0;
-
-			    reportRequest.circleId = 0;
+                reportRequest.circleId = 0;
 			    
 			    if(!$scope.isCircleReport() ){
 
@@ -755,7 +780,7 @@
                     }
 		    	}
 
-		    	if(($scope.reportCategory == 'Wash Academy Reports') &&  (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.format == 'yyyy-MM'){
+		    	/*if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.format == 'yyyy-MM'){
                    if(UserFormFactory.isInternetExplorer()){
                          alert("Please select a week")
                          return;
@@ -764,7 +789,7 @@
                      UserFormFactory.showAlert("Please select a week")
                      return;
                    }
-		    	}
+		    	}*/
 
                 if(!$scope.isAggregateReport())
                 {
@@ -822,8 +847,7 @@
 					headers : {'Content-Type': 'application/json'} 
 				})
 				.then(function(result){
-                    console.log(result);
-					if(!$scope.isAggregateReport()){
+					if($scope.isLineListingReport()){
 					    $scope.waiting = false;
                         $scope.status = result.data.status;
                         if($scope.status == 'success'){
@@ -832,6 +856,7 @@
                             angular.element('#downloadReportLink').trigger('click');
                         }
                         if($scope.status == 'fail'){
+                        console.log("failed")
 
                         }
 
@@ -840,23 +865,80 @@
 					if($scope.isAggregateReport()){
 					    $scope.waiting = false;
 
-					    if($scope.report.reportEnum == 'MA_Cumulative_Summary'){
-					        $scope.gridOptions1.columnDefs = $scope.MA_Cumulative_Column_Definitions;
+					    if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+					        $scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
 					    }
-					    else if($scope.report.reportEnum == 'MA_Performance'){
-					        $scope.gridOptions1.columnDefs = $scope.MA_Performance_Column_Definitions;
+					    else if($scope.report.reportEnum == 'WA_Performance_Report'){
+					        $scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
 					    }
-					    else if($scope.report.reportEnum == 'MA_Subscriber')
-					        $scope.gridOptions1.columnDefs = $scope.MA_Subscriber_Column_Definitions;
+					    else if($scope.report.reportEnum == 'WA_Subscriber_Report'){
+					        $scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
+					    }
+					    else if($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'){
+                            $scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
+                        }
+
 
                          $scope.gridOptions = $scope.gridOptions1;
                          $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
+                         $scope.gridOptions.data = result.data.tableData;
+                         $scope.breadCrumbData = result.data.breadCrumbData;
+                         $scope.hideGrid = false;
 
                     }
                 }
 
 				)
 			}
+
+			$scope.exportCSV = function(reportName){
+                 var exportService = uiGridExporterService;
+                 var grid = $scope.gridApi.grid;
+                 var fileName = reportName.split(" ").join("")+ ".csv";
+
+                 exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
+                     var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
+                     var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
+                     var csvContent = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
+                         exportService.downloadFile(fileName, csvContent, grid.options.exporterOlderExcelCompatibility);
+                   });
+            }
+
+            /*$scope.renderPdf = function(){
+                var exportService = uiGridExporterService;
+                var grid = $scope.gridApi.grid;
+                exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
+                  });
+                  var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
+                  var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
+
+                return exportService.renderAsPdf(grid,exportColumnHeaders,exportData);
+
+            }*/
+
+            $scope.exportPdf = function(reportName) {
+                var exportService = uiGridExporterService;
+                var grid = $scope.gridApi.grid;
+                var fileName = reportName.split(" ").join("")+ ".pdf";
+                var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+
+                //exportService.pdfExport(uiGridExporterConstants.VISIBLE,uiGridExporterConstants.ALL);
+
+                 pdfMake.createPdf(docDefinition).download(fileName);
+            }
+
+            $scope.exportExcel = function(reportName){
+                             var exportService = uiGridExporterService;
+                             var grid = $scope.gridApi.grid;
+                             var fileName = reportName.split(" ").join("")+ ".xlsx";
+
+                            exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
+                                 var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
+                                 var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
+                                 var content = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
+                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
+                               });
+                        }
 
 			$scope.getReportUrl = backend_root + 'wa/user/getReport';
 			$scope.$watch('pathName', function(){
@@ -910,7 +992,7 @@
 			// 	$scope.dt = new Date();
 			// };
 
-			$scope.clear = function() {
+			$scope.clearMonth = function() {
 				$scope.dt = null;
 			};
 
@@ -935,7 +1017,7 @@
 				var currentDate = new Date();
 
 				console.log(currentDate.getMonth() + " " + currentDate.getDate() + " " +currentDate.getFullYear());
-				if(($scope.reportCategory == 'Wash Academy Reports') &&  (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
+				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
 				    if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2017 && $scope.getSundays(currentDate) > 0){
 				        $scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth());
 				    }
@@ -957,7 +1039,7 @@
 
 				}
 
-				if(($scope.reportCategory == 'Wash Academy Reports') &&  (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
+				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
                     $scope.getSundays($scope.dt);
                     $scope.sundaysTable = true;
 
@@ -1082,13 +1164,29 @@
 
             $scope.gridOptions1 = {
                 enableSorting: true,
-                 showColumnFooter: true,
+                showColumnFooter: true,
                 enableVerticalScrollbar : 0,
                 excessRows :1000,
                 onRegisterApi: function(gridApi){
                       $scope.gridApi = gridApi;
                     },
-              };
+               /* exporterPdfDefaultStyle: {fontSize: 9},
+                exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+                exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+                exporterPdfHeader: { text: "Header", style: 'headerStyle' },
+                exporterPdfFooter: function ( currentPage, pageCount ) {
+                      return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+                },
+                exporterPdfCustomFormatter: function ( docDefinition ) {
+                      docDefinition.styles.headerStyle = { fontSize: 22, bold: true };
+                      docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+                      return docDefinition;
+                },
+                    exporterPdfOrientation: 'portrait',
+                    exporterPdfPageSize: 'LETTER',
+                    exporterPdfMaxGridWidth: 500,
+                    exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location"))*/
+                };
 
             $scope.gridOptions2 = {
                 enableSorting: true,
@@ -1096,56 +1194,74 @@
                 excessRows :1000,
                 onRegisterApi: function(gridApi){
                       $scope.gridApi = gridApi;
-                    },
+                    }
               };
 
-            $scope.MA_Cumulative_Column_Definitions =[
+            $scope.WA_Cumulative_Column_Definitions =[
                                                        {name: 'S No.', displayName: 'S No.',width:"6%",enableSorting: false, cellTemplate: '<p class="serial-no" >{{rowRenderIndex+1}}</p>'},
                                                        { field: 'locationName', footerCellTemplate: '<div class="ui-grid-cell-contents" >Total</div>', sort: { direction: 'asc', priority: 0 },
-                                                         cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}"  ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType)">{{ COL_FIELD }}</a>',
+                                                         cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}"  ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
                                                          width: '12%', enableHiding: false,
                                                        },
-                                                       { field: 'swachchagrahisRegistered', displayName : 'No of Registered SWACHCHAGRAHI', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisStarted', displayName : ' No of SWACHCHAGRAHI Started Course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisNotStarted', displayName : ' No of SWACHCHAGRAHI Not Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisCompleted' , displayName : 'No of SWACHCHAGRAHI Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
-                                                       { field: 'swachchagrahisFailed' , displayName : 'No of SWACHCHAGRAHI who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisRegistered', displayName : 'No of Registered Swachchagrahi', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisStarted', displayName : 'Swachchagrahi Started Course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisNotStarted', displayName : 'Swachchagrahi Not Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisCompleted' , displayName : 'Swachchagrahi Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
+                                                       { field: 'swachchagrahisFailed' , displayName : 'Swachchagrahi who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                        { field: 'notStartedpercentage' , displayName : '% Not Started Course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[4].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
                                                        { field: 'completedPercentage' , displayName : '% Successfully Completed', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[5].getAggregationValue()/grid.columns[2].getAggregationValue())*100 | number:4}}</div>', width:"*", enableHiding: false},
                                                        { field: 'failedpercentage' , displayName : '% Failed the course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[6].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
-                                                      ],
+                                                      ]
 
 
-            $scope.MA_Performance_Column_Definitions =[
+
+            $scope.WA_Performance_Column_Definitions =[
                                                          {name: 'S No.', displayName: 'S No.',width:"6%", enableSorting: false, cellTemplate: '<p class="serial-no">{{rowRenderIndex+1}}</p>'},
                                                          { field: 'locationName', footerCellTemplate: '<div class="ui-grid-cell-contents">Total</div>',sort: { direction: 'asc', priority: 0 },
-                                                            cellTemplate:'<a class=" btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType)">{{ COL_FIELD }}</a>',
+                                                            cellTemplate:'<a class=" btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
                                                             enableHiding: false, width:"12%",
 
                                                          },
-                                                         { field: 'swachchagrahisStarted', displayName: 'Number of SWACHCHAGRAHI Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
-                                                         { field: 'swachchagrahisAccessed', displayName: 'Number of SWACHCHAGRAHI Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                         { field: 'swachchagrahisNotAccessed', displayName: 'Number of SWACHCHAGRAHI not Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisCompleted', displayName: 'Number of SWACHCHAGRAHI Successfully Completed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
-                                                         { field: 'swachchagrahisFailed',  displayName: 'Number of SWACHCHAGRAHI who Failed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'swachchagrahisStartedCourse', displayName: 'No. of Swachchagrahi Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
+                                                         { field: 'swachchagrahisPursuingCourse', displayName: 'No. of Swachchagrahi Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                         { field: 'swachchagrahisNotPursuingCourse', displayName: 'No. of Swachchagrahi not Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'swachchagrahisCompletedCourse', displayName: 'No. of Swachchagrahi Successfully Completed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
+                                                         { field: 'swachchagrahisFailedCourse',  displayName: 'No. of Swachchagrahi who Failed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                         ],
 
-            $scope.MA_Subscriber_Column_Definitions =[
+            $scope.WA_Subscriber_Column_Definitions =[
                                                          {name: 'S No.', displayName: 'S No.',width:"5%",enableSorting: false, cellTemplate: '<p class="serial-no">{{rowRenderIndex+1}}</p>'},
                                                          { field: 'locationName', footerCellTemplate: '<div class="ui-grid-cell-contents" >Total</div>',sort: { direction: 'asc', priority: 0 },
-                                                            cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType)">{{ COL_FIELD }}</a>',
+                                                            cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
                                                             enableHiding: false,width:"14%",
 
                                                          },
-                                                         { field: 'registeredNotCompletedStart', displayName: 'Number of SWACHCHAGRAHI Registered But Not Completed the Course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
-                                                         { field: 'recordsReceived', displayName: 'Number of SWACHCHAGRAHI Records Received Through Web Service', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                         { field: 'swachchagrahisRejected', displayName: 'Number of SWACHCHAGRAHI Records Rejected', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisRegistered', displayName: 'Number of SWACHCHAGRAHI Subscriptions Added', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisCompleted',  displayName: 'Number of SWACHCHAGRAHI Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'registeredNotCompletedend',  displayName: 'Number of SWACHCHAGRAHI Registered But Not Completed the Course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                         { field: 'registeredNotCompletedStart', displayName: 'No. of Swachchagrahi Registered But Not Completed the Course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
+                                                         { field: 'recordsReceived', displayName: 'No. of Swachchagrahi Records Received Through Web Service', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                         { field: 'recordsRejected', displayName: 'No. of Swachchagrahi Records Rejected', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'swachchagrahisRegistered', displayName: 'No. of Swachchagrahi Subscriptions Added', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'successfullyFirstCompleted',  displayName: 'No. of Swachchagrahi Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'registeredNotCompletedEnd',  displayName: 'No. of Swachchagrahi Registered But Not Completed the Course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
                                                         ],
 
-            $scope.drillDownData = function(locationId,locationType){
+            $scope.WA_Anonymous_Column_Definitions =[
+                                                                     {name: 'S No.', displayName: 'S No.',width:"5%",enableSorting: false, cellTemplate: '<p class="serial-no">{{rowRenderIndex+1}}</p>'},
+                                                                     { field: 'circleName', footerCellTemplate: '<div class="ui-grid-cell-contents" >Total</div>',sort: { direction: 'asc', priority: 0 },
+                                                                        cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
+                                                                        enableHiding: false,width:"14%",
+
+                                                                     },
+                                                                     { field: 'anonUsersStartedCourse', displayName: 'No. of anonymous users started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersPursuingCourse', displayName: 'No. of anonymous users pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersNotPursuingCourse', displayName: 'No. of anonymous users Not pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                                     { field: 'anonUsersCompletedCourse', displayName: 'No. of anonymous users successfully completed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                                     { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+
+                                                                    ],
+
+
+
+            /*$scope.drillDownData = function(locationId,locationType){
 
                   if(angular.lowercase(locationType) == "state"){
                     reportRequest.stateId = locationId;
@@ -1179,7 +1295,7 @@
 
                         })
                   }
-                  else if(angular.lowercase(locationType) == "national"){
+                  else if(angular.lowercase(locationType) == "NATIONAL"){
                        reportRequest.stateId = 0;
                        reportRequest.districtId = 0;
                        reportRequest.blockId = 0;
@@ -1187,7 +1303,7 @@
                        $http({
                                method  : 'POST',
                                url     : $scope.getReportUrl,
-                               data    : reportRequest, //forms user object
+                               data    : reportRequest,
                                headers : {'Content-Type': 'application/json'}
                            })
                            .then(function(result){
@@ -1217,7 +1333,7 @@
                      $http({
                              method  : 'POST',
                              url     : $scope.getReportUrl,
-                             data    : reportRequest, //forms user object
+                             data    : reportRequest,
                              headers : {'Content-Type': 'application/json'}
                          })
                          .then(function(result){
@@ -1265,6 +1381,160 @@
                                      $scope.hideGrid = true;
                                 }
                                 $scope.gridOptions = $scope.gridOptions1;
+                            }
+
+                        })
+                  }
+            }
+
+		}])
+})()*/
+
+                $scope.lastBread = function(reportBreadCrumbData){
+                    var length = reportBreadCrumbData.length;
+                    return reportBreadCrumbData[length-1].locationType;
+                }
+
+                $scope.drillDownData = function(locationId,locationType,locationName){
+
+                  if(angular.lowercase(locationType) == "state"){
+                    reportRequest.stateId = locationId;
+                    reportRequest.districtId = 0;
+                    reportRequest.blockId = 0;
+                    $scope.waiting = true;
+
+                    $http({
+                            method  : 'POST',
+                            url     : $scope.getReportUrl,
+                            data    : reportRequest, //forms user object
+                            headers : {'Content-Type': 'application/json'}
+                        })
+                        .then(function(result){
+
+                            if($scope.isAggregateReport()){
+                                $scope.waiting = false;
+                                if(result.data.tableData.length >0){
+                                    $scope.gridOptions1.data = result.data.tableData;
+                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
+                                    $scope.hideGrid = false;
+                                    $scope.gridOptions1.columnDefs[1].displayName = 'District';
+                                    $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
+                                    fileName = $scope.report.reportEnum + "_" + $scope.reportBreadCrumbData[$scope.reportBreadCrumbData.length -1].locationName ;
+                                    $scope.gridOptions1.exporterExcelFilename = fileName + "_" + dateString;
+
+                                }
+                                else{
+                                    $scope.showEmptyData = true;
+                                    $scope.hideGrid = true;
+                                }
+                                $scope.gridOptions = $scope.gridOptions1;
+                                excelHeaderName.stateName = locationName;
+                                excelHeaderName.districtName = "ALL";
+                                excelHeaderName.blockName = "ALL";
+                            }
+
+                        })
+                  }
+                  else if(angular.lowercase(locationType) == "national"){
+                       reportRequest.stateId = 0;
+                       reportRequest.districtId = 0;
+                       reportRequest.blockId = 0;
+                       $scope.waiting = true;
+                       $http({
+                               method  : 'POST',
+                               url     : $scope.getReportUrl,
+                               data    : reportRequest, //forms user object
+                               headers : {'Content-Type': 'application/json'}
+                           })
+                           .then(function(result){
+
+                               if($scope.isAggregateReport()){
+                                   $scope.waiting = false;
+                                   if(result.data.tableData.length >0){
+                                      $scope.gridOptions1.data = result.data.tableData;
+                                      $scope.reportBreadCrumbData = result.data.breadCrumbData;
+                                       $scope.hideGrid = false;
+                                       $scope.gridOptions1.columnDefs[1].displayName = 'State';
+                                       $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
+                                       fileName = $scope.report.reportEnum + "_" + $scope.reportBreadCrumbData[$scope.reportBreadCrumbData.length -1].locationName ;
+                                       $scope.gridOptions1.exporterExcelFilename = fileName + "_" + dateString;
+
+                                   }
+                                   else{
+                                       $scope.showEmptyData = true;
+                                       $scope.hideGrid = true;
+                                   }
+                                   $scope.gridOptions = $scope.gridOptions1;
+                                    excelHeaderName.stateName = "ALL";
+                                    excelHeaderName.districtName = "ALL";
+                                    excelHeaderName.blockName = "ALL";
+                               }
+
+                           })
+                     }
+                  else if(angular.lowercase(locationType) == "district"){
+                     reportRequest.districtId = locationId;
+                     reportRequest.blockId = 0;
+                     $scope.waiting = true;
+                     $http({
+                             method  : 'POST',
+                             url     : $scope.getReportUrl,
+                             data    : reportRequest, //forms user object
+                             headers : {'Content-Type': 'application/json'}
+                         })
+                         .then(function(result){
+
+                             if($scope.isAggregateReport()){
+                                 $scope.waiting = false;
+                                 if(result.data.tableData.length >0){
+                                    $scope.gridOptions1.data = result.data.tableData;
+                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
+                                     $scope.hideGrid = false;
+                                     $scope.gridOptions1.columnDefs[1].displayName = 'Block';
+                                     $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
+                                     fileName = $scope.report.reportEnum + "_" + $scope.reportBreadCrumbData[$scope.reportBreadCrumbData.length -1].locationName ;
+                                     $scope.gridOptions1.exporterExcelFilename = fileName + "_" + dateString;
+
+                                 }
+                                 else{
+                                     $scope.showEmptyData = true;
+                                     $scope.hideGrid = true;
+                                 }
+                                 $scope.gridOptions = $scope.gridOptions1;
+                                 excelHeaderName.districtName = locationName;
+                                 excelHeaderName.blockName = "ALL";
+                             }
+
+                         })
+                  }
+                  else if(angular.lowercase(locationType) == "block"){
+                    reportRequest.blockId = locationId;
+                    $scope.waiting = true;
+                    $http({
+                            method  : 'POST',
+                            url     : $scope.getReportUrl,
+                            data    : reportRequest, //forms user object
+                            headers : {'Content-Type': 'application/json'}
+                        })
+                        .then(function(result){
+
+                            if($scope.isAggregateReport()){
+                                $scope.waiting = false;
+                                if(result.data.tableData.length >0){
+                                    $scope.gridOptions1.data = result.data.tableData;
+                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
+                                    $scope.hideGrid = false;
+                                     $scope.gridOptions1.columnDefs[1].displayName = 'Subcenter';
+                                     $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
+                                     fileName = $scope.report.reportEnum + "_" + $scope.reportBreadCrumbData[$scope.reportBreadCrumbData.length -1].locationName ;
+                                     $scope.gridOptions1.exporterExcelFilename = fileName + "_" + dateString;
+                                }
+                                else{
+                                     $scope.showEmptyData = true;
+                                     $scope.hideGrid = true;
+                                }
+                                $scope.gridOptions = $scope.gridOptions1;
+                                excelHeaderName.blockName = locationName;
                             }
 
                         })
