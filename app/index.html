@@ -27,6 +27,9 @@
 	<!-- main -->
 	<script type="text/javascript" src="scripts/app.js"></script>
 	<script type="text/javascript" src="scripts/json/user.json"></script>
+	<!--Exporter-->
+    <script type="text/javascript" src="bower_components/pdfmake/build/pdfmake.js"></script>
+    <script type="text/javascript" src="bower_components/pdfmake/build/vfs_fonts.js"></script>
 
 	<!-- Controllers -->
 	<script type="text/javascript" src="scripts/controllers/main.js"></script>
@@ -77,19 +80,19 @@
 				</ul>
 				<ul class="nav-menu" ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" || currentUser.default  || currentUser.default == null '>
 					<li>
-						<a href={{logoutUrl}}>Logout</a>
+						<a href={{logoutUrl}}>LOGOUT</a>
 					</li>
                     <li ng-class="{active: activeTab('changePassword')}">
-                        <a ui-sref="changePassword">Change Password</a>
+                        <a ui-sref="changePassword">CHANGE PASSWORD</a>
                     </li>
 					<li ng-class="{active: activeTab('profile')}">
-						<a ui-sref="profile">My Profile</a>
+						<a ui-sref="profile">MY PROFILE</a>
 					</li>
 					<li ng-class="{active: activeTab('userManagement')}" ng-if="currentUser.roleId!= null && currentUser.roleName != 'USER'">
-						<a ui-sref="userManagement.userTable">User Management</a>
+						<a ui-sref="userManagement.userTable">USER MANAGEMENT</a>
 					</li>
 					<li ng-class="{active: activeTab('reports')}">
-						<a ui-sref="reports">Reports</a>
+						<a ui-sref="reports">REPORTS</a>
 					</li>
 				</ul>
 			</div>
@@ -99,7 +102,7 @@
 		</div>
 
 		<div class='footer'>
-			<span>2017 all rights reserved - Wash Academy Information system</span>
+			<span>2018 all rights reserved - Wash Academy Information system</span>
 		</div>
 	</div>
 
