@@ -5,45 +5,51 @@
     "icon": "images/drop-down-3.png",
     "options": [
       {
-        "name": "Cumulative Course Completion",
-        "reportEnum": "MA_Cumulative_Course_Completion",
+        "name": "Completion Line-Listing Report",
+        "reportEnum": "WA_Cumulative_Course_Completion",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
-        "name": "Circle wise Anonymous Users",
-        "reportEnum": "MA_Anonymous_Users",
+        "name": "Circle-Wise Anonymous Users Line-Listing Report",
+        "reportEnum": "WA_Circle_Wise_Anonymous_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
-        "name": "Cumulative Inactive Users",
-        "reportEnum": "MA_Cumulative_Inactive_Users",
+        "name": "Inactive Users Line-Listing Report",
+        "reportEnum": "WA_Cumulative_Inactive_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
-        "name": "Swachchagrahi Rejected Records",
-        "reportEnum": "MA_Swachchagrahi_Import_Rejects",
+        "name": "Academy Rejected Line-Listing Report",
+        "reportEnum": "WA_Swachchagrahi_Import_Rejects",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Cumulative Summary Report",
-        "reportEnum": "Cummulative_Summary_Report",
-        "icon": "images/drop-down-3.png",
+        "reportEnum": "WA_Cumulative_Summary",
+        "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
-        "name": "MA Subscriber Report",
-        "reportEnum": "MA_Subscriber_Report",
-        "icon": "images/drop-down-3.png",
+        "name": "Subscriber Report",
+        "reportEnum": "WA_Subscriber_Report",
+        "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
-        "name": "MA Performance Report",
-        "reportEnum": "MA_Performance_Report",
-        "icon": "images/drop-down-3.png",
+        "name": "Performance Report",
+        "reportEnum": "WA_Performance_Report",
+        "icon": "images/drop-down-2.png",
+        "service": "M"
+      },
+      {
+        "name": "Anonymous Users Summary Report",
+        "reportEnum": "WA_Anonymous_Users_Summary",
+        "icon": "images/drop-down-2.png",
         "service": "M"
       }
     ]
