@@ -637,7 +637,7 @@ public class AdminServiceImpl implements AdminService {
                 String circleName=StReplace(circleDao.getByCircleId(circleId).getCircleName());
                 String circleFullName = StReplace(circleDao.getByCircleId(circleId).getCircleFullName());
                 String rootPathCircle=rootPath+circleFullName+"/";
-                List<AnonymousUser> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,StReplace(circleDao.getByCircleId(circleId).getCircleName()));
+                List<AnonymousUser> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
             }
         }
@@ -702,9 +702,8 @@ public class AdminServiceImpl implements AdminService {
         empinfo.put("1", new Object[]{
                 "State Name",
                 "District Name",
-                "Block",
-                "Facility",
-                "Sub-Facility",
+                "Block Name",
+                "Panchayat Name",
                 "SWACHCHAGRAHI Id",
                 "SWACHCHAGRAHI Name",
                 "SWACHCHAGRAHI Job Status",
@@ -721,7 +720,7 @@ public class AdminServiceImpl implements AdminService {
                     (swcRejection.getDistrictName() == null) ? "No District Name": swcRejection.getDistrictName(),
                     (swcRejection.getBlockName() == null) ? "No  Block": swcRejection.getBlockName(),
                    // (swcRejection.getPhcName() == null) ? "No  Facility" : swcRejection.getPhcName(),
-                    (swcRejection.getPanchayatName() == null) ? "No  Sub-Facility" : swcRejection.getPanchayatName(),
+                    (swcRejection.getPanchayatName() == null) ? "No Panchayat" : swcRejection.getPanchayatName(),
                     (swcRejection.getSwcId() == null) ? "No SWACHCHAGRAHI ID": swcRejection.getSwcId(),
                     (swcRejection.getFullName() == null) ? "No SWACHCHAGRAHI Name": swcRejection.getFullName(),
                     (swcRejection.getJobStatus() == null) ? "No SWACHCHAGRAHI Job Status": swcRejection.getJobStatus(),
@@ -783,13 +782,10 @@ public class AdminServiceImpl implements AdminService {
                 "Mobile Number",
                 "State",
                 "District",
-                " Block",
-                "Taluka",
-                " Facility",
-                " Sub Facility",
-                "Village",
+                "Block",
+                "Panchayat",
                 "SWACHCHAGRAHI Name",
-                "SWACHCHAGRAHI MCTS/RCH ID",
+                "SWACHCHAGRAHI ID",
                 "SWACHCHAGRAHI Creation Date",
                 "SWACHCHAGRAHI Job Status",
                 "First Completion Date",
@@ -801,16 +797,16 @@ public class AdminServiceImpl implements AdminService {
         }
         for (WACourseFirstCompletion waCourseFirstCompletion : successfulCandidates) {
             empinfo.put((counter.toString()), new Object[]{
-                    (waCourseFirstCompletion.getMobileNumber() == null) ? "No Phone":waCourseFirstCompletion.getMobileNumber(),
+                    (waCourseFirstCompletion.getMobileNumber() == null) ? "No Mobile Number":waCourseFirstCompletion.getMobileNumber(),
                     (waCourseFirstCompletion.getStateId() == null) ? "No State":stateDao.findByStateId(waCourseFirstCompletion.getStateId()).getStateName(),
                     (waCourseFirstCompletion.getDistrictId() == null) ? "No District":districtDao.findByDistrictId(waCourseFirstCompletion.getDistrictId()).getDistrictName(),
                     (waCourseFirstCompletion.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(waCourseFirstCompletion.getBlockId()).getBlockName(),
-                    (waCourseFirstCompletion.getPanchayatId() == null) ? "No Village" : panchayatDao.findByPanchayatId(waCourseFirstCompletion.getPanchayatId()).getPanchayatName(),
+                    (waCourseFirstCompletion.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(waCourseFirstCompletion.getPanchayatId()).getPanchayatName(),
                     (waCourseFirstCompletion.getFullName() == null) ? "No Name":waCourseFirstCompletion.getFullName(),
                     (waCourseFirstCompletion.getSwcId() == null) ? "No SWC_ID":waCourseFirstCompletion.getSwcId(),
                     (waCourseFirstCompletion.getCreationDate() == null) ? "No Creation_date":waCourseFirstCompletion.getCreationDate(),
                     (waCourseFirstCompletion.getJobStatus() == null) ? "No Designation":waCourseFirstCompletion.getJobStatus(),
-                    (waCourseFirstCompletion.getFirstCompletionDate() == null) ? "No Phone":waCourseFirstCompletion.getFirstCompletionDate(),
+                    (waCourseFirstCompletion.getFirstCompletionDate() == null) ? "No Date":waCourseFirstCompletion.getFirstCompletionDate(),
                     (waCourseFirstCompletion.getSentNotification() == null) ? "No Details": waCourseFirstCompletion.getSentNotification()
             });
             counter++;
@@ -855,7 +851,7 @@ public class AdminServiceImpl implements AdminService {
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                " Circle-wise Anonymous Users Report");
+                "Circle-wise Anonymous Users Report");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -928,13 +924,10 @@ public class AdminServiceImpl implements AdminService {
                 "Mobile Number",
                 "State",
                 "District",
-                " Block",
-                "Taluka",
-                " Facility",
-                " Sub Facility",
-                "Village",
+                "Block",
+                "Panchayat",
                 "SWACHCHAGRAHI Name",
-                "SWACHCHAGRAHI MCTS/RCH ID",
+                "SWACHCHAGRAHI ID",
                 "SWACHCHAGRAHI Creation Date",
                 "SWACHCHAGRAHI Job Status"
         });
@@ -944,7 +937,7 @@ public class AdminServiceImpl implements AdminService {
         }
         for (Swachchagrahi swachchagrahi : inactiveCandidates) {
             empinfo.put((counter.toString()), new Object[]{
-                    (swachchagrahi.getMobileNumber() == null) ? "No Phone":swachchagrahi.getMobileNumber(),
+                    (swachchagrahi.getMobileNumber() == null) ? "No Mobile Number":swachchagrahi.getMobileNumber(),
                     (swachchagrahi.getStateId() == null) ? "No State":stateDao.findByStateId(swachchagrahi.getStateId()).getStateName(),
                     (swachchagrahi.getDistrictId() == null) ? "No District":districtDao.findByDistrictId(swachchagrahi.getDistrictId()).getDistrictName(),
                     (swachchagrahi.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(swachchagrahi.getBlockId()).getBlockName(),
@@ -952,7 +945,7 @@ public class AdminServiceImpl implements AdminService {
                     (swachchagrahi.getFullName() == null) ? "No Name":swachchagrahi.getFullName(),
                     (swachchagrahi.getSwcId() == null) ? "No SWC_ID":swachchagrahi.getSwcId(),
                     (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate(),
-                    (swachchagrahi.getJobStatus() == null) ? "No Designation":swachchagrahi.getJobStatus()
+                    (swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
             });
             counter++;
         }

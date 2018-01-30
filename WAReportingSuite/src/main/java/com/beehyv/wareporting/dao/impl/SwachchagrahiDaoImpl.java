@@ -22,10 +22,10 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public List<Swachchagrahi> getInactiveSwachchagrahis(Date toDate) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("creationDate"));
         criteria.add(Restrictions.and(
-                Restrictions.eq("status","INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus","INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate",toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation","SWACHCHAGRAHI").ignoreCase()
+                Restrictions.eq("swcDesignation","SWACHCHAGRAHI").ignoreCase()
         ));
         return (List<Swachchagrahi>) criteria.list();
     }
@@ -34,11 +34,11 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public List<Swachchagrahi> getInactiveSwachchagrahisWithStateId(Date toDate, Integer stateId) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("creationDate"));
         criteria.add(Restrictions.and(
-                Restrictions.eq("status","INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus","INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate",toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation","SWACHCHAGRAHI").ignoreCase(),
-                Restrictions.eq("state",stateId)
+                Restrictions.eq("swcDesignation","SWACHCHAGRAHI").ignoreCase(),
+                Restrictions.eq("stateId",stateId)
         ));
         return (List<Swachchagrahi>) criteria.list();
     }
@@ -47,11 +47,11 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public List<Swachchagrahi> getInactiveSwachchagrahisWithDistrictId(Date toDate, Integer districtId) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("creationDate"));
         criteria.add(Restrictions.and(
-                Restrictions.eq("status","INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus","INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate",toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation","SWACHCHAGRAHI").ignoreCase(),
-                Restrictions.eq("district",districtId)
+                Restrictions.eq("swcDesignation","SWACHCHAGRAHI").ignoreCase(),
+                Restrictions.eq("districtId",districtId)
         ));
         return (List<Swachchagrahi>) criteria.list();
     }
@@ -60,11 +60,11 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public List<Swachchagrahi> getInactiveSwachchagrahisWithBlockId(Date toDate, Integer blockId) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("creationDate"));
         criteria.add(Restrictions.and(
-                Restrictions.eq("status","INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus","INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate",toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation","SWACHCHAGRAHI").ignoreCase(),
-                Restrictions.eq("block",blockId)
+                Restrictions.eq("swcDesignation","SWACHCHAGRAHI").ignoreCase(),
+                Restrictions.eq("blockId",blockId)
         ));
         return (List<Swachchagrahi>) criteria.list();
     }
@@ -73,11 +73,11 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public Long getCountOfInactiveSwachchagrahisForGivenDistrict(Date toDate, Integer districtId) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.and(
-                Restrictions.eq("status","INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus","INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate",toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation","SWACHCHAGRAHI").ignoreCase(),
-                Restrictions.eq("district",districtId)
+                Restrictions.eq("swcDesignation","SWACHCHAGRAHI").ignoreCase(),
+                Restrictions.eq("districtId",districtId)
         )).setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }

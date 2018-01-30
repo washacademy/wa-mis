@@ -1,6 +1,7 @@
 package com.beehyv.wareporting.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="WA_anonymous_users_summary")
@@ -32,11 +33,14 @@ public class WAAnonymousUsersSummary {
     @Column(name = "anonymous_users_failed_course", columnDefinition = "INT(11)")
     private Integer anonymousUsersFailedCourse;
 
+    @Column(name = "date", columnDefinition = "DATETIME")
+    private Date date;
+
     public WAAnonymousUsersSummary(){
 
     }
 
-    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersPursuingCourse, Integer anonymousUsersNotPursuingCourse, Integer anonymousUsersCompletedCourse, Integer anonymousUsersFailedCourse){
+    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersPursuingCourse, Integer anonymousUsersNotPursuingCourse, Integer anonymousUsersCompletedCourse, Integer anonymousUsersFailedCourse,Date date){
         this.id = id;
         this.circleName = circleName;
         this.circleId = circleId;
@@ -45,6 +49,7 @@ public class WAAnonymousUsersSummary {
         this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
         this.anonymousUsersCompletedCourse = anonymousUsersCompletedCourse;
         this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -109,5 +114,13 @@ public class WAAnonymousUsersSummary {
 
     public void setCircleId(Integer circleId) {
         this.circleId = circleId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

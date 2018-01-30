@@ -66,7 +66,7 @@ public class Swachchagrahi {
     private Date creationDate;
 
     @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
-    private Date lastModifiedDate;
+    private Date lastModified;
 
     @Column(name = "course_first_completion_date", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
@@ -202,12 +202,12 @@ public class Swachchagrahi {
         this.creationDate = creationDate;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public Date getLastModified() {
+        return lastModified;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 
     public Date getFirstCompletionDate() {

@@ -109,6 +109,7 @@ public class ReportServiceImpl implements ReportService{
         }
         List<Circle> circleList = new ArrayList<>();
         for(StateCircle item : list){
+            if(!circleList.contains(circleDao.getByCircleId(item.getCircleId())))
             circleList.add(circleDao.getByCircleId(item.getCircleId()));
         }
         return circleList;

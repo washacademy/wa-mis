@@ -6,14 +6,14 @@ package com.beehyv.wareporting.enums;
 public enum ReportType {
 
 
-    waPerformance("WA_Performance","WA Performance","M","WA Performance Aggregate Report"),
-    waSubscriber("WA_Subscriber","WA Subscriber","M","WA Subscriber Aggregate Report"),
-    waCumulativeSummary("WA_Cumulative_Summary","WA Cumulative Summary","M","WA Cumulative Summery Aggregate Report"),
-    waCourseCompletion("WA_Cumulative_Course_Completion", "Cumulative Course Completion", "M","WA Completion Line-Listing Report"),
-    waCircleWiseAnonymous("WA_Anonymous_Users", "Circle wise Anonymous Users", "M", "WA Circle Wise Anonymous Line-Listing Report"),
-    waInactive("WA_Cumulative_Inactive_Users", "Cumulative Inactive Users", "M", "WA Inactive Users Line-Listing Report"),
-    swcRejected("WA_Swachchagrahi_Import_Rejects","Swachchagrahi Rejected Records", "M", "WA Rejected Line-Listing Report"),
-    waAnonymousSummary("WA_Anonymous_Users_Summary", "WA Anonymous Users Summary", "M", "WA Anonymous Users Summary Report");
+    waPerformance("WA_Performance_Report","Performance Report","M","WA Performance Aggregate Report"),
+    waSubscriber("WA_Subscriber_Report","Subscriber Report","M","WA Subscriber Aggregate Report"),
+    waCumulativeSummary("WA_Cumulative_Summary","Cumulative Summary Report","M","WA Cumulative Summery Aggregate Report"),
+    waCourseCompletion("WA_Cumulative_Course_Completion", "Completion Line-Listing Report", "M","WA Completion Line-Listing Report"),
+    waCircleWiseAnonymous("WA_Circle_Wise_Anonymous_Users", "Circle-Wise Anonymous Users Line-Listing Report", "M", "WA Circle Wise Anonymous Line-Listing Report"),
+    waInactive("WA_Cumulative_Inactive_Users", "Inactive Users Line-Listing Report", "M", "WA Inactive Users Line-Listing Report"),
+    swcRejected("WA_Swachchagrahi_Import_Rejects","Academy Rejected Line-Listing Report", "M", "WA Rejected Line-Listing Report"),
+    waAnonymousSummary("WA_Anonymous_Users_Summary", "Anonymous Users Summary Report", "M", "WA Anonymous Users Summary Report");
 
     private String reportType;
     private String reportName;

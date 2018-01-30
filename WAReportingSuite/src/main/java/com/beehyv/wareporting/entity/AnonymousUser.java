@@ -22,7 +22,7 @@ public class AnonymousUser {
 
     private Long totalMinutesUsed;
 
-    private String SMSSent;
+    private Boolean SMSSent;
     
     private Long SMSReferenceNo;
     
@@ -100,11 +100,11 @@ public class AnonymousUser {
         this.totalMinutesUsed = totalMinutesUsed;
     }
 
-    public String getSMSSent() {
+    public Boolean getSMSSent() {
         return SMSSent;
     }
 
-    public void setSMSSent(String SMSSent) {
+    public void setSMSSent(Boolean SMSSent) {
         this.SMSSent = SMSSent;
     }
 
