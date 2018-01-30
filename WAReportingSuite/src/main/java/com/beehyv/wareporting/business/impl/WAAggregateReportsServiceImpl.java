@@ -178,13 +178,12 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         return CumulativeSummary;
     }
 
-    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Date toDate){
+    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId,Date toDate){
         List<WAAnonymousUsersSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
-        List<Circle> circles = circleDao.getAllCircles();
-        for(Circle circle : circles) {
-            CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate));
-        }
+
+        CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId, toDate));
+
         return CumulativeSummary;
     }
 
@@ -439,8 +438,9 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         List<WAAnonymousUsersSummary> cumulativeSummaryReportStart = new ArrayList<>();
         List<WAAnonymousUsersSummary> cumulativeSummaryReportEnd = new ArrayList<>();
 
-        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(fromDate));
-        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(toDate));
+
+        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(circleId,fromDate));
+        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(circleId,toDate));
 
         for (int i = 0; i < cumulativeSummaryReportEnd.size(); i++) {
             for (int j = 0; j < cumulativeSummaryReportStart.size(); j++) {
