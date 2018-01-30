@@ -22,7 +22,7 @@ public class Languages {
     private Date creationDate;
 
     @Column(name = "last_modified", columnDefinition = "TIMESTAMP")
-    private Date lastModifiedDate;
+    private Date lastModified;
 
     public Integer getLanguageId() {
         return languageId;
@@ -56,11 +56,11 @@ public class Languages {
         this.creationDate = creationDate;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public Date getLastModified() {
+        return lastModified;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

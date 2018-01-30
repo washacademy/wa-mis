@@ -43,6 +43,9 @@ public class WACumulativeSummary {
     @Column(name = "swachchagrahis_rejected", columnDefinition = "INT(11)")
     private Integer swachchagrahisRejected;
 
+    @Column(name="date", columnDefinition = "DATETIME")
+    private Date date;
+
     public WACumulativeSummary(Integer id, Long serialNumber, String state, Long locationId, String locationType, Integer swachchagrahisRegistered, Integer swachchagrahisStarted, Integer swachchagrahisNotStarted, Integer swachchagrahisCompleted, Integer swachchagrahisFailed, Integer swachchagrahisRejected) {
         this.id = id;
         this.state = state;
@@ -136,6 +139,14 @@ public class WACumulativeSummary {
 
     public void setSwachchagrahisRejected(Integer swachchagrahisRejected) {
         this.swachchagrahisRejected = swachchagrahisRejected;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
 

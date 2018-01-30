@@ -61,7 +61,7 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
         criteria.add(Restrictions.lt("modificationDate", toDate))
                 .add(Restrictions.ge("modificationDate",fromDate))
                 .add(Restrictions.eq("accepted", false))
-                .add(Restrictions.eq("healthBlockId", blockId))
+                .add(Restrictions.eq("blockId", blockId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
                 .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
                 .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))

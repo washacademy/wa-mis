@@ -32,11 +32,11 @@ public class WACourseCompletion {
     @Column(name="sent_notification", columnDefinition = "BIT(1)")
     private Boolean sentNotification;
 
-    @Column(name="creation_date", columnDefinition = "TIMESTAMP")
+    @Column(name="creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
 
     @Column(name="last_modified", columnDefinition = "TIMESTAMP")
-    private Date lastModifiedDate;
+    private Date lastModified;
 
     public Long getId() {
         return Id;
@@ -86,12 +86,12 @@ public class WACourseCompletion {
         this.sentNotification = sentNotification;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public Date getLastModified() {
+        return lastModified;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 
     public String getChapterWiseScore() {

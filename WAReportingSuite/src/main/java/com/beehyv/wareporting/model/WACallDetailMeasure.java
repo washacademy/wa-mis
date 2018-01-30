@@ -43,7 +43,7 @@ public class WACallDetailMeasure {
     private String callId;
 
     @Column(name="modificationDate",columnDefinition = "DATETIME")
-    private Date lastModifiedDate;
+    private Date lastModified;
 
     public Long getId() {
         return Id;
@@ -125,11 +125,11 @@ public class WACallDetailMeasure {
         this.callId = callId;
     }
 
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public Date getLastModified() {
+        return lastModified;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
     }
 }

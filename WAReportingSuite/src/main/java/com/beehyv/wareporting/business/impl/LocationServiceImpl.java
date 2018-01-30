@@ -205,7 +205,7 @@ public class LocationServiceImpl implements LocationService {
         for(StateCircle stateCircle : list){
             CircleDto circleDto = new CircleDto(circleDao.getByCircleId(stateCircle.getCircleId()));
             circleDto.setStateId(stateCircle.getStateId());
-            circleDto.setServiceStartDate(stateServiceDao.getServiceStartDateForState(stateCircle.getStateId(), serviceType));
+//            circleDto.setServiceStartDate(stateServiceDao.getServiceStartDateForState(stateCircle.getStateId(), serviceType));
             circleDto.setServiceType(serviceType);
             if(circleDto.getServiceStartDate() != null)
                 circleList.add(circleDto);

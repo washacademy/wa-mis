@@ -67,7 +67,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         List<WACumulativeSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
         if(locationType.equalsIgnoreCase("State")){
-            List<State> states=stateDao.getStatesByServiceType("M");
+            List<State> states=stateDao.getAllStates();
             for(State s:states){
                 CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(s.getStateId(),locationType,toDate));
             }
@@ -178,10 +178,13 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         return CumulativeSummary;
     }
 
-    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId, Date toDate){
+    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Date toDate){
         List<WAAnonymousUsersSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
-        CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId,toDate));
+        List<Circle> circles = circleDao.getAllCircles();
+        for(Circle circle : circles) {
+            CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate));
+        }
         return CumulativeSummary;
     }
 
@@ -360,23 +363,23 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     public AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId) {
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<AggregateCumulativeWADto> summaryDto = new ArrayList<>();
-        List<WACumulativeSummary> cumulativesummaryReport = new ArrayList<>();
+        List<WACumulativeSummary> cumulativeSummaryReport = new ArrayList<>();
 
         if (stateId == 0) {
-            cumulativesummaryReport.addAll(getWACumulativeSummary(0, "State", toDate));
+            cumulativeSummaryReport.addAll(getWACumulativeSummary(0, "State", toDate));
         } else {
             if (districtId == 0) {
-                cumulativesummaryReport.addAll(getWACumulativeSummary(stateId, "District", toDate));
+                cumulativeSummaryReport.addAll(getWACumulativeSummary(stateId, "District", toDate));
             } else {
                 if (blockId == 0) {
-                    cumulativesummaryReport.addAll(getWACumulativeSummary(districtId, "Block", toDate));
+                    cumulativeSummaryReport.addAll(getWACumulativeSummary(districtId, "Block", toDate));
                 } else {
-                    cumulativesummaryReport.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate));
+                    cumulativeSummaryReport.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate));
                 }
             }
         }
 
-        for (WACumulativeSummary a : cumulativesummaryReport) {
+        for (WACumulativeSummary a : cumulativeSummaryReport) {
             AggregateCumulativeWADto summaryDto1 = new AggregateCumulativeWADto();
             summaryDto1.setId(a.getId());
             summaryDto1.setLocationId(a.getLocationId());
@@ -436,8 +439,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         List<WAAnonymousUsersSummary> cumulativeSummaryReportStart = new ArrayList<>();
         List<WAAnonymousUsersSummary> cumulativeSummaryReportEnd = new ArrayList<>();
 
-        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(circleId, fromDate));
-        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(circleId, toDate));
+        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(fromDate));
+        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(toDate));
 
         for (int i = 0; i < cumulativeSummaryReportEnd.size(); i++) {
             for (int j = 0; j < cumulativeSummaryReportStart.size(); j++) {

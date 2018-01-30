@@ -18,8 +18,8 @@ public class WACircleWiseAnonymousUsersLineListing {
     @Column(name="operator", columnDefinition = "VARCHAR(45)")
     private String operator;
 
-    @Column(name="circle", columnDefinition = "VARCHAR(45)")
-    private String circle;
+    @Column(name="circle_name", columnDefinition = "VARCHAR(45)")
+    private String circleName;
 
     @Column(name="course_start_date", columnDefinition = "DATETIME")
     private Date courseStartDate;
@@ -31,7 +31,7 @@ public class WACircleWiseAnonymousUsersLineListing {
     private Date lastCallEndDate;
 
     @Column(name="last_call_end_time", columnDefinition = "TIMESTAMP")
-    private String lastCallEndTime;
+    private Date lastCallEndTime;
 
     @Column(name="total_minutes_used", columnDefinition = "INT(11)")
     private Long totalMinutesUsed;
@@ -69,12 +69,12 @@ public class WACircleWiseAnonymousUsersLineListing {
         this.operator = operator;
     }
 
-    public String getCircle() {
-        return circle;
+    public String getCircleName() {
+        return circleName;
     }
 
-    public void setCircle(String circle) {
-        this.circle = circle;
+    public void setCircleName(String circleName) {
+        this.circleName = circleName;
     }
 
     public Date getCourseStartDate() {
@@ -101,11 +101,11 @@ public class WACircleWiseAnonymousUsersLineListing {
         this.lastCallEndDate = lastCallEndDate;
     }
 
-    public String getLastCallEndTime() {
+    public Date getLastCallEndTime() {
         return lastCallEndTime;
     }
 
-    public void setLastCallEndTime(String lastCallEndTime) {
+    public void setLastCallEndTime(Date lastCallEndTime) {
         this.lastCallEndTime = lastCallEndTime;
     }
 

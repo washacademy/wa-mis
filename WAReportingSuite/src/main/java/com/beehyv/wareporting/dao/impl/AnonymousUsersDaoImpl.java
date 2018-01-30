@@ -20,20 +20,20 @@ public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,WAAnonymousUsers
 
     @Override
     public List<AnonymousUser> getAnonymousUsers(Date fromDate, Date toDate) {
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCalledTime"));
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCallEndTime"));
         criteria.add(Restrictions.and(
-                Restrictions.lt("lastCalledTime",toDate),
-                Restrictions.ge("lastCalledTime",fromDate)
+                Restrictions.lt("lastCallEndTime",toDate),
+                Restrictions.ge("lastCallEndTime",fromDate)
         ));
         return (List<AnonymousUser>)criteria.list();
     }
 
     @Override
     public List<AnonymousUser> getAnonymousUsersByCircle(Date fromDate, Date toDate, String circleName) {
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCalledDate"));
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("lastCallEndDate"));
         criteria.add(Restrictions.and(
-                Restrictions.lt("lastCalledTime",toDate),
-                Restrictions.ge("lastCalledTime",fromDate),
+                Restrictions.lt("lastCallEndTime",toDate),
+                Restrictions.ge("lastCallEndTime",fromDate),
                 Restrictions.eq("circleName",circleName)));
         return (List<AnonymousUser>)criteria.list();
     }

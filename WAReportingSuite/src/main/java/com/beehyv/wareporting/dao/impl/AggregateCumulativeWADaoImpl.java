@@ -16,7 +16,7 @@ public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulat
             @Override
             public WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate){
 
-
+                   WACumulativeSummary WACumulativeSummary1;
                    Criteria criteria = createEntityCriteria().addOrder(Order.asc("locationId"));
                    criteria.add(Restrictions.and(
                            Restrictions.eq("locationId",locationId.longValue()),
@@ -24,11 +24,11 @@ public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulat
                            Restrictions.eq("date",toDate)
                    ));
                 if(criteria.list().isEmpty()){
-                    WACumulativeSummary WACumulativeSummary1 = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0);
+                    WACumulativeSummary1 = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0);
                     return WACumulativeSummary1;
                 }
                 
-                WACumulativeSummary WACumulativeSummary1 = (WACumulativeSummary)criteria.list().get(0);
+                WACumulativeSummary1 = (WACumulativeSummary)criteria.list().get(0);
                 WACumulativeSummary1.setSwachchagrahisRejected(WACumulativeSummary1.getSwachchagrahisRejected() == null?0: WACumulativeSummary1.getSwachchagrahisRejected());
                 WACumulativeSummary1.setSwachchagrahisStarted(WACumulativeSummary1.getSwachchagrahisStarted() == null?0: WACumulativeSummary1.getSwachchagrahisStarted());
                 WACumulativeSummary1.setSwachchagrahisRegistered(WACumulativeSummary1.getSwachchagrahisRegistered() == null?0: WACumulativeSummary1.getSwachchagrahisRegistered());

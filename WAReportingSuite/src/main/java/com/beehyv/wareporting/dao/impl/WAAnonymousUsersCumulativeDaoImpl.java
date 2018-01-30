@@ -20,7 +20,7 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
 
         WAAnonymousUsersSummary waAnonymousUsersSummary;
 
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("locationId"));
+        Criteria criteria = createEntityCriteria().addOrder(Order.asc("circleId"));
         criteria.add(Restrictions.and(
                 Restrictions.eq("circleId",circleId),
                 Restrictions.eq("date",toDate)
@@ -28,7 +28,7 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
 
         List<WAAnonymousUsersSummary> result = (List<WAAnonymousUsersSummary>) criteria.list();
         if(result.isEmpty()){
-            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,0,0,0);
+            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,0,0,0,null);
             return waAnonymousUsersSummary;
         }
 

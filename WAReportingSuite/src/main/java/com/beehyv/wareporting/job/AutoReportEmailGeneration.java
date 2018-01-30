@@ -9,7 +9,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import static com.beehyv.wareporting.enums.ReportType.waCourseCompletion;
 import static com.beehyv.wareporting.utils.Global.isAutoGenerate;
 
 /**
@@ -41,18 +40,18 @@ public class AutoReportEmailGeneration {
             Date toDate = aCalendar.getTime();
 
             Date startDate = new Date(0);
-        /*adminService.getCircleWiseAnonymousFiles(fromDate,toDate);*/
+
             System.out.println("Report generation started");
-            adminService.createFiles(waCourseCompletion.getReportType());
+            adminService.createFiles(ReportType.waCourseCompletion.getReportType());
             adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
             adminService.createFiles(ReportType.waInactive.getReportType());
 
             adminService.getCircleWiseAnonymousFiles(fromDate, toDate);
-            System.out.println("WA_Anonymous reports generated");
+            System.out.println("WA_Circle_Wise_Anonymous_Users reports generated");
             adminService.getCumulativeCourseCompletionFiles(toDate);
-            System.out.println("WA_Course_Completion reports generated");
+            System.out.println("WA_Cumulative_Course_Completion reports generated");
             adminService.getCumulativeInactiveFiles(toDate);
-            System.out.println("WA_Inactive reports generated");
+            System.out.println("WA_Cumulative_Inactive_Users reports generated");
             System.out.println("Report generation done");
 
             return true;

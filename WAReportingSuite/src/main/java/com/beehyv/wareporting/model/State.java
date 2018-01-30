@@ -12,7 +12,7 @@ public class State {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "TINYINT(4)")
+    @Column(name="state_id", columnDefinition = "TINYINT(4)")
     private Integer stateId;
 
     @Column(name="state_name", columnDefinition = "VARCHAR(45)")
