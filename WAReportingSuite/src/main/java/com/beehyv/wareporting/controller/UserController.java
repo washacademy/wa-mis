@@ -386,6 +386,11 @@ public class UserController {
         String rootPath = "";
         String place = AccessLevel.NATIONAL.getAccessLevel();
 
+        Integer stateId = reportRequest.getStateId();
+        Integer districtId = reportRequest.getDistrictId();
+        Integer blockIdId = reportRequest.getBlockId();
+        Integer circleId = reportRequest.getCircleId();
+
         Map<String, String> m = new HashMap<>();
         User currentUser = userService.getCurrentUser();
         List<BreadCrumbDto> breadCrumbs = breadCrumbService.getBreadCrumbs(currentUser, reportRequest);
@@ -409,12 +414,7 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            Integer stateId = reportRequest.getStateId();
-            Integer districtId = reportRequest.getDistrictId();
-            Integer blockIdId = reportRequest.getBlockId();
-            Integer circleId = reportRequest.getCircleId();
-
-            aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId,stateId, districtId, blockIdId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
         }
@@ -424,11 +424,6 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            Integer stateId = reportRequest.getStateId();
-            Integer districtId = reportRequest.getDistrictId();
-            Integer blockIdId = reportRequest.getBlockId();
-            Integer circleId = reportRequest.getCircleId();
-
             aggregateResponseDto = waAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
@@ -437,11 +432,6 @@ public class UserController {
         if (reportRequest.getReportType().equals(ReportType.waCumulativeSummary.getReportType())) {
 
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
-
-            Integer stateId = reportRequest.getStateId();
-            Integer districtId = reportRequest.getDistrictId();
-            Integer blockIdId = reportRequest.getBlockId();
-            Integer circleId = reportRequest.getCircleId();
 
             aggregateResponseDto = waAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
@@ -453,11 +443,6 @@ public class UserController {
 
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
-
-            Integer stateId = reportRequest.getStateId();
-            Integer districtId = reportRequest.getDistrictId();
-            Integer blockIdId = reportRequest.getBlockId();
-            Integer circleId = reportRequest.getCircleId();
 
             aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
@@ -562,48 +547,65 @@ public class UserController {
         maMenu.put("icon", "images/drop-down-3.png");
 
         List<Report> maList = new ArrayList<>();
-        maList.add(new Report(
-                ReportType.waCourseCompletion.getReportName(),
-                ReportType.waCourseCompletion.getReportType(),
-                "images/drop-down-3.png",
-                ReportType.waCourseCompletion.getServiceType())
-        );
-        maList.add(new Report(
-                ReportType.waCircleWiseAnonymous.getReportName(),
-                ReportType.waCircleWiseAnonymous.getReportType(),
-                "images/drop-down-3.png",
-                ReportType.waCircleWiseAnonymous.getServiceType())
-        );
-        maList.add(new Report(
-                ReportType.waInactive.getReportName(),
-                ReportType.waInactive.getReportType(),
-                "images/drop-down-3.png",
-                ReportType.waInactive.getServiceType())
-        );
-        maList.add(new Report(
-                ReportType.swcRejected.getReportName(),
-                ReportType.swcRejected.getReportType(),
-                "images/drop-down-3.png",
-                ReportType.swcRejected.getServiceType())
-        );
-        maList.add(new Report(
-                ReportType.waPerformance.getReportName(),
-                ReportType.waPerformance.getReportType(),
-                "images/drop-down-2.png",
-                ReportType.waPerformance.getServiceType())
-        );
-        maList.add(new Report(
-                ReportType.waSubscriber.getReportName(),
-                ReportType.waSubscriber.getReportType(),
-                "images/drop-down-2.png",
-                ReportType.waSubscriber.getServiceType())
-        );
+
         maList.add(new Report(
                 ReportType.waCumulativeSummary.getReportName(),
                 ReportType.waCumulativeSummary.getReportType(),
                 "images/drop-down-2.png",
                 ReportType.waCumulativeSummary.getServiceType())
         );
+
+        maList.add(new Report(
+                ReportType.waPerformance.getReportName(),
+                ReportType.waPerformance.getReportType(),
+                "images/drop-down-2.png",
+                ReportType.waPerformance.getServiceType())
+        );
+
+        maList.add(new Report(
+                ReportType.waSubscriber.getReportName(),
+                ReportType.waSubscriber.getReportType(),
+                "images/drop-down-2.png",
+                ReportType.waSubscriber.getServiceType())
+        );
+
+        maList.add(new Report(
+                ReportType.waAnonymousSummary.getReportName(),
+                ReportType.waAnonymousSummary.getReportType(),
+                "images/drop-down-2.png",
+                ReportType.waAnonymousSummary.getServiceType())
+        );
+
+
+        maList.add(new Report(
+                ReportType.waCourseCompletion.getReportName(),
+                ReportType.waCourseCompletion.getReportType(),
+                "images/drop-down-3.png",
+                ReportType.waCourseCompletion.getServiceType())
+        );
+
+        maList.add(new Report(
+                ReportType.waCircleWiseAnonymous.getReportName(),
+                ReportType.waCircleWiseAnonymous.getReportType(),
+                "images/drop-down-3.png",
+                ReportType.waCircleWiseAnonymous.getServiceType())
+        );
+
+        maList.add(new Report(
+                ReportType.waInactive.getReportName(),
+                ReportType.waInactive.getReportType(),
+                "images/drop-down-3.png",
+                ReportType.waInactive.getServiceType())
+        );
+
+        maList.add(new Report(
+                ReportType.swcRejected.getReportName(),
+                ReportType.swcRejected.getReportType(),
+                "images/drop-down-3.png",
+                ReportType.swcRejected.getServiceType())
+        );
+
+
 
         maMenu.put("service", maList.get(0).getService());
         maMenu.put("options", maList);

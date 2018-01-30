@@ -186,7 +186,11 @@ public class LocationController {
     @RequestMapping(value = {"/circles"}, method = RequestMethod.GET)
     @ResponseBody List<Circle> getCircles() {
         User currentUser = userService.getCurrentUser();
-        return reportService.getUserCircles(currentUser);
+        if(currentUser.getAccessLevel().equalsIgnoreCase("NATIONAL"))
+        {
+            return locationService.getAllCirles();
+        }
+        else return reportService.getUserCircles(currentUser);
     }
 
     @RequestMapping(value = {"/circle/{serviceType}"}, method = RequestMethod.GET)
