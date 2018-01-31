@@ -21,6 +21,8 @@
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
+ 			$scope.dt1 = null;
+ 			$scope.dt2 = null;
 			$scope.states = [];
 			$scope.districts = [];
 			$scope.blocks = [];
@@ -34,6 +36,7 @@
 			$scope.WA_Subscriber_Column_Definitions = [];
 			$scope.WA_Anonymous_Column_Definitions = [];
 			$scope.hideGrid = true;
+			$scope.hideDate = true;
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
 			$scope.content = "There is no data available for the selected inputs";
@@ -79,12 +82,6 @@
                 $scope.dt=this.dt;
             };
 
-            $scope.clearDates = function() {
-                $scope.dt = null;
-                $scope.dt1 = null;
-                $scope.dt2 = null;
-             };
-
             $scope.open3 = function() {
                 $scope.popup3.opened = true;
             };
@@ -96,6 +93,14 @@
             $scope.setDate = function(year, month, day) {
                 $scope.dt2 = new Date(year, month, day);
             };
+
+            $scope.hideDates = function(){
+                $scope.hideDate = true;
+            }
+
+            $scope.showDates = function(){
+                $scope.hideDate = false;
+            }
 
 			$scope.disableReportCategory = function(){
 				return $scope.reports[0] == null;
@@ -172,7 +177,7 @@
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
                 if($scope.periodDisplayType == 'Year' || $scope.periodDisplayType == 'Quarter' ){
-                    $scope.periodTypeContent = "Select year";
+                    $scope.periodTypeContent = "Select Year";
                     $scope.dateFormat = "yyyy";
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'year';
@@ -180,7 +185,7 @@
                     $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
                 }
                 if($scope.periodDisplayType == 'Month'){
-                    $scope.periodTypeContent = "Select month";
+                    $scope.periodTypeContent = "Select Month";
                     $scope.dateFormat = "yyyy-MM";
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'month';
@@ -194,7 +199,6 @@
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 1);
                 }
-                console.log($scope.datePickerOptions);
 
             }
 
@@ -237,7 +241,6 @@
 
 			$scope.selectReport = function(item){
 				$scope.report = item;
-                console.log($scope.report.reportEnum);
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
@@ -252,8 +255,6 @@
 				$scope.dt = null;
 				$scope.dt1 = null;
                 $scope.dt2 = null;
-                $scope.changeStartDate();
-                $scope.changeEndDate();
                 $scope.setDate();
 				$scope.setDateOptions();
 				if($scope.userHasOneCircle()){
@@ -311,7 +312,7 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && ($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users');
+				return $scope.report != null && (($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'));
 			}
 
             $scope.isAggregateReport = function(){
@@ -383,19 +384,6 @@
             				});
             }
 
-			/*$scope.getCirclesByService = function(service){
-				$scope.circlesLoading = true;
-				return UserFormFactory.getCirclesByService(service)
-				.then(function(result){
-					$scope.circles = result.data;
-
-					$scope.circlesLoading = false;
-
-					if($scope.userHasOneCircle()){
-						$scope.selectCircle($scope.circles[0]);
-					}
-				});
-			}*/
 			$scope.isClickAllowed=function(name){
 			    if(name == 'BAR GRAPH' || name == 'PIE CHART'){
 			        return false;
@@ -417,7 +405,6 @@
                                 else return "day";
             }
 
-
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
 			        var minDate = new Date(2016, 11, 01);
@@ -437,20 +424,19 @@
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2017, 10, 01);
+                    minDate = new Date(2017,2, 01);
+                }
+                if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
+                    minDate = new Date(2017,2, 01);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
-//					console.log($scope.state.serviceStartDate);
-//					console.log(minDate);
 				}
 				if($scope.isCircleReport() && $scope.circle != null && Date.parse($scope.circle.serviceStartDate) > minDate){
 					minDate = $scope.circle.serviceStartDate;
-//					console.log(minDate);
 				}
 
                 $scope.datePickerOptions = {
-                    //minMode: 'year',
                     formatYear: 'yyyy',
                     maxDate: new Date(),
                     minDate: minDate,
@@ -763,8 +749,8 @@
 				    	reportRequest.blockId = $scope.block.blockId;
 				    }
 		    	}
-		    	else{
-		    		if($scope.circle != null){
+		    	/*else{
+		    		if($scope.circle != null ){
 				    	reportRequest.circleId = $scope.circle.circleId;
 				    }
                     else{
@@ -778,7 +764,7 @@
                            }
 
                     }
-		    	}
+		    	}*/
 
 		    	/*if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.format == 'yyyy-MM'){
                    if(UserFormFactory.isInternetExplorer()){
@@ -1543,3 +1529,4 @@
 
 		}])
 })()
+
