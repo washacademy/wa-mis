@@ -9,7 +9,7 @@ public class Languages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "TINYINT(4)")
+    @Column(name = "id", columnDefinition = "BIGINT(20)")
     private Integer languageId;
 
     @Column(name = "name", columnDefinition = "VARCHAR(45)")

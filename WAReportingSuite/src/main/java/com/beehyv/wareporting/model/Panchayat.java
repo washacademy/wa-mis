@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Panchayat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", columnDefinition = "BIGINT(20)")
     private Integer panchayatId;
 

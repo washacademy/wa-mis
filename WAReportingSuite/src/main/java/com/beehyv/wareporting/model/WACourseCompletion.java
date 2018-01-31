@@ -23,7 +23,7 @@ public class WACourseCompletion {
     @Column(name="has_passed", columnDefinition = "BIT(1)")
     private Boolean passed;
 
-    @Column(name="chapter_wise_score", columnDefinition = "VARCHAR(45)")
+    @Column(name="chapter_wise_score", columnDefinition = "VARCHAR(255)")
     private String chapterWiseScore;
 
     @Column(name="last_delivery_status", columnDefinition = "VARCHAR(255)")
