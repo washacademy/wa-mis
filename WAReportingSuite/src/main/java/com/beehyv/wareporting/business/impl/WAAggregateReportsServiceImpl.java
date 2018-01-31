@@ -181,7 +181,13 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId,Date toDate){
         List<WAAnonymousUsersSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
-
+        if(circleId == 0) {
+            List<Circle> circles = circleDao.getAllCircles();
+            for (Circle circle : circles){
+                CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate));
+            }
+            return CumulativeSummary;
+        }
         CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId, toDate));
 
         return CumulativeSummary;
@@ -431,7 +437,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     }
 
     @Override
-    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId,Integer stateId,Integer districtId,Integer blockId) {
+    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId) {
 
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<WAAnonymousPerformanceDto> summaryDto = new ArrayList<>();

@@ -18,5 +18,5 @@ public interface BlockDao {
 
     List<Block> getBlocksOfDistrict(Integer districtId);
 
-    Integer getDistrictOfBlock(Block block);
+    Integer getDistrictOfBlock(Integer blockId);
 }

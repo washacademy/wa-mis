@@ -16,5 +16,5 @@ public interface WAAggregateReportsService {
 
     AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId);
 
-    AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId);
+    AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate, Date toDate, Integer circleId);
 }

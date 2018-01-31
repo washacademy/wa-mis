@@ -444,7 +444,7 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
         }
@@ -612,14 +612,11 @@ public class UserController {
 
         List<Map<String, Object>> l = new ArrayList<>();
 
-        if (currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
+        /*if (currentUser.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
             l.add(maMenu);
-        } else {
-            State state = locationService.findStateById(currentUser.getStateId());
-//            if(state.getServiceType().equals("M") || state.getServiceType().equals("ALL")){
-//                l.add(maMenu);
-//            }
-        }
+        } */
+
+        l.add(maMenu);
         return l;
     }
 
