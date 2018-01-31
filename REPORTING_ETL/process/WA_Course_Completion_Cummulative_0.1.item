@@ -275,12 +275,12 @@
     <elementParameter field="TEXT" name="TYPE" value="MYSQL" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;root&quot;"/>
     <elementParameter field="PASSWORD" name="PASS" value="YhbcO97VMoHSvGtnM/E/eA=="/>
-    <elementParameter field="DBTABLE" name="TABLE" value="&quot;wa_course_completion&quot;,&quot;swachchagrahi&quot;"/>
+    <elementParameter field="DBTABLE" name="TABLE" value="&quot;WA_course_completion&quot;,&quot;swachchagrahi&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#xA;    a.swc_id,&#xA;    a.mobile_number,&#xA;    a.state_id,&#xA;    a.district_id,&#xA;    a.panchayat_id,&#xA;    a.block_id,&#xA;    a.name,&#xA;    a.creation_date,&#xA;    a.job_status,&#xA;    a.last_modified,&#xA;    a.sent_notification&#xA;FROM&#xA;    (SELECT &#xA;        flw.swc_id,&#xA;            flw.mobile_number,&#xA;            flw.state_id,&#xA;            flw.district_id,&#xA;            flw.panchayat_id,&#xA;            flw.block_id,&#xA;            flw.name,&#xA;            flw.creation_date,&#xA;            flw.job_status,&#xA;            mcc.last_modified,&#xA;            mcc.sent_notification&#xA;    FROM&#xA;        wa_course_completion mcc&#xA;    JOIN swachchagrahi flw ON flw.swc_id = mcc.swc_id&#xA;    WHERE&#xA;        mcc.has_passed = 1&#xA;            AND flw.job_status = 'ACTIVE') a&#xA;GROUP BY a.swc_id , a.mobile_number , a.state_id , a.district_id , a.panchayat_id , a.block_id , a.name , a.creation_date , a.job_status , a.last_modified , a.sent_notification&#xA;HAVING MIN(a.last_modified)&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#xA;    a.swc_id,&#xA;    a.mobile_number,&#xA;    a.state_id,&#xA;    a.district_id,&#xA;    a.panchayat_id,&#xA;    a.block_id,&#xA;    a.name,&#xA;    a.creation_date,&#xA;    a.job_status,&#xA;    a.last_modified,&#xA;    a.sent_notification&#xA;FROM&#xA;    (SELECT &#xA;        flw.swc_id,&#xA;            flw.mobile_number,&#xA;            flw.state_id,&#xA;            flw.district_id,&#xA;            flw.panchayat_id,&#xA;            flw.block_id,&#xA;            flw.name,&#xA;            flw.creation_date,&#xA;            flw.job_status,&#xA;            mcc.last_modified,&#xA;            mcc.sent_notification&#xA;    FROM&#xA;        WA_course_completion mcc&#xA;    JOIN swachchagrahi flw ON flw.swc_id = mcc.swc_id&#xA;    WHERE&#xA;        mcc.has_passed = 1&#xA;            AND flw.job_status = 'ACTIVE') a&#xA;GROUP BY a.swc_id , a.mobile_number , a.state_id , a.district_id , a.panchayat_id , a.block_id , a.name , a.creation_date , a.job_status , a.last_modified , a.sent_notification&#xA;HAVING MIN(a.last_modified)&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -355,7 +355,7 @@
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOfMa_course_completion_data">
         <mapperTableEntries name="swc_id" expression="row4.swc_id " type="id_Long"/>
