@@ -395,8 +395,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
             summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted());
             summaryDto1.setLocationType(a.getLocationType());
             summaryDto1.setCompletedPercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisCompleted() * 10000 / a.getSwachchagrahisStarted())) / 100);
-            summaryDto1.setFailedpercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisFailed() * 10000 / a.getSwachchagrahisStarted())) / 100);
-            summaryDto1.setNotStartedpercentage((float) (a.getSwachchagrahisRegistered() == 0 ? 0 : (a.getSwachchagrahisNotStarted() * 10000 / a.getSwachchagrahisRegistered())) / 100);
+            summaryDto1.setFailedPercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisFailed() * 10000 / a.getSwachchagrahisStarted())) / 100);
+            summaryDto1.setNotStartedPercentage((float) (a.getSwachchagrahisRegistered() == 0 ? 0 : (a.getSwachchagrahisNotStarted() * 10000 / a.getSwachchagrahisRegistered())) / 100);
             String locationType = a.getLocationType();
             if (locationType.equalsIgnoreCase("State")) {
                 summaryDto1.setLocationName(stateDao.findByStateId(a.getLocationId().intValue()).getStateName());
