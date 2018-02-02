@@ -1,7 +1,7 @@
 (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("EditUserController", ['$scope', 'UserFormFactory', '$http', '$state', '$stateParams', function($scope, UserFormFactory, $http, $state, $stateParams){
+		.controller("EditUserController", ['$scope', 'UserFormFactory', '$http', '$state', '$stateParams', function($scope, UserFormFactory, $http, $state, $stateParams,$location){
 
 			UserFormFactory.isLoggedIn()
 			.then(function(result){
@@ -160,17 +160,16 @@
 						headers : {'Content-Type': 'application/json'} 
 					}).then(function(result){
                         if(UserFormFactory.isInternetExplorer()){
-                            alert(result.data['0'])
-                             return;
+                            alert(result.data['0']);
                         }
                         else{
-                            UserFormFactory.showAlert(result.data['0'])
-                            return;
+                            UserFormFactory.showAlert(result.data['0']);
                         }
 						// $scope.open()
 						if(result.data['0'] == 'User Updated'){
 							$state.go('userManagement.userTable', {});
 						}
+						$location.url('/userManagement');
 					})
 				}
 				else{
@@ -210,13 +209,13 @@
                 UserFormFactory.deactivateUser($scope.editUser.userId)
                 .then(function(result){
                     if(UserFormFactory.isInternetExplorer()){
-                        alert(result.data['0'])
-                         return;
+                        alert(result.data['0']);
                     }
                     else{
-                        UserFormFactory.showAlert(result.data['0'])
-                        return;
+                        UserFormFactory.showAlert(result.data['0']);
                     }
+                    $state.go('userManagement.userTable', {});
+                    $location.url('/userManagement');
 
                 });
             };

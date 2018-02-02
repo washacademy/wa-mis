@@ -342,6 +342,7 @@ div.reports-header *,
 div.reports-header input,
 div.reports-header select{
 	text-align:left;
+	white-space: inherit !important;
 }
 
 div.reports-header .left,
@@ -694,9 +695,10 @@ md-dialog{
 }
 
 .dropdownTitle{
-    display: inline-block;
-    width: 90%;
-    overflow: hidden;
+    display : inline-block;
+    width : 90%;
+    overflow : hidden;
+    height : 100%
 }
 
 .btn-default{
@@ -732,6 +734,18 @@ md-dialog{
 
 .reportDate{
     text-align : right;
+}
+
+#periodCaret,#quarterCaret{
+    margin-top : 0px !important;
+}
+
+.dropdown-menu.type-aggregate, .dropdown-menu.non-aggregate{
+    width : 250px;
+}
+
+.dropdown-menu.big , .dropdown-menu.type-aggregate, .dropdown-menu.non-aggregate{
+    top : 222px !important;
 }
 
 

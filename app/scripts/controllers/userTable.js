@@ -162,6 +162,18 @@
 			}
 
 			$scope.search = function (row) {
+			    if(row.state == null)
+			    {
+			        row.state = "";
+			    }
+			    if(row.district == null)
+			    {
+			        row.district = "";
+			    }
+			    if(row.block == null)
+			    {
+			        row.block = "";
+			    }
 				return (angular.lowercase(row.name).indexOf(angular.lowercase($scope.filterText) || '') > -1 ||
 						angular.lowercase(row.username).indexOf(angular.lowercase($scope.filterText) || '') > -1 ||
 						angular.lowercase(row.phoneNumber).indexOf(angular.lowercase($scope.filterText)  || '')> -1 ||
