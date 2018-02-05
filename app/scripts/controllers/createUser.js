@@ -1,7 +1,7 @@
 (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("CreateUserController", ['$scope', '$state', 'UserFormFactory', '$http', function($scope, $state, UserFormFactory, $http){
+		.controller("CreateUserController", ['$scope', '$state', 'UserFormFactory', '$http', function($scope, $state, UserFormFactory, $http,$location){
 			
 			UserFormFactory.isLoggedIn()
 			.then(function(result){
@@ -113,16 +113,16 @@
 						headers : {'Content-Type': 'application/json'} 
 					}).then(function(result){
 					    if(UserFormFactory.isInternetExplorer()){
-                            alert(result.data['0'])
-                             return;
+                            alert(result.data['0']);
                         }
                         else{
-                            UserFormFactory.showAlert(result.data['0'])
-                            return;
+                            UserFormFactory.showAlert(result.data['0']);
                         }
 						if(result.data['0'] == 'User Created'){
 							$state.go('userManagement.userTable', {});
 						}
+						$location.url('/userManagement');
+
 					})
 				}
 				else{

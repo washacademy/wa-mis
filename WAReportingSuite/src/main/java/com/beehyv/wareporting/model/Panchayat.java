@@ -25,13 +25,13 @@ public class Panchayat {
     private Long code;
 
     @Column(name = "block_id", columnDefinition = "INT(11)")
-    private Integer blockOfpanchayat;
+    private Integer blockOfPanchayat;
 
     @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
-    private Integer districtOfpanchayat;
+    private Integer districtOfPanchayat;
 
     @Column(name = "state_id", columnDefinition = "TINYINT(4)")
-    private Integer stateOfpanchayat;
+    private Integer stateOfPanchayat;
 
     public Integer getPanchayatId() {
         return panchayatId;
@@ -73,27 +73,27 @@ public class Panchayat {
         this.code = code;
     }
 
-    public Integer getBlockOfpanchayat() {
-        return blockOfpanchayat;
+    public Integer getBlockOfPanchayat() {
+        return blockOfPanchayat;
     }
 
-    public void setBlockOfpanchayat(Integer blockOfpanchayat) {
-        this.blockOfpanchayat = blockOfpanchayat;
+    public void setBlockOfPanchayat(Integer blockOfPanchayat) {
+        this.blockOfPanchayat = blockOfPanchayat;
     }
 
-    public Integer getDistrictOfpanchayat() {
-        return districtOfpanchayat;
+    public Integer getDistrictOfPanchayat() {
+        return districtOfPanchayat;
     }
 
-    public void setDistrictOfpanchayat(Integer districtOfpanchayat) {
-        this.districtOfpanchayat = districtOfpanchayat;
+    public void setDistrictOfPanchayat(Integer districtOfPanchayat) {
+        this.districtOfPanchayat = districtOfPanchayat;
     }
 
-    public Integer getStateOfpanchayat() {
-        return stateOfpanchayat;
+    public Integer getStateOfPanchayat() {
+        return stateOfPanchayat;
     }
 
-    public void setStateOfpanchayat(Integer stateOfpanchayat) {
-        this.stateOfpanchayat = stateOfpanchayat;
+    public void setStateOfPanchayat(Integer stateOfPanchayat) {
+        this.stateOfPanchayat = stateOfPanchayat;
     }
 }

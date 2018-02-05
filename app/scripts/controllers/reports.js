@@ -21,6 +21,8 @@
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
+ 			$scope.dt1 = null;
+ 			$scope.dt2 = null;
 			$scope.states = [];
 			$scope.districts = [];
 			$scope.blocks = [];
@@ -34,6 +36,7 @@
 			$scope.WA_Subscriber_Column_Definitions = [];
 			$scope.WA_Anonymous_Column_Definitions = [];
 			$scope.hideGrid = true;
+			$scope.hideDate = true;
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
 			$scope.content = "There is no data available for the selected inputs";
@@ -48,8 +51,22 @@
             $scope.headerToDate = '';
             $scope.matrixContent1 = '';
             $scope.matrixContent2 = '';
+            $scope.noDrop = true;
             var parentScope = $scope.$parent;
             parentScope.child = $scope;
+
+            $scope.toggled = function(open) {
+                if(open){
+                    $scope.hideDates();
+                }
+                else{
+                    $scope.showDates();
+                }
+            };
+
+            $scope.popup1 = {
+                 opened: false
+            };
 
             $scope.popup2 = {
                 opened: false
@@ -79,13 +96,7 @@
                 $scope.dt=this.dt;
             };
 
-            $scope.clearDates = function() {
-                $scope.dt = null;
-                $scope.dt1 = null;
-                $scope.dt2 = null;
-             };
-
-            $scope.open3 = function() {
+            $scope.open1 = function() {
                 $scope.popup3.opened = true;
             };
 
@@ -96,6 +107,14 @@
             $scope.setDate = function(year, month, day) {
                 $scope.dt2 = new Date(year, month, day);
             };
+
+            $scope.hideDates = function(){
+                $scope.hideDate = true;
+            }
+
+            $scope.showDates = function(){
+                $scope.hideDate = false;
+            }
 
 			$scope.disableReportCategory = function(){
 				return $scope.reports[0] == null;
@@ -172,7 +191,7 @@
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
                 if($scope.periodDisplayType == 'Year' || $scope.periodDisplayType == 'Quarter' ){
-                    $scope.periodTypeContent = "Select year";
+                    $scope.periodTypeContent = "Select Year";
                     $scope.dateFormat = "yyyy";
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'year';
@@ -180,7 +199,7 @@
                     $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
                 }
                 if($scope.periodDisplayType == 'Month'){
-                    $scope.periodTypeContent = "Select month";
+                    $scope.periodTypeContent = "Select Month";
                     $scope.dateFormat = "yyyy-MM";
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'month';
@@ -194,7 +213,6 @@
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 1);
                 }
-                console.log($scope.datePickerOptions);
 
             }
 
@@ -237,7 +255,6 @@
 
 			$scope.selectReport = function(item){
 				$scope.report = item;
-                console.log($scope.report.reportEnum);
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
@@ -252,8 +269,6 @@
 				$scope.dt = null;
 				$scope.dt1 = null;
                 $scope.dt2 = null;
-                $scope.changeStartDate();
-                $scope.changeEndDate();
                 $scope.setDate();
 				$scope.setDateOptions();
 				if($scope.userHasOneCircle()){
@@ -311,7 +326,7 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && ($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users');
+				return $scope.report != null && (($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'));
 			}
 
             $scope.isAggregateReport = function(){
@@ -383,19 +398,6 @@
             				});
             }
 
-			/*$scope.getCirclesByService = function(service){
-				$scope.circlesLoading = true;
-				return UserFormFactory.getCirclesByService(service)
-				.then(function(result){
-					$scope.circles = result.data;
-
-					$scope.circlesLoading = false;
-
-					if($scope.userHasOneCircle()){
-						$scope.selectCircle($scope.circles[0]);
-					}
-				});
-			}*/
 			$scope.isClickAllowed=function(name){
 			    if(name == 'BAR GRAPH' || name == 'PIE CHART'){
 			        return false;
@@ -417,7 +419,6 @@
                                 else return "day";
             }
 
-
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
 			        var minDate = new Date(2016, 11, 01);
@@ -437,20 +438,19 @@
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2017, 10, 01);
+                    minDate = new Date(2017,2, 01);
+                }
+                if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
+                    minDate = new Date(2017,2, 01);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
-//					console.log($scope.state.serviceStartDate);
-//					console.log(minDate);
 				}
 				if($scope.isCircleReport() && $scope.circle != null && Date.parse($scope.circle.serviceStartDate) > minDate){
 					minDate = $scope.circle.serviceStartDate;
-//					console.log(minDate);
 				}
 
                 $scope.datePickerOptions = {
-                    //minMode: 'year',
                     formatYear: 'yyyy',
                     maxDate: new Date(),
                     minDate: minDate,
@@ -763,8 +763,8 @@
 				    	reportRequest.blockId = $scope.block.blockId;
 				    }
 		    	}
-		    	else{
-		    		if($scope.circle != null){
+		    	/*else{
+		    		if($scope.circle != null ){
 				    	reportRequest.circleId = $scope.circle.circleId;
 				    }
                     else{
@@ -778,7 +778,7 @@
                            }
 
                     }
-		    	}
+		    	}*/
 
 		    	/*if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.format == 'yyyy-MM'){
                    if(UserFormFactory.isInternetExplorer()){
@@ -880,10 +880,30 @@
 
 
                          $scope.gridOptions = $scope.gridOptions1;
-                         $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
+                        // $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
                          $scope.gridOptions.data = result.data.tableData;
                          $scope.breadCrumbData = result.data.breadCrumbData;
-                         $scope.hideGrid = false;
+
+                        if(!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'))
+                        {
+					        if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'NATIONAL')
+                            {
+                                $scope.gridOptions1.columnDefs[1].displayName = 'State';
+                            }
+                            else if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'STATE')
+                            {
+                                $scope.gridOptions1.columnDefs[1].displayName = 'District';
+                            }
+                            else if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'DISTRICT')
+                            {
+                                $scope.gridOptions1.columnDefs[1].displayName = 'Block';
+                            }
+                            else{
+                             $scope.gridOptions1.columnDefs[1].displayName = 'Panchayat';
+                            }
+                        }
+
+                        $scope.hideGrid = false;
 
                     }
                 }
@@ -982,15 +1002,6 @@
 				$scope.showEmptyData = false;
 			}
 
-			// datepicker stuff
-
-			// $scope.select = function(date) {
-			// 	$scope.dt = date;
-			// }
-
-			// $scope.today = function() {
-			// 	$scope.dt = new Date();
-			// };
 
 			$scope.clearMonth = function() {
 				$scope.dt = null;
@@ -1204,13 +1215,13 @@
                                                          width: '12%', enableHiding: false,
                                                        },
                                                        { field: 'swachchagrahisRegistered', displayName : 'No of Registered Swachchagrahi', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisStarted', displayName : 'Swachchagrahi Started Course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisNotStarted', displayName : 'Swachchagrahi Not Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisCompleted' , displayName : 'Swachchagrahi Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
-                                                       { field: 'swachchagrahisFailed' , displayName : 'Swachchagrahi who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'notStartedpercentage' , displayName : '% Not Started Course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[4].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
-                                                       { field: 'completedPercentage' , displayName : '% Successfully Completed', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[5].getAggregationValue()/grid.columns[2].getAggregationValue())*100 | number:4}}</div>', width:"*", enableHiding: false},
-                                                       { field: 'failedpercentage' , displayName : '% Failed the course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[6].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisStarted', displayName : 'No of Swachchagrahi Started course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisNotStarted', displayName : 'No of Swachchagrahi Not Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'swachchagrahisCompleted' , displayName : 'No of Swachchagrahi Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
+                                                       { field: 'swachchagrahisFailed' , displayName : 'No of Swachchagrahi who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'notStartedPercentage' , displayName : '% Not Started course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[4].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
+                                                       { field: 'completedPercentage' , displayName : '% Successfully Completed course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[5].getAggregationValue()/grid.columns[2].getAggregationValue())*100 | number:4}}</div>', width:"*", enableHiding: false},
+                                                       { field: 'failedPercentage' , displayName : '% Failed the course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[6].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
                                                       ]
 
 
@@ -1222,11 +1233,11 @@
                                                             enableHiding: false, width:"12%",
 
                                                          },
-                                                         { field: 'swachchagrahisStartedCourse', displayName: 'No. of Swachchagrahi Started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
-                                                         { field: 'swachchagrahisPursuingCourse', displayName: 'No. of Swachchagrahi Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                         { field: 'swachchagrahisNotPursuingCourse', displayName: 'No. of Swachchagrahi not Pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisCompletedCourse', displayName: 'No. of Swachchagrahi Successfully Completed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
-                                                         { field: 'swachchagrahisFailedCourse',  displayName: 'No. of Swachchagrahi who Failed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'swachchagrahisStartedCourse', displayName: 'No. of Swachchagrahi Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
+                                                         { field: 'swachchagrahisPursuingCourse', displayName: 'No. of Swachchagrahi Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                         { field: 'swachchagrahisNotPursuingCourse', displayName: 'No. of Swachchagrahi not Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'swachchagrahisCompletedCourse', displayName: 'No. of Swachchagrahi Successfully Completed course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
+                                                         { field: 'swachchagrahisFailedCourse',  displayName: 'No. of Swachchagrahi who Failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                         ],
 
             $scope.WA_Subscriber_Column_Definitions =[
@@ -1236,159 +1247,31 @@
                                                             enableHiding: false,width:"14%",
 
                                                          },
-                                                         { field: 'registeredNotCompletedStart', displayName: 'No. of Swachchagrahi Registered But Not Completed the Course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
+                                                         { field: 'registeredNotCompletedStart', displayName: 'No. of Swachchagrahi Registered But Not Completed the course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
                                                          { field: 'recordsReceived', displayName: 'No. of Swachchagrahi Records Received Through Web Service', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
                                                          { field: 'recordsRejected', displayName: 'No. of Swachchagrahi Records Rejected', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                          { field: 'swachchagrahisRegistered', displayName: 'No. of Swachchagrahi Subscriptions Added', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'successfullyFirstCompleted',  displayName: 'No. of Swachchagrahi Successfully Completed the Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'registeredNotCompletedEnd',  displayName: 'No. of Swachchagrahi Registered But Not Completed the Course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                         { field: 'successfullyFirstCompleted',  displayName: 'No. of Swachchagrahi Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'registeredNotCompletedEnd',  displayName: 'No. of Swachchagrahi Registered But Not Completed the course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
                                                         ],
 
             $scope.WA_Anonymous_Column_Definitions =[
                                                                      {name: 'S No.', displayName: 'S No.',width:"5%",enableSorting: false, cellTemplate: '<p class="serial-no">{{rowRenderIndex+1}}</p>'},
-                                                                     { field: 'circleName', footerCellTemplate: '<div class="ui-grid-cell-contents" >Total</div>',sort: { direction: 'asc', priority: 0 },
+                                                                     { field: 'circleName', displayName: 'Circle', footerCellTemplate: '<div class="ui-grid-cell-contents" >Total</div>',sort: { direction: 'asc', priority: 0 },
                                                                         cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}" ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
                                                                         enableHiding: false,width:"14%",
 
                                                                      },
-                                                                     { field: 'anonUsersStartedCourse', displayName: 'No. of anonymous users started Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                                     { field: 'anonUsersPursuingCourse', displayName: 'No. of anonymous users pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                                     { field: 'anonUsersNotPursuingCourse', displayName: 'No. of anonymous users Not pursuing Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                                     { field: 'anonUsersCompletedCourse', displayName: 'No. of anonymous users successfully completed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
-                                                                     { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed Course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                                     { field: 'anonUsersStartedCourse', displayName: 'No. of anonymous users started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersPursuingCourse', displayName: 'No. of anonymous users pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersNotPursuingCourse', displayName: 'No. of anonymous users not pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                                     { field: 'anonUsersCompletedCourse', displayName: 'No. of anonymous users successfully completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                                     { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
 
                                                                     ],
 
 
 
-            /*$scope.drillDownData = function(locationId,locationType){
-
-                  if(angular.lowercase(locationType) == "state"){
-                    reportRequest.stateId = locationId;
-                    reportRequest.districtId = 0;
-                    reportRequest.blockId = 0;
-                    $scope.waiting = true;
-
-                    $http({
-                            method  : 'POST',
-                            url     : $scope.getReportUrl,
-                            data    : reportRequest, //forms user object
-                            headers : {'Content-Type': 'application/json'}
-                        })
-                        .then(function(result){
-
-                            if($scope.isAggregateReport()){
-                                $scope.waiting = false;
-                                if(result.data.tableData.length >0){
-                                    $scope.gridOptions1.data = result.data.tableData;
-                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
-                                    $scope.hideGrid = false;
-                                    $scope.gridOptions1.columnDefs[1].displayName = 'District';
-                                    $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
-                                }
-                                else{
-                                    $scope.showEmptyData = true;
-                                    $scope.hideGrid = true;
-                                }
-                                $scope.gridOptions = $scope.gridOptions1;
-                            }
-
-                        })
-                  }
-                  else if(angular.lowercase(locationType) == "NATIONAL"){
-                       reportRequest.stateId = 0;
-                       reportRequest.districtId = 0;
-                       reportRequest.blockId = 0;
-                       $scope.waiting = true;
-                       $http({
-                               method  : 'POST',
-                               url     : $scope.getReportUrl,
-                               data    : reportRequest,
-                               headers : {'Content-Type': 'application/json'}
-                           })
-                           .then(function(result){
-
-                               if($scope.isAggregateReport()){
-                                   $scope.waiting = false;
-                                   if(result.data.tableData.length >0){
-                                      $scope.gridOptions1.data = result.data.tableData;
-                                      $scope.reportBreadCrumbData = result.data.breadCrumbData;
-                                       $scope.hideGrid = false;
-                                       $scope.gridOptions1.columnDefs[1].displayName = 'State';
-                                       $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
-                                   }
-                                   else{
-                                       $scope.showEmptyData = true;
-                                       $scope.hideGrid = true;
-                                   }
-                                   $scope.gridOptions = $scope.gridOptions1;
-                               }
-
-                           })
-                     }
-                  else if(angular.lowercase(locationType) == "district"){
-                     reportRequest.districtId = locationId;
-                     reportRequest.blockId = 0;
-                     $scope.waiting = true;
-                     $http({
-                             method  : 'POST',
-                             url     : $scope.getReportUrl,
-                             data    : reportRequest,
-                             headers : {'Content-Type': 'application/json'}
-                         })
-                         .then(function(result){
-
-                             if($scope.isAggregateReport()){
-                                 $scope.waiting = false;
-                                 if(result.data.tableData.length >0){
-                                    $scope.gridOptions1.data = result.data.tableData;
-                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
-                                     $scope.hideGrid = false;
-                                     $scope.gridOptions1.columnDefs[1].displayName = 'Block';
-                                     $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
-                                 }
-                                 else{
-                                     $scope.showEmptyData = true;
-                                     $scope.hideGrid = true;
-                                 }
-                                 $scope.gridOptions = $scope.gridOptions1;
-                             }
-
-                         })
-                  }
-                  else if(angular.lowercase(locationType) == "block"){
-                    reportRequest.blockId = locationId;
-                    $scope.waiting = true;
-                    $http({
-                            method  : 'POST',
-                            url     : $scope.getReportUrl,
-                            data    : reportRequest, //forms user object
-                            headers : {'Content-Type': 'application/json'}
-                        })
-                        .then(function(result){
-
-                            if($scope.isAggregateReport()){
-                                $scope.waiting = false;
-                                if(result.data.tableData.length >0){
-                                    $scope.gridOptions1.data = result.data.tableData;
-                                    $scope.reportBreadCrumbData = result.data.breadCrumbData;
-                                    $scope.hideGrid = false;
-                                     $scope.gridOptions1.columnDefs[1].displayName = 'Subcenter';
-                                     $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
-                                }
-                                else{
-                                     $scope.showEmptyData = true;
-                                     $scope.hideGrid = true;
-                                }
-                                $scope.gridOptions = $scope.gridOptions1;
-                            }
-
-                        })
-                  }
-            }
-
-		}])
-})()*/
 
                 $scope.lastBread = function(reportBreadCrumbData){
                     var length = reportBreadCrumbData.length;
@@ -1524,7 +1407,7 @@
                                     $scope.gridOptions1.data = result.data.tableData;
                                     $scope.reportBreadCrumbData = result.data.breadCrumbData;
                                     $scope.hideGrid = false;
-                                     $scope.gridOptions1.columnDefs[1].displayName = 'Subcenter';
+                                     $scope.gridOptions1.columnDefs[1].displayName = 'Panchayat';
                                      $scope.gridApi.core.notifyDataChange( uiGridConstants.dataChange.COLUMN );
                                      fileName = $scope.report.reportEnum + "_" + $scope.reportBreadCrumbData[$scope.reportBreadCrumbData.length -1].locationName ;
                                      $scope.gridOptions1.exporterExcelFilename = fileName + "_" + dateString;
@@ -1543,3 +1426,4 @@
 
 		}])
 })()
+

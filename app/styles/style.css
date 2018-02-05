@@ -342,6 +342,7 @@ div.reports-header *,
 div.reports-header input,
 div.reports-header select{
 	text-align:left;
+	white-space: inherit !important;
 }
 
 div.reports-header .left,
@@ -681,11 +682,8 @@ md-dialog{
     margin-top:7px;
 }
 
-#btn-append-to-body{
-    width:100%;
-}
-
-#btn-append-to-body-4{
+#selectAgrReport,#selectAgrReportC,#selectAgrCircle,#selectLLReport
+{
     width:100%;
 }
 
@@ -694,9 +692,10 @@ md-dialog{
 }
 
 .dropdownTitle{
-    display: inline-block;
-    width: 90%;
-    overflow: hidden;
+    display : inline-block;
+    width : 90%;
+    overflow : hidden;
+    height : 100%
 }
 
 .btn-default{
@@ -724,6 +723,26 @@ md-dialog{
 
 .text-center, .uib-title{
     text-align : center !important;
+}
+
+#anon{
+    padding-left : 0px ;
+}
+
+.reportDate{
+    text-align : right;
+}
+
+#periodCaret,#quarterCaret{
+    margin-top : 0px !important;
+}
+
+.dropdown-menu.type-aggregate, .dropdown-menu.non-aggregate{
+    width : 250px;
+}
+
+.dropdown-menu.big , .dropdown-menu.type-aggregate, .dropdown-menu.non-aggregate{
+    top : 222px !important;
 }
 
 

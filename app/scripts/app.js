@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 var waReportsApp = angular
-	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid','ui.grid.selection', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector'])
+	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector'])
 	.run( ['$rootScope', '$state', '$stateParams',
 		function ($rootScope, $state, $stateParams) {
 			$rootScope.$state = $state;

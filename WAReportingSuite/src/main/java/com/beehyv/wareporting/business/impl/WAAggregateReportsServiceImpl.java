@@ -181,7 +181,13 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId,Date toDate){
         List<WAAnonymousUsersSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
-
+        if(circleId == 0) {
+            List<Circle> circles = circleDao.getAllCircles();
+            for (Circle circle : circles){
+                CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate));
+            }
+            return CumulativeSummary;
+        }
         CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId, toDate));
 
         return CumulativeSummary;
@@ -389,8 +395,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
             summaryDto1.setSwachchagrahisStarted(a.getSwachchagrahisStarted());
             summaryDto1.setLocationType(a.getLocationType());
             summaryDto1.setCompletedPercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisCompleted() * 10000 / a.getSwachchagrahisStarted())) / 100);
-            summaryDto1.setFailedpercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisFailed() * 10000 / a.getSwachchagrahisStarted())) / 100);
-            summaryDto1.setNotStartedpercentage((float) (a.getSwachchagrahisRegistered() == 0 ? 0 : (a.getSwachchagrahisNotStarted() * 10000 / a.getSwachchagrahisRegistered())) / 100);
+            summaryDto1.setFailedPercentage((float) (a.getSwachchagrahisStarted() == 0 ? 0 : (a.getSwachchagrahisFailed() * 10000 / a.getSwachchagrahisStarted())) / 100);
+            summaryDto1.setNotStartedPercentage((float) (a.getSwachchagrahisRegistered() == 0 ? 0 : (a.getSwachchagrahisNotStarted() * 10000 / a.getSwachchagrahisRegistered())) / 100);
             String locationType = a.getLocationType();
             if (locationType.equalsIgnoreCase("State")) {
                 summaryDto1.setLocationName(stateDao.findByStateId(a.getLocationId().intValue()).getStateName());
@@ -431,7 +437,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     }
 
     @Override
-    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId,Integer stateId,Integer districtId,Integer blockId) {
+    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId) {
 
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<WAAnonymousPerformanceDto> summaryDto = new ArrayList<>();

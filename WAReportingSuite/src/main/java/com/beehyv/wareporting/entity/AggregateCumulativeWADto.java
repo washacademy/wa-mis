@@ -18,9 +18,9 @@ public class AggregateCumulativeWADto {
     private Integer swachchagrahisFailed;
     private Integer swachchagrahisRejected;
     private Integer recordsReceived;
-    private float notStartedpercentage;
+    private float notStartedPercentage;
     private float completedPercentage;
-    private float failedpercentage;
+    private float failedPercentage;
 
     public Integer getRecordsReceived() {
         return recordsReceived;
@@ -38,12 +38,12 @@ public class AggregateCumulativeWADto {
         this.swachchagrahisRejected = swachchagrahisRejected;
     }
 
-    public float getNotStartedpercentage() {
-        return notStartedpercentage;
+    public float getNotStartedPercentage() {
+        return notStartedPercentage;
     }
 
-    public void setNotStartedpercentage(float notStartedpercentage) {
-        this.notStartedpercentage = notStartedpercentage;
+    public void setNotStartedPercentage(float notStartedPercentage) {
+        this.notStartedPercentage = notStartedPercentage;
     }
 
     public float getCompletedPercentage() {
@@ -54,12 +54,12 @@ public class AggregateCumulativeWADto {
         this.completedPercentage = completedPercentage;
     }
 
-    public float getFailedpercentage() {
-        return failedpercentage;
+    public float getFailedPercentage() {
+        return failedPercentage;
     }
 
-    public void setFailedpercentage(float failedpercentage) {
-        this.failedpercentage = failedpercentage;
+    public void setFailedPercentage(float failedPercentage) {
+        this.failedPercentage = failedPercentage;
     }
 
     public int getId() {

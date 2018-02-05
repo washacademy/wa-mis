@@ -159,7 +159,7 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Block getBlockOfPanchayat(Integer panchayatId) {
 //        return districtDao.findByDistrictId(blockDao.findByBlockId(blockId).getDistrictOfBlock());
-        return blockDao.findByBlockId(panchayatDao.findByPanchayatId(panchayatId).getBlockOfpanchayat());
+        return blockDao.findByBlockId(panchayatDao.findByPanchayatId(panchayatId).getBlockOfPanchayat());
     }
 
 
