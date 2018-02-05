@@ -19,7 +19,7 @@ public class WACourseFirstCompletion {
     @Column(name="swc_id", columnDefinition = "BIGINT(20)")
     private Long swcId;
 
-    @Column(name="swc_mobileNumber", columnDefinition = "BIGINT(20)")
+    @Column(name="mobile_number", columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
     @Column(name="state_id", columnDefinition = "TINYINT(4)")

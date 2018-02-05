@@ -18,7 +18,7 @@ public class WACallDetailMeasure {
     @Column(name="swc_id" ,columnDefinition = "BIGINT(20)")
     private Long swcId;
 
-    @Column(name="calling_mobileNumber",columnDefinition = "BIGINT(20)")
+    @Column(name="mobile_number",columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
     @Column(name="operator_id",columnDefinition = "BIGINT(20)")
