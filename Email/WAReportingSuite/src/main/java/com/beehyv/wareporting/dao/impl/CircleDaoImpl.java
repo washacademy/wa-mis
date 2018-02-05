@@ -3,6 +3,10 @@ package com.beehyv.wareporting.dao.impl;
 import com.beehyv.wareporting.dao.AbstractDao;
 import com.beehyv.wareporting.dao.CircleDao;
 import com.beehyv.wareporting.model.Circle;
+import com.beehyv.wareporting.model.District;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**

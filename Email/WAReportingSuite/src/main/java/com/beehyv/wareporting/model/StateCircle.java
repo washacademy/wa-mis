@@ -5,19 +5,20 @@ import javax.persistence.*;
 /**
  * Created by beehyv on 25/5/17.
  */
+
 @Entity
-@Table(name="state_circle_rel")
+@Table(name = "state_circle_rel")
 public class StateCircle {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id", columnDefinition = "TINYINT")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "TINYINT")
     private Integer id;
 
-    @Column(name="state_id", columnDefinition = "TINYINT")
+    @Column(name = "state_id", columnDefinition = "TINYINT")
     private Integer stateId;
 
-    @Column(name="circle_id", columnDefinition = "TINYINT")
+    @Column(name = "circle_id", columnDefinition = "TINYINT")
     private Integer circleId;
 
     public Integer getId() {

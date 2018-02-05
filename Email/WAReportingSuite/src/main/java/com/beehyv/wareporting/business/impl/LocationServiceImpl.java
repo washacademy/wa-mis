@@ -1,10 +1,7 @@
 package com.beehyv.wareporting.business.impl;
 
 import com.beehyv.wareporting.business.LocationService;
-import com.beehyv.wareporting.dao.BlockDao;
-import com.beehyv.wareporting.dao.DistrictDao;
-import com.beehyv.wareporting.dao.StateCircleDao;
-import com.beehyv.wareporting.dao.StateDao;
+import com.beehyv.wareporting.dao.*;
 import com.beehyv.wareporting.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +16,18 @@ import java.util.List;
 @Service("locationService")
 @Transactional
 public class LocationServiceImpl implements LocationService {
-    @Autowired
-    private StateDao stateDao;
 
     @Autowired
-    private DistrictDao districtDao;
+    StateDao stateDao;
 
     @Autowired
-    private BlockDao blockDao;
+    DistrictDao districtDao;
+
+    @Autowired
+    BlockDao blockDao;
+
+    @Autowired
+    CircleDao circleDao;
 
     @Autowired
     private StateCircleDao stateCircleDao;
@@ -43,7 +44,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Block findBlockById(Integer blockId) {
-        return blockDao.findByblockId(blockId);
+        return blockDao.findByBlockId(blockId);
     }
 
     @Override
@@ -54,6 +55,11 @@ public class LocationServiceImpl implements LocationService {
             states.add(stateDao.findByStateId(stateCircle.getStateId()));
         }
         return states;
+    }
+
+    @Override
+    public Circle findCircleById(Integer circleId){
+        return circleDao.getByCircleId(circleId);
     }
 
 }

@@ -7,15 +7,15 @@ import java.sql.Date;
  * Created by beehyv on 4/5/17.
  */
 @Entity
-@Table(name="dim_block")
+@Table(name = "dim_block")
 public class Block {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="block_id", columnDefinition = "INT")
+    @Column(name="block_id", columnDefinition = "INT(11)")
     private Integer blockId;
 
-    @Column(name="block_name")
+    @Column(name="block_name", columnDefinition = "VARCHAR(45)")
     private String blockName;
 
     @Column(name="last_modified", columnDefinition = "TIMESTAMP")
@@ -27,10 +27,10 @@ public class Block {
     @Column(name="code", columnDefinition = "BIGINT(20)")
     private Long code;
 
-    @Column(name="district_id", columnDefinition = "SMALLINT")
+    @Column(name="district_id", columnDefinition = "SMALLINT(6)")
     private Integer districtOfBlock;
 
-    @Column(name="state_id", columnDefinition = "TINYINT")
+    @Column(name="state_id", columnDefinition = "TINYINT(4)")
     private Integer stateOfBlock;
 
     public Integer getBlockId() {

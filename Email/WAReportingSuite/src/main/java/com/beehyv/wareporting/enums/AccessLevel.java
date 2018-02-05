@@ -12,16 +12,11 @@ public enum AccessLevel {
     private String accessLevel;
 
 
-    private AccessLevel(String accessLevel) {
+    AccessLevel(String accessLevel) {
         this.accessLevel = accessLevel;
     }
 
     public static boolean isLevel(String test) {
-//        for (AccessLevel level: AccessLevel.values()) {
-//            return (level.name().equalsIgnoreCase(test));
-//        }
-//        return false;
-
         for (AccessLevel e : AccessLevel.class.getEnumConstants()) {
             if (e.name().equals(test)) {
                 return true;

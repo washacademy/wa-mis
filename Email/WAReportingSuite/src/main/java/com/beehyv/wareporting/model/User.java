@@ -8,245 +8,281 @@ import java.util.Date;
 
 @Entity
 @Table(name="user_details")
-public class User {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
-	private Integer userId;
+public class User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", columnDefinition = "INT(11)")
+    private Integer userId;
 
-	@Column(name="username")
-	private String username;
+    @Column(name = "username", columnDefinition = "VARCHAR(25)")
+    private String username;
 
-	@Column(name="password")
-	private String password;
+    @Column(name = "password", columnDefinition = "VARCHAR(255)")
+    private String password;
 
-	@Column(name="full_name")
-	private String fullName;
+    @Column(name = "full_name", columnDefinition = "VARCHAR(255)")
+    private String fullName;
 
-	@Column(name="phone_no")
-	private String phoneNumber;
+    @Column(name = "phone_no", columnDefinition = "BIGINT(20)")
+    private String phoneNumber;
 
-	@Column(name="email_id")
-	private String emailId;
+    @Column(name = "email_id", columnDefinition = "VARCHAR(45)")
+    private String emailId;
 
 //	@ManyToOne
 //	@JoinColumn(name="location",insertable = false,updatable = false)
 //	private Location locationId;
 
-	@Column(name="state",columnDefinition = "TINYINT")
-	private Integer stateId;
+    @Column(name = "state_id", columnDefinition = "TINYINT(4)")
+    private Integer stateId;
 
-	@Column(name="district", columnDefinition = "SMALLINT")
-	private Integer districtId;
+    @Column(name = "district_id", columnDefinition = "SMALLINT(6)")
+    private Integer districtId;
 
-	@Column(name="block", columnDefinition = "INT")
-	private Integer blockId;
+    @Column(name = "block_id", columnDefinition = "INT(11)")
+    private Integer blockId;
 
-	@Column(name="creation_date")
-	private Date creationDate;
+    @Column(name = "panchayat_id", columnDefinition = "INT(11)")
+    private Integer panchayatId;
 
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name="created_by_user")
-	private User createdByUser;
+    @Column(name = "circle_id", columnDefinition = "INT(11)")
+    private Integer circleId;
+
+    @Column(name = "creation_date", columnDefinition = "DATETIME")
+    private Date creationDate;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "created_by_user", columnDefinition = "VARCHAR(45)")
+    private User createdByUser;
 
 //	@OneToMany(mappedBy="createdByUser")
 //	@LazyCollection(LazyCollectionOption.FALSE)
 //	@JsonIgnore
 //	private Set<User> createdUsers = new HashSet<>();
 
-	@Column(name="role_id")
-	private Integer roleId;
+    @Column(name = "role_id", columnDefinition = "INT(11)")
+    private Integer roleId;
 
-	@Column(name="account_status")
-	private String accountStatus = AccountStatus.ACTIVE.getAccountStatus();
+    @Column(name = "account_status", columnDefinition = "VARCHAR(255)")
+    private String accountStatus = AccountStatus.ACTIVE.getAccountStatus();
 
-	@Column(name="access_level")
-	private  String accessLevel;
+    @Column(name = "access_level", columnDefinition = "VARCHAR(45)")
+    private String accessLevel;
 
-	@Column(name = "state_name")
-	private  String stateName;
+    @Column(name = "state_name", columnDefinition = "VARCHAR(45)")
+    private String stateName;
 
-	@Column(name = "district_name")
-	private String districtName;
+    @Column(name = "district_name", columnDefinition = "VARCHAR(45)")
+    private String districtName;
 
-	@Column(name = "block_name")
-	private String blockName;
+    @Column(name = "block_name", columnDefinition = "VARCHAR(45)")
+    private String blockName;
 
-	@Column(name = "role_name")
-	private String roleName;
+    @Column(name = "panchayat_name", columnDefinition = "VARCHAR(45)")
+    private String panchayatName;
 
-	@Column(name = "isLoggedOnce")
-	private Boolean loggedAtLeastOnce;
+    @Column(name = "circle_name", columnDefinition = "VARCHAR(45)")
+    private String circleName;
 
-	@Column(name = "isPasswordDefault")
-	private Boolean isDefault;
+    @Column(name = "role_name", columnDefinition = "VARCHAR(45)")
+    private String roleName;
 
-	public Integer getUserId() {
-		return userId;
-	}
+    @Column(name = "isLoggedOnce", columnDefinition = "BIT(1)")
+    private Boolean loggedAtLeastOnce;
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    @Column(name = "isPasswordDefault", columnDefinition = "BIT(1)")
+    private Boolean isDefault;
 
-	public String getUsername() {
-		return username;
-	}
+    public Integer getUserId() {
+        return userId;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public String getEmailId() {
-		return emailId;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public Integer getStateId() {
-		return stateId;
-	}
+    public String getEmailId() {
+        return emailId;
+    }
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
-	}
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
 
-	public Integer getDistrictId() {
-		return districtId;
-	}
+    public Integer getStateId() {
+        return stateId;
+    }
 
-	public void setDistrictId(Integer districtId) {
-		this.districtId = districtId;
-	}
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
+    }
 
-	public Integer getBlockId() {
-		return blockId;
-	}
+    public Integer getDistrictId() {
+        return districtId;
+    }
 
-	public void setBlockId(Integer blockId) {
-		this.blockId = blockId;
-	}
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Integer getBlockId() {
+        return blockId;
+    }
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setBlockId(Integer blockId) {
+        this.blockId = blockId;
+    }
 
-	public User getCreatedByUser() {
-		return createdByUser;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-	public void setCreatedByUser(User createdByUser) {
-		this.createdByUser = createdByUser;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-//	public Set<User> getCreatedUsers() {
-//		return createdUsers;
-//	}
-//
-//	public void setCreatedUsers(Set<User> createdUsers) {
-//		this.createdUsers = createdUsers;
-//	}
+    public User getCreatedByUser() {
+        return createdByUser;
+    }
 
-	public Integer getRoleId() {
-		return roleId;
-	}
+    public void setCreatedByUser(User createdByUser) {
+        this.createdByUser = createdByUser;
+    }
 
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
+    public Integer getRoleId() {
+        return roleId;
+    }
 
-	public String getAccountStatus() {
-		return accountStatus;
-	}
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 
-	public void setAccountStatus(String accountStatus) {
-		this.accountStatus = accountStatus;
-	}
+    public String getAccountStatus() {
+        return accountStatus;
+    }
 
-	public String getAccessLevel() {
-		return accessLevel;
-	}
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
+    }
 
-	public void setAccessLevel(String accessLevel) {
-		this.accessLevel = accessLevel;
-	}
+    public String getAccessLevel() {
+        return accessLevel;
+    }
 
-	public String getStateName() {
-		return stateName;
-	}
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
+    }
 
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
+    public String getStateName() {
+        return stateName;
+    }
 
-	public String getDistrictName() {
-		return districtName;
-	}
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
 
-	public void setDistrictName(String districtName) {
-		this.districtName = districtName;
-	}
+    public String getDistrictName() {
+        return districtName;
+    }
 
-	public String getBlockName() {
-		return blockName;
-	}
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
 
-	public void setBlockName(String blockName) {
-		this.blockName = blockName;
-	}
+    public String getBlockName() {
+        return blockName;
+    }
 
-	public String getRoleName() {
-		return roleName;
-	}
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+    public String getRoleName() {
+        return roleName;
+    }
 
-	public Boolean getLoggedAtLeastOnce() {
-		return loggedAtLeastOnce;
-	}
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
-	public void setLoggedAtLeastOnce(Boolean loggedAtLeastOnce) {
-		this.loggedAtLeastOnce = loggedAtLeastOnce;
-	}
+    public Boolean getLoggedAtLeastOnce() {
+        return loggedAtLeastOnce;
+    }
 
-	public Boolean getDefault() {
-		return isDefault;
-	}
+    public void setLoggedAtLeastOnce(Boolean loggedAtLeastOnce) {
+        this.loggedAtLeastOnce = loggedAtLeastOnce;
+    }
 
-	public void setDefault(Boolean aDefault) {
-		isDefault = aDefault;
-	}
+    public Boolean getDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
+    }
+
+    public Integer getPanchayatId() {
+        return panchayatId;
+    }
+
+    public void setPanchayatId(Integer panchayatId) {
+        this.panchayatId = panchayatId;
+    }
+
+    public Integer getCircleId() {
+        return circleId;
+    }
+
+    public void setCircleId(Integer circleId) {
+        this.circleId = circleId;
+    }
+
+    public String getPanchayatName() {
+        return panchayatName;
+    }
+
+    public void setPanchayatName(String panchayatName) {
+        this.panchayatName = panchayatName;
+    }
+
+    public String getCircleName() {
+        return circleName;
+    }
+
+    public void setCircleName(String circleName) {
+        this.circleName = circleName;
+    }
 }

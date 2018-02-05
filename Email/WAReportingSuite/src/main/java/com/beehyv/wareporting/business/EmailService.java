@@ -10,10 +10,10 @@ import java.util.HashMap;
  */
 public interface EmailService {
 
-    public String sendMail(EmailInfo emailInfo);
+    String sendMail(EmailInfo emailInfo);
 
-    public String getBody(String reportName, String place, String monthAndYear, String name);
+    String getBody(String reportName, String place, String monthAndYear, String name);
 
-    public HashMap sendAllMails(ReportType reportType);
+    HashMap sendAllMails(ReportType reportType);
 
 }

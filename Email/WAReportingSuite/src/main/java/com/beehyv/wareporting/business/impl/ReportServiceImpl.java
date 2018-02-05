@@ -49,7 +49,7 @@ public class ReportServiceImpl implements ReportService {
         String rootPath = "";
         String place = "NATIONAL";
 
-        if (reportRequest.getReportType().equals(ReportType.maAnonymous.getReportType())) {
+        if (reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())) {
             if (reportRequest.getCircleId() != 0) {
                 place = StReplace(circleDao.getByCircleId(reportRequest.getCircleId()).getCircleFullName());
                 rootPath += place + "/";
@@ -66,14 +66,12 @@ public class ReportServiceImpl implements ReportService {
             }
 
             if (reportRequest.getBlockId() != 0) {
-                place = StReplace(blockDao.findByblockId(reportRequest.getBlockId()).getBlockName());
+                place = StReplace(blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName());
                 rootPath += place + "/";
             }
         }
         String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getToDate()) + ".xlsx";
-        if (reportRequest.getReportType().equals(ReportType.flwRejected.getReportType()) ||
-                reportRequest.getReportType().equals(ReportType.motherRejected.getReportType()) ||
-                reportRequest.getReportType().equals(ReportType.childRejected.getReportType())) {
+        if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename = reportRequest.getReportType() + "_" + place + "_" + this.getDateMonthYear(reportRequest.getToDate()) + ".xlsx";
         }
         rootPath = reports + reportRequest.getReportType() + "/" + rootPath + filename;
@@ -107,6 +105,11 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ReportType getReportTypeByName(String reportName) {
         return reportTypeDao.getReportTypeByName(reportName);
+    }
+
+    @Override
+    public  String getReportNameByReportType(ReportType reportType){
+        return reportTypeDao.getNameByReportType(reportType);
     }
 
     @Override

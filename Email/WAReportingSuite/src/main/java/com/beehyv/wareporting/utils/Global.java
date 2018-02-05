@@ -16,7 +16,7 @@ public class Global {
         InputStream input = null;
         String fileLocation = null;
         try {
-            File file = new File("../webapps/NMSReportingSuite/WEB-INF/classes/app.properties");
+            File file = new File("../webapps/WAReportingSuite/WEB-INF/classes/app.properties");
             input = new FileInputStream(file);
             // load a properties file
             prop.load(input);

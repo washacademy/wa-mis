@@ -9,10 +9,15 @@ import org.springframework.stereotype.Repository;
  * Created by beehyv on 26/5/17.
  */
 @Repository("reportTypeDao")
-public class ReportTypeDaoImpl extends AbstractDao<String, ReportType> implements ReportTypeDao {
+public class ReportTypeDaoImpl extends AbstractDao<String,ReportType> implements ReportTypeDao {
 
     @Override
     public ReportType getReportTypeByName(String reportName) {
         return ReportType.valueOf(reportName);
+    }
+
+    @Override
+    public String getNameByReportType(ReportType reportType) {
+        return reportType.getReportName();
     }
 }

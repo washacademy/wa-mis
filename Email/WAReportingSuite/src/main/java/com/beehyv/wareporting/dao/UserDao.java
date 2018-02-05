@@ -1,5 +1,8 @@
 package com.beehyv.wareporting.dao;
 
+import com.beehyv.wareporting.model.District;
+import com.beehyv.wareporting.model.Role;
+import com.beehyv.wareporting.model.State;
 import com.beehyv.wareporting.model.User;
 
 import java.util.List;

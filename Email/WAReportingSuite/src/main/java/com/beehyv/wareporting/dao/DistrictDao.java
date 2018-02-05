@@ -11,6 +11,6 @@ public interface DistrictDao {
 
     District findByDistrictId(Integer districtId);
 
-    List<District> getDistrictsOfState(Integer state);
+    List<District> getDistrictsOfState(Integer stateId);
 
 }

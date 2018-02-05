@@ -39,4 +39,6 @@ public interface LocationService {
      /*----------------------Circle-------------------------*/
 
     List<State> getStatesOfCircle(Circle circle);
+
+    Circle findCircleById(Integer circleId);
 }
