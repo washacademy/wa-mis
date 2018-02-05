@@ -682,11 +682,8 @@ md-dialog{
     margin-top:7px;
 }
 
-#btn-append-to-body{
-    width:100%;
-}
-
-#btn-append-to-body-4{
+#selectAgrReport,#selectAgrReportC,#selectAgrCircle,#selectLLReport
+{
     width:100%;
 }
 

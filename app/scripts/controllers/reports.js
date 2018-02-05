@@ -51,8 +51,22 @@
             $scope.headerToDate = '';
             $scope.matrixContent1 = '';
             $scope.matrixContent2 = '';
+            $scope.noDrop = true;
             var parentScope = $scope.$parent;
             parentScope.child = $scope;
+
+            $scope.toggled = function(open) {
+                if(open){
+                    $scope.hideDates();
+                }
+                else{
+                    $scope.showDates();
+                }
+            };
+
+            $scope.popup1 = {
+                 opened: false
+            };
 
             $scope.popup2 = {
                 opened: false
@@ -82,7 +96,7 @@
                 $scope.dt=this.dt;
             };
 
-            $scope.open3 = function() {
+            $scope.open1 = function() {
                 $scope.popup3.opened = true;
             };
 
