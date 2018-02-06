@@ -343,7 +343,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="Ma_course_completion_data" name="copyOfMa_course_completion_data">
       <column comment="" key="true" length="-1" name="swc_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="swc_mobileNumber" nullable="true" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="mobile_number" nullable="true" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="state_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="district_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="panchayat_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
@@ -355,11 +355,11 @@
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOfMa_course_completion_data">
         <mapperTableEntries name="swc_id" expression="row4.swc_id " type="id_Long"/>
-        <mapperTableEntries name="swc_mobileNumber" expression="row4.mobile_number " type="id_Long" nullable="true"/>
+        <mapperTableEntries name="mobile_number" expression="row4.mobile_number " type="id_Long" nullable="true"/>
         <mapperTableEntries name="state_id" expression="row4.state_id " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="district_id" expression="row4.district_id " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="panchayat_id" expression="row4.panchayat_id " type="id_Integer" nullable="true"/>
@@ -421,7 +421,7 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="swc_mobileNumber"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="mobile_number"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
@@ -481,7 +481,7 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="Ma_course_completion_data" name="tMysqlOutput_2">
       <column comment="" key="true" length="-1" name="swc_id" nullable="false" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="swc_mobileNumber" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="mobile_number" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="state_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="district_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="panchayat_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
@@ -494,7 +494,7 @@
     </metadata>
     <metadata connector="REJECT" label="Ma_course_completion_data" name="REJECT">
       <column comment="" key="true" length="-1" name="swc_id" nullable="false" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="swc_mobileNumber" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="mobile_number" nullable="true" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="state_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="district_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="panchayat_id" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
@@ -600,7 +600,7 @@
       <elementValue elementRef="TRACE_COLUMN" value="creation_date"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="swc_mobileNumber"/>
+      <elementValue elementRef="TRACE_COLUMN" value="mobile_number"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="state_id"/>
