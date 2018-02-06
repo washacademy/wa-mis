@@ -21,8 +21,8 @@ public class SwcImportRejectionDaoImpl extends AbstractDao<Long, SwcImportReject
                 .add(Restrictions.eq("accepted", false))
                 .add(Restrictions.eq("districtId", districtId))
                 .add(Restrictions.ne("rejectionReason","UPDATED_RECORD_ALREADY_EXISTS"))
-                .add(Restrictions.ne("rejectionReason","FLW_TYPE_NOT_SWACHCHAGRAHI"))
-                .add(Restrictions.ne("rejectionReason","FLW_IMPORT_ERROR"))
+                .add(Restrictions.ne("rejectionReason","SWC_TYPE_NOT_SWACHCHAGRAHI"))
+                .add(Restrictions.ne("rejectionReason","SWC_IMPORT_ERROR"))
                 .add(Restrictions.ne("rejectionReason","GF_STATUS_INACTIVE"))
                 .setProjection(Projections.rowCount());
 

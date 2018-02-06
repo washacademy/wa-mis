@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * Created by beehyv on 17/5/17.
  */
-@Repository("maCourseAttemptDao")
+@Repository("waCourseAttemptDao")
 public class WACourseAttemptDaoImpl extends AbstractDao<Integer, User> implements WACourseAttemptDao {
 
     @Override
