@@ -20,11 +20,11 @@ public class SwachchagrahiDaoImpl extends AbstractDao<Integer,Swachchagrahi> imp
     public Long getCountOfInactiveSwachchagrahisForGivenDistrict(Date toDate, Integer districtId) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.and(
-                Restrictions.eq("status", "INACTIVE").ignoreCase(),
+                Restrictions.eq("courseStatus", "INACTIVE").ignoreCase(),
                 Restrictions.lt("creationDate", toDate),
                 Restrictions.eq("jobStatus","ACTIVE").ignoreCase(),
-                Restrictions.eq("designation", "SWACHCHAGRAHI").ignoreCase(),
-                Restrictions.eq("district", districtId)
+                Restrictions.eq("swcDesignation", "SWACHCHAGRAHI").ignoreCase(),
+                Restrictions.eq("districtId", districtId)
         )).setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
