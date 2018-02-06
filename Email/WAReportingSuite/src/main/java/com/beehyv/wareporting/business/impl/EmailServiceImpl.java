@@ -189,7 +189,7 @@ public class EmailServiceImpl implements EmailService {
                     "training for their operations.\n\n";
         } else if (reportName.equalsIgnoreCase(ReportType.swcRejected.getReportName())) {
             body += "\tPlease find attached the list of SWACHCHAGRAHIs rejected due to one of the following rejection reasons " +
-                    "viz.,MSISDN_ALREADY_IN_USE,FLW_TYPE_NOT_SWACHCHAGRAHI,FLW_IMPORT_ERROR,RECORD_ALREADY_EXISTS\n";
+                    "viz.,MSISDN_ALREADY_IN_USE,SWC_TYPE_NOT_SWACHCHAGRAHI,SWC_IMPORT_ERROR,RECORD_ALREADY_EXISTS\n";
             body += "\tYou are requested to kindly instruct your field level workers and ask them to provide their mobile numbers" +
                     " through which they could call the WASH Academy course and update those mobile numbers in the RCH application.\n\n";
         }
