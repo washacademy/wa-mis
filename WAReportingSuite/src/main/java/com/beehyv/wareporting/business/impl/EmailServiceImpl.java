@@ -247,7 +247,7 @@ public class EmailServiceImpl implements EmailService{
         }
         else if(reportType.equals(ReportType.swcRejected.getReportType())){
             body+="<pre>   </pre>Please find attached the list of SWACHCHAGRAHIs rejected due to one of the following rejection reasons " +
-                    "viz.,MSISDN_ALREADY_IN_USE,SWC_TYPE_NOT_SWACHCHAGRAHI,SWC_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
+                    "viz.,MOBILE_NUMBER_ALREADY_IN_USE,SWC_TYPE_NOT_SWACHCHAGRAHI,SWC_IMPORT_ERROR,RECORD_ALREADY_EXISTS";
 
             body+= "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
