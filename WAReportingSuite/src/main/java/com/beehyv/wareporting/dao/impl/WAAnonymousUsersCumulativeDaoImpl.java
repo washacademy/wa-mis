@@ -28,7 +28,7 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
 
         List<WAAnonymousUsersSummary> result = (List<WAAnonymousUsersSummary>) criteria.list();
         if(result.isEmpty()){
-            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,0,0,0,null);
+            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,null);
             return waAnonymousUsersSummary;
         }
 
@@ -36,10 +36,10 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
         waAnonymousUsersSummary.setCircleName(waAnonymousUsersSummary.getCircleName() == null ? "NA": waAnonymousUsersSummary.getCircleName());
         waAnonymousUsersSummary.setCircleId(waAnonymousUsersSummary.getCircleId() == null ? 0 : waAnonymousUsersSummary.getCircleId());
         waAnonymousUsersSummary.setAnonymousUsersStartedCourse(waAnonymousUsersSummary.getAnonymousUsersStartedCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersStartedCourse());
-        waAnonymousUsersSummary.setAnonymousUsersPursuingCourse(waAnonymousUsersSummary.getAnonymousUsersPursuingCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersPursuingCourse());
-        waAnonymousUsersSummary.setAnonymousUsersNotPursuingCourse(waAnonymousUsersSummary.getAnonymousUsersNotPursuingCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersNotPursuingCourse());
+//        waAnonymousUsersSummary.setAnonymousUsersPursuingCourse(waAnonymousUsersSummary.getAnonymousUsersPursuingCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersPursuingCourse());
+//        waAnonymousUsersSummary.setAnonymousUsersNotPursuingCourse(waAnonymousUsersSummary.getAnonymousUsersNotPursuingCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersNotPursuingCourse());
         waAnonymousUsersSummary.setAnonymousUsersCompletedCourse(waAnonymousUsersSummary.getAnonymousUsersCompletedCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersCompletedCourse());
-        waAnonymousUsersSummary.setAnonymousUsersCompletedCourse(waAnonymousUsersSummary.getAnonymousUsersFailedCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersFailedCourse());
+//        waAnonymousUsersSummary.setAnonymousUsersCompletedCourse(waAnonymousUsersSummary.getAnonymousUsersFailedCourse() == null ? 0 : waAnonymousUsersSummary.getAnonymousUsersFailedCourse());
 
         return waAnonymousUsersSummary;
     }
