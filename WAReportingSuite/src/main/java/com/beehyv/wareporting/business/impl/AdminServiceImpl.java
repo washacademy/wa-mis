@@ -485,8 +485,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void createFiles(String reportType) {
 
-        String serviceType = ReportType.getType(reportType).getServiceType();
-        List<State> states = stateDao.getStatesByServiceType(serviceType);
+        List<State> states = stateDao.getAllStates();
         String rootPath = reports;
         File dir = new File(rootPath + reportType);
         if (!dir.exists())
@@ -1075,7 +1074,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void createSwcImportRejectedFiles(Date toDate) {
-        List<State> states = stateDao.getStatesByServiceType(ReportType.swcRejected.getServiceType());
+        List<State> states = stateDao.getAllStates();
         String rootPath = reports +ReportType.swcRejected.getReportType()+ "/";
         Calendar aCalendar = Calendar.getInstance();
         aCalendar.setTime(toDate);
@@ -1148,7 +1147,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void getCumulativeCourseCompletionFiles(Date toDate) {
 
-        List<State> states = stateDao.getStatesByServiceType(ReportType.waCourseCompletion.getServiceType());
+        List<State> states = stateDao.getAllStates();
         String rootPath = reports+ReportType.waCourseCompletion.getReportType()+ "/";
         List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate);
         ReportRequest reportRequest=new ReportRequest();
@@ -1235,7 +1234,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void getCumulativeInactiveFiles(Date toDate) {
-        List<State> states = stateDao.getStatesByServiceType(ReportType.waInactive.getServiceType());
+        List<State> states = stateDao.getAllStates();
         String rootPath = reports+ReportType.waInactive.getReportType()+ "/";
         List<Swachchagrahi> inactiveSwachchagrahis = swachchagrahiDao.getInactiveSwachchagrahis(toDate);
         ReportRequest reportRequest=new ReportRequest();

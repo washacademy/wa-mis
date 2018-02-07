@@ -24,7 +24,7 @@ public enum AccessType {
         for (AccessType type: AccessType.values()) {
             if(type.name().equalsIgnoreCase(test)){
                 return type.name();
-            };
+            }
         }
         return "not valid";
     }

@@ -3,7 +3,7 @@ package com.beehyv.wareporting.dao.impl;
 import com.beehyv.wareporting.dao.AbstractDao;
 import com.beehyv.wareporting.dao.AnonymousUsersDao;
 import com.beehyv.wareporting.entity.AnonymousUser;
-import com.beehyv.wareporting.model.WAAnonymousUsersSummary;
+import com.beehyv.wareporting.model.WACircleWiseAnonymousUsersLineListing;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by beehyv on 23/5/17.
  */
 @Repository("anonymousUsersDao")
-public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,WAAnonymousUsersSummary> implements AnonymousUsersDao{
+public class  AnonymousUsersDaoImpl extends AbstractDao<Integer,WACircleWiseAnonymousUsersLineListing> implements AnonymousUsersDao{
 
     @Override
     public List<AnonymousUser> getAnonymousUsers(Date fromDate, Date toDate) {

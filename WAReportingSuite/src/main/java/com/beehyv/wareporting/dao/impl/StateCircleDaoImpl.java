@@ -25,7 +25,7 @@ public class StateCircleDaoImpl extends AbstractDao<Integer,StateCircle> impleme
     @Override
     public List<StateCircle> getRelByStateId(Integer stateId) {
         Criteria criteria = createEntityCriteria();
-        if(stateId!=null)
+        if (stateId != null)
             criteria.add(Restrictions.eq("stateId", stateId));
         return criteria.list();
     }

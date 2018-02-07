@@ -15,4 +15,9 @@ public class ReportTypeDaoImpl extends AbstractDao<String,ReportType> implements
     public ReportType getReportTypeByName(String reportName) {
         return ReportType.valueOf(reportName);
     }
+
+    @Override
+    public ReportType getReportTypeByReportEnum(String reportEnum) {
+        return ReportType.getType(reportEnum);
+    }
 }

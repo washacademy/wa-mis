@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService{
             return userDao.getActiveUsers();
         }
         else
-            return new ArrayList<User>();
+            return new ArrayList<>();
     }
 
     @Override

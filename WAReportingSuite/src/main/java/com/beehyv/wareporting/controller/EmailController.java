@@ -22,17 +22,20 @@ import java.util.HashMap;
 public class EmailController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
     @Autowired
-    ReportService reportService;
+    private ReportService reportService;
+
     @Autowired
-    EmailService emailService;
+    private EmailService emailService;
+
     @Autowired
-    LocationService locationService;
+    private LocationService locationService;
 
     @RequestMapping(value = "/sendAll/{reportEnum}", method = RequestMethod.GET)
     public @ResponseBody HashMap sendAllMails(@PathVariable String reportEnum){
-        ReportType reportType = reportService.getReportTypeByName(reportEnum);
+        ReportType reportType = reportService.getReportTypeByReportEnum(reportEnum);
         return emailService.sendAllMails(reportType);
     }
 

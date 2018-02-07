@@ -170,23 +170,29 @@ public class EmailServiceImpl implements EmailService{
         body+= "NSP Support Team \n \n \n";
         body+= "P.S: This an auto-generated email. Please do not reply";*/
         if(reportName.equalsIgnoreCase(ReportType.waCourseCompletion.getReportName())) {
-            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have completed the WASH Academy course.\n\n" +
+            body+="\tPlease find attached the list of Swachchagrahis who have completed the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
         }
         else if(reportName.equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportName())) {
             body+="\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
-                    "circle of " + place + ". We presume that these numbers are used by SWACHCHAGRAHIs working in your state but " +
-                    "have not been registered in RCH Application. Please contact these numbers and if they belong " +
-                    "to a registered SWACHCHAGRAHI in " + place + " then please tell them to either use their registered number " +
-                    "to access the WASH Academy course or register their correct numbers in the RCH Application so " +
+                    "circle of " + place + ". We presume that these numbers are used by Swachchagrahis working in your state/UT but " +
+                    "have not been registered in MDWS Application. Please contact these numbers and if they belong " +
+                    "to a registered Swachchagrahi in " + place + " then please tell them to either use their registered number " +
+                    "to access the WASH Academy course or register their correct numbers in the MDWS Application so " +
                     "that they can access the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
         }
         else if(reportName.equalsIgnoreCase(ReportType.waInactive.getReportName())) {
-            body+="\tPlease find attached the list of SWACHCHAGRAHIs who have not yet started the WASH Academy course.\n\n" +
+            body+="\tPlease find attached the list of Swachchagrahis who have not yet started the WASH Academy course.\n\n" +
                     "\tYou are requested to kindly instruct your field level workers and ask them to start accessing " +
                     "the WASH Academy course and complete the course which has been designed to provide effective " +
                     "training for their operations.\n\n";
+        }
+        else if(reportName.equalsIgnoreCase(ReportType.swcRejected.getReportName()))
+        {
+            body+="\tPlease find attached the list of Swachchagrahis rejected due to incorrect/duplicate mobile numbers\n\n" +
+                    "\tYou are requested to kindly instruct your field level workers and ask them to provide their mobile " +
+                    "\tnumbers through which they could call the WASH Academy course and update those mobile numbers.\n\n";
         }
         body+="Regards\n";
         body+= "NSP Support Team \n \n \n";

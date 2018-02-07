@@ -19,7 +19,7 @@ public class EmailTrackerDaoImpl extends AbstractDao<Integer, EmailTracker> impl
 
     @Override
     public List<EmailTracker> getAllFailedEmailsForGivenReportType(String reportType, Date fromDate) {
-        Criteria criteria=createEntityCriteria();
+        Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("reportType", reportType));
         criteria.add(Restrictions.ge("creationDate", fromDate));
 

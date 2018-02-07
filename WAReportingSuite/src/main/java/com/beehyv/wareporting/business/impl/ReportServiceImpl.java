@@ -128,6 +128,11 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
+    public ReportType getReportTypeByReportEnum(String reportEnum) {
+        return reportTypeDao.getReportTypeByReportEnum(reportEnum);
+    }
+
+    @Override
     public String getMonthName(Date toDate) {
         Calendar c =Calendar.getInstance();
         c.setTime(toDate);

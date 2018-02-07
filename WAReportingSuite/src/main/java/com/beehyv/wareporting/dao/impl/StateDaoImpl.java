@@ -43,7 +43,7 @@ public class StateDaoImpl extends AbstractDao<Integer, State> implements StateDa
         return (List<State>) criteria.list();
     }
 
-    @Override
+    /*@Override
     public List<State> getStatesByServiceType(String type) {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("stateId"));
 
@@ -52,6 +52,6 @@ public class StateDaoImpl extends AbstractDao<Integer, State> implements StateDa
                 Restrictions.eq("serviceType", "ALL")));
 
         return (List<State>) criteria.list();
-    }
+    }*/
 
 }
