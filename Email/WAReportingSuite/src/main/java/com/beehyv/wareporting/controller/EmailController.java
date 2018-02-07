@@ -25,17 +25,13 @@ public class EmailController {
     EmailService emailService;
 
     @RequestMapping(value = "/sendAll/{reportEnum}", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    HashMap sendAllMails(@PathVariable String reportEnum) {
-        ReportType reportType = reportService.getReportTypeByName(reportEnum);
+    public @ResponseBody HashMap sendAllMails(@PathVariable String reportEnum){
+        ReportType reportType = reportService.getReportTypeByReportEnum(reportEnum);
         return emailService.sendAllMails(reportType);
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    String send(@RequestBody EmailInfo mailInfo) {
+    public @ResponseBody String send(@RequestBody EmailInfo mailInfo){
         EmailInfo newMail = new EmailInfo();
         newMail.setFrom(mailInfo.getFrom());
         newMail.setTo(mailInfo.getTo());
@@ -47,7 +43,7 @@ public class EmailController {
         newMail.setSubject(mailInfo.getSubject());
         newMail.setFileName(fileName);
         newMail.setBody(mailInfo.getBody());
-        newMail.setRootPath(pathName + fileName);
+        newMail.setRootPath(pathName+fileName);
         return emailService.sendMail(newMail);
     }
 

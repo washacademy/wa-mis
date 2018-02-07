@@ -9,6 +9,8 @@ public interface ReportTypeDao {
 
     ReportType getReportTypeByName(String reportName);
 
+    ReportType getReportTypeByReportEnum(String reportEnum);
+
     String getNameByReportType(ReportType reportType);
 
 }

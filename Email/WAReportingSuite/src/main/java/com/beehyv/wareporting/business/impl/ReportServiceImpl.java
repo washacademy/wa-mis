@@ -108,6 +108,11 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public ReportType getReportTypeByReportEnum(String reportEnum) {
+        return null;
+    }
+
+    @Override
     public  String getReportNameByReportType(ReportType reportType){
         return reportTypeDao.getNameByReportType(reportType);
     }

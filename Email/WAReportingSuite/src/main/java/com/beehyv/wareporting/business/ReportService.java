@@ -19,6 +19,8 @@ public interface ReportService {
 
     ReportType getReportTypeByName(String reportName);
 
+    ReportType getReportTypeByReportEnum(String reportEnum);
+
     String getReportNameByReportType(ReportType reportType);
 
     String getMonthName(Date toDate);
