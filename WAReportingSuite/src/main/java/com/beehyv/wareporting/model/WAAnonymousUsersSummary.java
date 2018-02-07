@@ -20,18 +20,18 @@ public class WAAnonymousUsersSummary {
 
     @Column(name = "anonymous_users_started_course", columnDefinition = "INT(11)")
     private Integer anonymousUsersStartedCourse;
-
-    @Column(name = "anonymous_users_pursuing_course", columnDefinition = "INT(11)")
-    private Integer anonymousUsersPursuingCourse;
-
-    @Column(name = "anonymous_users_not_pursuing_course", columnDefinition = "INT(11)")
-    private Integer anonymousUsersNotPursuingCourse;
+//
+//    @Column(name = "anonymous_users_pursuing_course", columnDefinition = "INT(11)")
+//    private Integer anonymousUsersPursuingCourse;
+//
+//    @Column(name = "anonymous_users_not_pursuing_course", columnDefinition = "INT(11)")
+//    private Integer anonymousUsersNotPursuingCourse;
 
     @Column(name = "anonymous_users_completed_successfully", columnDefinition = "INT(11)")
     private Integer anonymousUsersCompletedCourse;
 
-    @Column(name = "anonymous_users_failed_course", columnDefinition = "INT(11)")
-    private Integer anonymousUsersFailedCourse;
+//    @Column(name = "anonymous_users_failed_course", columnDefinition = "INT(11)")
+//    private Integer anonymousUsersFailedCourse;
 
     @Column(name = "date", columnDefinition = "DATETIME")
     private Date date;
@@ -45,10 +45,10 @@ public class WAAnonymousUsersSummary {
         this.circleName = circleName;
         this.circleId = circleId;
         this.anonymousUsersStartedCourse = anonymousUsersStartedCourse;
-        this.anonymousUsersPursuingCourse = anonymousUsersPursuingCourse;
-        this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
+//        this.anonymousUsersPursuingCourse = anonymousUsersPursuingCourse;
+//        this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
         this.anonymousUsersCompletedCourse = anonymousUsersCompletedCourse;
-        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
+//        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
         this.date = date;
     }
 
@@ -75,22 +75,22 @@ public class WAAnonymousUsersSummary {
     public void setAnonymousUsersStartedCourse(Integer anonymousUsersStartedCourse) {
         this.anonymousUsersStartedCourse = anonymousUsersStartedCourse;
     }
-
-    public Integer getAnonymousUsersPursuingCourse() {
-        return anonymousUsersPursuingCourse;
-    }
-
-    public void setAnonymousUsersPursuingCourse(Integer anonymousUsersPursuingCourse) {
-        this.anonymousUsersPursuingCourse = anonymousUsersPursuingCourse;
-    }
-
-    public Integer getAnonymousUsersNotPursuingCourse() {
-        return anonymousUsersNotPursuingCourse;
-    }
-
-    public void setAnonymousUsersNotPursuingCourse(Integer anonymousUsersNotPursuingCourse) {
-        this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
-    }
+//
+//    public Integer getAnonymousUsersPursuingCourse() {
+//        return anonymousUsersPursuingCourse;
+//    }
+//
+//    public void setAnonymousUsersPursuingCourse(Integer anonymousUsersPursuingCourse) {
+//        this.anonymousUsersPursuingCourse = anonymousUsersPursuingCourse;
+//    }
+//
+//    public Integer getAnonymousUsersNotPursuingCourse() {
+//        return anonymousUsersNotPursuingCourse;
+//    }
+//
+//    public void setAnonymousUsersNotPursuingCourse(Integer anonymousUsersNotPursuingCourse) {
+//        this.anonymousUsersNotPursuingCourse = anonymousUsersNotPursuingCourse;
+//    }
 
     public Integer getAnonymousUsersCompletedCourse() {
         return anonymousUsersCompletedCourse;
@@ -100,13 +100,13 @@ public class WAAnonymousUsersSummary {
         this.anonymousUsersCompletedCourse = anonymousUsersCompletedCourse;
     }
 
-    public Integer getAnonymousUsersFailedCourse() {
-        return anonymousUsersFailedCourse;
-    }
-
-    public void setAnonymousUsersFailedCourse(Integer anonymousUsersFailedCourse) {
-        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
-    }
+//    public Integer getAnonymousUsersFailedCourse() {
+//        return anonymousUsersFailedCourse;
+//    }
+//
+//    public void setAnonymousUsersFailedCourse(Integer anonymousUsersFailedCourse) {
+//        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
+//    }
 
     public Integer getCircleId() {
         return circleId;
