@@ -21,8 +21,6 @@
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
- 			$scope.dt1 = null;
- 			$scope.dt2 = null;
 			$scope.states = [];
 			$scope.districts = [];
 			$scope.blocks = [];
@@ -36,7 +34,6 @@
 			$scope.WA_Subscriber_Column_Definitions = [];
 			$scope.WA_Anonymous_Column_Definitions = [];
 			$scope.hideGrid = true;
-			$scope.hideDate = true;
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
 			$scope.content = "There is no data available for the selected inputs";
@@ -55,17 +52,8 @@
             var parentScope = $scope.$parent;
             parentScope.child = $scope;
 
-            $scope.toggled = function(open) {
-                if(open){
-                    $scope.hideDates();
-                }
-                else{
-                    $scope.showDates();
-                }
-            };
-
             $scope.popup1 = {
-                 opened: false
+                opened: false
             };
 
             $scope.popup2 = {
@@ -84,44 +72,13 @@
                  $scope.popup3.opened = true;
             };
 
-            $scope.changeStartDate = function() {
-                $scope.dt1=this.dt1;
-            };
-
-            $scope.changeEndDate = function() {
-                $scope.dt2=this.dt2;
-            };
-
-            $scope.changeMonth = function() {
-                $scope.dt=this.dt;
-            };
-
-            $scope.open1 = function() {
-                $scope.popup3.opened = true;
+            $scope.setDate = function(year, month, day) {
+                $scope.dt1 = { date : new Date(year, month, day)};
             };
 
             $scope.setDate = function(year, month, day) {
-                $scope.dt1 = new Date(year, month, day);
+                $scope.dt2 = { date : new Date(year, month, day)};
             };
-
-            $scope.setDate = function(year, month, day) {
-                $scope.dt2 = new Date(year, month, day);
-            };
-
-            $scope.hideDates = function(){
-                $scope.hideDate = true;
-            }
-
-            $scope.showDates = function(){
-                $scope.hideDate = false;
-            }
-
-			$scope.disableReportCategory = function(){
-				return $scope.reports[0] == null;
-			}
-			$scope.disableReport = function(){
-				return $scope.reportCategory == null;
-			}
 
 			$scope.disableDate = function(){
 				return $scope.report == null || $scope.report.reportEnum == null;
@@ -147,7 +104,6 @@
 			$scope.disablePeriodType = function(){
             	return ($scope.report == null) || (($scope.report!=null) && ($scope.report.name == 'Cumulative Summary Report'));
             }
-
 
 			$scope.userHasState = function(){
 				return UserFormFactory.getCurrentUser().stateId != null;
@@ -184,8 +140,8 @@
 			$scope.selectPeriodType = function(item){
 			    $scope.finalDateOptions = {};
                 $scope.periodDisplayType = item;
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = { date : null};
+                $scope.dt2 = { date : null};
                 $scope.quarterDisplayType = '';
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
@@ -240,10 +196,10 @@
 					$scope.clearBlock();
 				}
 				$scope.clearCircle();
-				$scope.dt == null;
+				$scope.dt = {date : null};
 				$scope.periodDisplayType = '';
-				$scope.dt1 = null;
-				$scope.dt2 = null;
+				$scope.dt1 = {date : null};
+				$scope.dt2 = {date : null};
 				$scope.hideGrid = true;
 				$scope.hideMessageMatrix = true;
 				$scope.showEmptyData = false;
@@ -266,9 +222,8 @@
 				}
 				$scope.clearCircle();
 				$scope.clearFile();
-				$scope.dt = null;
-				$scope.dt1 = null;
-                $scope.dt2 = null;
+				$scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.setDate();
 				$scope.setDateOptions();
 				if($scope.userHasOneCircle()){
@@ -276,14 +231,15 @@
                 }
                 else
                     $scope.periodType = ['Year','Month','Quarter', 'Custom Range'];
-                if(($scope.reportCategory == 'Wash Academy Reports') &&  (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1)  ){
+                if(angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) {
                 	$scope.datePickerContent = "Select Week";
                 }
                 else
                     $scope.datePickerContent = "Select Month";
                 $scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt = {date : null};
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -481,8 +437,8 @@
 					$scope.state = state;
 				}
 				$scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -494,8 +450,8 @@
 				$scope.clearDistrict();
 				$scope.districts = [];
 				$scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -509,8 +465,8 @@
 					$scope.district = district;
 				}
                 $scope.periodDisplayType = '';
-				$scope.dt1 = null;
-				$scope.dt2 = null;
+				$scope.dt1 = {date : null};
+				$scope.dt2 = {date : null};
 				$scope.hideGrid = true;
 				$scope.hideMessageMatrix = true;
 				$scope.showEmptyData = false;
@@ -521,8 +477,8 @@
 				$scope.clearBlock();
 				$scope.blocks = [];
 				$scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -535,8 +491,8 @@
 					$scope.block = block;
 				}
 				$scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -545,8 +501,8 @@
 			$scope.clearBlock = function(){
 				$scope.block = null;
 				$scope.periodDisplayType = '';
-                $scope.dt1 = null;
-                $scope.dt2 = null;
+                $scope.dt1 = {date : null};
+                $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
                 $scope.hideMessageMatrix = true;
                 $scope.showEmptyData = false;
@@ -555,12 +511,11 @@
 			}
 			$scope.selectCircle = function(circle){
 				if(circle != null){
-//					$scope.clearBlock();
 					$scope.circle = circle;
 				}
                 $scope.periodDisplayType = '';
-				$scope.dt1 = null;
-				$scope.dt2 = null;
+				$scope.dt1 = {date : null};
+				$scope.dt2 = {date : null};
 				$scope.hideGrid = true;
 				$scope.showEmptyData = false;
 				$scope.clearFile();
@@ -574,45 +529,34 @@
 
 			$scope.fileName = "";
 
-			$scope.$watch('dt', function(newDate){
+			$scope.$watch('dt.date', function(newDate){
                 if($scope.wasSundaySelected){
                 $scope.format = 'yyyy-MM-dd';
                 $scope.wasSundaySelected = false;
                  return;
                 }
                 $scope.format = 'yyyy-MM';
-			    if(($scope.reportCategory == 'Wash Academy Reports') &&  (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.dt != null) {
-			    	 $scope.getSundays($scope.dt);
+			    if(($scope.report !=null) && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.dt.date != null) {
+			    	 $scope.getSundays($scope.dt.date);
                      $scope.sundaysTable = true;
 			    	 $scope.popup1.opened = true;
 			    }
 
                 if(!$scope.wasSundaySelected){
                     if((newDate != null) && newDate.getDate() == 1){
-                        $scope.dt = new Date($scope.dt.getFullYear(), $scope.dt.getMonth() + 1, 0, 23, 59, 59);
+                        $scope.dt = { date : new Date($scope.dt.date.getFullYear(), $scope.dt.date.getMonth() + 1, 0, 23, 59, 59)};
                      }
                 }
 			});
 
 			$scope.serviceStarted = function(state){
-				if($scope.dt == null){
+				if($scope.dt.date == null){
 					return true;
 				}
-				return new Date(state.serviceStartDate) < $scope.dt ;
+				return new Date(state.serviceStartDate) < $scope.dt.date ;
 			}
 
 			$scope.getReport = function(){
-
-                /*if($scope.reportCategory == null){
-                    if(UserFormFactory.isInternetExplorer()){
-                        alert("Please select a report category")
-                         return;
-                    }
-                    else{
-                        UserFormFactory.showAlert("Please select a report category")
-                        return;
-                    }
-                }*/
 
 				if($scope.report == null){
 				    if(UserFormFactory.isInternetExplorer()){
@@ -624,7 +568,7 @@
                         return;
                     }
 				}
-				/*if($scope.dt == null && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
+				/*if($scope.dt == null && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) ){
 					if(UserFormFactory.isInternetExplorer()){
                         alert("Please select a week")
                          return;
@@ -636,16 +580,6 @@
 
 				}*/
 
-				if($scope.dt == null && (!$scope.isAggregateReport() )){
-                	if(UserFormFactory.isInternetExplorer()){
-                         alert("Please select a month")
-                         return;
-                    }
-                    else{
-                        UserFormFactory.showAlert("Please select a month")
-                        return;
-                    }
-				}
 				else if($scope.periodDisplayType == '' && ($scope.isAggregateReport() )
 				&& ($scope.report.name != 'Cumulative Summary Report')){
                    if(UserFormFactory.isInternetExplorer()){
@@ -657,7 +591,7 @@
                        return;
                    }
                 }
-				else if($scope.dt1 == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType != 'Custom Range' && ($scope.periodDisplayType != 'Quarter') && ($scope.report.name != 'Cumulative Summary Report')) ){
+				else if($scope.dt1.date == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType != 'Custom Range' && ($scope.periodDisplayType != 'Quarter') && ($scope.report.name != 'Cumulative Summary Report')) ){
                     if(UserFormFactory.isInternetExplorer()){
                           alert("Please select a " +  $scope.periodDisplayType)
                           return;
@@ -667,7 +601,7 @@
                           return;
                     }
                 }
-                else if($scope.dt1 == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Custom Range')){
+                else if($scope.dt1.date == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Custom Range')){
                    if(UserFormFactory.isInternetExplorer()){
                       alert("Please select a start date")
                       return;
@@ -677,7 +611,7 @@
                       return;
                    }
                 }
-                 else if($scope.dt1 == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Quarter')){
+                 else if($scope.dt1.date == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Quarter')){
 
                    if(UserFormFactory.isInternetExplorer()){
                          alert("Please select a year")
@@ -689,7 +623,7 @@
                    }
 
                 }
-                else if($scope.dt2 == null && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'Cumulative Summary Report')){
+                else if($scope.dt2.date == null && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'Cumulative Summary Report')){
                    if(UserFormFactory.isInternetExplorer()){
                          alert("Please select an end date")
                          return;
@@ -712,7 +646,7 @@
                    }
 
                 }
-                else if( ($scope.periodDisplayType == 'Custom Range') && ($scope.dt2 < $scope.dt1)){
+                else if( ($scope.periodDisplayType == 'Custom Range') && ($scope.dt2.date < $scope.dt1.date)){
                    if(UserFormFactory.isInternetExplorer()){
                          alert("End date should be greater than start date")
                          return;
@@ -763,24 +697,27 @@
 				    	reportRequest.blockId = $scope.block.blockId;
 				    }
 		    	}
-		    	/*else{
+		    	else{
 		    		if($scope.circle != null ){
 				    	reportRequest.circleId = $scope.circle.circleId;
 				    }
                     else{
-                           if(UserFormFactory.isInternetExplorer()){
-                                 alert("Please select a circle")
-                                 return;
-                           }
-                           else{
-                             UserFormFactory.showAlert("Please select a circle")
-                             return;
-                           }
-
+                          reportRequest.circleId = 0;
                     }
-		    	}*/
+		    	}
 
-		    	/*if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && $scope.format == 'yyyy-MM'){
+		    	if($scope.dt.date == null && (!$scope.isAggregateReport())){
+                        if(UserFormFactory.isInternetExplorer()){
+                            alert("Please select a month")
+                                return;
+                        }
+                        else{
+                                UserFormFactory.showAlert("Please select a month")
+                                    return;
+                            }
+                }
+
+		    	if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM'){
                    if(UserFormFactory.isInternetExplorer()){
                          alert("Please select a week")
                          return;
@@ -789,11 +726,11 @@
                      UserFormFactory.showAlert("Please select a week")
                      return;
                    }
-		    	}*/
+		    	}
 
                 if(!$scope.isAggregateReport())
                 {
-                    reportRequest.fromDate = $scope.dt;
+                    reportRequest.fromDate = $scope.dt.date;
                 }
                 else
                 {
@@ -801,36 +738,36 @@
                     reportRequest.periodType = $scope.periodDisplayType;
 
                     if($scope.periodDisplayType == 'Year' ){
-                         reportRequest.fromDate = new Date($scope.dt1.getFullYear(),0,1);
-                         reportRequest.toDate = new Date($scope.dt1.getFullYear(),11,31);
+                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
+                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),11,31);
                     }
 
                     else if($scope.periodDisplayType == 'Month' ){
-                            reportRequest.fromDate = new Date($scope.dt1.getFullYear(),$scope.dt1.getMonth(),1);
-                            reportRequest.toDate = new Date($scope.dt1.getFullYear(),$scope.dt1.getMonth() + 1,0);
+                            reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),$scope.dt1.date.getMonth(),1);
+                            reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),$scope.dt1.date.getMonth() + 1,0);
                     }
                     else if($scope.periodDisplayType == 'Quarter' ){
                          if($scope.quarterDisplayType == 'Q1 (Jan to Mar)'){
-                         reportRequest.fromDate = new Date($scope.dt1.getFullYear(),0,1);
-                         reportRequest.toDate = new Date($scope.dt1.getFullYear(),2,31);
+                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
+                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),2,31);
                          }
                          if($scope.quarterDisplayType == 'Q2 (Apr to Jun)'){
-                         reportRequest.fromDate = new Date($scope.dt1.getFullYear(),3,1);
-                         reportRequest.toDate = new Date($scope.dt1.getFullYear(),5,30);
+                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),5,30);
                          }
                          if($scope.quarterDisplayType == 'Q3 (Jul to Sep)'){
-                         reportRequest.fromDate = new Date($scope.dt1.getFullYear(),6,1);
-                         reportRequest.toDate = new Date($scope.dt1.getFullYear(),8,30);
+                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),6,1);
+                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),8,30);
                          }
                          if($scope.quarterDisplayType == 'Q4 (Oct to Dec)'){
-                         reportRequest.fromDate = new Date($scope.dt1.getFullYear(),9,1);
-                         reportRequest.toDate = new Date($scope.dt1.getFullYear(),11,31);
+                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),9,1);
+                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),11,31);
                          }
 
                     }
                     else{
-                        reportRequest.fromDate = $scope.dt1;
-                        reportRequest.toDate = $scope.dt2;
+                        reportRequest.fromDate = $scope.dt1.date;
+                        reportRequest.toDate = $scope.dt2.date;
                     }
                 }
 
@@ -992,10 +929,10 @@
 				}
 				$scope.clearCircle();
 				$scope.clearFile();
-				$scope.dt = null;
+				$scope.dt = { date : null};
 				$scope.datePickerContent = "Select Month";
-				$scope.dt1 = null;
-				$scope.dt2 = null;
+				$scope.dt1 = { date : null};
+				$scope.dt2 = { date : null};
 				$scope.hideGrid = true;
 				$scope.hideMessageMatrix = true;
 				$scope.periodDisplayType = '';
@@ -1004,7 +941,7 @@
 
 
 			$scope.clearMonth = function() {
-				$scope.dt = null;
+				$scope.dt = { date : null};
 			};
 
 			$scope.inlineOptions = {
@@ -1028,7 +965,7 @@
 				var currentDate = new Date();
 
 				console.log(currentDate.getMonth() + " " + currentDate.getDate() + " " +currentDate.getFullYear());
-				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) ){
+				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) ){
 				    if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2017 && $scope.getSundays(currentDate) > 0){
 				        $scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth());
 				    }
@@ -1050,15 +987,14 @@
 
 				}
 
-				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("rejected")) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
-                    $scope.getSundays($scope.dt);
+				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
+                    $scope.getSundays($scope.dt.date);
                     $scope.sundaysTable = true;
-
                 }
 			};
 
 			$scope.setDate = function(year, month, day) {
-				$scope.dt = new Date(year, month, day);
+				$scope.dt = { date : new Date(year, month, day)};
 			};
 
 			$scope.format = 'yyyy-MM'
@@ -1162,7 +1098,7 @@
 			$scope.closeSundaysTable = function(date) {
             	$scope.sundaysTable = false;
             	$scope.sundays = [];
-            	$scope.dt = new Date($scope.dt.getFullYear(),$scope.dt.getMonth(),date);
+            	$scope.dt = { date : new Date($scope.dt.date.getFullYear(),$scope.dt.date.getMonth(),date)};
             	$scope.wasSundaySelected = true;
             };
 

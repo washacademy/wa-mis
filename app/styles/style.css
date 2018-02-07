@@ -733,7 +733,7 @@ md-dialog{
     text-align : right;
 }
 
-#periodCaret,#quarterCaret{
+#periodCaret,#quarterCaret,#LLStateCaret{
     margin-top : 0px !important;
 }
 
@@ -743,6 +743,15 @@ md-dialog{
 
 .dropdown-menu.big , .dropdown-menu.type-aggregate, .dropdown-menu.non-aggregate{
     top : 222px !important;
+}
+
+#slCirAg{
+    padding-left : 22px !important;
+    padding-right: 4px !important;
+}
+
+#slReCirAg{
+    padding-right : 7px !important;
 }
 
 
