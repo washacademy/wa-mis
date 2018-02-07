@@ -28,7 +28,7 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
 
         List<WAAnonymousUsersSummary> result = (List<WAAnonymousUsersSummary>) criteria.list();
         if(result.isEmpty()){
-            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,0,0,0,null);
+            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,null);
             return waAnonymousUsersSummary;
         }
 

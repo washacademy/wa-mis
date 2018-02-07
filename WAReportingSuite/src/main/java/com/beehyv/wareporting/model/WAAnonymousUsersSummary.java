@@ -40,7 +40,7 @@ public class WAAnonymousUsersSummary {
 
     }
 
-    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersPursuingCourse, Integer anonymousUsersNotPursuingCourse, Integer anonymousUsersCompletedCourse, Integer anonymousUsersFailedCourse,Date date){
+    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersCompletedCourse,Date date){
         this.id = id;
         this.circleName = circleName;
         this.circleId = circleId;
