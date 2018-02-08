@@ -84,7 +84,7 @@ div.nav-bar .breadcrumb li a{
 	cursor: pointer;
 }
 
-.aggregate-submit{
+.submitButton{
     margin-top : 25px;
 }
 
@@ -752,6 +752,14 @@ md-dialog{
 
 #slReCirAg{
     padding-right : 7px !important;
+}
+
+#aggregateRow,#llRow{
+    height : 70px !important;
+}
+
+#submitRow{
+    height : 68px !important;
 }
 
 

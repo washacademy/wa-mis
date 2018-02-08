@@ -3,8 +3,8 @@
     <div class="block reports-header">
         <form name="reportsForm" class="form container-fluid block" role="form" novalidate="novalidate">
 
-            <div class="row" ng-if="!isLineListingReport()">
-                <div class="col-xs-7" ng-hide="isCircleReport()">
+            <div class="row" ng-if="!isLineListingReport()" id="aggregateRow">
+                <div class="col-xs-7" ng-if="!isCircleReport()">
                     <div class="row">
                         <div class="col-xs-4">
                             <label>Select Reports</label><br>
@@ -223,7 +223,7 @@
                                     </p>
                                 </div>
 
-                                <div class="form-group col-xs-6" ng-if="!((periodDisplayType != 'Quarter'))">
+                                <div class="form-group col-xs-6" ng-if="(periodDisplayType == 'Quarter')">
                                     <label>Select Quarter</label><br>
                                     <div class="btn-group" uib-dropdown dropdown-append-to-body>
                                         <button id="btn-append-to-body10" type="button"
@@ -252,7 +252,7 @@
                 <div class="col-xs-3" ng-if="isCircleReport()"></div>
             </div>
 
-            <div class="row" ng-hide="!isLineListingReport()">
+            <div class="row" ng-if="isLineListingReport()" id="llRow">
                 <div class="col-xs-11">
                     <div class="row">
                         <div class="col-xs-3">
@@ -403,9 +403,8 @@
                 </div>
             </div>
 
-
-            <div class="row">
-                <div class="form-group col-xs-3 aggregate-submit">
+            <div class="row" id="submitRow">
+                <div class="form-group col-xs-3 submitButton">
                     <button class="btn btn-sm btn-primary" ng-click="getReport()" id="submitButton">Submit</button>
                     <button class="btn btn-sm btn-primary" ng-click="reset()" id="resetButton">Reset</button>
                 </div>
