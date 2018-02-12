@@ -43,9 +43,6 @@ public class SwcImportRejection {
     @Column(name = "language", columnDefinition = "VARCHAR(45)")
     private String language;
 
-    @Column(name = "course_status", columnDefinition = "VARCHAR(255)")
-    private String courseStatus;
-
     @Column(name = "job_status", columnDefinition = "VARCHAR(255)")
     private String jobStatus;
 
@@ -155,14 +152,6 @@ public class SwcImportRejection {
 
     public void setLanguage(String language) {
         this.language = language;
-    }
-
-    public String getSwStatus() {
-        return courseStatus;
-    }
-
-    public void setSwStatus(String courseStatus) {
-        this.courseStatus = courseStatus;
     }
 
     public String getJobStatus() {

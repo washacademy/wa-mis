@@ -8,10 +8,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
     <name>WAReportingSuite Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-    <springframework.version>4.2.5.RELEASE</springframework.version>
-    <springsecurity.version>4.0.4.RELEASE</springsecurity.version>
-    <hibernate.version>4.3.11.Final</hibernate.version>
-    <mysql.connector.version>5.1.31</mysql.connector.version>
+        <springframework.version>4.2.5.RELEASE</springframework.version>
+        <springsecurity.version>4.0.4.RELEASE</springsecurity.version>
+        <hibernate.version>4.3.11.Final</hibernate.version>
+        <mysql.connector.version>5.1.31</mysql.connector.version>
 
     </properties>
     <repositories>
