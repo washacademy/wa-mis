@@ -568,17 +568,6 @@
                         return;
                     }
 				}
-				/*if($scope.dt == null && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) ){
-					if(UserFormFactory.isInternetExplorer()){
-                        alert("Please select a week")
-                         return;
-                    }
-                    else{
-                        UserFormFactory.showAlert("Please select a week")
-                        return;
-                    }
-
-				}*/
 
 				else if($scope.periodDisplayType == '' && ($scope.isAggregateReport() )
 				&& ($scope.report.name != 'Cumulative Summary Report')){
@@ -706,6 +695,17 @@
                     }
 		    	}
 
+		    	if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM'){
+                    if(UserFormFactory.isInternetExplorer()){
+                        alert("Please select a week")
+                            return;
+                    }
+                    else{
+                            UserFormFactory.showAlert("Please select a week")
+                            return;
+                        }
+                }
+
 		    	if($scope.dt.date == null && (!$scope.isAggregateReport())){
                         if(UserFormFactory.isInternetExplorer()){
                             alert("Please select a month")
@@ -716,17 +716,6 @@
                                     return;
                             }
                 }
-
-		    	if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM'){
-                   if(UserFormFactory.isInternetExplorer()){
-                         alert("Please select a week")
-                         return;
-                   }
-                   else{
-                     UserFormFactory.showAlert("Please select a week")
-                     return;
-                   }
-		    	}
 
                 if(!$scope.isAggregateReport())
                 {
