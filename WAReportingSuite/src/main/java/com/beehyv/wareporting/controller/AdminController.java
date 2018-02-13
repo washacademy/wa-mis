@@ -228,14 +228,14 @@ public class AdminController {
         return "Reports Generated";
     }
 
-    @RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
     public @ResponseBody
     List<State> getStatesByServiceType(@PathVariable("serviceType") String serviceType) {
 
         List<State> states= locationService.getStatesByServiceType(serviceType);
 
         return states;
-    }
+    }*/
 
     @RequestMapping(value = {"/state/{serviceType}/{stateId}"}, method = RequestMethod.GET)
     public @ResponseBody
