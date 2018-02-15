@@ -703,10 +703,10 @@ public class AdminServiceImpl implements AdminService {
                 "District Name",
                 "Block Name",
                 "Panchayat Name",
-                "SWACHCHAGRAHI Id",
-                "SWACHCHAGRAHI Name",
-                "SWACHCHAGRAHI Job Status",
-                "SWACHCHAGRAHI Mobile Number",
+                "Swachchagrahi Id",
+                "Swachchagrahi Name",
+                "Swachchagrahi Job Status",
+                "Swachchagrahi Mobile Number",
                 "Reason For Rejection"
         });
         Integer counter = 2;
@@ -720,10 +720,10 @@ public class AdminServiceImpl implements AdminService {
                     (swcRejection.getBlockName() == null) ? "No  Block": swcRejection.getBlockName(),
                    // (swcRejection.getPhcName() == null) ? "No  Facility" : swcRejection.getPhcName(),
                     (swcRejection.getPanchayatName() == null) ? "No Panchayat" : swcRejection.getPanchayatName(),
-                    (swcRejection.getSwcId() == null) ? "No SWACHCHAGRAHI ID": swcRejection.getSwcId(),
-                    (swcRejection.getFullName() == null) ? "No SWACHCHAGRAHI Name": swcRejection.getFullName(),
-                    (swcRejection.getJobStatus() == null) ? "No SWACHCHAGRAHI Job Status": swcRejection.getJobStatus(),
-                    (swcRejection.getMobileNumber() == null) ? "No SWACHCHAGRAHI Mobile Number": swcRejection.getMobileNumber(),
+                    (swcRejection.getSwcId() == null) ? "No Swachchagrahi ID": swcRejection.getSwcId(),
+                    (swcRejection.getFullName() == null) ? "No Swachchagrahi Name": swcRejection.getFullName(),
+                    (swcRejection.getJobStatus() == null) ? "No Swachchagrahi Job Status": swcRejection.getJobStatus(),
+                    (swcRejection.getMobileNumber() == null) ? "No Swachchagrahi Mobile Number": swcRejection.getMobileNumber(),
                     (swcRejection.getRejectionReason() == null) ? "No Rejection Reason": swcRejection.getRejectionReason(),
             });
             counter++;
@@ -783,10 +783,10 @@ public class AdminServiceImpl implements AdminService {
                 "District",
                 "Block",
                 "Panchayat",
-                "SWACHCHAGRAHI Name",
-                "SWACHCHAGRAHI ID",
-                "SWACHCHAGRAHI Creation Date",
-                "SWACHCHAGRAHI Job Status",
+                "Swachchagrahi Name",
+                "Swachchagrahi ID",
+                "Swachchagrahi Creation Date",
+                "Swachchagrahi Job Status",
                 "First Completion Date",
                 "SMS Sent Notification"
         });
@@ -802,7 +802,7 @@ public class AdminServiceImpl implements AdminService {
                     (waCourseFirstCompletion.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(waCourseFirstCompletion.getBlockId()).getBlockName(),
                     (waCourseFirstCompletion.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(waCourseFirstCompletion.getPanchayatId()).getPanchayatName(),
                     (waCourseFirstCompletion.getFullName() == null) ? "No Name":waCourseFirstCompletion.getFullName(),
-                    (waCourseFirstCompletion.getSwcId() == null) ? "No SWC_ID":waCourseFirstCompletion.getSwcId(),
+                    (waCourseFirstCompletion.getSwcId() == null) ? "No Swc_Id":waCourseFirstCompletion.getSwcId(),
                     (waCourseFirstCompletion.getCreationDate() == null) ? "No Creation_date":waCourseFirstCompletion.getCreationDate(),
                     (waCourseFirstCompletion.getJobStatus() == null) ? "No Designation":waCourseFirstCompletion.getJobStatus(),
                     (waCourseFirstCompletion.getFirstCompletionDate() == null) ? "No Date":waCourseFirstCompletion.getFirstCompletionDate(),
@@ -925,10 +925,10 @@ public class AdminServiceImpl implements AdminService {
                 "District",
                 "Block",
                 "Panchayat",
-                "SWACHCHAGRAHI Name",
-                "SWACHCHAGRAHI ID",
-                "SWACHCHAGRAHI Creation Date",
-                "SWACHCHAGRAHI Job Status"
+                "Swachchagrahi Name",
+                "Swachchagrahi ID",
+                "Swachchagrahi Creation Date",
+                "Swachchagrahi Job Status"
         });
         Integer counter = 2;
         if(inactiveCandidates.isEmpty()) {
@@ -942,7 +942,7 @@ public class AdminServiceImpl implements AdminService {
                     (swachchagrahi.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(swachchagrahi.getBlockId()).getBlockName(),
                     (swachchagrahi.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(swachchagrahi.getPanchayatId()).getPanchayatName(),
                     (swachchagrahi.getFullName() == null) ? "No Name":swachchagrahi.getFullName(),
-                    (swachchagrahi.getSwcId() == null) ? "No SWC_ID":swachchagrahi.getSwcId(),
+                    (swachchagrahi.getSwcId() == null) ? "No Swc_Id":swachchagrahi.getSwcId(),
                     (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate(),
                     (swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
             });

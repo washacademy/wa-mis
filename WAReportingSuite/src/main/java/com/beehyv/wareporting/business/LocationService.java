@@ -27,7 +27,7 @@ public interface LocationService {
 
     State findStateByName(String stateName);
 
-    List<State> getStatesByServiceType(String serviceType);
+    //List<State> getStatesByServiceType(String serviceType);
 
     Date getServiceStartDateForState(Integer stateId,String serviceType);
 

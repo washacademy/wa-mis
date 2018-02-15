@@ -128,7 +128,7 @@
 			<!-- <tr ng-repeat="item in data"> -->
 			<tr ng-repeat="item in filterData = (getAllUsers() | filter : search ) | orderBy : sorter : reverse  | limitTo : numPerPage : numPerPage*(currentPageNo-1)">
 				<!-- <td class ="{{header}}" ng-repeat="header in headers" ng-if="header != '$$hashKey'">{{item[header]}}</td> -->
-				<td>{{item.id - 1}}</td>
+				<td>{{item.id}}</td>
 				<td>{{item.name}}</td>
 				<td>{{item.username}}</td>
 				<td>{{item.phoneNumber}}</td>

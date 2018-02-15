@@ -27,6 +27,7 @@ import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import java.util.*;
 
+import static com.beehyv.wareporting.utils.ServiceFunctions.getMonthYear;
 
 /**
  * Created by beehyv on 25/5/17.
@@ -36,37 +37,34 @@ import java.util.*;
 public class EmailServiceImpl implements EmailService {
 
     @Autowired
-    JavaMailSender mailSender;
+    private JavaMailSender mailSender;
 
     @Autowired
-    ServletContext context;
+    private ServletContext context;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    ReportService reportService;
+    private ReportService reportService;
 
     @Autowired
-    LocationService locationService;
+    private LocationService locationService;
 
     @Autowired
-    EmailTrackerService emailTrackerService;
+    private EmailTrackerService emailTrackerService;
 
     @Autowired
-    DistrictDao districtDao;
+    private DistrictDao districtDao;
 
     @Autowired
-    WACourseAttemptDao waCourseAttemptDao;
+    private WACourseAttemptDao waCourseAttemptDao;
 
     @Autowired
-    SwachchagrahiDao swachchagrahiDao;
+    private SwachchagrahiDao SwachchagrahiDao;
 
     @Autowired
-    SwcImportRejectionDao swcImportRejectionDao;
-
-    @Autowired
-    EmailService emailService;
+    private SwcImportRejectionDao swcImportRejectionDao;
 
     @Override
     public String sendMail(EmailInfo mailInfo) {
@@ -121,8 +119,8 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailInfo.getFrom()));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailInfo.getTo()));
-            message.setSubject(emailInfo.getSubject(), "UTF-8");
-            message.setContent(emailInfo.getBody(), "text/html; charset=utf-8");
+            message.setSubject(emailInfo.getSubject(),"UTF-8");
+            message.setContent(emailInfo.getBody(),"text/html; charset=utf-8");
             Transport.send(message);
             return "success";
         } catch (Exception ex) {
@@ -147,7 +145,7 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(mailInfo.getFrom()));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailInfo.getTo()));
-            message.setSubject(mailInfo.getSubject(), "UTF-8");
+            message.setSubject(mailInfo.getSubject(),"UTF-8");
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText(mailInfo.getBody());
             Multipart multipart = new MimeMultipart();
@@ -155,8 +153,8 @@ public class EmailServiceImpl implements EmailService {
             List<String> filePaths = new ArrayList<>();
             filePaths.add(mailInfo.getRootPath());
             filePaths.add(mailInfo.getRootPath2());
-            addAttachment(multipart, filePaths.get(0), mailInfo.getFileName());
-            addAttachment(multipart, filePaths.get(1), mailInfo.getFileName2());
+            addAttachment(multipart,filePaths.get(0), mailInfo.getFileName());
+            addAttachment(multipart,filePaths.get(1), mailInfo.getFileName2());
             message.setContent(multipart);
             Transport.send(message);
             return "success";
@@ -167,48 +165,53 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String getBody(String reportName, String place, String monthAndYear, String name) {
+    public String getBody(String reportName,String place, String monthAndYear, String name) {
         String body = "";
-        body += "Dear " + name + ",\n\n";
-
-        if (reportName.equalsIgnoreCase(ReportType.waCourseCompletion.getReportName())) {
-            body += "\tPlease find attached the list of SWACHCHAGRAHIs who have completed the WASH Academy course.\n\n" +
+        body+= "Dear "+name+",\n\n";
+        /*body+= "This is the "+reportName+" Report of "+place+" for the month "+monthAndYear+ ".\n \n";
+        body+= "Thank You.\n";
+        body+= "NSP Support Team \n \n \n";
+        body+= "P.S: This an auto-generated email. Please do not reply";*/
+        if(reportName.equalsIgnoreCase(ReportType.waCourseCompletion.getReportName())) {
+            body+="\tPlease find attached the list of Swachchagrahis who have completed the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
-        } else if (reportName.equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportName())) {
-            body += "\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
-                    "circle of " + place + ". We presume that these numbers are used by SWACHCHAGRAHIs working in your state but " +
-                    "have not been registered in RCH Application. Please contact these numbers and if they belong " +
-                    "to a registered SWACHCHAGRAHI in " + place + " then please tell them to either use their registered number " +
-                    "to access the WASH Academy course or register their correct numbers in the RCH Application so " +
+        }
+        else if(reportName.equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportName())) {
+            body+="\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
+                    "circle of " + place + ". We presume that these numbers are used by Swachchagrahis working in your state/UT but " +
+                    "have not been registered in MDWS Application. Please contact these numbers and if they belong " +
+                    "to a registered Swachchagrahi in " + place + " then please tell them to either use their registered number " +
+                    "to access the WASH Academy course or register their correct numbers in the MDWS Application so " +
                     "that they can access the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";
-        } else if (reportName.equalsIgnoreCase(ReportType.waInactive.getReportName())) {
-            body += "\tPlease find attached the list of SWACHCHAGRAHIs who have not yet started the WASH Academy course.\n\n" +
+        }
+        else if(reportName.equalsIgnoreCase(ReportType.waInactive.getReportName())) {
+            body+="\tPlease find attached the list of Swachchagrahis who have not yet started the WASH Academy course.\n\n" +
                     "\tYou are requested to kindly instruct your field level workers and ask them to start accessing " +
                     "the WASH Academy course and complete the course which has been designed to provide effective " +
                     "training for their operations.\n\n";
-        } else if (reportName.equalsIgnoreCase(ReportType.swcRejected.getReportName())) {
-            body += "\tPlease find attached the list of SWACHCHAGRAHIs rejected due to one of the following rejection reasons " +
-                    "viz.,MSISDN_ALREADY_IN_USE,SWC_TYPE_NOT_SWACHCHAGRAHI,SWC_IMPORT_ERROR,RECORD_ALREADY_EXISTS\n";
-            body += "\tYou are requested to kindly instruct your field level workers and ask them to provide their mobile numbers" +
-                    " through which they could call the WASH Academy course and update those mobile numbers in the RCH application.\n\n";
         }
-
-        body += "Regards\n";
-        body += "NSP Support Team \n \n \n";
-        body += "P.S: This an auto-generated email. Please do not reply";
+        else if(reportName.equalsIgnoreCase(ReportType.swcRejected.getReportName()))
+        {
+            body+="\tPlease find attached the list of Swachchagrahis rejected due to invalid or duplicate mobile number and missing information.\n\n" +
+                    "\tYou are requested to kindly instruct your field level workers and ask them to provide their mobile " +
+                    "numbers through which they could call the WASH Academy course and update those mobile numbers.\n\n";
+        }
+        body+="Regards\n";
+        body+= "NSP Support Team \n \n \n";
+        body+= "P.S: This an auto-generated email. Please do not reply";
         return body;
     }
 
-    private String getBodyForStateLevelUsers(String reportType, Integer stateId, String name) {
-        String body = "Dear " + name + ",<br>";
-        Calendar calendar = Calendar.getInstance();
+    private String getBodyForStateLevelUsers(String reportType, Integer stateId, String  name) {
+        String body= "Dear "+name +",<br>";
+        Calendar calendar=Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH,1);
 
         Date toDate = calendar.getTime();
         if (reportType.equals(ReportType.swcRejected.getReportType())) {
@@ -216,27 +219,27 @@ public class EmailServiceImpl implements EmailService {
         } else {
             calendar.add(Calendar.MONTH, -1);
         }
-        Date fromDate = calendar.getTime();
+        Date fromDate=calendar.getTime();
 
-        List<District> districts = districtDao.getDistrictsOfState(stateId);
-        if (reportType.equals(ReportType.waCourseCompletion.getReportType())) {
-            body += "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have successfully completed the WASH Academy" +
-                    " course. The line listing of the SWACHCHAGRAHIs have been sent to the respective district and block users.";
+        List<District> districts=districtDao.getDistrictsOfState(stateId);
+        if(reportType.equals(ReportType.waCourseCompletion.getReportType())){
+            body+= "<pre>   </pre>Please find below the district wise count of Swachchagrahis who have successfully completed the WASH Academy" +
+                    " course. The line listing of the Swachchagrahis have been sent to the respective district and block users.";
 
-            body += "<br><br><table width='100%' border='1' align='center'>"
+            body+=  "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
                     + "<td><b>District Name<b></td>"
-                    + "<td><b>Count of SWACHCHAGRAHIs who have successfully completed the course.<b></td>"
+                    + "<td><b>Count of Swachchagrahis who have successfully completed the course.<b></td>"
                     + "</tr>";
-            for (District district : districts
+            for (District district:districts
                     ) {
 
-                body = body + "<tr align='center'>" + "<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" + waCourseAttemptDao.getCountForGivenDistrict(toDate, district.getDistrictId()) + "</td>" + "</tr>";
+                body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
+                        + "<td>" +waCourseAttemptDao.getCountForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
             }
-        } else if (reportType.equals(ReportType.waInactive.getReportType())) {
-            body += "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs who have not yet started the WASH Academy course." +
-                    " The line listing of the SWACHCHAGRAHIs have been sent to the respective district and block users.";
+        } else if(reportType.equals(ReportType.waInactive.getReportType())){
+            body+="<pre>   </pre>Please find below the district wise count of Swachchagrahis who have not yet started the WASH Academy course." +
+                    " The line listing of the Swachchagrahis have been sent to the respective district and block users.";
 
             body += "<br><br><pre>   </pre>You are requested to kindly instruct your field level workers and ask them to start accessing the WASH Academy " +
                     "course and complete the course which has been designed to provide effective training for their operations.";
@@ -244,40 +247,40 @@ public class EmailServiceImpl implements EmailService {
             body += "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
                     + "<td><b>District Name<b></td>"
-                    + "<td><b>Count of Inactive SWACHCHAGRAHIs.<b></td>"
+                    + "<td><b>Count of Inactive Swachchagrahis.<b></td>"
                     + "</tr>";
 
-            for (District district : districts
+            for (District district:districts
                     ) {
 
-                body = body + "<tr align='center'>" + "<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" + swachchagrahiDao.getCountOfInactiveSwachchagrahisForGivenDistrict(toDate, district.getDistrictId()) + "</td>" + "</tr>";
+                body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
+                        + "<td>" + SwachchagrahiDao.getCountOfInactiveSwachchagrahisForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
             }
         } else if (reportType.equals(ReportType.swcRejected.getReportType())) {
-            body += "<pre>   </pre>Please find below the district wise count of SWACHCHAGRAHIs whose mobile numbers registered" +
-                    " at the RCH application are either incorrect or not unique. The line listing of the SWACHCHAGRAHIs" +
-                    " have been sent to the respective district and block users.";
+            body+="<pre>   </pre>Please find below the district wise count of Swachchagrahis who were rejected for the following reasons -" +
+                    "<br>invalid or duplicate mobile number and missing information. " +
+                    "<br>The line listing of the Swachchagrahis have been sent to the respective district and block users.";
 
             body += "<br><br><pre>   </pre>You are requested to kindly instruct your field level workers and ask them to provide their mobile numbers" +
                     " through which they could call the WASH Academy course and update those mobile numbers in the RCH application.";
 
-            body += "<br><br><table width='100%' border='1' align='center'>"
+            body+= "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
                     + "<td><b>District Name<b></td>"
-                    + "<td><b>Count of Rejected SWACHCHAGRAHIs Records<b></td>"
+                    + "<td><b>Count of Rejected Swachchagrahis Records<b></td>"
                     + "</tr>";
-            for (District district : districts
+            for (District district:districts
                     ) {
-                body = body + "<tr align='center'>" + "<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" + swcImportRejectionDao.getCountOfSwcRejectedRecordsForDistrict(fromDate, toDate, district.getDistrictId()) + "</td>"
-                        + "</tr>";
+                body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
+                        + "<td>" +swcImportRejectionDao.getCountOfSwcRejectedRecordsForDistrict(fromDate, toDate, district.getDistrictId())+ "</td>"
+                        +"</tr>";
             }
 
         }
 
-        body += "</table><br>Regards<br>";
-        body += "NSP Support Team <br><br>";
-        body += "P.S: This an auto-generated email. Please do not reply";
+        body+="</table><br>Regards<br>";
+        body+= "NSP Support Team <br><br>";
+        body+= "P.S: This an auto-generated email. Please do not reply";
         return body;
     }
 
@@ -285,8 +288,8 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public HashMap<String, String> sendAllMails(ReportType reportType) {
         List<User> users = userService.findAllActiveUsers();
-        HashMap<String, String> errorSendingMail = new HashMap<>();
-        for (User user : users) {
+        HashMap<String,String> errorSendingMail = new HashMap<>();
+        for(User user: users){
             EmailInfo newMail = new EmailInfo();
             newMail.setFrom("nsp-reports@beehyv.com");
             newMail.setTo(user.getEmailId());
@@ -295,41 +298,40 @@ public class EmailServiceImpl implements EmailService {
             Calendar c = Calendar.getInstance();   // this takes current date
 
             /* if the report is rejection type, we need to find file name with previous sunday date(MM-DD-YY format)
-             * else find file with previous month and year(MM-YY format) */
+            * else find file with previous month and year(MM-YY format) */
 
             /* previous sunday */
-            if (reportType.getReportType().equals(ReportType.swcRejected.getReportType()) ||
-                    reportType.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())) {
-                c.add(Calendar.DAY_OF_WEEK, -(c.get(Calendar.DAY_OF_WEEK) - 1));
+            if(reportType.getReportType().equals(ReportType.swcRejected.getReportType())) {
+                c.add( Calendar.DAY_OF_WEEK, -(c.get(Calendar.DAY_OF_WEEK)-1));
                 reportRequest.setToDate(c.getTime());
 
-            } else {
+            }else {
                 /* previous month */
                 c.add(Calendar.MONTH, -1);
                 c.set(Calendar.DATE, 1);
                 reportRequest.setToDate(c.getTime());
             }
             reportRequest.setReportType(reportType.getReportType());
-            String pathName = "", fileName = "", errorMessage = "", place = "";
-            if (reportType.getReportType().equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportType())) {
-                if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.STATE.getAccessLevel())) {
+            String pathName = "",fileName = "",errorMessage = "",place = "";
+            if(reportType.getReportType().equalsIgnoreCase(ReportType.waCircleWiseAnonymous.getReportType())){
+                if(user.getAccessLevel().equalsIgnoreCase(AccessLevel.STATE.getAccessLevel())){
                     List<Circle> stateCircleList = reportService.getUserCircles(user);
-                    for (Circle circle : stateCircleList) {
+                    for(Circle circle: stateCircleList){
                         reportRequest.setCircleId(circle.getCircleId());
                         pathName = reportService.getReportPathName(reportRequest).get(1);
                         fileName = reportService.getReportPathName(reportRequest).get(0);
                         newMail.setSubject(fileName);
                         newMail.setFileName(fileName);
                         place = getStatesNamesByCircle(circle);
-                        newMail.setBody(this.getBody(reportType.getReportName(), place, reportService.getMonthName(c.getTime()), user.getFullName()));
+                        newMail.setBody(this.getBody(reportType.getReportName(),place,reportService.getMonthName(c.getTime()),user.getFullName()));
                         newMail.setRootPath(pathName);
                         errorMessage = this.sendMail(newMail);
-                        EmailTracker emailTracker = new EmailTracker();
+                        EmailTracker emailTracker=new EmailTracker();
                         emailTracker.setEmailSuccessful(true);
-                        if (errorMessage.equalsIgnoreCase("failure")) {
+                        if (errorMessage.equalsIgnoreCase("failure")){
                             errorMessage = this.sendMail(newMail);
                         }
-                        if (errorMessage.equalsIgnoreCase("failure")) {
+                        if (errorMessage.equalsIgnoreCase("failure")){
                             errorMessage = this.sendMail(newMail);
                         }
                         if (errorMessage.equalsIgnoreCase("failure")) {
@@ -342,31 +344,6 @@ public class EmailServiceImpl implements EmailService {
                         emailTracker.setUserId(user.getUserId());
                         emailTrackerService.saveEmailDetails(emailTracker);
                     }
-                } else if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.NATIONAL.getAccessLevel())) {
-                    reportRequest.setCircleId(0);
-                    pathName = reportService.getReportPathName(reportRequest).get(1);
-                    fileName = reportService.getReportPathName(reportRequest).get(0);
-                    newMail.setSubject(fileName);
-                    newMail.setFileName(fileName);
-                    place = "NATIONAL";
-                    newMail.setBody(emailService.getBody(reportService.getReportNameByReportType(reportType), place, reportService.getMonthName(c.getTime()), user.getFullName()));
-                    newMail.setRootPath(pathName);
-                    errorMessage = emailService.sendMail(newMail);
-                    if (errorMessage.equalsIgnoreCase("failure"))
-                        errorSendingMail.put(user.getUsername(), fileName);
-                } else {
-                    reportRequest.setCircleId(locationService.findDistrictById(user.getDistrictId()).getCircleOfDistrict());
-                    pathName = reportService.getReportPathName(reportRequest).get(1);
-                    fileName = reportService.getReportPathName(reportRequest).get(0);
-                    newMail.setSubject(fileName);
-                    newMail.setFileName(fileName);
-                    Circle circle = reportService.getUserCircles(user).get(0);
-                    place = circle.getCircleName() + " Circle";
-                    newMail.setBody(emailService.getBody(reportService.getReportNameByReportType(reportType), place, reportService.getMonthName(c.getTime()), user.getFullName()));
-                    newMail.setRootPath(pathName);
-                    errorMessage = emailService.sendMail(newMail);
-                    if (errorMessage.equalsIgnoreCase("failure"))
-                        errorSendingMail.put(user.getUsername(), fileName);
                 }
             } else {
                 place = "NATIONAL";
@@ -374,21 +351,21 @@ public class EmailServiceImpl implements EmailService {
                     reportRequest.setStateId(0);
                 else {
                     reportRequest.setStateId(user.getStateId());
-                    place = locationService.findStateById(user.getStateId()).getStateName() + " State";
+                    place = locationService.findStateById(user.getStateId()).getStateName()+" State";
                 }
                 if (user.getDistrictId() == null)
                     reportRequest.setDistrictId(0);
                 else {
                     reportRequest.setDistrictId(user.getDistrictId());
-                    place = locationService.findDistrictById(user.getDistrictId()).getDistrictName() + " District";
+                    place = locationService.findDistrictById(user.getDistrictId()).getDistrictName()+" District";
                 }
                 if (user.getBlockId() == null)
                     reportRequest.setBlockId(0);
                 else {
                     reportRequest.setBlockId(user.getBlockId());
-                    place = locationService.findBlockById(user.getBlockId()).getBlockName() + " Block";
+                    place = locationService.findBlockById(user.getBlockId()).getBlockName()+" Block";
                 }
-                List<String> fileDetails = reportService.getReportPathName(reportRequest);
+                List<String> fileDetails=reportService.getReportPathName(reportRequest);
                 pathName = fileDetails.get(1);
                 fileName = fileDetails.get(0);
                 newMail.setSubject(fileName);
@@ -414,9 +391,9 @@ public class EmailServiceImpl implements EmailService {
                     }
                     emailTrackerService.saveEmailDetails(emailTracker);
 
-                } else if (user.getStateId() != null) {
+                } else if(user.getStateId()!=null)  {
                     newMail.setBody(this.getBodyForStateLevelUsers(reportType.getReportType(), user.getStateId(), user.getFullName()));
-                    errorMessage = sendMailWithStatistics(newMail);
+                    errorMessage=sendMailWithStatistics(newMail);
                     EmailTracker emailTracker = new EmailTracker();
                     emailTracker.setEmailSuccessful(true);
                     emailTracker.setFileName(fileName);
@@ -424,7 +401,7 @@ public class EmailServiceImpl implements EmailService {
                     emailTracker.setTime(new Date());
                     emailTracker.setUserId(user.getUserId());
                     if (errorMessage.equalsIgnoreCase("failure")) {
-                        errorMessage = sendMailWithStatistics(newMail);
+                        errorMessage =sendMailWithStatistics(newMail);
                     }
                     if (errorMessage.equalsIgnoreCase("failure")) {
                         errorMessage = sendMailWithStatistics(newMail);
@@ -458,10 +435,10 @@ public class EmailServiceImpl implements EmailService {
     }
 
 
-    private String getStatesNamesByCircle(Circle circle) {
+    private String getStatesNamesByCircle(Circle circle){
         List<State> states = locationService.getStatesOfCircle(circle);
         String placeNames = "";
-        if (states.size() > 1) {
+        if(states.size()>1){
             placeNames += states.get(0).getStateName() + " and " + states.get(1).getStateName() + " regions";
         } else {
             placeNames += states.get(0).getStateName() + " region";

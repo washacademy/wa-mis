@@ -78,7 +78,7 @@ public class LocationServiceImpl implements LocationService {
         return stateDao.findByName(stateName).get(0);
     }
 
-    @Override
+    /*@Override
     public List<State> getStatesByServiceType(String serviceType) {
         List<StateService> list = stateServiceDao.getStatesByServiceType(serviceType);
         List<State> stateList = new ArrayList<>();
@@ -86,7 +86,7 @@ public class LocationServiceImpl implements LocationService {
             stateList.add(stateDao.findByStateId(stateService.getStateId()));
         }
         return stateList;
-    }
+    }*/
 
     @Override
     public Date getServiceStartDateForState(Integer stateId,String serviceType) {

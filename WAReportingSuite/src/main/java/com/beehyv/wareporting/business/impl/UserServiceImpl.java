@@ -804,7 +804,7 @@ public class UserServiceImpl implements UserService{
 
         if( oldUser.getBlockId()!=null && newUser.getBlockId()!=null && !oldUser.getBlockId().equals(newUser.getBlockId())){
             ModificationTracker modificationTracker=new ModificationTracker();
-            modificationTracker.setModifiedField("healthblock");
+            modificationTracker.setModifiedField("block");
             modificationTracker.setModificationDate(new Date());
             modificationTracker.setModificationType(ModificationType.UPDATE.getModificationType());
             modificationTracker.setModifiedByUserId(getCurrentUser().getUserId());
