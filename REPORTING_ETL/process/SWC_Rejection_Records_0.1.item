@@ -204,7 +204,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select r.id,r.accepted,r.creationDate,r.districtId,r.districtName,r.swcID,&#xA;r.blockId,r.blockName,r.modificationDate,r.msisdn,r.rejectionReason,r.sex,&#xA;r.stateId,r.panchayatId,r.panchayatName,r.swcName,r.swcStatus&#xA; from wash_swachgrahi_rejects r&#xA;where r.modificationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY r.modificationDate ASC&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select r.id,r.accepted,r.creationDate,dd.district_id,r.districtName,r.swcID,&#xA;db.block_id,r.blockName,r.modificationDate,r.msisdn,r.rejectionReason,r.sex,&#xA;ds.id,dp.id,r.panchayatName,r.swcName,r.swcStatus&#xA; from wash_swachgrahi_rejects r &#xA;left join WAReporting.dim_district dd on dd.code = r.districtId&#xA;left join WAReporting.dim_block db on db.code = r.blockId&#xA;left join WAReporting.dim_panchayat dp on dp.code = r.panchayatId&#xA;left joiN WAReporting.dim_state ds on ds.code = r.stateId&#xA;where r.modificationDate>'&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&#xA;ORDER BY r.modificationDate ASC&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -303,7 +303,7 @@
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="Flw_Rejections">
         <mapperTableEntries name="id" expression="row3.id " type="id_Long"/>
@@ -605,7 +605,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id, s.code as 'state_id',s.state_name&#xA;from swc_import_rejection b&#xA;left join dim_state s on s.code = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id, s.id as 'state_id',s.state_name&#xA;from swc_import_rejection b&#xA;left join dim_state s on s.id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -648,7 +648,7 @@
       <column comment="" key="false" length="-1" name="state_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOflocation_ids_update">
         <mapperTableEntries name="id" expression="row5.id " type="id_Integer"/>
@@ -745,7 +745,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;d.code as 'district_id',d.district_name&#xA;from swc_import_rejection b&#xA;left join dim_district d on d.code = b.district_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;d.district_id as 'district_id',d.district_name&#xA;from swc_import_rejection b&#xA;left join dim_district d on d.district_id = b.district_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -788,7 +788,7 @@
       <column comment="" key="false" length="-1" name="district_name" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOfcopyOflocation_ids_update_0">
         <mapperTableEntries name="id" expression="row6.id " type="id_Integer"/>
@@ -885,7 +885,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.panchayat_id is null then null else p.code end as 'panchayat_id'&#xA;from swc_import_rejection b&#xA;left join dim_panchayat p on p.code = b.panchayat_id&#xA;left join dim_state s on s.code = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select b.id,&#xA;case when b.panchayat_id is null then null else p.id end as 'panchayat_id'&#xA;from swc_import_rejection b&#xA;left join dim_panchayat p on p.id = b.panchayat_id&#xA;left join dim_state s on s.id = b.state_id&#xA;where b.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1012,7 +1012,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select sir.id,&#xA;case when sir.block_id is null then null else b.code end as 'block_id'&#xA;from swc_import_rejection sir&#xA;left join dim_block b on b.code = sir.block_id&#xA;where sir.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select sir.id,&#xA;case when sir.block_id is null then null else b.block_id end as 'block_id'&#xA;from swc_import_rejection sir&#xA;left join dim_block b on b.block_id = sir.block_id&#xA;where sir.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -1139,7 +1139,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select sir.id&#xA;from swc_import_rejection sir&#xA;left join dim_block b on b.code = sir.block_id&#xA;where sir.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;select sir.id&#xA;from swc_import_rejection sir&#xA;left join dim_block b on b.block_id = sir.block_id&#xA;where sir.modification_date > '&quot;+(String)globalMap.get(&quot;lastEtlTime&quot;)+&quot;'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
