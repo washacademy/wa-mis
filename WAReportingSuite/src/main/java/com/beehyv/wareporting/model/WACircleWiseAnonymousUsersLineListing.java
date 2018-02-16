@@ -12,7 +12,7 @@ public class WACircleWiseAnonymousUsersLineListing {
     @Column(name="id")
     private Long Id;
 
-    @Column(name="mobile_no",columnDefinition = "BIGINT(20)")
+    @Column(name="mobile_number",columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
     @Column(name="operator", columnDefinition = "VARCHAR(45)")
