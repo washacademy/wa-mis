@@ -22,15 +22,6 @@
 				$scope.init();
 				$scope.waiting = false;
 			});
-			// }
-			// else{
-			// 	$scope.init();
-			// 	UserTableFactory.getUsers()
-			// 	.then(function(result){
-			// 		UserTableFactory.setUsers(result.data)
-			// 		$scope.init();
-			// 	});
-			// }
 
 			$scope.resetPage = function(){
 				$scope.currentPageNo = 1;
@@ -80,8 +71,6 @@
 				$scope.accLevel = accessLevel;
 			}
 			$scope.getUniqueStates = function(){
-//                $scope.districtName = "";
-//                $scope.blockName = "";
 				var states = [];
 				var users = UserTableFactory.getAllUsers();
 				for(var i=0;i<users.length;i++){

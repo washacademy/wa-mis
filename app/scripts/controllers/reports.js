@@ -48,7 +48,6 @@
             $scope.headerToDate = '';
             $scope.matrixContent1 = '';
             $scope.matrixContent2 = '';
-            $scope.noDrop = true;
             var parentScope = $scope.$parent;
             parentScope.child = $scope;
 
@@ -222,8 +221,6 @@
 				}
 				$scope.clearCircle();
 				$scope.clearFile();
-				$scope.dt1 = {date : null};
-                $scope.dt2 = {date : null};
                 $scope.setDate();
 				$scope.setDateOptions();
 				if($scope.userHasOneCircle()){
@@ -808,19 +805,19 @@
                          $scope.gridOptions = $scope.gridOptions1;
                         // $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
                          $scope.gridOptions.data = result.data.tableData;
-                         $scope.breadCrumbData = result.data.breadCrumbData;
+                         $scope.reportBreadCrumbData = result.data.breadCrumbData;
 
                         if(!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'))
                         {
-					        if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'NATIONAL')
+					        if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'NATIONAL')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'State';
                             }
-                            else if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'STATE')
+                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'STATE')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'District';
                             }
-                            else if(angular.uppercase($scope.lastBread($scope.breadCrumbData)) == 'DISTRICT')
+                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'DISTRICT')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'Block';
                             }
@@ -905,7 +902,6 @@
 			$scope.reset =function(){
 
 				$scope.report = null;
-				$scope.reportCategory = null;
 
 				if(!$scope.userHasState()){
 					$scope.clearState();

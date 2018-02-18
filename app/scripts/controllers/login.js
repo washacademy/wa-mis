@@ -3,6 +3,20 @@
 		.module('waReports')
 		.controller("LoginController", ['$scope', '$http', '$location','Captcha','UserFormFactory', function($scope, $http, $location, Captcha,UserFormFactory){
 
+            UserFormFactory.isLoggedIn()
+                    .then(function(result){
+                        if(result.data){
+                            $http.get(backend_root + 'wa/logout');
+                        }
+                    })
+
+            UserFormFactory.isAdminLoggedIn()
+                    .then(function(result){
+                         if(result.data){
+                             $http.get(backend_root + 'wa/logout');
+                         }
+                    })
+
 			$scope.user = {};
 			$scope.user.rememberMe = false;
 
