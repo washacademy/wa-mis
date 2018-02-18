@@ -89,10 +89,6 @@ public class UserController {
         return userService.findAllActiveUsers();
     }
 
-//    @RequestMapping(value={"/list/{locationId}"})
-//    public @ResponseBody List<User> getUsersByLocation(@PathVariable("locationId") Integer locationId) {
-//        return userService.findAllActiveUsersByLocation(locationId);
-//    }
 
     @RequestMapping(value = {"/myUserList"})
     public @ResponseBody
@@ -213,36 +209,7 @@ public class UserController {
         return userService.findUserByUserId(userId);
     }
 
-//    @RequestMapping(value={"/dto/{userId}"})
-//    public @ResponseBody UserDto getUserDto(@PathVariable("userId") Integer userId) {
-//        User user = userService.findUserByUserId(userId);
-//        String[] levels = {"National", "State", "District", "Block"};
-//        UserDto user1 = new UserDto();
-//        user1.setId(user.getUserId());
-//        user1.setName(user.getFullName());
-//        user1.setUsername(user.getUsername());
-//        user1.setEmail(user.getEmailId());
-//        user1.setPhoneNumber(user.getPhoneNumber());
-//        user1.setAccessLevel(user.getAccessLevel());
-//        try {
-//            user1.setStateId(locationService.findStateById(user.getStateId()).getStateName());
-//        } catch(NullPointerException e){
-//            user1.setStateId("");
-//        }
-//        try {
-//            user1.setDistrictId(locationService.findDistrictById(user.getDistrictId()).getDistrictName());
-//        } catch(NullPointerException e){
-//            user1.setDistrictId("");
-//        }
-//        try {
-//            user1.setBlockId(locationService.findBlockById(user.getBlockId()).getBlockName());
-//        } catch(NullPointerException e){
-//            user1.setBlockId("");
-//        }
-//        user1.setAccessType(user.getRoleId().getRoleId().toString());
-//        user1.setCreatedBy(true);
-//        return user1;
-//    }
+
 
     @RequestMapping(value = {"/createUser"}, method = RequestMethod.POST)
     @ResponseBody

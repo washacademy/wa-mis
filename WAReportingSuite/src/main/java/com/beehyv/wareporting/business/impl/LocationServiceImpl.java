@@ -24,9 +24,6 @@ public class LocationServiceImpl implements LocationService {
     private StateDao stateDao;
 
     @Autowired
-    private StateServiceDao stateServiceDao;
-
-    @Autowired
     private DistrictDao districtDao;
 
     @Autowired
@@ -44,21 +41,7 @@ public class LocationServiceImpl implements LocationService {
     @Autowired
     private RoleDao roleDao;
 
-//    public void createNewLocation(Location location) {
-//        locationDao.saveLocation(location);
-//    }
-//
-//    public void updateExistingLocation(Location location) {
-//        Location entity = locationDao.findByLocationId(location.getLocationId());
-//        if(entity != null) {
-//            entity.setLocation(location.getLocation());
-//            entity.setReferenceId(location.getReferenceId());
-//        }
-//    }
-//
-//    public void deleteExistingLocation(Location location) {
-//        locationDao.deleteLocation(location);
-//    }
+
     /*----------------------General----------------------*/
 
     @Override
@@ -78,21 +61,6 @@ public class LocationServiceImpl implements LocationService {
         return stateDao.findByName(stateName).get(0);
     }
 
-    /*@Override
-    public List<State> getStatesByServiceType(String serviceType) {
-        List<StateService> list = stateServiceDao.getStatesByServiceType(serviceType);
-        List<State> stateList = new ArrayList<>();
-        for(StateService stateService : list){
-            stateList.add(stateDao.findByStateId(stateService.getStateId()));
-        }
-        return stateList;
-    }*/
-
-    @Override
-    public Date getServiceStartDateForState(Integer stateId,String serviceType) {
-        Date startDate=stateServiceDao.getServiceStartDateForState(stateId,serviceType);
-        return startDate;
-    }
 
     @Override
     public List<District> getSwachchagrahiDistricts(Integer stateId) {
@@ -185,7 +153,7 @@ public class LocationServiceImpl implements LocationService {
         return states;
     }
 
-    @Override
+    /*@Override
     public List<CircleDto> getCircleObjectList(User user, String serviceType){
         List<StateCircle> list = new ArrayList<>();
         if(user.getAccessLevel().equalsIgnoreCase(AccessLevel.NATIONAL.getAccessLevel())){
@@ -211,7 +179,7 @@ public class LocationServiceImpl implements LocationService {
                 circleList.add(circleDto);
         }
         return circleList;
-    }
+    }*/
 
 //    @Override
 //    public List<CircleDto> getCircleObjectList(List<Circle> circleList) {

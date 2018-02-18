@@ -43,6 +43,9 @@ public class WACourseFirstCompletion {
     @Column(name="creation_date", columnDefinition = "DATETIME")
     private Date creationDate;
 
+    @Column(name="course_start_date", columnDefinition = "DATETIME")
+    private Date courseStartDate;
+
     @Column(name="first_completion", columnDefinition = "DATETIME")
     private Date firstCompletionDate;
 
@@ -127,6 +130,14 @@ public class WACourseFirstCompletion {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Date getCourseStartDate() {
+        return courseStartDate;
+    }
+
+    public void setCourseStartDate(Date courseStartDate) {
+        this.courseStartDate = courseStartDate;
     }
 
     public Date getFirstCompletionDate() {

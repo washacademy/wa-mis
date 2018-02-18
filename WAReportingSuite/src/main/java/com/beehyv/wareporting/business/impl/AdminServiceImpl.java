@@ -2,7 +2,6 @@ package com.beehyv.wareporting.business.impl;
 
 import com.beehyv.wareporting.business.AdminService;
 import com.beehyv.wareporting.dao.*;
-import com.beehyv.wareporting.entity.AnonymousUser;
 import com.beehyv.wareporting.entity.ReportRequest;
 import com.beehyv.wareporting.enums.*;
 import com.beehyv.wareporting.model.*;
@@ -629,14 +628,14 @@ public class AdminServiceImpl implements AdminService {
             reportRequest.setFromDate(toDate);
 
             if(circleId==0){
-                List<AnonymousUser> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(fromDate,toDate);
+                List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(fromDate,toDate);
                 getCircleWiseAnonymousUsers(anonymousUsersList,  rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
             }
             else{
                 String circleName=StReplace(circleDao.getByCircleId(circleId).getCircleName());
                 String circleFullName = StReplace(circleDao.getByCircleId(circleId).getCircleFullName());
                 String rootPathCircle=rootPath+circleFullName+"/";
-                List<AnonymousUser> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
+                List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
             }
         }
@@ -786,7 +785,7 @@ public class AdminServiceImpl implements AdminService {
                 "Swachchagrahi Name",
                 "Swachchagrahi ID",
                 "Swachchagrahi Creation Date",
-                "Swachchagrahi Job Status",
+                "Course Start Date",
                 "First Completion Date",
                 "SMS Sent Notification"
         });
@@ -804,7 +803,7 @@ public class AdminServiceImpl implements AdminService {
                     (waCourseFirstCompletion.getFullName() == null) ? "No Name":waCourseFirstCompletion.getFullName(),
                     (waCourseFirstCompletion.getSwcId() == null) ? "No Swc_Id":waCourseFirstCompletion.getSwcId(),
                     (waCourseFirstCompletion.getCreationDate() == null) ? "No Creation_date":waCourseFirstCompletion.getCreationDate(),
-                    (waCourseFirstCompletion.getJobStatus() == null) ? "No Designation":waCourseFirstCompletion.getJobStatus(),
+                    (waCourseFirstCompletion.getCourseStartDate() == null) ? "No Course Start Date":waCourseFirstCompletion.getCourseStartDate(),
                     (waCourseFirstCompletion.getFirstCompletionDate() == null) ? "No Date":waCourseFirstCompletion.getFirstCompletionDate(),
                     (waCourseFirstCompletion.getSentNotification() == null) ? "No Details": waCourseFirstCompletion.getSentNotification()
             });
@@ -846,7 +845,7 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
-    private void getCircleWiseAnonymousUsers(List<AnonymousUser> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
+    private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
@@ -857,19 +856,37 @@ public class AdminServiceImpl implements AdminService {
         Map<String, Object[]> empinfo =
                 new TreeMap<String, Object[]>();
         empinfo.put("1", new Object[]{
-                "Circle Name",
+                "Id",
                 "Mobile Number",
-                "Last Called Date"
+                "Operator",
+                "Circle Name",
+                "Course Start Date",
+                "Course First Successful End",
+                "Last Call End Date",
+                "Last Call End Time",
+                "Total Minutes Used",
+                "SMS Sent",
+                "SMS Reference Number",
+                "No. Of Attempts"
         });
         Integer counter = 2;
         if(anonymousUsersList.isEmpty()) {
             empinfo.put(counter.toString(), new Object[]{"No Records to display"});
         }
-        for (AnonymousUser anonymousUser : anonymousUsersList) {
+        for (WACircleWiseAnonymousUsersLineListing anonymousUser : anonymousUsersList) {
             empinfo.put((counter.toString()), new Object[]{
-                    anonymousUser.getCircleName(),
-                    anonymousUser.getMobileNumber(),
-                    anonymousUser.getLastCallEndDate()
+                    (anonymousUser.getId() == null) ? "No Id":anonymousUser.getId(),
+                    (anonymousUser.getMobileNumber() == null) ? "No Mobile Number":anonymousUser.getMobileNumber(),
+                    (anonymousUser.getOperator() == null) ? "No Operator":anonymousUser.getOperator(),
+                    (anonymousUser.getCircleName() == null) ? "No Circle":anonymousUser.getCircleName(),
+                    (anonymousUser.getCourseStartDate() == null) ? "No Date":anonymousUser.getCourseStartDate(),
+                    (anonymousUser.getFirstCompletionDate() == null) ? "No Date":anonymousUser.getFirstCompletionDate(),
+                    (anonymousUser.getLastCallEndDate() == null) ? "No Details":anonymousUser.getLastCallEndDate(),
+                    (anonymousUser.getLastCallEndTime() == null) ? "No Details":anonymousUser.getLastCallEndTime(),
+                    (anonymousUser.getTotalMinutesUsed() == null) ? "No Details":anonymousUser.getTotalMinutesUsed(),
+                    (anonymousUser.getSMSSent() == null) ? "No Details":anonymousUser.getSMSSent(),
+                    (anonymousUser.getSMSReferenceNo() == null) ? "No Details":anonymousUser.getSMSReferenceNo(),
+                    (anonymousUser.getNoOfAttempts() == null) ? "No Details":anonymousUser.getNoOfAttempts()
             });
             counter++;
         }
@@ -927,8 +944,7 @@ public class AdminServiceImpl implements AdminService {
                 "Panchayat",
                 "Swachchagrahi Name",
                 "Swachchagrahi ID",
-                "Swachchagrahi Creation Date",
-                "Swachchagrahi Job Status"
+                "Swachchagrahi Creation Date"
         });
         Integer counter = 2;
         if(inactiveCandidates.isEmpty()) {
@@ -943,8 +959,8 @@ public class AdminServiceImpl implements AdminService {
                     (swachchagrahi.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(swachchagrahi.getPanchayatId()).getPanchayatName(),
                     (swachchagrahi.getFullName() == null) ? "No Name":swachchagrahi.getFullName(),
                     (swachchagrahi.getSwcId() == null) ? "No Swc_Id":swachchagrahi.getSwcId(),
-                    (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate(),
-                    (swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
+                    (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate()
+                    //(swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
             });
             counter++;
         }
@@ -1208,7 +1224,7 @@ public class AdminServiceImpl implements AdminService {
     public void getCircleWiseAnonymousFiles(Date startDate, Date toDate) {
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports+ReportType.waCircleWiseAnonymous.getReportType()+ "/";
-        List<AnonymousUser> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(startDate,toDate);
+        List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(startDate,toDate);
         ReportRequest reportRequest=new ReportRequest();
         reportRequest.setFromDate(toDate);
         reportRequest.setBlockId(0);
@@ -1221,8 +1237,8 @@ public class AdminServiceImpl implements AdminService {
             String circleName = StReplace(circle.getCircleName());
             String circleFullName = StReplace(circle.getCircleFullName());
             String rootPathCircle=rootPath+circleFullName+"/";
-            List<AnonymousUser> anonymousUsersListCircle = new ArrayList<>();
-            for(AnonymousUser anonymousUser : anonymousUsersList){
+            List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = new ArrayList<>();
+            for(WACircleWiseAnonymousUsersLineListing anonymousUser : anonymousUsersList){
                 if(anonymousUser.getCircleName().equalsIgnoreCase(circleName)){
                     anonymousUsersListCircle.add(anonymousUser);
                 }

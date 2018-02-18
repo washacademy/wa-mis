@@ -50,51 +50,6 @@ public class LocationController {
         return states;
     }
 
-    /*@RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
-    public @ResponseBody List<StateObject> getStatesByServiceType(@PathVariable("serviceType") String serviceType) {
-        User user = userService.getCurrentUser();
-        List<State> states;
-        if(user.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
-            states = locationService.getStatesByServiceType(serviceType);
-        }
-        else{
-            states = new ArrayList<>();
-            if(locationService.findStateById(user.getStateId()).getServiceType().equals(serviceType)||
-                    locationService.findStateById(user.getStateId()).getServiceType().equals("ALL")) {
-                states.add(locationService.findStateById(user.getStateId()));
-            }
-        }
-        ArrayList<StateObject> stateObjects = new ArrayList<>();
-        for(State s : states){
-            StateObject stateObject = new StateObject(s);
-            stateObject.setServiceType(serviceType);
-            stateObject.setServiceStartDate(locationService.getServiceStartDateForState(s.getStateId(), serviceType));
-            stateObjects.add(stateObject);
-        }
-        return stateObjects;
-    }*/
-
-//    @RequestMapping(value = {"/myStates"}, method = RequestMethod.GET)
-//    public @ResponseBody List<StateObject> getUserStateObjects() {
-//        User user = userService.getCurrentUser();
-//        List<State> states;
-//        if(user.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
-//            states = locationService.getAllStates();
-//        }
-//        else{
-//            states = new ArrayList<>();
-//            states.add(locationService.findStateById(user.getStateId()));
-//        }
-//        ArrayList<StateObject> stateObjects = new ArrayList<>();
-//        for(State s : states){
-//            StateObject stateObject = new StateObject(s);
-//            stateObject.setServiceType(s.getServiceType());
-//            stateObject.setServiceStartDate(locationService.getServiceStartDateForState(s.getStateId(), s.getServiceType()));
-//            stateObjects.add(stateObject);
-//        }
-//        return stateObjects;
-//    }
-
     /*--------------------------District-----------------------------*/
 
     @RequestMapping(value = {"/districts/{stateId}"}, method = RequestMethod.GET)
@@ -193,7 +148,7 @@ public class LocationController {
         else return reportService.getUserCircles(currentUser);
     }
 
-    @RequestMapping(value = {"/circle/{serviceType}"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/circle/{serviceType}"}, method = RequestMethod.GET)
     public @ResponseBody List<CircleDto> getCirclesByServiceType(@PathVariable("serviceType") String serviceType) {
         User user = userService.getCurrentUser();
         List<CircleDto> finalCircleDtoList = new ArrayList<>();
@@ -208,7 +163,7 @@ public class LocationController {
             finalCircleDtoList.add(map.get(key));
         }
         return finalCircleDtoList;
-    }
+    }*/
 
 
 

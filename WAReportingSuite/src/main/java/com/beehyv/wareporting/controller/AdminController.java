@@ -4,18 +4,11 @@ import com.beehyv.wareporting.business.AdminService;
 import com.beehyv.wareporting.business.LocationService;
 import com.beehyv.wareporting.business.ModificationTrackerService;
 import com.beehyv.wareporting.business.UserService;
-import com.beehyv.wareporting.dao.StateServiceDao;
 import com.beehyv.wareporting.entity.PasswordDto;
-import com.beehyv.wareporting.enums.AccessLevel;
-import com.beehyv.wareporting.enums.AccessType;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.enums.ReportType;
 import com.beehyv.wareporting.model.ModificationTracker;
-import com.beehyv.wareporting.model.State;
 import com.beehyv.wareporting.model.User;
-import com.beehyv.wareporting.utils.Global;
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Controller;
@@ -26,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.*;
 
-import static com.beehyv.wareporting.enums.AccessType.MASTER_ADMIN;
 import static com.beehyv.wareporting.enums.ReportType.waCourseCompletion;
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
 
@@ -47,9 +39,6 @@ public class AdminController {
 
     @Autowired
     private LocationService locationService;
-
-    @Autowired
-    private StateServiceDao stateServiceDao;
 
     @Autowired
     private ModificationTrackerService modificationTrackerService;
@@ -138,17 +127,7 @@ public class AdminController {
 
     @RequestMapping(value = {"/changePassword"}, method = RequestMethod.POST)
     @ResponseBody public Map resetPassword(@RequestBody PasswordDto passwordDto){
-        //        String trackModification = mapper.convertValue(node.get("modification"), String.class);
-//
-//        ModificationTracker modification = new ModificationTracker();
-//        modification.setModificationDate(new Date(System.currentTimeMillis()));
-//        modification.setModificationType(ModificationType.UPDATE.getModificationType());
-//        modification.setModifiedByUserId(userService.findUserByUsername(getPrincipal()));
-//        modification.setModifiedUserId(user);
-//        modification.setModifiedField(trackModification);
-//        modificationTrackerService.saveModification(modification);
 
-//        return "redirect:http://localhost:8080/app/#!/";
         Map<Integer, String> map= userService.updatePassword(passwordDto);
         if(map.get(0).equals("Password changed successfully")){
             ModificationTracker modification = new ModificationTracker();
@@ -227,23 +206,5 @@ public class AdminController {
         }
         return "Reports Generated";
     }
-
-    /*@RequestMapping(value = {"/state/{serviceType}"}, method = RequestMethod.GET)
-    public @ResponseBody
-    List<State> getStatesByServiceType(@PathVariable("serviceType") String serviceType) {
-
-        List<State> states= locationService.getStatesByServiceType(serviceType);
-
-        return states;
-    }*/
-
-    @RequestMapping(value = {"/state/{serviceType}/{stateId}"}, method = RequestMethod.GET)
-    public @ResponseBody
-    Date getStateServiceStartDate(@PathVariable("serviceType") String serviceType,@PathVariable("stateId") Integer stateId) {
-
-
-        return locationService.getServiceStartDateForState(stateId, serviceType);
-    }
-
 
 }
