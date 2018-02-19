@@ -627,17 +627,11 @@ public class AdminServiceImpl implements AdminService {
         else if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
             reportRequest.setFromDate(toDate);
 
-            if(circleId==0){
-                List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(fromDate,toDate);
-                getCircleWiseAnonymousUsers(anonymousUsersList,  rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
-            }
-            else{
                 String circleName=StReplace(circleDao.getByCircleId(circleId).getCircleName());
                 String circleFullName = StReplace(circleDao.getByCircleId(circleId).getCircleFullName());
                 String rootPathCircle=rootPath+circleFullName+"/";
                 List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
-            }
         }
 
         else if(reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())){
