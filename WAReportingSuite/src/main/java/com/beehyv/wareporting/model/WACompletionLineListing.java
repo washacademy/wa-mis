@@ -12,7 +12,7 @@ public class WACompletionLineListing {
     @Column(name = "id", columnDefinition = "INT(11)")
     private Long Id;
 
-    @Column(name = "mobile_no", columnDefinition = "BIGINT(20)")
+    @Column(name = "mobile_number", columnDefinition = "BIGINT(20)")
     private Long mobileNumber;
 
     @Column(name = "state_id", columnDefinition = "TINYINT(4)")
