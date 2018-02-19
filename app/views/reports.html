@@ -283,15 +283,14 @@
                                 <button id="selectLLCircle" type="button" class="btn btn-sm btn-default btn-block"
                                         ng-disabled="disableCircle()" uib-dropdown-toggle
                                         ng-class="{loading: circlesLoading}">
-								<span class="block">
-									<span ng-if="circle!=null">{{circle.circleName}}</span>
-                                    <span ng-if="circle == null">All</span>
-									<span class="caret"></span>
+								<span class="dropHeader">
+									<span  class="dropdownTitle" ng-if="circle!=null">{{circle.circleName}}</span>
+                                    <span class="caret" id="LLCircleCaret" ng-if="circle == null"></span>
+                                    <span class="caret" ng-if="circle != null"></span>
 								</span>
                                 </button>
                                 <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
                                     aria-labelledby="selectLLCircle">
-                                    <li role="menuitem"><a ng-click="clearCircle()">All</a>
                                     <li role="menuitem"
                                         ng-repeat="item in circles | orderBy : 'circleName'"><a
                                             class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
@@ -315,12 +314,9 @@
                                 </button>
                                 <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
                                     aria-labelledby="selectLLState">
-                                    <li role="menuitem"><a class="select_state"
-                                                           ng-click="clearState()"></a>
                                     <li role="menuitem"
                                         ng-repeat="item in states | orderBy : 'stateName'">
-                                        <a
-                                                ng-click='selectState(item)'>{{item.stateName}}</a></li>
+                                        <a ng-click='selectState(item)'>{{item.stateName}}</a></li>
                                 </ul>
                             </div>
                         </div>
