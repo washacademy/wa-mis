@@ -15,10 +15,6 @@ public class CircleDto {
 
     private Integer stateId;
 
-    private String serviceType;
-
-    private Date serviceStartDate;
-
     public CircleDto(Circle circle){
         this.circleId = circle.getCircleId();
         this.circleName = circle.getCircleName();
@@ -48,19 +44,4 @@ public class CircleDto {
         this.stateId = stateId;
     }
 
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
-    }
-
-    public Date getServiceStartDate() {
-        return serviceStartDate;
-    }
-
-    public void setServiceStartDate(Date serviceStartDate) {
-        this.serviceStartDate = serviceStartDate;
-    }
 }

@@ -87,11 +87,6 @@ public class ReportServiceImpl implements ReportService{
         return extras;
     }
 
-//    @Override
-//    public List<StateCircle> getRelByStateId(Integer stateId) {
-//        return stateCircleDao.getRelByStateId(stateId);
-//    }
-
 
     @Override
     public List<Circle> getUserCircles(User user){

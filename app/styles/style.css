@@ -733,7 +733,7 @@ md-dialog{
     text-align : right;
 }
 
-#periodCaret,#quarterCaret,#LLStateCaret{
+#periodCaret,#quarterCaret,#LLStateCaret,#LLCircleCaret{
     margin-top : 0px !important;
 }
 
