@@ -280,7 +280,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#xA;        flw.swc_id,&#xA;            flw.mobile_number,&#xA;            flw.state_id,&#xA;            flw.district_id,&#xA;            flw.panchayat_id,&#xA;            flw.block_id,&#xA;            flw.name,&#xA;            flw.creation_date,&#xA;            flw.job_status,&#xA;&#x9;&#x9;&#x9;mcc1.latest as first_completion,&#xA;            mcc.sent_notification&#xA;    FROM&#xA;        WA_course_completion mcc&#xA;   INNER JOIN swachchagrahi flw ON flw.swc_id = mcc.swc_id &#xA;   inner  join (select  swc_id, min(creation_date) as latest from WA_course_completion where has_passed= true group by  swc_id ) as mcc1 on mcc1.swc_id= mcc.swc_id and mcc1.latest= mcc.creation_date&#xA;    WHERE&#xA;        mcc.has_passed = 1&#xA;            AND flw.job_status = 'ACTIVE'&#xA;&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT &#xA;        flw.swc_id,&#xA;            flw.mobile_number,&#xA;            flw.state_id,&#xA;            flw.district_id,&#xA;            flw.panchayat_id,&#xA;            flw.block_id,&#xA;            flw.name,&#xA;            flw.creation_date,&#xA;            flw.job_status,&#xA;&#x9;&#x9;&#x9;wcds.course_start_date,&#xA;&#x9;&#x9;&#x9;mcc1.latest as first_completion,&#xA;            mcc.sent_notification&#xA;     FROM&#xA;        WA_course_completion mcc&#xA;   INNER JOIN swachchagrahi flw ON flw.swc_id = mcc.swc_id &#xA;   inner  join (select  swc_id, min(creation_date) as latest from WA_course_completion where has_passed= true group by  swc_id ) as mcc1 &#xA;   on mcc1.swc_id= mcc.swc_id and mcc1.latest= mcc.creation_date&#xA;   left join (select  swc_id, min(start_time) as course_start_date from WA_call_detail_measure group by swc_id ) as wcds &#xA;   on wcds.swc_id= mcc.swc_id&#xA;WHERE&#xA;        mcc.has_passed = 1&#xA;            AND flw.job_status = 'ACTIVE'&#xA;&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -309,6 +309,8 @@
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="job_status"/>
       <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="course_start_date"/>
+      <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="first_completion"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="sent_notification"/>
@@ -325,6 +327,7 @@
       <column comment="" key="false" length="-1" name="name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="creation_date" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="course_start_date" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="first_completion" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_Boolean" usefulColumn="true"/>
     </metadata>
@@ -353,9 +356,10 @@
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="first_completion" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="course_start_date" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOfMa_course_completion_data">
         <mapperTableEntries name="swc_id" expression="row4.swc_id " type="id_Long"/>
@@ -369,6 +373,7 @@
         <mapperTableEntries name="job_status" expression="row4.job_status " type="id_String" nullable="true"/>
         <mapperTableEntries name="first_completion" expression="row4.first_completion " type="id_String" nullable="true"/>
         <mapperTableEntries name="sent_notification" expression="row4.sent_notification " type="id_Boolean" nullable="true"/>
+        <mapperTableEntries name="course_start_date" expression="row4.course_start_date" type="id_String" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row4" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="swc_id" type="id_Long"/>
@@ -380,6 +385,7 @@
         <mapperTableEntries name="name" type="id_String" nullable="true"/>
         <mapperTableEntries name="creation_date" type="id_String" nullable="true"/>
         <mapperTableEntries name="job_status" type="id_String" nullable="true"/>
+        <mapperTableEntries name="course_start_date" type="id_String" nullable="true"/>
         <mapperTableEntries name="first_completion" type="id_String" nullable="true"/>
         <mapperTableEntries name="sent_notification" type="id_Boolean" nullable="true"/>
       </inputTables>
@@ -471,6 +477,11 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="course_start_date"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
     </elementParameter>
     <elementParameter field="CHECK" name="USE_HINT_OPTIONS" value="false"/>
     <elementParameter field="TABLE" name="HINT_OPTIONS" show="false"/>
@@ -491,6 +502,7 @@
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="first_completion" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="course_start_date" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="Ma_course_completion_data" name="REJECT">
       <column comment="" key="true" length="-1" name="swc_id" nullable="false" pattern="" precision="-1" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
@@ -504,6 +516,7 @@
       <column comment="" key="false" length="-1" name="job_status" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="first_completion" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="sent_notification" nullable="true" pattern="" precision="-1" sourceType="BIT" type="id_Boolean" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="course_start_date" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
@@ -588,6 +601,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="panchayat_id"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="course_start_date"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
@@ -646,6 +662,9 @@
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="panchayat_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="course_start_date"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
