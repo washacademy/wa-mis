@@ -7,5 +7,5 @@
 				templateUrl: '../views/reports.html',
 			};
 		})
-		
+
 })()

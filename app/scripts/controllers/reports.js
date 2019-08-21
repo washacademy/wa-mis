@@ -1,7 +1,7 @@
 (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("ReportsController", ['$scope', '$state', '$http', 'UserFormFactory','$window','$q','uiGridConstants','uiGridExporterConstants','uiGridExporterService', function($scope, $state, $http, UserFormFactory,$window,$q,uiGridConstants,uiGridExporterConstants,uiGridExporterService){
+		.controller("ReportsController", ['$scope', '$state', '$http', 'UserFormFactory','$window','$q','uiGridConstants','exportUiGridService','uiGridExporterService','uiGridExporterConstants','$location', function($scope, $state, $http, UserFormFactory,$window,$q,uiGridConstants,exportUiGridService,uiGridExporterService,uiGridExporterConstants,$location, user){
 
 			UserFormFactory.isLoggedIn()
 			.then(function(result){
@@ -50,6 +50,17 @@
             $scope.matrixContent2 = '';
             var parentScope = $scope.$parent;
             parentScope.child = $scope;
+            var fileName;
+            var dateString;
+            var toDateVal;
+            var excelHeaderName = {
+                            stateName : "ALL",
+                            districtName : "ALL",
+                            blockName : "ALL",
+                            reportName : "ALL"
+
+            };
+            var rejectionStart;
 
             $scope.popup1 = {
                 opened: false
@@ -518,7 +529,7 @@
 				$scope.clearFile();
 			}
 			$scope.clearCircle = function(){
-				$scope.circle = null;
+			$scope.circle = null;
 			}
 
 			$scope.waiting = false;
@@ -860,27 +871,48 @@
             }*/
 
             $scope.exportPdf = function(reportName) {
-                var exportService = uiGridExporterService;
-                var grid = $scope.gridApi.grid;
-                var fileName = reportName.split(" ").join("")+ ".pdf";
-                var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+                /*var fileName1 = $scope.gridApi.grid.options.exporterExcelFilename ? $scope.gridApi.grid.options.exporterExcelFilename : 'dokuman';
+                                             fileName1 = fileName1.replace("*","");
+                                             fileName1 = fileName1.replace(".xlsx","");
+                                             fileName1 += '.pdf';*/
 
-                //exportService.pdfExport(uiGridExporterConstants.VISIBLE,uiGridExporterConstants.ALL);
+                var fileName1 = reportName.split(" ").join("")+ ".pdf";
 
-                 pdfMake.createPdf(docDefinition).download(fileName);
+                var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
+                excelHeaderName.reportName = $scope.report.name;
+
+                if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+                excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
+                else{
+                var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
+                excelHeaderName.timePeriod = fromDateString+" "+months[$scope.headerFromDate.getMonth()]+" "+$scope.headerFromDate.getFullYear()+
+                " to "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();
+                }
+//                var exportService = uiGridExporterService;
+//                var grid = $scope.gridApi.grid;
+//                var fileName = reportName.split(" ").join("")+ ".pdf";
+//                var docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+
+//                exportService.pdfExport(uiGridExporterConstants.VISIBLE,uiGridExporterConstants.ALL);
+                  exportUiGridService.exportToPdf1($scope.gridApi,$scope.gridApi1,excelHeaderName,$scope.reportCategory,$scope.matrixContent1,$scope.matrixContent2,uiGridExporterConstants,'visible', 'visible',fileName1,rejectionStart);
+
+//                 pdfMake.createPdf(docDefinition).download(fileName);
             }
 
             $scope.exportExcel = function(reportName){
                              var exportService = uiGridExporterService;
                              var grid = $scope.gridApi.grid;
-                             var fileName = reportName.split(" ").join("")+ ".xlsx";
+                             var fileName = reportName.split(" ").join("");
+                            excelHeaderName.reportName = $scope.report.name;
 
                             exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
                                  var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
                                  var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
                                  var content = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
-                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
+//                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
                                });
+                             exportUiGridService.exportToExcel1('Sheet1', $scope.gridApi, $scope.gridApi1, 'visible', 'visible', excelHeaderName);
                         }
 
 			$scope.getReportUrl = backend_root + 'wa/user/getReport';
@@ -1145,8 +1177,6 @@
                                                        { field: 'failedPercentage' , displayName : '% Failed the course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[6].getAggregationValue()/grid.columns[3].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
                                                       ]
 
-
-
             $scope.WA_Performance_Column_Definitions =[
                                                          {name: 'S No.', displayName: 'S No.',width:"6%", enableSorting: false, cellTemplate: '<p class="serial-no">{{rowRenderIndex+1}}</p>'},
                                                          { field: 'locationName', footerCellTemplate: '<div class="ui-grid-cell-contents">Total</div>',sort: { direction: 'asc', priority: 0 },
@@ -1190,7 +1220,6 @@
                                                                      { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
 
                                                                     ],
-
 
 
 
