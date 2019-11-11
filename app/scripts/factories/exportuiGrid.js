@@ -329,8 +329,12 @@
             var index=1;
             for (i = 0; i < exportData.length; i++) {
                 var tempcol = [index];
+                var dataValid = false;
                 for (j = 0; j < exportData[i].length; j++) {
                     var temp = (exportData[i][j].value);
+                    if ((exportData[i][j].value)) {
+                        dataValid = true;
+                    }
 
                     //Pushes data in a 2x2 matrix
                     //Some cases like % columns
@@ -338,12 +342,14 @@
                     if ((excelHeaderName.reportName == "Subscriber Report" && (j == "8"))
                         ) {
                         datapdf = datapdf.splice(1,8)
-//                        temp = Number(temp);
+//                        temp = Number(temp);if(dataValid)
 //                        temp = indianDecimal(temp);
                     }
                     //else if(!j=="0") {temp = indianInteger(temp);}
+                    if(dataValid)
                     tempcol.push(temp);
                 }
+                if(dataValid)
                 datapdf.push(tempcol);
                 index++;
                 if (excelHeaderName.reportName == "Subscriber Report" && (j == "8")) {
