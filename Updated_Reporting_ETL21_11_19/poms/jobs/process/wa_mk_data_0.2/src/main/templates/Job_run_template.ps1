@@ -1,0 +1,3 @@
+$fileDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+cd $fileDir
+java '-Dtalend.component.manager.m2.repository=%cd%/../lib' '-Xms256M' '-Xmx1024M' '-Dfile.encoding=UTF-8' -cp '.;../lib/routines.jar;../lib/crypto-utils.jar;../lib/dom4j-1.6.1.jar;../lib/log4j-1.2.17.jar;../lib/mysql-connector-java-5.1.30-bin.jar;../lib/talend_file_enhanced_20070724.jar;../lib/talendcsv.jar;wa_mk_data_0_2.jar;wa_call_details_0_1.jar;swachchagrahi_test_0_1.jar;wa_circle_wise_anonymous_users_0_1.jar;wa_course_completion_cummulative_0_1.jar;wa_course_completion_0_1.jar;wa_call_content_0_1.jar;' local_wash_new.wa_mk_data_0_2.WA_MK_Data  --context=Default $args

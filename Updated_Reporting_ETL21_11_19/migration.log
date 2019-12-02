@@ -1,0 +1,14 @@
+ * Task [Fix a problem of project resources linked to items] : Applied successfully
+ * Task [GenerateJobPomMigrationTask] : Applied successfully
+ * Task [RenameSalesforceWaveMigrationTask] : Applied successfully
+ * Task [CleanCustomerMatcherField] : Applied successfully
+ * Task [RenameTCOMPCouchbaseMigrationTask] : Applied successfully
+ * Task [EncryptTckMetadataMigrationTask] : Nothing to do
+ * Task [AddEncodingTypeForDQComponentsTask] : Applied successfully
+ * Task [AddRAWFlowTPatternMasking] : Applied successfully
+ * Task [changeDBVersionForMapROJAIOutputMigrationTask] : Applied successfully
+ * Task [AddMissingContextMigrationTask] : Nothing to do
+ * Task [oracleSPAutomappingDateToTimestampTask] : Applied successfully
+ * Task [UpgradePasswordEncryptionAlg4ItemMigrationTask] : Applied successfully
+ * Task [AutoUpdateRelationsMigrationTask] : Applied successfully
+ ---=== End of migration ===---
