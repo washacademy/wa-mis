@@ -10,7 +10,6 @@ import com.beehyv.wareporting.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -453,12 +452,27 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                 if (cumulativeSummaryReportEnd.get(i).getCircleId().equals(cumulativeSummaryReportStart.get(j).getCircleId())) {
                     WAAnonymousUsersSummary a = cumulativeSummaryReportEnd.get(i);
                     WAAnonymousUsersSummary b = cumulativeSummaryReportStart.get(j);
+
+                    Date firstStartDate = b.getDate();
+                    Date firstEndDate = a.getDate();
+
                     WAAnonymousPerformanceDto summaryDto1 = new WAAnonymousPerformanceDto();
                     summaryDto1.setId(a.getId());
                     summaryDto1.setCircleName(a.getCircleName());
                     summaryDto1.setCircleId(a.getCircleId());
-                    summaryDto1.setAnonUsersCompletedCourse(a.getAnonymousUsersCompletedCourse() - b.getAnonymousUsersCompletedCourse());
-                    summaryDto1.setAnonUsersStartedCourse(a.getAnonymousUsersStartedCourse() - b.getAnonymousUsersStartedCourse());
+
+                    if (compareDates(firstStartDate, fromDate) >0 && compareDates(firstEndDate, toDate) > 0){
+                        summaryDto1.setAnonUsersStartedCourse(0);
+                        summaryDto1.setAnonUsersCompletedCourse(0);
+                    }
+                    else if(compareDates(firstStartDate, fromDate) >0){
+                        summaryDto1.setAnonUsersStartedCourse(a.getAnonymousUsersStartedCourse());
+                        summaryDto1.setAnonUsersCompletedCourse(a.getAnonymousUsersCompletedCourse());
+                    }
+                    else {
+                        summaryDto1.setAnonUsersStartedCourse(a.getAnonymousUsersStartedCourse() - b.getAnonymousUsersStartedCourse());
+                        summaryDto1.setAnonUsersCompletedCourse(a.getAnonymousUsersCompletedCourse() - b.getAnonymousUsersCompletedCourse());
+                    }
                     summaryDto1.setAnonUsersFailedCourse(waAnonymousSummaryService.getAnonUsersFailed(summaryDto1.getCircleId(), fromDate, toDate));
                     summaryDto1.setAnonUsersPursuingCourse(waAnonymousSummaryService.getAccessedCount(summaryDto1.getCircleId(), fromDate, toDate));
                     summaryDto1.setAnonUsersNotPursuingCourse(waAnonymousSummaryService.getNotAccessedcount(summaryDto1.getCircleId(), fromDate, toDate));
@@ -472,6 +486,29 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         }
         aggregateResponseDto.setTableData(summaryDto);
         return aggregateResponseDto;
+    }
+    public static  int compareDates(Date d1, Date d2){
+        if (d1 == null || d2 == null){
+            return  1;
+        }
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTime(d1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        d1 = cal.getTime();
+
+        cal.setTime(d2);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        d2 = cal.getTime();
+
+        return d1.compareTo(d2);
+
     }
 }
 

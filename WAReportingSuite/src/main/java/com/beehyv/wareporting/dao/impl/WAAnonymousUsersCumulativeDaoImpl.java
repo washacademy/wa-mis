@@ -23,7 +23,7 @@ public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAno
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("circleId"));
         criteria.add(Restrictions.and(
                 Restrictions.eq("circleId",circleId),
-                Restrictions.eq("date",toDate)
+                Restrictions.ge("date",toDate)
         ));
 
         List<WAAnonymousUsersSummary> result = (List<WAAnonymousUsersSummary>) criteria.list();

@@ -1,64 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="updated datatypes in model classes">
+    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/WAAggregateReportsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/WAAggregateReportsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousSummaryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousSummaryDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousUsersCumulativeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousUsersCumulativeDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/WAReportingSuite.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/WAReportingSuite.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/AggregateReportsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LocationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/ReportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/ReportService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AggregateReportsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LocationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LocationServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/EmailController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LocationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AggregateCumulativeWADao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AggregateCumulativeWADao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/BlockDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/BlockDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/CircleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/CircleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/ReportTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/ReportTypeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/StateDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/StateDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/StateServiceDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/BlockDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/BlockDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/CircleDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/CircleDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/ReportTypeDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/ReportTypeDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/StateDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/StateDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/StateServiceDaoImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/SwcImportRejectionDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateCumulativeWADto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/AggregateCumulativeWADto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/CircleDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/CircleDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WAPerformanceDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/WAPerformanceDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/enums/ReportType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/enums/ReportType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Languages.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Languages.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Panchayat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Panchayat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Swachchagrahi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/Swachchagrahi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/SwcImportRejection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/SwcImportRejection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseCompletion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseCompletion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseFirstCompletion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseFirstCompletion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAInactiveLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAInactiveLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WARejectedLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WARejectedLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/Global.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,31 +201,43 @@
       <option name="project" value="LOCAL" />
       <updated>1515683934268</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated datatypes in model classes">
+      <created>1575275053953</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575275053953</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed model and Dto classes" />
     <MESSAGE value="updated datatypes in model classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated datatypes in model classes" />
+    <MESSAGE value="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575274869604">
+    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575276286048">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575274869604" />
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575274838393">
+    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575276286048" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575276062954">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575274838393" />
-    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575274371448">
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575276062954" />
+    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575275749648">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575274371448" />
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575274512545">
+    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275749648" />
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575275751267">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575274512545" />
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275751267" />
+    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1575275332123">
+      <screen x="67" y="27" width="1533" height="873" />
+    </state>
+    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup/67.27.1533.873@67.27.1533.873" timestamp="1575275332123" />
   </component>
   <component name="masterDetails">
     <states>
