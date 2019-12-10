@@ -52,6 +52,13 @@ public class WACourseFirstCompletion {
     @Column(name="sent_notification", columnDefinition = "BIT(1)")
     private Boolean sentNotification;
 
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
+
     public Integer getId() {
         return Id;
     }

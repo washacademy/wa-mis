@@ -45,6 +45,13 @@ public class WACallDetailMeasure {
     @Column(name="modificationDate",columnDefinition = "DATETIME")
     private Date lastModified;
 
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
+
     public Long getId() {
         return Id;
     }

@@ -36,11 +36,14 @@ public class WAAnonymousUsersSummary {
     @Column(name = "date", columnDefinition = "DATETIME")
     private Date date;
 
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
     public WAAnonymousUsersSummary(){
 
     }
 
-    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersCompletedCourse,Date date){
+    public WAAnonymousUsersSummary(Integer id, String circleName, Integer circleId, Integer anonymousUsersStartedCourse, Integer anonymousUsersCompletedCourse,Date date, Integer courseId){
         this.id = id;
         this.circleName = circleName;
         this.circleId = circleId;
@@ -50,7 +53,12 @@ public class WAAnonymousUsersSummary {
         this.anonymousUsersCompletedCourse = anonymousUsersCompletedCourse;
 //        this.anonymousUsersFailedCourse = anonymousUsersFailedCourse;
         this.date = date;
+        this.courseId = courseId;
     }
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
 
     public Integer getId() {
         return id;

@@ -45,6 +45,13 @@ public class WACircleWiseAnonymousUsersLineListing {
     @Column(name="no_of_attempts", columnDefinition = "SMALLINT(6)")
     private Integer NoOfAttempts;
 
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
+
     public Long getId() {
         return Id;
     }

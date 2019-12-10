@@ -46,7 +46,11 @@ public class WACumulativeSummary {
     @Column(name="date", columnDefinition = "DATETIME")
     private Date date;
 
-    public WACumulativeSummary(Integer id, Long serialNumber, String state, Long locationId, String locationType, Integer swachchagrahisRegistered, Integer swachchagrahisStarted, Integer swachchagrahisNotStarted, Integer swachchagrahisCompleted, Integer swachchagrahisFailed, Integer swachchagrahisRejected) {
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
+
+    public WACumulativeSummary(Integer id, Long serialNumber, String state, Long locationId, String locationType, Integer swachchagrahisRegistered, Integer swachchagrahisStarted, Integer swachchagrahisNotStarted, Integer swachchagrahisCompleted, Integer swachchagrahisFailed, Integer swachchagrahisRejected, Integer courseId) {
         this.id = id;
         this.state = state;
         this.locationId = locationId;
@@ -57,9 +61,14 @@ public class WACumulativeSummary {
         this.swachchagrahisCompleted = swachchagrahisCompleted;
         this.swachchagrahisFailed = swachchagrahisFailed;
         this.swachchagrahisRejected = swachchagrahisRejected;
+        this.courseId = courseId;
     }
 
     public WACumulativeSummary(){}
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
 
     public Integer getId() {
         return id;

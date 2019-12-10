@@ -39,6 +39,13 @@ public class WAAggregateDaily {
     @Column(name="swachchagrahis_rejected", columnDefinition = "INT(11)")
     private Integer swachchagrahisRejected;
 
+    @Column(name = "courseId", columnDefinition = "TINYINT(11)")
+    private Integer courseId;
+
+    public Integer getCourseId() {  return courseId;  }
+
+    public void setCourseId(Integer courseId) {  this.courseId = courseId;  }
+
     //swachchagrahisAdded = swachchagrahisRecieved - swachchagrahisRejected
 
 
