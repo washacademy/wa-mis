@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="afedbda2-2821-4f2b-8d9c-134a663bfbbd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../WAReportingSuite/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WAReportingSuite/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WAReportingSuite/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WAReportingSuite/src/main/resources/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WAReportingSuite/target/WAReportingSuite.war" beforeDir="false" afterPath="$PROJECT_DIR$/../WAReportingSuite/target/WAReportingSuite.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WAReportingSuite/target/classes/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WAReportingSuite/target/classes/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WAReportingSuite/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../WAReportingSuite/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

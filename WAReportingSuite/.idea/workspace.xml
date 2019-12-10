@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date.">
+    <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="unstash commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/WAReportingSuite.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/WAReportingSuite.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,36 +200,52 @@
       <option name="project" value="LOCAL" />
       <updated>1575275053953</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="unstash commit">
+      <created>1575963755511</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1575963755511</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed model and Dto classes" />
     <MESSAGE value="updated datatypes in model classes" />
     <MESSAGE value="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date." />
+    <MESSAGE value="unstash commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="unstash commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575881998515">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575963885184">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575881998515" />
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575962605060">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575963885184" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575963782073">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575962605060" />
-    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog" timestamp="1575963332997">
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963782073" />
+    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog" timestamp="1575963848487">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963332997" />
+    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963848487" />
     <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575275749648">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
     <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275749648" />
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575963641443">
+    <state x="553" y="201" width="536" height="526" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1575963875564">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963641443" />
+    <state x="553" y="201" width="536" height="526" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963875564" />
+    <state x="601" y="382" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575963810757">
+      <screen x="67" y="27" width="1533" height="873" />
+    </state>
+    <state x="601" y="382" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1533.873@67.27.1533.873" timestamp="1575963810757" />
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575963771486">
+      <screen x="67" y="27" width="1533" height="873" />
+    </state>
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963771486" />
     <state x="496" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1575891145621">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
