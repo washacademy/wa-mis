@@ -214,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575963908490</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="unstash commit">
+      <created>1575965014467</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575965014467</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -225,10 +232,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="unstash commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575963928925">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575965014348">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575963928925" />
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575965014348" />
     <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575964957891">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
