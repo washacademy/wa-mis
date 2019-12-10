@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/WAAggregateReportsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/business/impl/WAAggregateReportsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousSummaryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousSummaryDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousUsersCumulativeDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/dao/impl/WAAnonymousUsersCumulativeDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/WAReportingSuite.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/WAReportingSuite.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app.properties" afterDir="false" />
@@ -218,26 +215,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="1.updated queries for swc_designation,&#10;2.database connection and folder create location&#10;3.added compare date function for starting date." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575276286048">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575881998515">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="379" y="57" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575276286048" />
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575276062954">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575881998515" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575962605060">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575276062954" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575962605060" />
+    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog" timestamp="1575963332997">
+      <screen x="67" y="27" width="1533" height="873" />
+    </state>
+    <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963332997" />
     <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575275749648">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
     <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275749648" />
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575275751267">
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575963641443">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275751267" />
-    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1575275332123">
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963641443" />
+    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1575891145621">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup/67.27.1533.873@67.27.1533.873" timestamp="1575275332123" />
+    <state x="496" y="212" width="672" height="678" key="search.everywhere.popup/67.27.1533.873@67.27.1533.873" timestamp="1575891145621" />
   </component>
   <component name="masterDetails">
     <states>
