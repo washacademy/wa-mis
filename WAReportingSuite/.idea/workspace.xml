@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575963755511</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="unstash commit">
+      <created>1575963908490</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575963908490</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -218,22 +225,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="unstash commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575963885184">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2" timestamp="1575963928925">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575963885184" />
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575963782073">
+    <state x="377" y="59" width="898" height="810" key="CommitChangelistDialog2/67.27.1533.873@67.27.1533.873" timestamp="1575963928925" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog" timestamp="1575964957891">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963782073" />
+    <state x="210" y="98" width="1226" height="728" key="DiffContextDialog/67.27.1533.873@67.27.1533.873" timestamp="1575964957891" />
     <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog" timestamp="1575963848487">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
     <state x="541" y="175" width="566" height="574" key="RollbackChangesDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963848487" />
-    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575275749648">
+    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog" timestamp="1575964959905">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575275749648" />
+    <state x="521" y="168" width="614" height="589" key="VCS.ChangeListViewerDialog/67.27.1533.873@67.27.1533.873" timestamp="1575964959905" />
     <state x="553" y="201" width="536" height="526" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1575963875564">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
@@ -242,10 +249,10 @@
       <screen x="67" y="27" width="1533" height="873" />
     </state>
     <state x="601" y="382" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1533.873@67.27.1533.873" timestamp="1575963810757" />
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575963771486">
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog" timestamp="1575964962102">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575963771486" />
+    <state x="522" y="312" width="612" height="300" key="git4idea.ui.GitUnstashDialog/67.27.1533.873@67.27.1533.873" timestamp="1575964962102" />
     <state x="496" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1575891145621">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
