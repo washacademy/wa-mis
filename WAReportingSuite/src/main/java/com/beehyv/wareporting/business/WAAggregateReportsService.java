@@ -10,11 +10,11 @@ import java.util.Date;
  */
 public interface WAAggregateReportsService {
 
-    AggregateResponseDto getWAPerformanceReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId);
+    AggregateResponseDto getWAPerformanceReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId);
 
-    AggregateResponseDto getWASubscriberReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId);
+    AggregateResponseDto getWASubscriberReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId);
 
-    AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId);
+    AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId);
 
-    AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate, Date toDate, Integer circleId);
+    AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate, Date toDate, Integer circleId, Integer courseId);
 }

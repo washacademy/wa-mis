@@ -39,17 +39,17 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
 
 
     @Override
-    public Long getAccessedCount(Integer locationId, String locationType, Date fromDate, Date toDate){
+    public Long getAccessedCount(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId){
 
         Long count = (long)0;
         Long addedCount = (long)0;
         Long differenceCount = (long)0;
 
         if(locationType.equalsIgnoreCase("DifferenceState")){
-            count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"State",fromDate,toDate);
+            count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"State",fromDate,toDate, courseId);
             List<District> districts = districtDao.getDistrictsOfState(-locationId);
             for(District d:districts){
-                addedCount += waPerformanceDao.accessedAtLeastOnce(d.getDistrictId(),"District",fromDate,toDate);
+                addedCount += waPerformanceDao.accessedAtLeastOnce(d.getDistrictId(),"District",fromDate,toDate, courseId);
             }
             differenceCount = count - addedCount;
             return differenceCount;
@@ -57,10 +57,10 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
         else{
             if(locationType.equalsIgnoreCase("DifferenceDistrict")){
 
-                count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"District",fromDate,toDate);
+                count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"District",fromDate,toDate, courseId);
                 List<Block> blocks = blockDao.getBlocksOfDistrict(-locationId);
                 for (Block d : blocks) {
-                    addedCount += waPerformanceDao.accessedAtLeastOnce(d.getBlockId(),"Block",fromDate,toDate);
+                    addedCount += waPerformanceDao.accessedAtLeastOnce(d.getBlockId(),"Block",fromDate,toDate, courseId);
                     }
                 differenceCount = count - addedCount;
                 return differenceCount;
@@ -68,16 +68,16 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
             else{
                 if(locationType.equalsIgnoreCase("DifferenceBlock")) {
 
-                    count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"Block",fromDate,toDate);
+                    count =  waPerformanceDao.accessedAtLeastOnce(-locationId,"Block",fromDate,toDate, courseId);
                     List<Panchayat> panchayats = panchayatDao.getPanchayatsOfBlock(-locationId);
                     for(Panchayat s: panchayats){
-                        addedCount += waPerformanceDao.accessedAtLeastOnce(s.getPanchayatId(),"Panchayat",fromDate,toDate);
+                        addedCount += waPerformanceDao.accessedAtLeastOnce(s.getPanchayatId(),"Panchayat",fromDate,toDate, courseId);
                         }
                     differenceCount = count - addedCount;
                     return differenceCount;
                 }
                 else {
-                    count =  waPerformanceDao.accessedAtLeastOnce(locationId,locationType,fromDate,toDate);
+                    count =  waPerformanceDao.accessedAtLeastOnce(locationId,locationType,fromDate,toDate, courseId);
                     return count;
                 }
 
@@ -134,7 +134,7 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
     }
 
     @Override
-    public Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate){
+    public Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId){
 
         Integer count = 0;
         Integer addedCount = 0;
@@ -142,10 +142,10 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
 
 
         if(locationType.equalsIgnoreCase("DifferenceState")){
-            count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"State",fromDate,toDate);
+            count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"State",fromDate,toDate, courseId);
             List<District> districts = districtDao.getDistrictsOfState(-locationId);
             for(District d:districts){
-                addedCount += waPerformanceDao.getSwachchagrahisFailed(d.getDistrictId(),"District",fromDate,toDate);
+                addedCount += waPerformanceDao.getSwachchagrahisFailed(d.getDistrictId(),"District",fromDate,toDate, courseId);
             }
             differenceCount = count - addedCount;
             return differenceCount;
@@ -153,10 +153,10 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
         else{
             if(locationType.equalsIgnoreCase("DifferenceDistrict")){
 
-                count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"District",fromDate,toDate);
+                count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"District",fromDate,toDate, courseId);
                 List<Block> blocks = blockDao.getBlocksOfDistrict(-locationId);
                 for (Block d : blocks) {
-                    addedCount += waPerformanceDao.getSwachchagrahisFailed(d.getBlockId(),"Block",fromDate,toDate);
+                    addedCount += waPerformanceDao.getSwachchagrahisFailed(d.getBlockId(),"Block",fromDate,toDate, courseId);
                 }
                 differenceCount = count - addedCount;
                 return differenceCount;
@@ -164,16 +164,16 @@ public class WAPerformanceServiceImpl implements WAPerformanceService{
             else{
                 if(locationType.equalsIgnoreCase("DifferenceBlock")) {
 
-                    count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"Block",fromDate,toDate);
+                    count =  waPerformanceDao.getSwachchagrahisFailed(-locationId,"Block",fromDate,toDate, courseId);
                     List<Panchayat> panchayats = panchayatDao.getPanchayatsOfBlock(-locationId);
                     for(Panchayat s: panchayats){
-                        addedCount += waPerformanceDao.getSwachchagrahisFailed(s.getPanchayatId(),"Panchayat",fromDate,toDate);
+                        addedCount += waPerformanceDao.getSwachchagrahisFailed(s.getPanchayatId(),"Panchayat",fromDate,toDate, courseId);
                     }
                     differenceCount = count - addedCount;
                     return differenceCount;
                 }
                 else{
-                    count =  waPerformanceDao.getSwachchagrahisFailed(locationId,locationType,fromDate,toDate);
+                    count =  waPerformanceDao.getSwachchagrahisFailed(locationId,locationType,fromDate,toDate, courseId);
                     return count;
                 }
             }

@@ -16,19 +16,20 @@ import java.util.List;
 public class WAAnonymousUsersCumulativeDaoImpl extends AbstractDao<Integer,WAAnonymousUsersSummary> implements WAAnonymousUsersCumulativeDao{
 
     @Override
-    public WAAnonymousUsersSummary getWAAnonymousCumulativeSummary(Integer circleId, Date toDate){
+    public WAAnonymousUsersSummary getWAAnonymousCumulativeSummary(Integer circleId, Date toDate, Integer courseId){
 
         WAAnonymousUsersSummary waAnonymousUsersSummary;
 
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("circleId"));
         criteria.add(Restrictions.and(
                 Restrictions.eq("circleId",circleId),
-                Restrictions.ge("date",toDate)
+                Restrictions.ge("date",toDate),
+                Restrictions.eq("courseId", courseId)
         ));
 
         List<WAAnonymousUsersSummary> result = (List<WAAnonymousUsersSummary>) criteria.list();
         if(result.isEmpty()){
-            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,null);
+            waAnonymousUsersSummary = new WAAnonymousUsersSummary(0,"NA",0,0,0,null, courseId);
             return waAnonymousUsersSummary;
         }
 

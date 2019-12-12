@@ -5,9 +5,9 @@ import java.util.Date;
 public interface WAAnonymousSummaryService {
 
 
-    Long getAccessedCount(Integer circleId, Date fromDate, Date toDate);
+    Long getAccessedCount(Integer circleId, Date fromDate, Date toDate, Integer courseId);
 
     Long getNotAccessedcount(Integer circleId, Date fromDate, Date toDate);
 
-    Integer getAnonUsersFailed(Integer circleId, Date fromDate, Date toDate);
+    Integer getAnonUsersFailed(Integer circleId, Date fromDate, Date toDate, Integer courseId);
 }

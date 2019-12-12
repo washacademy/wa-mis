@@ -32,10 +32,10 @@ public class WAAnonymousSummaryServiceImpl implements WAAnonymousSummaryService 
 
 
     @Override
-    public Long getAccessedCount(Integer circleId, Date fromDate, Date toDate){
+    public Long getAccessedCount(Integer circleId, Date fromDate, Date toDate, Integer courseId){
 
         Long count = (long)0;
-        count =  waAnonymousSummaryDao.accessedAtLeastOnce(circleId,fromDate,toDate);
+        count =  waAnonymousSummaryDao.accessedAtLeastOnce(circleId,fromDate,toDate,courseId);
         return count;
     }
 
@@ -49,10 +49,10 @@ public class WAAnonymousSummaryServiceImpl implements WAAnonymousSummaryService 
     }
 
     @Override
-    public Integer getAnonUsersFailed(Integer circleId, Date fromDate, Date toDate){
+    public Integer getAnonUsersFailed(Integer circleId, Date fromDate, Date toDate, Integer courseId){
 
         Integer count = 0;
-        count =  waAnonymousSummaryDao.getAnonUsersFailed(circleId,fromDate,toDate);
+        count =  waAnonymousSummaryDao.getAnonUsersFailed(circleId,fromDate,toDate, courseId);
         return count;
     }
 

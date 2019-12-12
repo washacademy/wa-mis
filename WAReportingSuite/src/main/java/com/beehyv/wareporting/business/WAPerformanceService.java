@@ -7,10 +7,10 @@ import java.util.Date;
  */
 public interface WAPerformanceService {
 
-    Long getAccessedCount(Integer locationId, String locationType, Date fromDate, Date toDate);
+    Long getAccessedCount(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId);
 
     Long getNotAccessedcount(Integer locationId, String locationType, Date fromDate, Date toDate);
 
-    Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate);
+    Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId);
 
 }

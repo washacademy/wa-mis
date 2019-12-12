@@ -94,50 +94,54 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
     }
 
     @Override
-    public Long accessedAtLeastOnce(Integer locationId, String locationType, Date fromDate, Date toDate){
+    public Long accessedAtLeastOnce(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId){
 //        fromDate = dateAdder(fromDate,1);
         if(locationType.equalsIgnoreCase("state")) {
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.creation_date < :fromDate)  " +
-                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.start_time between :fromDate and :toDate) " +
-                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.start_time < :fromDate) " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
+                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.state_id = :locationId");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).longValue();
         }
         if(locationType.equalsIgnoreCase("district")){
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.creation_date < :fromDate)  " +
-                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.start_time between :fromDate and :toDate) " +
-                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.start_time < :fromDate) " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
+                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.district_id = :locationId");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).longValue();
         }
         if(locationType.equalsIgnoreCase("block")){
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.creation_date < :fromDate)  " +
-                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.start_time between :fromDate and :toDate) " +
-                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.start_time < :fromDate) " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
+                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.block_id = :locationId");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).longValue();
         }
         if(locationType.equalsIgnoreCase("panchayat")) {
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.creation_date < :fromDate)  " +
-                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.start_time between :fromDate and :toDate) " +
-                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.start_time < :fromDate) " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
+                    "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.panchayat_id = :locationId");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).longValue();
 
         }
@@ -146,34 +150,38 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
     }
 
     @Override
-    public Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate){
+    public Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId){
 //        fromDate = dateAdder(fromDate,1);
         if(locationType.equalsIgnoreCase("state")) {
-            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.state_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.last_modified < :toDate"+")");
+            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.state_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and m.courseId = :courseId and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.courseId = :courseId and m1.last_modified < :toDate"+")");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).intValue();
         }
         if(locationType.equalsIgnoreCase("district")){
-            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.district_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.last_modified < :toDate"+")");
+            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.district_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and m.courseId = :courseId and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.courseId = :courseId and m1.last_modified < :toDate"+")");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).intValue();
         }
         if(locationType.equalsIgnoreCase("block")){
-            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.block_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.last_modified < :toDate"+")");
+            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.block_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and m.courseId = :courseId and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.courseId = :courseId and m1.last_modified < :toDate"+")");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).intValue();
         }
         if(locationType.equalsIgnoreCase("panchayat")) {
-            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.panchayat_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.last_modified < :toDate"+")");
+            Query query = getSession().createSQLQuery("select count(distinct f.swc_id) from swachchagrahi f where f.swc_designation = 'SWACHCHAGRAHI' and f.panchayat_id = :locationId AND "+"f.swc_id in (select distinct m.swc_id from WA_course_completion m where m.has_passed = 0 and m.courseId = :courseId and (m.last_modified between :fromDate"+" AND :toDate"+")) and  f.swc_id not in (select distinct m1.swc_id from WA_course_completion m1 where m1.has_passed = 1 and m1.courseId = :courseId and m1.last_modified < :toDate"+")");
             query.setParameter("fromDate",fromDate);
             query.setParameter("toDate",toDate);
             query.setParameter("locationId",locationId);
+            query.setParameter("courseId", courseId);
             return ((BigInteger) query.uniqueResult()).intValue();
 
         }

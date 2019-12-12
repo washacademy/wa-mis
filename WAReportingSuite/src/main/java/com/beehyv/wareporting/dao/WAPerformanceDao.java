@@ -7,10 +7,10 @@ import java.util.Date;
  */
 public interface WAPerformanceDao {
 
-    Long accessedAtLeastOnce(Integer locationId, String locationType, Date fromDate, Date toDate);
+    Long accessedAtLeastOnce(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId);
 
     Long accessedNotOnce(Integer locationId, String locationType, Date fromDate, Date toDate);
 
-    Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate);
+    Integer getSwachchagrahisFailed(Integer locationId, String locationType, Date fromDate, Date toDate, Integer courseId);
 
 }

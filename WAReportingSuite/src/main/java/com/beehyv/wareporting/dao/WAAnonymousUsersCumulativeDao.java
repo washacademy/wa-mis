@@ -6,5 +6,5 @@ import java.util.Date;
 
 public interface WAAnonymousUsersCumulativeDao {
 
-    WAAnonymousUsersSummary getWAAnonymousCumulativeSummary(Integer circleId, Date toDate);
+    WAAnonymousUsersSummary getWAAnonymousCumulativeSummary(Integer circleId, Date toDate, Integer courseId);
 }

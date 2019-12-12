@@ -62,20 +62,20 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     @Autowired
     private WAAnonymousUsersCumulativeDao waAnonymousUsersCumulativeDao;
 
-    private List<WACumulativeSummary> getWACumulativeSummary(Integer locationId, String locationType, Date toDate){
+    private List<WACumulativeSummary> getWACumulativeSummary(Integer locationId, String locationType, Date toDate, Integer courseId){
         List<WACumulativeSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
         if(locationType.equalsIgnoreCase("State")){
             List<State> states=stateDao.getAllStates();
             for(State s:states){
-                CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(s.getStateId(),locationType,toDate));
+                CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(s.getStateId(),locationType,toDate,courseId));
             }
 
         }
         else{
             if(locationType.equalsIgnoreCase("District")){
                 List<District> districts = districtDao.getDistrictsOfState(locationId);
-                WACumulativeSummary stateCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"State",toDate);
+                WACumulativeSummary stateCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"State",toDate,courseId);
                 Integer swachchagrahisRegistered = 0;
                 Integer swachchagrahisStarted = 0;
                 Integer swachchagrahisNotStarted = 0;
@@ -83,8 +83,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                 Integer swachchagrahisFailed = 0;
                 Integer swachchagrahisRejected = 0;
                 for(District d:districts){
-                    WACumulativeSummary districtCount = aggregateCumulativeWADao.getWACumulativeSummary(d.getDistrictId(),locationType,toDate);
-                    CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(d.getDistrictId(),locationType,toDate));
+                    WACumulativeSummary districtCount = aggregateCumulativeWADao.getWACumulativeSummary(d.getDistrictId(),locationType,toDate,courseId);
+                    CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(d.getDistrictId(),locationType,toDate,courseId));
                     swachchagrahisStarted+=districtCount.getSwachchagrahisStarted();
                     swachchagrahisCompleted+=districtCount.getSwachchagrahisCompleted();
                     swachchagrahisFailed+=districtCount.getSwachchagrahisFailed();
@@ -109,7 +109,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
             else{
                 if(locationType.equalsIgnoreCase("Block")) {
                     List<Block> blocks = blockDao.getBlocksOfDistrict(locationId);
-                    WACumulativeSummary districtCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"District",toDate);
+                    WACumulativeSummary districtCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"District",toDate, courseId);
                     Integer swachchagrahisRegistered = 0;
                     Integer swachchagrahisStarted = 0;
                     Integer swachchagrahisNotStarted = 0;
@@ -117,8 +117,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                     Integer swachchagrahisFailed = 0;
                     Integer swachchagrahisRejected = 0;
                     for (Block d : blocks) {
-                        WACumulativeSummary blockCount = aggregateCumulativeWADao.getWACumulativeSummary(d.getBlockId(),locationType,toDate);
-                        CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(d.getBlockId(), locationType,toDate));
+                        WACumulativeSummary blockCount = aggregateCumulativeWADao.getWACumulativeSummary(d.getBlockId(),locationType,toDate, courseId);
+                        CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(d.getBlockId(), locationType,toDate, courseId));
                         swachchagrahisStarted+=blockCount.getSwachchagrahisStarted();
                         swachchagrahisCompleted+=blockCount.getSwachchagrahisCompleted();
                         swachchagrahisFailed+=blockCount.getSwachchagrahisFailed();
@@ -142,7 +142,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                 }
                 else {
                     List<Panchayat> panchayats = panchayatDao.getPanchayatsOfBlock(locationId);
-                    WACumulativeSummary blockCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"block",toDate);
+                    WACumulativeSummary blockCounts = aggregateCumulativeWADao.getWACumulativeSummary(locationId,"block",toDate, courseId);
                     Integer swachchagrahisRegistered = 0;
                     Integer swachchagrahisStarted = 0;
                     Integer swachchagrahisNotStarted = 0;
@@ -150,8 +150,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                     Integer swachchagrahisFailed = 0;
                     Integer swachchagrahisRejected = 0;
                     for(Panchayat s: panchayats){
-                        WACumulativeSummary panchayatCount = aggregateCumulativeWADao.getWACumulativeSummary(s.getPanchayatId(),locationType,toDate);
-                        CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(s.getPanchayatId(), locationType,toDate));
+                        WACumulativeSummary panchayatCount = aggregateCumulativeWADao.getWACumulativeSummary(s.getPanchayatId(),locationType,toDate, courseId);
+                        CumulativeSummary.add(aggregateCumulativeWADao.getWACumulativeSummary(s.getPanchayatId(), locationType,toDate, courseId));
                         swachchagrahisStarted+=panchayatCount.getSwachchagrahisStarted();
                         swachchagrahisCompleted+=panchayatCount.getSwachchagrahisCompleted();
                         swachchagrahisFailed+=panchayatCount.getSwachchagrahisFailed();
@@ -177,43 +177,43 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         return CumulativeSummary;
     }
 
-    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId,Date toDate){
+    private List<WAAnonymousUsersSummary> getWAAnonymousCumulativeSummary(Integer circleId,Date toDate, Integer courseId){
         List<WAAnonymousUsersSummary> CumulativeSummary = new ArrayList<>();
         List<String> Headers = new ArrayList<>();
         if(circleId == 0) {
             List<Circle> circles = circleDao.getAllCircles();
             for (Circle circle : circles){
-                CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate));
+                CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circle.getCircleId(), toDate, courseId));
             }
             return CumulativeSummary;
         }
-        CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId, toDate));
+        CumulativeSummary.add(waAnonymousUsersCumulativeDao.getWAAnonymousCumulativeSummary(circleId, toDate, courseId));
 
         return CumulativeSummary;
     }
 
     @Override
-    public AggregateResponseDto getWAPerformanceReport(Date fromDate,Date toDate,Integer circleId,Integer stateId,Integer districtId,Integer blockId) {
+    public AggregateResponseDto getWAPerformanceReport(Date fromDate,Date toDate,Integer circleId,Integer stateId,Integer districtId,Integer blockId, Integer courseId) {
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<WAPerformanceDto> summaryDto = new ArrayList<>();
         List<WACumulativeSummary> cumulativeSummaryReportStart = new ArrayList<>();
         List<WACumulativeSummary> cumulativeSummaryReportEnd = new ArrayList<>();
 
         if (stateId == 0) {
-            cumulativeSummaryReportStart.addAll(getWACumulativeSummary(0, "State", fromDate));
-            cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(0, "State", toDate));
+            cumulativeSummaryReportStart.addAll(getWACumulativeSummary(0, "State", fromDate, courseId));
+            cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(0, "State", toDate, courseId));
         } else {
             if (districtId == 0) {
-                cumulativeSummaryReportStart.addAll(getWACumulativeSummary(stateId, "District", fromDate));
-                cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(stateId, "District", toDate));
+                cumulativeSummaryReportStart.addAll(getWACumulativeSummary(stateId, "District", fromDate, courseId));
+                cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(stateId, "District", toDate, courseId));
             } else {
                 if (blockId == 0) {
-                    cumulativeSummaryReportStart.addAll(getWACumulativeSummary(districtId, "Block", fromDate));
-                    cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(districtId, "Block", toDate));
+                    cumulativeSummaryReportStart.addAll(getWACumulativeSummary(districtId, "Block", fromDate, courseId));
+                    cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(districtId, "Block", toDate, courseId));
 
                 } else {
-                    cumulativeSummaryReportStart.addAll(getWACumulativeSummary(blockId, "Panchayat", fromDate));
-                    cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate));
+                    cumulativeSummaryReportStart.addAll(getWACumulativeSummary(blockId, "Panchayat", fromDate, courseId));
+                    cumulativeSummaryReportEnd.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate, courseId));
 
                 }
             }
@@ -258,8 +258,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                         summaryDto1.setLocationId((long) -1);
 
                     }
-                    summaryDto1.setSwachchagrahisFailedCourse(waPerformanceService.getSwachchagrahisFailed(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
-                    summaryDto1.setSwachchagrahisPursuingCourse(waPerformanceService.getAccessedCount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
+                    summaryDto1.setSwachchagrahisFailedCourse(waPerformanceService.getSwachchagrahisFailed(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate, courseId));
+                    summaryDto1.setSwachchagrahisPursuingCourse(waPerformanceService.getAccessedCount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate, courseId));
                     summaryDto1.setSwachchagrahisNotPursuingCourse(waPerformanceService.getNotAccessedcount(a.getLocationId().intValue(), a.getLocationType(), fromDate, toDate));
 
                     if (summaryDto1.getSwachchagrahisCompletedCourse() + summaryDto1.getSwachchagrahisFailedCourse() + summaryDto1.getSwachchagrahisStartedCourse() + summaryDto1.getSwachchagrahisPursuingCourse() + summaryDto1.getSwachchagrahisNotPursuingCourse() != 0) {
@@ -274,26 +274,26 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     }
 
     @Override
-    public AggregateResponseDto getWASubscriberReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId) {
+    public AggregateResponseDto getWASubscriberReport(Date fromDate, Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId) {
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<WASubscriberDto> summaryDto = new ArrayList<>();
         List<WACumulativeSummary> cumulativesummaryReportStart = new ArrayList<>();
         List<WACumulativeSummary> cumulativesummaryReportEnd = new ArrayList<>();
 
         if (stateId == 0) {
-            cumulativesummaryReportStart.addAll(getWACumulativeSummary(0, "State", fromDate));
-            cumulativesummaryReportEnd.addAll(getWACumulativeSummary(0, "State", toDate));
+            cumulativesummaryReportStart.addAll(getWACumulativeSummary(0, "State", fromDate, courseId));
+            cumulativesummaryReportEnd.addAll(getWACumulativeSummary(0, "State", toDate, courseId));
         } else {
             if (districtId == 0) {
-                cumulativesummaryReportStart.addAll(getWACumulativeSummary(stateId, "District", fromDate));
-                cumulativesummaryReportEnd.addAll(getWACumulativeSummary(stateId, "District", toDate));
+                cumulativesummaryReportStart.addAll(getWACumulativeSummary(stateId, "District", fromDate, courseId));
+                cumulativesummaryReportEnd.addAll(getWACumulativeSummary(stateId, "District", toDate, courseId));
             } else {
                 if (blockId == 0) {
-                    cumulativesummaryReportStart.addAll(getWACumulativeSummary(districtId, "Block", fromDate));
-                    cumulativesummaryReportEnd.addAll(getWACumulativeSummary(districtId, "Block", toDate));
+                    cumulativesummaryReportStart.addAll(getWACumulativeSummary(districtId, "Block", fromDate, courseId));
+                    cumulativesummaryReportEnd.addAll(getWACumulativeSummary(districtId, "Block", toDate, courseId));
                 } else {
-                    cumulativesummaryReportStart.addAll(getWACumulativeSummary(blockId, "Panchayat", fromDate));
-                    cumulativesummaryReportEnd.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate));
+                    cumulativesummaryReportStart.addAll(getWACumulativeSummary(blockId, "Panchayat", fromDate, courseId));
+                    cumulativesummaryReportEnd.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate, courseId));
                 }
             }
 
@@ -364,21 +364,21 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     }
 
     @Override
-    public AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId) {
+    public AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId) {
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<AggregateCumulativeWADto> summaryDto = new ArrayList<>();
         List<WACumulativeSummary> cumulativeSummaryReport = new ArrayList<>();
 
         if (stateId == 0) {
-            cumulativeSummaryReport.addAll(getWACumulativeSummary(0, "State", toDate));
+            cumulativeSummaryReport.addAll(getWACumulativeSummary(0, "State", toDate, courseId));
         } else {
             if (districtId == 0) {
-                cumulativeSummaryReport.addAll(getWACumulativeSummary(stateId, "District", toDate));
+                cumulativeSummaryReport.addAll(getWACumulativeSummary(stateId, "District", toDate, courseId));
             } else {
                 if (blockId == 0) {
-                    cumulativeSummaryReport.addAll(getWACumulativeSummary(districtId, "Block", toDate));
+                    cumulativeSummaryReport.addAll(getWACumulativeSummary(districtId, "Block", toDate, courseId));
                 } else {
-                    cumulativeSummaryReport.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate));
+                    cumulativeSummaryReport.addAll(getWACumulativeSummary(blockId, "Panchayat", toDate, courseId));
                 }
             }
         }
@@ -436,7 +436,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
     }
 
     @Override
-    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId) {
+    public AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate,Date toDate,Integer circleId, Integer courseId) {
 
         AggregateResponseDto aggregateResponseDto = new AggregateResponseDto();
         List<WAAnonymousPerformanceDto> summaryDto = new ArrayList<>();
@@ -444,8 +444,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         List<WAAnonymousUsersSummary> cumulativeSummaryReportEnd = new ArrayList<>();
 
 
-        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(circleId,fromDate));
-        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(circleId,toDate));
+        cumulativeSummaryReportStart.addAll(getWAAnonymousCumulativeSummary(circleId,fromDate, courseId));
+        cumulativeSummaryReportEnd.addAll(getWAAnonymousCumulativeSummary(circleId,toDate, courseId));
 
         for (int i = 0; i < cumulativeSummaryReportEnd.size(); i++) {
             for (int j = 0; j < cumulativeSummaryReportStart.size(); j++) {
@@ -473,8 +473,8 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                         summaryDto1.setAnonUsersStartedCourse(a.getAnonymousUsersStartedCourse() - b.getAnonymousUsersStartedCourse());
                         summaryDto1.setAnonUsersCompletedCourse(a.getAnonymousUsersCompletedCourse() - b.getAnonymousUsersCompletedCourse());
                     }
-                    summaryDto1.setAnonUsersFailedCourse(waAnonymousSummaryService.getAnonUsersFailed(summaryDto1.getCircleId(), fromDate, toDate));
-                    summaryDto1.setAnonUsersPursuingCourse(waAnonymousSummaryService.getAccessedCount(summaryDto1.getCircleId(), fromDate, toDate));
+                    summaryDto1.setAnonUsersFailedCourse(waAnonymousSummaryService.getAnonUsersFailed(summaryDto1.getCircleId(), fromDate, toDate, courseId));
+                    summaryDto1.setAnonUsersPursuingCourse(waAnonymousSummaryService.getAccessedCount(summaryDto1.getCircleId(), fromDate, toDate, courseId));
                     summaryDto1.setAnonUsersNotPursuingCourse(waAnonymousSummaryService.getNotAccessedcount(summaryDto1.getCircleId(), fromDate, toDate));
                     if (summaryDto1.getAnonUsersCompletedCourse() + summaryDto1.getAnonUsersFailedCourse() +
                             summaryDto1.getAnonUsersStartedCourse() + summaryDto1.getAnonUsersPursuingCourse() +

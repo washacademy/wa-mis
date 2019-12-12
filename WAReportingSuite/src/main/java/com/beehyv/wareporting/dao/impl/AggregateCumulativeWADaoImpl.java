@@ -14,17 +14,18 @@ import java.util.Date;
 public class  AggregateCumulativeWADaoImpl extends AbstractDao<Integer,WACumulativeSummary> implements AggregateCumulativeWADao
         {
             @Override
-            public WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate){
+            public WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate, Integer courseId){
 
                    WACumulativeSummary WACumulativeSummary1;
                    Criteria criteria = createEntityCriteria().addOrder(Order.asc("locationId"));
                    criteria.add(Restrictions.and(
                            Restrictions.eq("locationId",locationId.longValue()),
                            Restrictions.eq("locationType",locationType),
-                           Restrictions.eq("date",toDate)
+                           Restrictions.eq("date",toDate),
+                           Restrictions.eq("courseId", courseId)
                    ));
                 if(criteria.list().isEmpty()){
-                    WACumulativeSummary1 = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0);
+                    WACumulativeSummary1 = new WACumulativeSummary(0,(long)0,"NA",(long)0,"",0,0,0,0,0,0,courseId);
                     return WACumulativeSummary1;
                 }
                 

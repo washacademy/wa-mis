@@ -357,6 +357,7 @@ public class UserController {
         Integer districtId = reportRequest.getDistrictId();
         Integer blockIdId = reportRequest.getBlockId();
         Integer circleId = reportRequest.getCircleId();
+        Integer courseId = reportRequest.getCourseId();
 
         Map<String, String> m = new HashMap<>();
         User currentUser = userService.getCurrentUser();
@@ -381,7 +382,7 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId,stateId, districtId, blockIdId);
+            aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId,stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
         }
@@ -391,7 +392,7 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            aggregateResponseDto = waAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto = waAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
         }
@@ -400,7 +401,7 @@ public class UserController {
 
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            aggregateResponseDto = waAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId);
+            aggregateResponseDto = waAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
 
@@ -411,7 +412,7 @@ public class UserController {
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
             Date toDate = dateAdder(reportRequest.getToDate(), 1);
 
-            aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId);
+            aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
             return aggregateResponseDto;
         }

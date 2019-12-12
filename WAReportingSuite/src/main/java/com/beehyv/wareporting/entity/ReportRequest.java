@@ -21,6 +21,12 @@ public class ReportRequest {
 
     private Integer circleId;
 
+    private Integer courseId;
+
+    public Integer getCourseId() { return courseId; }
+
+//    public void setCourseId(Integer courseId) { this.courseId = courseId; }
+
     public String getReportType() {
         return reportType;
     }

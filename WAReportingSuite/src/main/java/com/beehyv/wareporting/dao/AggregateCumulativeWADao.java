@@ -8,6 +8,6 @@ import java.util.Date;
 public interface AggregateCumulativeWADao {
 
 
-    WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate);
+    WACumulativeSummary getWACumulativeSummary(Integer locationId, String locationType, Date toDate, Integer courseId);
 
 }
