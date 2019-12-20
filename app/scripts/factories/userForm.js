@@ -70,6 +70,10 @@
 					return $http.get(backend_root + 'wa/user/user/' + id);
 				},
 
+				getCourseList: function(){
+					return $http.get(backend_root + 'wa/user/courses/')
+				},
+
 				getUserDto: function(id){
 					return $http.get(backend_root + 'wa/user/dto/' + id);
 				},

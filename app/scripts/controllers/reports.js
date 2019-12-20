@@ -21,6 +21,7 @@
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
+ 			$scope.courses = [];
 			$scope.states = [];
 			$scope.districts = [];
 			$scope.blocks = [];
@@ -224,6 +225,7 @@
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
+				$scope.course = null;
 				if(!$scope.userHasDistrict()){
 					$scope.clearDistrict();
 				}
@@ -385,27 +387,27 @@
 
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
-			        var minDate = new Date(2016, 11, 01);
+			        var minDate = new Date(2016, 11, 1);
 			    }
                 else{
-                    var minDate = new Date(2015, 09, 01);
+                    var minDate = new Date(2015, 9, 1);
                 }
 				if($scope.report != null){
-					minDate = new Date(2015, 10, 01);
+					minDate = new Date(2015, 10, 1);
 				}
 				if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Inactive_Users'){
-                	minDate = new Date(2017, 04, 30);
+                	minDate = new Date(2017, 4, 30);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users'){
-                    minDate = new Date(2017, 04, 30);
+                    minDate = new Date(2017, 4, 30);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2017,2, 01);
+                    minDate = new Date(2017,2, 1);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
-                    minDate = new Date(2017,2, 01);
+                    minDate = new Date(2017,2, 1);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
@@ -506,6 +508,20 @@
                 $scope.showEmptyData = false;
                 $scope.clearFile();
 			}
+
+			UserFormFactory.getCourseList()
+				.then(function (result) {
+					$scope.courses = result.data;
+				})
+
+			$scope.selectCourse = function(item){
+				if(item != null){
+					$scope.course = null;
+					$scope.course = item;
+				}
+				$scope.course = item;
+			}
+
 			$scope.clearBlock = function(){
 				$scope.block = null;
 				$scope.periodDisplayType = '';
@@ -575,6 +591,17 @@
                         UserFormFactory.showAlert("Please select a report")
                         return;
                     }
+				}
+
+				else if ($scope.report.name != 'Academy Rejected Line-Listing Report' && $scope.report.name != 'Inactive Users Line-Listing Report' && $scope.course == null ){
+					if(UserFormFactory.isInternetExplorer()){
+						alert("Please select a Course")
+						return;
+					}
+					else{
+						UserFormFactory.showAlert("Please select a Course")
+						return;
+					}
 				}
 
 				else if($scope.periodDisplayType == '' && ($scope.isAggregateReport() )
@@ -662,6 +689,13 @@
 			    reportRequest.districtId = 0;
 			    reportRequest.blockId = 0;
                 reportRequest.circleId = 0;
+                if ($scope.course == 'Wash Academy Course'){
+					reportRequest.courseId = 1;
+				}
+                else if($scope.course == 'Wash Academy Course Plus'){
+					reportRequest.courseId = 2;
+				}
+
 			    
 			    if(!$scope.isCircleReport() ){
 
@@ -954,6 +988,7 @@
 				$scope.hideMessageMatrix = true;
 				$scope.periodDisplayType = '';
 				$scope.showEmptyData = false;
+				$scope.course = null;
 			}
 
 

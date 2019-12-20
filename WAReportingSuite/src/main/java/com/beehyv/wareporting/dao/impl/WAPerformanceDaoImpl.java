@@ -98,7 +98,7 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
 //        fromDate = dateAdder(fromDate,1);
         if(locationType.equalsIgnoreCase("state")) {
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = :courseId and m.creation_date < :fromDate)  " +
                     "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
                     "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.state_id = :locationId");
@@ -110,7 +110,7 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
         }
         if(locationType.equalsIgnoreCase("district")){
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = :courseId and m.creation_date < :fromDate)  " +
                     "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
                     "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.district_id = :locationId");
@@ -122,7 +122,7 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
         }
         if(locationType.equalsIgnoreCase("block")){
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = :courseId and m.creation_date < :fromDate)  " +
                     "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
                     "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.block_id = :locationId");
@@ -134,7 +134,7 @@ public class WAPerformanceDaoImpl extends AbstractDao<Integer, User> implements 
         }
         if(locationType.equalsIgnoreCase("panchayat")) {
             Query query = getSession().createSQLQuery("select count(*) from swachchagrahi f  " +
-                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = : courseId and m.creation_date < :fromDate)  " +
+                    "where f.swc_id not in  (select distinct m.swc_id  from WA_course_completion m  where m.has_passed = 1 and m.courseId = :courseId and m.creation_date < :fromDate)  " +
                     "and f.swc_id in  (select distinct m1.swc_id from WA_call_detail_measure m1 where m1.courseId = :courseId and m1.start_time between :fromDate and :toDate) " +
                     "and f.swc_id in (select distinct m2.swc_id from WA_call_detail_measure m2 where m2.courseId = :courseId and m2.start_time < :fromDate) " +
                     "and f.swc_designation = 'SWACHCHAGRAHI' and f.course_status = 'ACTIVE' and f.job_status = 'ACTIVE' and f.panchayat_id = :locationId");

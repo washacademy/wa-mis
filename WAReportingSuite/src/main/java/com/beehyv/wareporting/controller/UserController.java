@@ -83,6 +83,9 @@ public class UserController {
     private final String reports = documents + "Reports/";
     private Calendar c = Calendar.getInstance();
 
+    private final String WashAcademyCourse1 = "Wash Academy Course";
+    private final String WashAcademyCourse2 = "Wash Academy Course Plus";
+
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public @ResponseBody
     List<User> getAllUsers() {
@@ -427,7 +430,8 @@ public class UserController {
                 place = StReplace(locationService.findCircleById(reportRequest.getCircleId()).getCircleFullName());
                 rootPath += place + "/";
             }
-        } else {
+        }
+        else {
             if (currentUser.getAccessLevel().equals(AccessLevel.STATE.getAccessLevel()) && !currentUser.getStateId().equals(reportRequest.getStateId())) {
                 m.put("status", "fail");
                 return m;
@@ -586,6 +590,15 @@ public class UserController {
 
         l.add(maMenu);
         return l;
+    }
+
+    @RequestMapping(value = {"/courses"}, method =  RequestMethod.GET)
+    public @ResponseBody
+    ArrayList<String> getCourseList() {
+       ArrayList<String> courseList = new ArrayList<>();
+       courseList.add(WashAcademyCourse1);
+       courseList.add(WashAcademyCourse2);
+       return  courseList;
     }
 
     @RequestMapping(value = {"/createMaster"}, method = RequestMethod.GET)
