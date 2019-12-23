@@ -110,7 +110,7 @@
                         var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
                         v = Math.floor(parseFloat(temp) * 100) / 100;
                     }else if(ft.displayName == "Total Beneficiary Records Rejected" && excelHeaderName.reportName == "Kilkari Subscriber"&&!rejectionStart){
-                        v = "N/A";
+                        v = "Total";
                     }else if (ft.displayName == "% Failed the course" && excelHeaderName.reportName == "MA Cumulative Summary") {
                         var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
                         v = Math.floor(parseFloat(temp) * 100) / 100;
@@ -384,7 +384,7 @@
                            v = "Total";
                         } else {
                             if (typeof(ft.getAggregationValue()) == 'undefined') {
-                              v = 'N/A'
+                              v = 'Total'
                             }
                             else{
 //                                console.log('Aggregate value : ' + ft.getAggregationValue())
@@ -450,6 +450,10 @@
                         style: 'header'
                     },
                     {
+                        text: 'Course : ' + excelHeaderName.course,
+                        style: 'subsubheader'
+                    },
+                    {
                         text: 'State : ' + excelHeaderName.stateName,
                         style: 'subsubheader'
                     },
@@ -465,6 +469,7 @@
                         text: 'Period : ' + excelHeaderName.timePeriod,
                         style: 'subsubheader'
                     },
+
 
                     {
                         columns: [{
@@ -652,6 +657,10 @@
                     t: 's',
                     v: excelHeaderName.stateName
                 },
+                B4: {
+                    t: 's',
+                    v: excelHeaderName.course
+                },
                 F3: {
                     t: 's',
                     v: excelHeaderName.districtName
@@ -659,6 +668,10 @@
                 A3: {
                     t: 's',
                     v: "State:"
+                },
+                A4: {
+                    t: 's',
+                    v: "Course:"
                 },
                 E3: {
                     t: 's',
@@ -742,6 +755,16 @@
                             c: 11
                         }
                     }, /* B1:F2 */
+                    {
+                        s: {
+                            r: 3,
+                            c: 1
+                        },
+                        e: {
+                            r: 3,
+                            c: 3
+                        }
+                    } /* B1:F2 */
 
                 ]
 
@@ -765,10 +788,10 @@
 
             columns.forEach(function(c) {
                 var v = c.displayName || c.value || columns[i].name;
-                addCell(range, v, 4, C, ws);
+                addCell(range, v, 5, C, ws);
                 C++;
             }, this);
-            var R = 5;
+            var R = 6;
             data.forEach(function(ds) {
                 C = 0;
                 ds.forEach(function(d) {

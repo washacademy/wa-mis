@@ -515,11 +515,31 @@
 				})
 
 			$scope.selectCourse = function(item){
-				if(item != null){
-					$scope.course = null;
-					$scope.course = item;
-				}
+				// if(item != null){
+				// 	$scope.course = null;
+				// 	$scope.course = item;
+				// }
 				$scope.course = item;
+				if(!$scope.userHasState()){
+					$scope.clearState();
+				}
+				if(!$scope.userHasDistrict()){
+					$scope.clearDistrict();
+				}
+				if(!$scope.userHasBlock()){
+					$scope.clearBlock();
+				}
+				$scope.clearCircle();
+				$scope.clearFile();
+
+				$scope.periodDisplayType = '';
+				$scope.dt = {date : null};
+				$scope.dt1 = {date : null};
+				$scope.dt2 = {date : null};
+				$scope.hideGrid = true;
+				$scope.hideMessageMatrix = true;
+				$scope.showEmptyData = false;
+
 			}
 
 			$scope.clearBlock = function(){
@@ -882,7 +902,7 @@
 			$scope.exportCSV = function(reportName){
                  var exportService = uiGridExporterService;
                  var grid = $scope.gridApi.grid;
-                 var fileName = reportName.split(" ").join("")+ ".csv";
+                 var fileName = reportName.split(" ").join("")+ " for " + $scope.course + ".csv";
 
                  exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
                      var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
@@ -910,11 +930,12 @@
                                              fileName1 = fileName1.replace(".xlsx","");
                                              fileName1 += '.pdf';*/
 
-                var fileName1 = reportName.split(" ").join("")+ ".pdf";
+                var fileName1 = reportName.split(" ").join("")+ " for " + $scope.course + ".pdf";
 
                 var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                 var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
                 excelHeaderName.reportName = $scope.report.name;
+                excelHeaderName.course = $scope.course;
 
                 if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
                 excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
@@ -937,8 +958,9 @@
             $scope.exportExcel = function(reportName){
                              var exportService = uiGridExporterService;
                              var grid = $scope.gridApi.grid;
-                             var fileName = reportName.split(" ").join("");
+                             var fileName = reportName.split(" ").join("") + " for " + $scope.course;
                             excelHeaderName.reportName = $scope.report.name;
+                            excelHeaderName.course = $scope.course;
 
                             exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
                                  var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
@@ -947,7 +969,7 @@
 //                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
                                });
                              exportUiGridService.exportToExcel1('Sheet1', $scope.gridApi, $scope.gridApi1, 'visible', 'visible', excelHeaderName);
-                        }
+            }
 
 			$scope.getReportUrl = backend_root + 'wa/user/getReport';
 			$scope.$watch('pathName', function(){
