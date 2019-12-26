@@ -200,7 +200,7 @@ public class EmailServiceImpl implements EmailService{
         return body;
     }
 
-    private String getBodyForStateLevelUsers(String reportType, Integer stateId, String  name) {
+    private String getBodyForStateLevelUsers(String reportType, Integer stateId, String  name, Integer courseId) {
         String body= "Dear "+name +",<br>";
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(new Date());
@@ -232,14 +232,14 @@ public class EmailServiceImpl implements EmailService{
                     ) {
 
                 body=body+"<tr align='center'>"+"<td>" + district.getDistrictName() + "</td>"
-                        + "<td>" +waCourseAttemptDao.getCountForGivenDistrict(toDate, district.getDistrictId())+ "</td>"+"</tr>";
+                        + "<td>" +waCourseAttemptDao.getCountForGivenDistrict(toDate, district.getDistrictId(), courseId)+ "</td>"+"</tr>";
             }
         } else if(reportType.equals(ReportType.waInactive.getReportType())){
-            body+="<pre>   </pre>Please find below the district wise count of Swachchagrahis who have not yet started the WASH Academy course." +
+            body+="<pre>   </pre>Please find below the district wise count of Swachchagrahis who have not yet started the Any WASH Academy course." +
                     " The line listing of the Swachchagrahis have been sent to the respective district and block users.";
 
             body += "<br><br><pre>   </pre>You are requested to kindly instruct your field level workers and ask them to start accessing the WASH Academy " +
-                    "course and complete the course which has been designed to provide effective training for their operations.";
+                    "courses and complete the courses which has been designed to provide effective training for their operations.";
 
             body += "<br><br><table width='100%' border='1' align='center'>"
                     + "<tr align='center'>"
@@ -388,7 +388,7 @@ public class EmailServiceImpl implements EmailService{
                     emailTrackerService.saveEmailDetails(emailTracker);
 
                 } else if(user.getStateId()!=null)  {
-                    newMail.setBody(this.getBodyForStateLevelUsers(reportType.getReportType(), user.getStateId(), user.getFullName()));
+                    newMail.setBody(this.getBodyForStateLevelUsers(reportType.getReportType(), user.getStateId(), user.getFullName(), reportRequest.getCourseId()));
                     errorMessage=sendMailWithStatistics(newMail);
                     EmailTracker emailTracker = new EmailTracker();
                     emailTracker.setEmailSuccessful(true);

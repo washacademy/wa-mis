@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface AnonymousUsersDao {
 
-    List<WACircleWiseAnonymousUsersLineListing> getAnonymousUsers(Date fromDate, Date toDate);
+    List<WACircleWiseAnonymousUsersLineListing> getAnonymousUsers(Date fromDate, Date toDate, Integer courseId);
 
-    List<WACircleWiseAnonymousUsersLineListing> getAnonymousUsersByCircle(Date fromDate, Date toDate, String circleName);
+    List<WACircleWiseAnonymousUsersLineListing> getAnonymousUsersByCircle(Date fromDate, Date toDate, String circleName, Integer courseId);
 
 }

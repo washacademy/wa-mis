@@ -25,7 +25,7 @@ public class ReportRequest {
 
     public Integer getCourseId() { return courseId; }
 
-//    public void setCourseId(Integer courseId) { this.courseId = courseId; }
+   public void setCourseId(Integer courseId) { this.courseId = courseId; }
 
     public String getReportType() {
         return reportType;

@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface WACourseAttemptDao {
 
-   List<WACourseFirstCompletion> getSuccessFulCompletion(Date toDate);
+   List<WACourseFirstCompletion> getSuccessFulCompletion(Date toDate, Integer courseId);
 
-   List<WACourseFirstCompletion> getSuccessFulCompletionWithStateId(Date toDate, Integer stateId);
+   List<WACourseFirstCompletion> getSuccessFulCompletionWithStateId(Date toDate, Integer stateId, Integer courseId);
 
-   List<WACourseFirstCompletion> getSuccessFulCompletionWithDistrictId(Date toDate, Integer districtId);
+   List<WACourseFirstCompletion> getSuccessFulCompletionWithDistrictId(Date toDate, Integer districtId, Integer courseId);
 
-   List<WACourseFirstCompletion> getSuccessFulCompletionWithBlockId(Date toDate, Integer blockId);
+   List<WACourseFirstCompletion> getSuccessFulCompletionWithBlockId(Date toDate, Integer blockId, Integer courseId);
 
-   Long getCountForGivenDistrict(Date toDate,Integer districtId);
+   Long getCountForGivenDistrict(Date toDate,Integer districtId, Integer courseId);
 }

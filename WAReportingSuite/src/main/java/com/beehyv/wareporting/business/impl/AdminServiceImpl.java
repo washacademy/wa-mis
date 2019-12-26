@@ -558,17 +558,24 @@ public class AdminServiceImpl implements AdminService {
         int districtId=reportRequest.getDistrictId();
         int blockId=reportRequest.getBlockId();
         int circleId=reportRequest.getCircleId();
+        int courseId =0;
+        try {
+            courseId = reportRequest.getCourseId();
+        }
+        catch (Exception NullPointerException){
+
+        }
         if(reportRequest.getReportType().equals(ReportType.waCourseCompletion.getReportType())){
             reportRequest.setFromDate(toDate);
             if(stateId==0){
-                List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate);
+                List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate, courseId);
                 getCumulativeCourseCompletion(successFullCandidates, rootPath,AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
             }
             else{
                 String stateName=StReplace(stateDao.findByStateId(stateId).getStateName());
                 String rootPathState = rootPath+ stateName+ "/";
                 if(districtId==0){
-                    List<WACourseFirstCompletion> candidatesFromThisState = waCourseAttemptDao.getSuccessFulCompletionWithStateId(toDate,stateId);
+                    List<WACourseFirstCompletion> candidatesFromThisState = waCourseAttemptDao.getSuccessFulCompletionWithStateId(toDate,stateId, courseId);
 
                     getCumulativeCourseCompletion(candidatesFromThisState, rootPathState, stateName, toDate, reportRequest);
                 }
@@ -576,7 +583,7 @@ public class AdminServiceImpl implements AdminService {
                     String districtName=StReplace(districtDao.findByDistrictId(districtId).getDistrictName());
                     String rootPathDistrict = rootPathState+ districtName+ "/";
                     if(blockId==0){
-                        List<WACourseFirstCompletion> candidatesFromThisDistrict = waCourseAttemptDao.getSuccessFulCompletionWithDistrictId(toDate,districtId);
+                        List<WACourseFirstCompletion> candidatesFromThisDistrict = waCourseAttemptDao.getSuccessFulCompletionWithDistrictId(toDate,districtId, courseId);
 
                         getCumulativeCourseCompletion(candidatesFromThisDistrict, rootPathDistrict, districtName, toDate, reportRequest);
                     }
@@ -584,7 +591,7 @@ public class AdminServiceImpl implements AdminService {
                         String blockName=StReplace(blockDao.findByBlockId(blockId).getBlockName());
                         String rootPathBlock = rootPathDistrict + blockName+ "/";
 
-                        List<WACourseFirstCompletion> candidatesFromThisBlock = waCourseAttemptDao.getSuccessFulCompletionWithBlockId(toDate,blockId);
+                        List<WACourseFirstCompletion> candidatesFromThisBlock = waCourseAttemptDao.getSuccessFulCompletionWithBlockId(toDate,blockId, courseId);
 
                         getCumulativeCourseCompletion(candidatesFromThisBlock, rootPathBlock, blockName, toDate, reportRequest);
                     }
@@ -630,7 +637,7 @@ public class AdminServiceImpl implements AdminService {
                 String circleName=StReplace(circleDao.getByCircleId(circleId).getCircleName());
                 String circleFullName = StReplace(circleDao.getByCircleId(circleId).getCircleFullName());
                 String rootPathCircle=rootPath+circleFullName+"/";
-                List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
+                List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName,courseId);
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
         }
 
@@ -760,11 +767,24 @@ public class AdminServiceImpl implements AdminService {
     private void getCumulativeCourseCompletion(List<WACourseFirstCompletion> successfulCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
         //Create blank workbook
 
-
         XSSFWorkbook workbook = new XSSFWorkbook();
+        final String course1 = "Wash_Academy_Course";
+        final String course2 = "Wash_Academy_Course_Plus";
+        String course = "";
+        Integer courseId = 0;
+        try {
+            courseId = reportRequest.getCourseId();
+            if(courseId == 1)
+                course = course1;
+            if(courseId == 2 )
+                course = course2;
+        }
+        catch(Exception NullPointerException) {
+            //caught
+        }
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                " WA Course Completion Report ");
+                " WA Course Completion Report for "+ course);
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -823,7 +843,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(toDate)  + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -841,11 +861,26 @@ public class AdminServiceImpl implements AdminService {
 
     private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
         XSSFWorkbook workbook = new XSSFWorkbook();
+        final String course1 = "Wash_Academy_Course";
+        final String course2 = "Wash_Academy_Course_Plus";
+        String course = "";
+        Integer courseId = 0;
+        try {
+            courseId = reportRequest.getCourseId();
+            if(courseId == 1)
+                course = course1;
+            if(courseId == 2 )
+                course = course2;
+        }
+        catch(Exception NullPointerException) {
+            //caught
+        }
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                "Circle-wise Anonymous Users Report");
+                "Circle-wise Anonymous Users Report for" + course);
         //Create row object
         XSSFRow row;
+
         //This data needs to be written (Object[])
         Map<String, Object[]> empinfo =
                 new TreeMap<String, Object[]>();
@@ -903,7 +938,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(toDate) + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -1155,17 +1190,18 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void getCumulativeCourseCompletionFiles(Date toDate) {
+    public void getCumulativeCourseCompletionFiles(Date toDate, Integer courseId) {
 
         List<State> states = stateDao.getAllStates();
         String rootPath = reports+ReportType.waCourseCompletion.getReportType()+ "/";
-        List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate);
+        List<WACourseFirstCompletion> successFullCandidates = waCourseAttemptDao.getSuccessFulCompletion(toDate, courseId);
         ReportRequest reportRequest=new ReportRequest();
         reportRequest.setFromDate(toDate);
         reportRequest.setBlockId(0);
         reportRequest.setDistrictId(0);
         reportRequest.setStateId(0);
         reportRequest.setReportType(ReportType.waCourseCompletion.getReportType());
+        reportRequest.setCourseId(courseId);
         getCumulativeCourseCompletion(successFullCandidates, rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
         for (State state : states) {
             String stateName = StReplace(state.getStateName());
@@ -1215,10 +1251,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void getCircleWiseAnonymousFiles(Date startDate, Date toDate) {
+    public void getCircleWiseAnonymousFiles(Date startDate, Date toDate, Integer courseId) {
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports+ReportType.waCircleWiseAnonymous.getReportType()+ "/";
-        List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(startDate,toDate);
+        List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList = anonymousUsersDao.getAnonymousUsers(startDate,toDate, courseId);
         ReportRequest reportRequest=new ReportRequest();
         reportRequest.setFromDate(toDate);
         reportRequest.setBlockId(0);
@@ -1226,6 +1262,7 @@ public class AdminServiceImpl implements AdminService {
         reportRequest.setStateId(0);
         reportRequest.setCircleId(0);
         reportRequest.setReportType(ReportType.waCircleWiseAnonymous.getReportType());
+        reportRequest.setCourseId(courseId);
         getCircleWiseAnonymousUsers(anonymousUsersList, rootPath, AccessLevel.NATIONAL.getAccessLevel(), toDate, reportRequest);
         for (Circle circle : circleList) {
             String circleName = StReplace(circle.getCircleName());

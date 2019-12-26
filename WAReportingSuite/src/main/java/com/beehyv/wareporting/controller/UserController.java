@@ -355,12 +355,28 @@ public class UserController {
         String reportName = "";
         String rootPath = "";
         String place = AccessLevel.NATIONAL.getAccessLevel();
+        final String course1 = "Wash_Academy_Course";
+        final String course2 = "Wash_Academy_Course_Plus";
+        String course = "";
 
         Integer stateId = reportRequest.getStateId();
         Integer districtId = reportRequest.getDistrictId();
         Integer blockIdId = reportRequest.getBlockId();
         Integer circleId = reportRequest.getCircleId();
-        Integer courseId = reportRequest.getCourseId();
+        Integer courseId = 0;
+        try {
+            courseId = reportRequest.getCourseId();
+            if(courseId == 1)
+                course = course1;
+            if(courseId == 2 )
+                course = course2;
+        }
+        catch(Exception NullPointerException) {
+            //caught
+        }
+
+
+
 
         Map<String, String> m = new HashMap<>();
         User currentUser = userService.getCurrentUser();
@@ -460,7 +476,8 @@ public class UserController {
                 rootPath += place + "/";
             }
         }
-        String filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
+
+        String filename = reportRequest.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
 
         if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
@@ -468,7 +485,7 @@ public class UserController {
         reportPath = reports + reportRequest.getReportType() + "/" + rootPath;
         reportName = filename;
 
-        File file = new File(reportPath + reportName);
+        File file = new File(reportPath + reportName );
         if (!(file.exists())) {
             adminService.createSpecificReport(reportRequest);
         }

@@ -15,9 +15,9 @@ public interface AdminService {
 
   void getBulkDataImportCSV();
 
-  void getCumulativeCourseCompletionFiles( Date toDate);
+  void getCumulativeCourseCompletionFiles( Date toDate, Integer courseId);
 
-  void getCircleWiseAnonymousFiles(Date fromDate,Date toDate);
+  void getCircleWiseAnonymousFiles(Date fromDate,Date toDate, Integer courseId);
 
   void getCumulativeInactiveFiles(Date toDate);
 

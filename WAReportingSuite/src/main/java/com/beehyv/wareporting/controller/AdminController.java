@@ -154,9 +154,9 @@ public class AdminController {
         adminService.createFiles(ReportType.swcRejected.getReportType());
     }
 
-    @RequestMapping(value = "/generateReports/{reportType}/{relativeMonth}", method = RequestMethod.GET)
+    @RequestMapping(value = "/generateReports/{reportType}/{relativeMonth}/{courseId}", method = RequestMethod.GET)
     @ResponseBody
-    public String getReportsByNameAndMonth(@PathVariable("reportType") String reportType, @PathVariable("relativeMonth") Integer relativeMonth) throws ParseException, java.text.ParseException{
+    public String getReportsByNameAndMonthAndCourse(@PathVariable("reportType") String reportType, @PathVariable("relativeMonth") Integer relativeMonth,@PathVariable("courseId") Integer courseId) throws ParseException, java.text.ParseException{
 //        User user=userService.getCurrentUser();
 //        if(user==null || ! (user.getRoleName().equals(AccessType.MASTER_ADMIN.getAccessType()))) {
 //            return "You are not authorised";
@@ -166,6 +166,7 @@ public class AdminController {
         Calendar aCalendar = Calendar.getInstance();
         Date fromDate=new Date();
         Date toDate;
+
         if(tempReportType.getReportType().equals(ReportType.swcRejected.getReportType())) {
             aCalendar.add( Calendar.DAY_OF_WEEK, -(aCalendar.get(Calendar.DAY_OF_WEEK)-1));
             aCalendar.add(Calendar.DATE,-(7*(relativeMonth-1)));
@@ -187,11 +188,11 @@ public class AdminController {
 
         switch (tempReportType) {
             case waCourseCompletion: {
-                adminService.getCumulativeCourseCompletionFiles(toDate);
+                adminService.getCumulativeCourseCompletionFiles(toDate, courseId);
                 break;
             }
             case waCircleWiseAnonymous: {
-                adminService.getCircleWiseAnonymousFiles(fromDate, toDate);
+                adminService.getCircleWiseAnonymousFiles(fromDate, toDate, courseId);
                 break;
             }
             case waInactive:{
