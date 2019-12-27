@@ -482,7 +482,7 @@ public class UserController {
         if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
         }
-        reportPath = reports + reportRequest.getReportType() + "/" + rootPath;
+        reportPath = reports + course + "/" + reportRequest.getReportType() + "/" + rootPath;
         reportName = filename;
 
         File file = new File(reportPath + reportName );
@@ -492,7 +492,7 @@ public class UserController {
 
         m.put("status", "success");
         m.put("file", reportName);
-        m.put("path", reportRequest.getReportType() + "/" + rootPath);
+        m.put("path", course + "/" + reportRequest.getReportType() + "/" + rootPath);
         return m;
     }
 

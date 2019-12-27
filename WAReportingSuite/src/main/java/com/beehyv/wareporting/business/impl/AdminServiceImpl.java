@@ -484,59 +484,82 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void createFiles(String reportType) {
 
+        String[] courses = {"Wash_Academy_Course","Wash_Academy_Course_Plus"};
+
         List<State> states = stateDao.getAllStates();
         String rootPath = reports;
-        File dir = new File(rootPath + reportType);
-        if (!dir.exists())
-            dir.mkdirs();
-        for (State state : states) {
-            String stateName = StReplace(state.getStateName());
-            String rootPathState = rootPath + reportType + "/" + stateName;
-            File dirState = new File(rootPathState);
-            if (!dirState.exists())
-                dirState.mkdirs();
-            int stateId = state.getStateId();
-            List<District> districts = districtDao.getDistrictsOfState(stateId);
-            for (District district : districts) {
-                String districtName = StReplace(district.getDistrictName());
-                String rootPathDistrict = rootPathState + "/" + districtName;
-                File dirDistrict = new File(rootPathDistrict);
-                if (!dirDistrict.exists())
-                    dirDistrict.mkdirs();
-                int districtId = district.getDistrictId();
-                List<Block> Blocks = blockDao.getBlocksOfDistrict(districtId);
-                for (Block block : Blocks) {
-                    String blockName = StReplace(block.getBlockName());
-                    String rootPathBlock = rootPathDistrict + "/" + blockName;
-                    File dirBlock = new File(rootPathBlock);
-                    if (!dirBlock.exists())
-                        dirBlock.mkdirs();
+        for (int i =0;i < courses.length; i++){
+
+            File dir = new File(rootPath + courses[i] +"/" + reportType);
+            if (!dir.exists())
+                dir.mkdirs();
+            for (State state : states) {
+                String stateName = StReplace(state.getStateName());
+                String rootPathState = rootPath +courses[i] +"/"+ reportType + "/" + stateName;
+                File dirState = new File(rootPathState);
+                if (!dirState.exists())
+                    dirState.mkdirs();
+                int stateId = state.getStateId();
+                List<District> districts = districtDao.getDistrictsOfState(stateId);
+                for (District district : districts) {
+                    String districtName = StReplace(district.getDistrictName());
+                    String rootPathDistrict = rootPathState + "/" + districtName;
+                    File dirDistrict = new File(rootPathDistrict);
+                    if (!dirDistrict.exists())
+                        dirDistrict.mkdirs();
+                    int districtId = district.getDistrictId();
+                    List<Block> Blocks = blockDao.getBlocksOfDistrict(districtId);
+                    for (Block block : Blocks) {
+                        String blockName = StReplace(block.getBlockName());
+                        String rootPathBlock = rootPathDistrict + "/" + blockName;
+                        File dirBlock = new File(rootPathBlock);
+                        if (!dirBlock.exists())
+                            dirBlock.mkdirs();
+                    }
                 }
             }
+
         }
+
     }
 
     @Override
     public void createFolders(String reportType) {
-
+        String[] courses = {"Wash_Academy_Course","Wash_Academy_Course_Plus"};
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports;
-        File dir = new File(rootPath + reportType);
-        if (!dir.exists())
-            dir.mkdirs();
-        for (Circle circle : circleList) {
-            String circleName = StReplace(circle.getCircleFullName());
-            String rootPathCircle = rootPath + reportType + "/" + circleName;
-            File dirCircle = new File(rootPathCircle);
-            if (!dirCircle.exists())
-                dirCircle.mkdirs();
+        for (int i =0;i < courses.length; i++){
+            File dir = new File(rootPath + courses[i] + "/" + reportType);
+            if (!dir.exists())
+                dir.mkdirs();
+            for (Circle circle : circleList) {
+                String circleName = StReplace(circle.getCircleFullName());
+                String rootPathCircle = rootPath +courses[i] + "/" + reportType + "/" + circleName;
+                File dirCircle = new File(rootPathCircle);
+                if (!dirCircle.exists())
+                    dirCircle.mkdirs();
+            }
         }
+
     }
 
     @Override
     public void createSpecificReport(ReportRequest reportRequest) {
-
-        String rootPath = reports+reportRequest.getReportType()+ "/";
+        final String course1 = "Wash_Academy_Course";
+        final String course2 = "Wash_Academy_Course_Plus";
+        String course = "";
+        Integer courseId = 0;
+        try {
+            courseId = reportRequest.getCourseId();
+            if(courseId == 1)
+                course = course1;
+            if(courseId == 2 )
+                course = course2;
+        }
+        catch(Exception NullPointerException) {
+            //caught
+        }
+        String rootPath = reports+ course + "/" + reportRequest.getReportType()+ "/";
 //        Date toDate = reportRequest.getToDate();
         Date startDate=new Date(0);
         Calendar aCalendar = Calendar.getInstance();
@@ -558,13 +581,7 @@ public class AdminServiceImpl implements AdminService {
         int districtId=reportRequest.getDistrictId();
         int blockId=reportRequest.getBlockId();
         int circleId=reportRequest.getCircleId();
-        int courseId =0;
-        try {
-            courseId = reportRequest.getCourseId();
-        }
-        catch (Exception NullPointerException){
 
-        }
         if(reportRequest.getReportType().equals(ReportType.waCourseCompletion.getReportType())){
             reportRequest.setFromDate(toDate);
             if(stateId==0){
@@ -843,7 +860,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(toDate)  + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" +course +"_"+ getMonthYear(toDate)  + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -938,7 +955,7 @@ public class AdminServiceImpl implements AdminService {
         //Write the workbook in file system
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(toDate) + ".xlsx"));
+            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" +course+ "_"+  getMonthYear(toDate) + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
