@@ -150,8 +150,8 @@ public class AdminController {
     public void createAllFiles(){
         adminService.createFiles(waCourseCompletion.getReportType());
         adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
-        adminService.createFiles(ReportType.waInactive.getReportType());
-        adminService.createFiles(ReportType.swcRejected.getReportType());
+        adminService.createFile(ReportType.waInactive.getReportType());
+        adminService.createFile(ReportType.swcRejected.getReportType());
     }
 
     @RequestMapping(value = "/generateReports/{reportType}/{relativeMonth}/{courseId}", method = RequestMethod.GET)

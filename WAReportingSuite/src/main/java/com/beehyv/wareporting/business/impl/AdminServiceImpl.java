@@ -78,6 +78,8 @@ public class AdminServiceImpl implements AdminService {
     private final String documents = retrieveDocuments();
     private final String reports = documents+"Reports/";
     private Calendar c =Calendar.getInstance();
+    private final String course1 = "Wash_Academy_Course";
+    private final String course2 = "Wash_Academy_Course_Plus";
     @Override
     public HashMap startBulkDataImport(User loggedInUser) {
         Pattern pattern;
@@ -524,12 +526,47 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public void createFile(String reportType) {
+        List<State> states = stateDao.getAllStates();
+        String rootPath = reports;
+        File dir = new File(rootPath + reportType);
+        if (!dir.exists())
+            dir.mkdirs();
+        for (State state : states) {
+            String stateName = StReplace(state.getStateName());
+            String rootPathState = rootPath + reportType + "/" + stateName;
+            File dirState = new File(rootPathState);
+            if (!dirState.exists())
+                dirState.mkdirs();
+            int stateId = state.getStateId();
+            List<District> districts = districtDao.getDistrictsOfState(stateId);
+            for (District district : districts) {
+                String districtName = StReplace(district.getDistrictName());
+                String rootPathDistrict = rootPathState + "/" + districtName;
+                File dirDistrict = new File(rootPathDistrict);
+                if (!dirDistrict.exists())
+                    dirDistrict.mkdirs();
+                int districtId = district.getDistrictId();
+                List<Block> Blocks = blockDao.getBlocksOfDistrict(districtId);
+                for (Block block : Blocks) {
+                    String blockName = StReplace(block.getBlockName());
+                    String rootPathBlock = rootPathDistrict + "/" + blockName;
+                    File dirBlock = new File(rootPathBlock);
+                    if (!dirBlock.exists())
+                        dirBlock.mkdirs();
+                }
+            }
+        }
+    }
+
+
+        @Override
     public void createFolders(String reportType) {
         String[] courses = {"Wash_Academy_Course","Wash_Academy_Course_Plus"};
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports;
         for (int i =0;i < courses.length; i++){
-            File dir = new File(rootPath + courses[i] + "/" + reportType);
+            File dir = new File(rootPath +courses[i]   + "/" + reportType);
             if (!dir.exists())
                 dir.mkdirs();
             for (Circle circle : circleList) {
@@ -545,8 +582,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void createSpecificReport(ReportRequest reportRequest) {
-        final String course1 = "Wash_Academy_Course";
-        final String course2 = "Wash_Academy_Course_Plus";
         String course = "";
         Integer courseId = 0;
         try {
@@ -785,8 +820,7 @@ public class AdminServiceImpl implements AdminService {
         //Create blank workbook
 
         XSSFWorkbook workbook = new XSSFWorkbook();
-        final String course1 = "Wash_Academy_Course";
-        final String course2 = "Wash_Academy_Course_Plus";
+
         String course = "";
         Integer courseId = 0;
         try {

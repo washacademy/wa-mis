@@ -23,6 +23,8 @@ public interface AdminService {
 
   void createFiles(String reportType);
 
+  void createFile(String reportType);
+
   void createFolders(String reportType);
 
   void createSpecificReport(ReportRequest reportRequest);

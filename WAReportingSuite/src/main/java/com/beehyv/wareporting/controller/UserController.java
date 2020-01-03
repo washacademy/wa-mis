@@ -85,6 +85,8 @@ public class UserController {
 
     private final String WashAcademyCourse1 = "Wash Academy Course";
     private final String WashAcademyCourse2 = "Wash Academy Course Plus";
+    private final String course1 = "Wash_Academy_Course";
+    private final String course2 = "Wash_Academy_Course_Plus";
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public @ResponseBody
@@ -355,8 +357,7 @@ public class UserController {
         String reportName = "";
         String rootPath = "";
         String place = AccessLevel.NATIONAL.getAccessLevel();
-        final String course1 = "Wash_Academy_Course";
-        final String course2 = "Wash_Academy_Course_Plus";
+
         String course = "";
 
         Integer stateId = reportRequest.getStateId();
@@ -476,8 +477,11 @@ public class UserController {
                 rootPath += place + "/";
             }
         }
-
         String filename = reportRequest.getReportType() + "_" + place + "_" + course + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
+
+        if (reportRequest.getReportType().equals(ReportType.waInactive.getReportType())){
+            filename = reportRequest.getReportType() + "_" + place + "_" + getMonthYear(reportRequest.getFromDate()) + ".xlsx";
+        }
 
         if (reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())) {
             filename = reportRequest.getReportType() + "_" + place + "_" + getDateMonthYear(reportRequest.getFromDate()) + ".xlsx";
