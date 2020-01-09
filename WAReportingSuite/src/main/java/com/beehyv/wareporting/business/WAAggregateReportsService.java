@@ -1,6 +1,8 @@
 package com.beehyv.wareporting.business;
 
+import com.beehyv.wareporting.entity.AggregateExcelDto;
 import com.beehyv.wareporting.entity.AggregateResponseDto;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.Date;
 
@@ -17,4 +19,6 @@ public interface WAAggregateReportsService {
     AggregateResponseDto getWACumulativeSummaryReport(Date toDate, Integer circleId, Integer stateId, Integer districtId, Integer blockId, Integer courseId);
 
     AggregateResponseDto getWAAnonymousSummaryReport(Date fromDate, Date toDate, Integer circleId, Integer courseId);
+
+    void createSpecificAggreagateExcel(XSSFWorkbook workbook, AggregateExcelDto gridData);
 }

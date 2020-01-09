@@ -5,9 +5,8 @@ import com.beehyv.wareporting.dao.*;
 import com.beehyv.wareporting.entity.ReportRequest;
 import com.beehyv.wareporting.enums.*;
 import com.beehyv.wareporting.model.*;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
+import com.beehyv.wareporting.utils.Constants;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellUtil;
 import org.apache.poi.xssf.usermodel.*;
@@ -1082,12 +1081,50 @@ public class AdminServiceImpl implements AdminService {
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
         int rowid = 0;
         XSSFSheet spreadsheet = workbook.getSheetAt(0);
+        spreadsheet.createRow(rowid++);
+
+        String encodingPrefix = "base64,";
+        String pngImageURL = Constants.header_base64;
+        int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
+        byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
+
+        final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
+
+
+        final CreationHelper helper = workbook.getCreationHelper();
+        final Drawing drawing = spreadsheet.createDrawingPatriarch();
+
+        final ClientAnchor anchor = helper.createClientAnchor();
+        anchor.setAnchorType( ClientAnchor.MOVE_AND_RESIZE );
+
+
+        anchor.setCol1( 0 );
+        anchor.setRow1( 0 );
+        anchor.setRow2( 3 );
+        anchor.setCol2( 12 );
+        drawing.createPicture( anchor, pictureIndex );
+
+        XSSFCellStyle style1 = workbook.createCellStyle();//Create style
+        style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
+        style1.setBorderBottom(CellStyle.BORDER_MEDIUM);
+
+        spreadsheet.addMergedRegion(new CellRangeAddress(0,2,0,11));
+
+        rowid = rowid+2;
         XSSFRow row=spreadsheet.createRow(rowid++);
         CellStyle style = workbook.createCellStyle();//Create style
         Font font = workbook.createFont();//Create font
         font.setBoldweight(Font.BOLDWEIGHT_BOLD);//Make font bold
         style.setFont(font);//set it to bold
         style.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
+        style.setBorderBottom(CellStyle.BORDER_MEDIUM);
+        style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderLeft(CellStyle.BORDER_MEDIUM);
+        style.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderRight(CellStyle.BORDER_MEDIUM);
+        style.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderTop(CellStyle.BORDER_MEDIUM);
+        style.setTopBorderColor(IndexedColors.BLACK.getIndex());
 
         Cell cell1=row.createCell(0);
         Cell cell2=row.createCell(1);
