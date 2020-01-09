@@ -17,7 +17,7 @@
 					})
 				}
 			})
-
+			var ExcelData = {};
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
@@ -58,8 +58,8 @@
                             stateName : "ALL",
                             districtName : "ALL",
                             blockName : "ALL",
-                            reportName : "ALL"
-
+                            reportName : "ALL",
+							circleFullName : "ALL"
             };
             var rejectionStart;
 
@@ -222,6 +222,8 @@
 
 			$scope.selectReport = function(item){
 				$scope.report = item;
+				excelHeaderName.reportName = $scope.report.name;
+
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
@@ -445,6 +447,7 @@
 					$scope.getDistricts(state.stateId);
 					$scope.clearState();
 					$scope.state = state;
+					excelHeaderName.stateName = state.stateName;
 				}
 				$scope.periodDisplayType = '';
                 $scope.dt1 = {date : null};
@@ -473,6 +476,7 @@
 					$scope.getBlocks(district.districtId);
 					$scope.clearDistrict()
 					$scope.district = district;
+					excelHeaderName.districtName = district.districtName;
 				}
                 $scope.periodDisplayType = '';
 				$scope.dt1 = {date : null};
@@ -484,6 +488,7 @@
 			}
 			$scope.clearDistrict = function(){
 				$scope.district = null;
+				excelHeaderName.districtName = "ALL";
 				$scope.clearBlock();
 				$scope.blocks = [];
 				$scope.periodDisplayType = '';
@@ -499,6 +504,7 @@
 				if(block != null){
 					$scope.clearBlock();
 					$scope.block = block;
+					excelHeaderName.blockName = block.blockName;
 				}
 				$scope.periodDisplayType = '';
                 $scope.dt1 = {date : null};
@@ -545,6 +551,7 @@
 			$scope.clearBlock = function(){
 				$scope.block = null;
 				$scope.periodDisplayType = '';
+				excelHeaderName.blockName = "ALL";
                 $scope.dt1 = {date : null};
                 $scope.dt2 = {date : null};
                 $scope.hideGrid = true;
@@ -556,6 +563,7 @@
 			$scope.selectCircle = function(circle){
 				if(circle != null){
 					$scope.circle = circle;
+					excelHeaderName.circleFullName = circle.circleFullName;
 				}
                 $scope.periodDisplayType = '';
 				$scope.dt1 = {date : null};
@@ -890,6 +898,8 @@
                              $scope.gridOptions1.columnDefs[1].displayName = 'Panchayat';
                             }
                         }
+						let filename_1 = $scope.report.name;
+						$scope.fileName = filename_1.split(" ").join("") + " for " + $scope.course;
 
                         $scope.hideGrid = false;
 
@@ -970,6 +980,78 @@
                                });
                              exportUiGridService.exportToExcel1('Sheet1', $scope.gridApi, $scope.gridApi1, 'visible', 'visible', excelHeaderName);
             }
+			$scope.exportDataFn = function(){
+
+				columns = $scope.gridApi.grid.options.showHeader ? uiGridExporterService.getColumnHeaders($scope.gridApi.grid, 'visible') : [];
+
+				var headers=[]
+				columns.forEach(function (c) {
+					headers.push( c.displayName || c.value || columns[i].name);
+				}, this);
+				ExcelData.columnHeaders = headers;
+
+				var exportData = uiGridExporterService.getData($scope.gridApi.grid, "visible", "visible");
+				var data = [];
+
+				for (i = 0; i < exportData.length; i++) {
+					var temprow=[];
+					for (j = 0; j < exportData[i].length; j++) {
+						var temp = exportData[i][j].value;
+						temprow.push(temp);
+					}
+					data.push(temprow);
+				}
+				ExcelData.reportData = data;
+
+				var footerData=[];
+				var v;
+
+				ExcelData.columnHeaders1 = [];
+				ExcelData.reportData1 = [];
+
+
+				var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+				var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
+
+				if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+					excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
+				else{
+					var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
+					excelHeaderName.timePeriod = fromDateString+" "+months[$scope.headerFromDate.getMonth()]+" "+$scope.headerFromDate.getFullYear()+
+						" to "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();
+				}
+
+				ExcelData.colunmFooters = footerData;
+				ExcelData.stateName = excelHeaderName.stateName;
+				ExcelData.districtName = excelHeaderName.districtName;
+				ExcelData.blockName = excelHeaderName.blockName;
+				ExcelData.reportName = excelHeaderName.reportName;
+				ExcelData.timePeriod = excelHeaderName.timePeriod;
+				ExcelData.circleFullName = excelHeaderName.circleFullName;
+				ExcelData.fileName = $scope.fileName ? $scope.fileName : 'dokuman';
+				console.log(ExcelData);
+			}
+
+			$scope.exportToExcel = function(){
+				$scope.exportDataFn();
+				$http({
+					method  : 'POST',
+					url     : backend_root + 'wa/user/generateAgg',
+					data    : ExcelData, //forms user object
+					//responseType: 'arraybuffer',
+					headers : {'Content-Type': 'application/json '}
+				}).then(function(response){
+						if(response.data =="success"){
+							var fileName = $scope.fileName ? $scope.fileName : 'dokuman';
+							fileName += '.xlsx';
+							window.location.href = backend_root + 'wa/user/downloadAgg?fileName='+fileName;
+
+						}
+					}
+				);
+
+			}
+
 
 			$scope.getReportUrl = backend_root + 'wa/user/getReport';
 			$scope.$watch('pathName', function(){
