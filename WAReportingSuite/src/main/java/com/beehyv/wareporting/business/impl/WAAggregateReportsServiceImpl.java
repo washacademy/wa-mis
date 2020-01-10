@@ -808,11 +808,11 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         cleanBeforeMergeOnValidCells(spreadsheet, range7, style);
         spreadsheet.addMergedRegion(range7);
 
-        XSSFRow dateRow = spreadsheet.createRow(7);
-        Cell cellA = dateRow.createCell(0);
+        XSSFRow row3 = spreadsheet.createRow(7);
+        Cell cellA = row3.createCell(4);
         cellA.setCellValue("Date Filed");
         cellA.setCellStyle(style);
-        Cell cellB = dateRow.createCell(1);
+        Cell cellB = row3.createCell(5);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -828,9 +828,21 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         String YearString = String.valueOf(DateYear);
 
         cellB.setCellValue(DateString + " " + MonthString + " " + YearString);
-        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 1, 3);
+        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 5, 6);
         cleanBeforeMergeOnValidCells(spreadsheet, dateRange, style);
         spreadsheet.addMergedRegion(dateRange);
+
+        Cell cell11 = row3.createCell(0);
+        Cell cell12 = row3.createCell(1);
+        cell11.setCellValue("Course:");
+        cell12.setCellValue(gridData.getCourse());
+        cell11.setCellStyle(style);
+        cell12.setCellStyle(style);
+        CellRangeAddress courseRange = new CellRangeAddress(7, 7, 1, 3);
+        cleanBeforeMergeOnValidCells(spreadsheet, courseRange, style);
+        spreadsheet.addMergedRegion(courseRange);
+
+
 
     }
 

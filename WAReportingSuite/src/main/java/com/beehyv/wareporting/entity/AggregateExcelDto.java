@@ -17,7 +17,11 @@ public class AggregateExcelDto {
     private String timePeriod;
     private String fileName;
     private String circleFullName;
+    private String course;
 
+    public String getCourse() {      return course;    }
+
+    public void setCourse(String course) {       this.course = course;    }
 
     public String getCircleFullName() {     return circleFullName;    }
 
