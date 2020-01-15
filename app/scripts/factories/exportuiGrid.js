@@ -275,6 +275,8 @@
             case 'Anonymous Users Summary Report': pageHeading='Wash Academy Anonymous Users Summary Report'; break;
             }
 
+
+
             var newD = new Date();
             var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
             var toDateString = newD.getDate()<10?"0"+newD.getDate():newD.getDate();
@@ -361,20 +363,21 @@
 
             //Calculating the total for respective
             //Columns
+
             gridApi.grid.columns.forEach(function(ft) {
 
                 if (ft.displayName == "State" || ft.displayName == "District" || ft.displayName == "Block" || ft.displayName == "Subcenter" || ft.displayName == "Message Number (Week)")
                     v = "Total";
 
-                else if (ft.displayName == "% Not Started Course" && excelHeaderName.reportName == "Cumulative Summary Report") {
+                else if (ft.displayName.trim() == "% Not Started course" && excelHeaderName.reportName == "Cumulative Summary Report") {
                     var temp = gridApi.grid.columns[2].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[4].getAggregationValue() / gridApi.grid.columns[2].getAggregationValue()) * 100;
                     v = Math.floor(indianDecimal(temp) * 100) / 100;
                 }
-                else if (ft.displayName == "% Successfully Completed" && excelHeaderName.reportName == "Cumulative Summary Report") {
+                else if (ft.displayName.trim() == "% Successfully Completed course" && excelHeaderName.reportName == "Cumulative Summary Report") {
                     var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
                     v = Math.floor(indianDecimal(temp) * 100) / 100;
                 }
-                else if (ft.displayName == "% Failed the course" && excelHeaderName.reportName == "Cumulative Summary Report") {
+                else if (ft.displayName.trim() == "% Failed the course" && excelHeaderName.reportName == "Cumulative Summary Report") {
                     var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
                     v = Math.floor(indianDecimal(temp) * 100) / 100;
                 }
@@ -384,7 +387,7 @@
                            v = "Total";
                         } else {
                             if (typeof(ft.getAggregationValue()) == 'undefined') {
-                              v = 'Total'
+                              v = "Total";
                             }
                             else{
 //                                console.log('Aggregate value : ' + ft.getAggregationValue())
