@@ -593,9 +593,9 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         style.setWrapText(true);
         backgroundStyle3.setFont(font2);
 
-        spreadsheet.setColumnWidth(0, 4000);
 
-        for (int i = 1; i < 15; i++) {
+        spreadsheet.autoSizeColumn(0);
+        for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 6000);
         }
 
@@ -623,12 +623,10 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                 SNrow.setCellStyle(backgroundStyle2);
             }
 
-
-
-            for (String cellData : rowData) {
+            for (int i =1;i<rowData.size(); i++) {
                 Cell cell1 = row.createCell(colid++);
                 try {
-                    cell1.setCellValue(cellData);
+                    cell1.setCellValue(rowData.get(i));
                 } catch (NumberFormatException e) {
                     e.printStackTrace(); //prints error
                     logger.error("Error while parsing double ", e);
@@ -648,25 +646,19 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
             }
             tabrow++;
         }
-
-        row = spreadsheet.createRow(rowid++);
+        rowid = 9 + gridData.getReportData().size() ;
+        row = spreadsheet.createRow(rowid);
         colid = 0;
 
         for (String footer : gridData.getColunmFooters()) {
             Cell cell1 = row.createCell(colid++);
-            if (colid == 2 || footer.equalsIgnoreCase("N/A")) {
-                cell1.setCellValue(footer);
-            } else {
-                NumberFormat format = NumberFormat.getNumberInstance(new Locale("en", "in"));
-                format.setMaximumFractionDigits(2);
-                double value = parseDouble(footer);
-                cell1.setCellValue(format.format(value));
-            }
-            cell1.setCellStyle(backgroundStyle3);       }
+            cell1.setCellValue(footer);
+            cell1.setCellStyle(backgroundStyle3);
+        }
 
 
 
-        row = spreadsheet.createRow(rowid++);
+
 
 //        if (gridData.getReportName().equalsIgnoreCase("MA Subscriber")) {
 //           List rejectedAshas = maSubscriberDao.getRejectedAshas();
@@ -686,7 +678,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 //                    gridData.getReportName().equalsIgnoreCase("Kilkari Repeat Listener Month Wise")||
 //                    gridData.getReportName().equalsIgnoreCase("Kilkari Cumulative Summary")||
 //                    gridData.getReportName().equalsIgnoreCase("MA Cumulative Summary")){
-        spreadsheet.autoSizeColumn(1);
+
 //            }
 
         createHeadersForAggreagateExcels(workbook, gridData);

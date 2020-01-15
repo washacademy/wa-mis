@@ -6,6 +6,8 @@ import com.beehyv.wareporting.entity.ReportRequest;
 import com.beehyv.wareporting.enums.*;
 import com.beehyv.wareporting.model.*;
 import com.beehyv.wareporting.utils.Constants;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellUtil;
@@ -583,17 +585,22 @@ public class AdminServiceImpl implements AdminService {
     public void createSpecificReport(ReportRequest reportRequest) {
         String course = "";
         Integer courseId = 0;
-        try {
+        String rootPath = "";
+        if ((reportRequest.getReportType().equals("WA_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("WA_Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
             if(courseId == 1)
                 course = course1;
             if(courseId == 2 )
                 course = course2;
         }
-        catch(Exception NullPointerException) {
-            //caught
+
+        if(courseId == 1 || courseId == 2){
+          rootPath  = reports + course + "/" + reportRequest.getReportType()+ "/";
         }
-        String rootPath = reports+ course + "/" + reportRequest.getReportType()+ "/";
+        else {
+            rootPath = reports+reportRequest.getReportType() + "/";
+        }
+
 //        Date toDate = reportRequest.getToDate();
         Date startDate=new Date(0);
         Calendar aCalendar = Calendar.getInstance();
@@ -782,7 +789,14 @@ public class AdminServiceImpl implements AdminService {
         }
         Set<String> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
-        int rowid=4;
+
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 0; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+
+        int rowid=7;
         for (String key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
@@ -790,7 +804,11 @@ public class AdminServiceImpl implements AdminService {
             for (Object obj : objectArr) {
                 Cell cell = row.createCell(cellid++);
                 cell.setCellValue(obj.toString());
-                if(rowid == 6 && rejectedSwcImports.isEmpty()){
+                if(rowid ==8){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid == 9 && rejectedSwcImports.isEmpty()){
                     CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
                     spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:L6"));
                 }
@@ -813,6 +831,31 @@ public class AdminServiceImpl implements AdminService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private XSSFCellStyle createColumnHeaderStyle(XSSFWorkbook workbook) {
+        XSSFCellStyle backgroundStyle = workbook.createCellStyle();
+        backgroundStyle.setAlignment(CellStyle.ALIGN_CENTER);
+        backgroundStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        backgroundStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(33, 100, 178)));
+        backgroundStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+        backgroundStyle.setBorderBottom(CellStyle.BORDER_THIN);
+        backgroundStyle.setBottomBorderColor(new XSSFColor(new java.awt.Color(212, 212, 212)));
+        backgroundStyle.setBorderLeft(CellStyle.BORDER_THIN);
+        backgroundStyle.setLeftBorderColor(new XSSFColor(new java.awt.Color(212, 212, 212)));
+        backgroundStyle.setBorderRight(CellStyle.BORDER_THIN);
+        backgroundStyle.setRightBorderColor(new XSSFColor(new java.awt.Color(212, 212, 212)));
+        backgroundStyle.setBorderTop(CellStyle.BORDER_THIN);
+        backgroundStyle.setTopBorderColor(new XSSFColor(new java.awt.Color(212, 212, 212)));
+        backgroundStyle.setWrapText(true);
+
+        Font font = workbook.createFont();
+        font.setColor(HSSFColor.WHITE.index);
+        font.setFontName(HSSFFont.FONT_ARIAL);
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        backgroundStyle.setFont(font);
+
+        return backgroundStyle;
     }
 
     private void getCumulativeCourseCompletion(List<WACourseFirstCompletion> successfulCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
@@ -876,7 +919,14 @@ public class AdminServiceImpl implements AdminService {
         }
         Set<String> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
-        int rowid=4;
+
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 0; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+
+        int rowid=8;
         for (String key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
@@ -884,7 +934,11 @@ public class AdminServiceImpl implements AdminService {
             for (Object obj : objectArr) {
                 Cell cell = row.createCell(cellid++);
                 cell.setCellValue(obj.toString());
-                if(rowid == 6 && successfulCandidates.isEmpty()){
+                if(rowid ==9){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid == 10 && successfulCandidates.isEmpty()){
                     CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
                     spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:N6"));
                 }
@@ -971,7 +1025,14 @@ public class AdminServiceImpl implements AdminService {
         }
         Set<String> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
-        int rowid=4;
+
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 0; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+
+        int rowid=8;
         for (String key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
@@ -979,7 +1040,11 @@ public class AdminServiceImpl implements AdminService {
             for (Object obj : objectArr) {
                 Cell cell = row.createCell(cellid++);
                 cell.setCellValue(obj.toString());
-                if(rowid==6 && anonymousUsersList.isEmpty()) {
+                if (rowid ==9){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid==10 && anonymousUsersList.isEmpty()) {
                     CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
                     spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:C6"));
                 }
@@ -1045,7 +1110,14 @@ public class AdminServiceImpl implements AdminService {
         }
         Set<String> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
-        int rowid=4;
+
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 0; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+
+        int rowid=7;
         for (String key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
@@ -1053,7 +1125,11 @@ public class AdminServiceImpl implements AdminService {
             for (Object obj : objectArr) {
                 Cell cell = row.createCell(cellid++);
                 cell.setCellValue(obj.toString());
-                if(rowid==6 && inactiveCandidates.isEmpty()) {
+                if (rowid ==8 ){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid==9 && inactiveCandidates.isEmpty()) {
                     CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
                     spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:L6"));
                 }
@@ -1079,6 +1155,15 @@ public class AdminServiceImpl implements AdminService {
     }
 
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
+        String course = "";
+        Integer courseId =0;
+        if ((reportRequest.getReportType().equals("WA_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("WA_Cumulative_Course_Completion"))){
+            courseId = reportRequest.getCourseId();
+            if(courseId == 1)
+                course = course1;
+            if(courseId == 2 )
+                course = course2;
+        }
         int rowid = 0;
         XSSFSheet spreadsheet = workbook.getSheetAt(0);
         spreadsheet.createRow(rowid++);
@@ -1100,7 +1185,7 @@ public class AdminServiceImpl implements AdminService {
 
         anchor.setCol1( 0 );
         anchor.setRow1( 0 );
-        anchor.setRow2( 3 );
+        anchor.setRow2( 4 );
         anchor.setCol2( 12 );
         drawing.createPicture( anchor, pictureIndex );
 
@@ -1108,9 +1193,9 @@ public class AdminServiceImpl implements AdminService {
         style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
         style1.setBorderBottom(CellStyle.BORDER_MEDIUM);
 
-        spreadsheet.addMergedRegion(new CellRangeAddress(0,2,0,11));
+        spreadsheet.addMergedRegion(new CellRangeAddress(0,3,0,11));
 
-        rowid = rowid+2;
+        rowid = rowid+3;
         XSSFRow row=spreadsheet.createRow(rowid++);
         CellStyle style = workbook.createCellStyle();//Create style
         Font font = workbook.createFont();//Create font
@@ -1130,16 +1215,17 @@ public class AdminServiceImpl implements AdminService {
         Cell cell2=row.createCell(1);
         Cell cell3=row.createCell(7);
         Cell cell4=row.createCell(8);
-        spreadsheet.addMergedRegion(new CellRangeAddress(0,1,0,0));
-        spreadsheet.addMergedRegion(new CellRangeAddress(0,1,1,5));
-        spreadsheet.addMergedRegion(new CellRangeAddress(0,1,7,7));
+        spreadsheet.addMergedRegion(new CellRangeAddress(4,5,0,0));
+        spreadsheet.addMergedRegion(new CellRangeAddress(4,5,1,6));
+        spreadsheet.addMergedRegion(new CellRangeAddress(4,5,7,7));
+        spreadsheet.addMergedRegion(new CellRangeAddress(4,5,8,11));
         XSSFRow row1=spreadsheet.createRow(++rowid);
         Cell cell5=row1.createCell(0);
         Cell cell6=row1.createCell(1);
-        Cell cell7=row1.createCell(4);
-        Cell cell8=row1.createCell(5);
-        Cell cell9=row1.createCell(8);
-        Cell cell10=row1.createCell(9);
+        Cell cell7=row1.createCell(5);
+        Cell cell8=row1.createCell(6);
+        Cell cell9=row1.createCell(9);
+        Cell cell10=row1.createCell(10);
         cell1.setCellValue("Report:");
         cell2.setCellValue(ReportType.getType(reportRequest.getReportType()).getReportHeader());
         if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
@@ -1157,11 +1243,9 @@ public class AdminServiceImpl implements AdminService {
             if(reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())){
                 cell3.setCellValue("Week:");
                 cell4.setCellValue(getDateMonthYearName(reportRequest.getFromDate()));
-                spreadsheet.addMergedRegion(new CellRangeAddress(0,1,8,11));
             } else {
                 cell3.setCellValue("Month:");
                 cell4.setCellValue(getMonthYearName(reportRequest.getFromDate()));
-                spreadsheet.addMergedRegion(new CellRangeAddress(0,1,8,9));
             }
             String stateName;
             if(reportRequest.getStateId() !=0){
@@ -1171,6 +1255,7 @@ public class AdminServiceImpl implements AdminService {
             }
             cell5.setCellValue("State:");
             cell6.setCellValue(stateName);
+
             String districtName;
             if(reportRequest.getDistrictId() !=0){
                 districtName =districtDao.findByDistrictId(reportRequest.getDistrictId()).getDistrictName();
@@ -1179,6 +1264,8 @@ public class AdminServiceImpl implements AdminService {
             }
             cell7.setCellValue("District:");
             cell8.setCellValue(districtName);
+            cell7.setCellStyle(style);
+            cell8.setCellStyle(style);
             String blockName;
             if(reportRequest.getBlockId() !=0){
                 blockName =blockDao.findByBlockId(reportRequest.getBlockId()).getBlockName();
@@ -1187,21 +1274,40 @@ public class AdminServiceImpl implements AdminService {
             }
             cell9.setCellValue("Block:");
             cell10.setCellValue(blockName);
+            cell9.setCellStyle(style);
+            cell10.setCellStyle(style);
         }
+
         cell1.setCellStyle(style);
         cell2.setCellStyle(style);
         cell3.setCellStyle(style);
         cell4.setCellStyle(style);
         cell5.setCellStyle(style);
         cell6.setCellStyle(style);
-        cell7.setCellStyle(style);
-        cell8.setCellStyle(style);
-        cell9.setCellStyle(style);
-        cell10.setCellStyle(style);
-        spreadsheet.addMergedRegion(new CellRangeAddress(2,2,0,0));
-        spreadsheet.addMergedRegion(new CellRangeAddress(2,2,1,2));
-        spreadsheet.addMergedRegion(new CellRangeAddress(2,2,5,6));
-        spreadsheet.addMergedRegion(new CellRangeAddress(2,2,9,10));
+
+
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,0));
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,4));
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,5,5));
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,6,8));
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,9,9));
+        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
+
+
+
+        if(courseId ==1 || courseId == 2){
+            XSSFRow courseRow = spreadsheet.createRow(7);
+            Cell cell11 = courseRow.createCell(0);
+            Cell cell12 = courseRow.createCell(1);
+            cell11.setCellValue("Course: ");
+            cell12.setCellValue(course);
+            cell11.setCellStyle(style);
+            cell12.setCellStyle(style);
+            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,4));
+            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
+
+
+        }
 
     }
 
@@ -1566,6 +1672,27 @@ public class AdminServiceImpl implements AdminService {
         return fromStringDate+"-"+fromMonthString+"-"+fromYearString+" to " +toDateString + "-" +toMonthString +"-"+ toYearString;
     }
 
+//    private void cleanBeforeMergeOnValidCells(XSSFSheet sheet,CellRangeAddress region, XSSFCellStyle cellStyle )
+//    {
+//        for(int rowNum =region.getFirstRow();rowNum<=region.getLastRow();rowNum++){
+//            XSSFRow row= sheet.getRow(rowNum);
+//            if(row==null){
+//                row = sheet.createRow(rowNum);
+//            }
+//            for(int colNum=region.getFirstColumn();colNum<=region.getLastColumn();colNum++){
+//                XSSFCell currentCell = row.getCell(colNum);
+//                if(currentCell==null){
+//                    currentCell = row.createCell(colNum);
+//
+//                }
+//
+//                currentCell.setCellStyle(cellStyle);
+//
+//            }
+//        }
+//
+//
+//    }
 
 
 }
