@@ -917,7 +917,29 @@
                  exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
                      var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
                      var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
-                     var csvContent = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
+					 var totalRow;
+					 var v1=0,v2 =0,v3=0,v4=0,v5 =0,v6=0;
+                     for ( let i = 0; i< exportData.length ;i++){
+                     	exportData[i][0].value = i+1;
+
+                     	 	v1 = v1+exportData[i][2].value;
+                     		v2 = v2+exportData[i][3].value;
+                     		v3 = v3+exportData[i][4].value;
+						 	v4 = v4+exportData[i][5].value;
+						 	v5 = v5 +exportData[i][6].value;
+						 	if(reportName == "Subscriber Report"){
+						 		v6 = v6 +exportData[i][7].value;
+							}
+
+					 }
+					 if(reportName == "Subscriber Report"){
+						 totalRow = [{value:undefined},{value: "Total"},{value:v1},{value:v2},{value:v3},{value:v4},{value:v5},{value:v6}];
+					 }else {
+						 totalRow = [{value:undefined},{value: "Total"},{value:v1},{value:v2},{value:v3},{value:v4},{value:v5}];
+					 }
+					 exportData.push(totalRow);
+
+					 var csvContent = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
                          exportService.downloadFile(fileName, csvContent, grid.options.exporterOlderExcelCompatibility);
                    });
             }
