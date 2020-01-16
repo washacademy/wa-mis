@@ -1,7 +1,7 @@
  (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("MainController", ['$scope', '$state', '$http', 'UserFormFactory', function($scope, $state, $http, UserFormFactory){
+		.controller("MainController", ['$scope', '$state', '$http', 'UserFormFactory','$rootScope', function($scope, $state, $http, UserFormFactory,$rootScope){
 			
 			$scope.breadCrumbDict = {
 				'userManagement.userTable': [
@@ -107,6 +107,38 @@
 				else
 				    return false;
 			}
+
+			$scope.goToLogout = function () {
+
+				UserFormFactory.logoutUser().then(function(result){
+					if(result.data){
+						window.localStorage.setItem('logged_in', false);
+						UserFormFactory.downloadCurrentUser().then(function(result){
+							UserFormFactory.setCurrentUser(result.data);
+							$scope.currentUser = UserFormFactory.getCurrentUser();
+						});
+						$scope.show = false;
+						$state.go('login');
+					}
+				});
+
+			};
+
+			$scope.$watch('online', function(newStatus) {
+				if($rootScope.online){
+				}
+				else{
+					if (UserFormFactory.isInternetExplorer()) {
+						alert("You are offline");
+						$scope.goToLogout();
+						return;
+					} else {
+						UserFormFactory.showAlert("You are offline");
+						$scope.goToLogout();
+						return;
+					}
+				}
+			});
 
 			// $scope.breadCrumb = ['User Management', 'Create User'];
 			UserFormFactory.downloadCurrentUser()

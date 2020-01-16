@@ -10,10 +10,21 @@
  */
 var waReportsApp = angular
 	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector'])
-	.run( ['$rootScope', '$state', '$stateParams',
-		function ($rootScope, $state, $stateParams) {
+	.run( ['$rootScope', '$state', '$stateParams','$window',
+		function ($rootScope, $state, $stateParams,$window) {
 			$rootScope.$state = $state;
 			$rootScope.$stateParams = $stateParams;
+			$rootScope.online = navigator.onLine;
+			$window.addEventListener("offline", function() {
+				$rootScope.$apply(function() {
+					$rootScope.online = false;
+				});
+			}, false);
+			$window.addEventListener("online", function() {
+				$rootScope.$apply(function() {
+					$rootScope.online = true;
+				});
+			}, false);
 		}
 	])
 	.config(function ($stateProvider, $urlRouterProvider, $httpProvider,captchaSettingsProvider) {
