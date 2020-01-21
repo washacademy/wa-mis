@@ -38,7 +38,7 @@
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
 			$scope.content = "There is no data available for the selected inputs";
-			$scope.periodType = ['Year','Month','Quarter', 'Custom Range'];
+			$scope.periodType = ['Year','Financial Year','Month','Quarter', 'Custom Range'];
 			$scope.quarterType = ['Q1 (Jan to Mar)','Q2 (Apr to Jun)','Q3 (Jul to Sep)', 'Q4 (Oct to Dec)'];
 			$scope.periodDisplayType = "";
 			$scope.dataPickermode = "";
@@ -165,6 +165,18 @@
                     $scope.datePickerOptions.minMode = 'year';
                     $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
                 }
+				if($scope.periodDisplayType == 'Financial Year'){
+					$scope.periodTypeContent = "Select Start Year";
+					$scope.dateFormat = "yyyy";
+					$scope.datePickerOptions.minMode = '';
+					$scope.datePickerOptions.datepickerMode = 'year';
+					$scope.datePickerOptions.minMode = 'year';
+					if(new Date().getMonth()>3){
+						$scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear());
+					}else{
+						$scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
+					}
+				}
                 if($scope.periodDisplayType == 'Month'){
                     $scope.periodTypeContent = "Select Month";
                     $scope.dateFormat = "yyyy-MM";
@@ -242,7 +254,7 @@
                 	$scope.selectCircle($scope.circles[0]);
                 }
                 else
-                    $scope.periodType = ['Year','Month','Quarter', 'Custom Range'];
+                    $scope.periodType = ['Year','Financial Year','Month','Quarter', 'Custom Range'];
                 if(angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) {
                 	$scope.datePickerContent = "Select Week";
                 }
@@ -608,305 +620,292 @@
 				return new Date(state.serviceStartDate) < $scope.dt.date ;
 			}
 
-			$scope.getReport = function(){
-
-				if($scope.report == null){
-				    if(UserFormFactory.isInternetExplorer()){
-                        alert("Please select a report")
-                         return;
-                    }
-                    else{
-                        UserFormFactory.showAlert("Please select a report")
-                        return;
-                    }
-				}
-
-				else if ($scope.report.name != 'Academy Rejected Line-Listing Report' && $scope.report.name != 'Inactive Users Line-Listing Report' && $scope.course == null ){
-					if(UserFormFactory.isInternetExplorer()){
-						alert("Please select a Course")
-						return;
-					}
-					else{
-						UserFormFactory.showAlert("Please select a Course")
-						return;
-					}
-				}
-
-				else if($scope.periodDisplayType == '' && ($scope.isAggregateReport() )
-				&& ($scope.report.name != 'Cumulative Summary Report')){
-                   if(UserFormFactory.isInternetExplorer()){
-                       alert("Please select a period type")
-                       return;
-                   }
-                   else{
-                       UserFormFactory.showAlert("Please select a period type")
-                       return;
-                   }
-                }
-				else if($scope.dt1.date == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType != 'Custom Range' && ($scope.periodDisplayType != 'Quarter') && ($scope.report.name != 'Cumulative Summary Report')) ){
-                    if(UserFormFactory.isInternetExplorer()){
-                          alert("Please select a " +  $scope.periodDisplayType)
-                          return;
-                    }
-                    else{
-                          UserFormFactory.showAlert("Please select a " +  $scope.periodDisplayType)
-                          return;
-                    }
-                }
-                else if($scope.dt1.date == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Custom Range')){
-                   if(UserFormFactory.isInternetExplorer()){
-                      alert("Please select a start date")
-                      return;
-                   }
-                   else{
-                      UserFormFactory.showAlert("Please select a start date")
-                      return;
-                   }
-                }
-                 else if($scope.dt1.date == null && ($scope.isAggregateReport() ) && ($scope.periodDisplayType == 'Quarter')){
-
-                   if(UserFormFactory.isInternetExplorer()){
-                         alert("Please select a year")
-                         return;
-                   }
-                   else{
-                     UserFormFactory.showAlert("Please select a year")
-                     return;
-                   }
-
-                }
-                else if($scope.dt2.date == null && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'Cumulative Summary Report')){
-                   if(UserFormFactory.isInternetExplorer()){
-                         alert("Please select an end date")
-                         return;
-                   }
-                   else{
-                         UserFormFactory.showAlert("Please select an end date")
-                         return;
-                   }
-
-                }
-
-                else if($scope.periodDisplayType == 'Quarter' && $scope.quarterDisplayType == '' && ($scope.isAggregateReport() )){
-                   if(UserFormFactory.isInternetExplorer()){
-                         alert("Please select a quarter type")
-                         return;
-                   }
-                   else{
-                         UserFormFactory.showAlert("Please select a quarter type")
-                         return;
-                   }
-
-                }
-                else if( ($scope.periodDisplayType == 'Custom Range') && ($scope.dt2.date < $scope.dt1.date)){
-                   if(UserFormFactory.isInternetExplorer()){
-                         alert("End date should be greater than start date")
-                         return;
-                   }
-                   else{
-                         UserFormFactory.showAlert("End date should be greater than start date")
-                         return;
-                   }
-
-                }
-
-
-			    reportRequest.reportType = $scope.report.reportEnum;
-
-			    reportRequest.stateId = 0;
-			    reportRequest.districtId = 0;
-			    reportRequest.blockId = 0;
-                reportRequest.circleId = 0;
-                if ($scope.course == 'Wash Academy Course'){
-					reportRequest.courseId = 1;
-				}
-                else if($scope.course == 'Wash Academy Course Plus'){
-					reportRequest.courseId = 2;
-				}
-
-			    
-			    if(!$scope.isCircleReport() ){
-
-			    	if(!$scope.isAggregateReport())
-			    	{
-                        if($scope.state != null){
-                            reportRequest.stateId = $scope.state.stateId;
-                        }
-                        else{
-                               if(UserFormFactory.isInternetExplorer()){
-                                     alert("Please select a state")
-                                     return;
-                               }
-                               else{
-                                 UserFormFactory.showAlert("Please select a state")
-                                 return;
-                               }
-                        }
-                    }
-                    else
-                    {
-                        if($scope.state != null){
-                            reportRequest.stateId = $scope.state.stateId;
-                        }
-                    }
-				    if($scope.district != null){
-				    	reportRequest.districtId = $scope.district.districtId;
-				    }
-				    if($scope.block != null){
-				    	reportRequest.blockId = $scope.block.blockId;
-				    }
-		    	}
-		    	else{
-		    		if($scope.circle != null ){
-				    	reportRequest.circleId = $scope.circle.circleId;
-				    }
-                    else{
-                          reportRequest.circleId = 0;
-                    }
-		    	}
-
-		    	if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM'){
-                    if(UserFormFactory.isInternetExplorer()){
-                        alert("Please select a week")
-                            return;
-                    }
-                    else{
-                            UserFormFactory.showAlert("Please select a week")
-                            return;
-                        }
-                }
-
-		    	if($scope.dt.date == null && (!$scope.isAggregateReport())){
-                        if(UserFormFactory.isInternetExplorer()){
-                            alert("Please select a month")
-                                return;
-                        }
-                        else{
-                                UserFormFactory.showAlert("Please select a month")
-                                    return;
-                            }
-                }
-
-                if(!$scope.isAggregateReport())
-                {
-                    reportRequest.fromDate = $scope.dt.date;
-                }
-                else
-                {
-
-                    reportRequest.periodType = $scope.periodDisplayType;
-
-                    if($scope.periodDisplayType == 'Year' ){
-                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
-                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),11,31);
-                    }
-
-                    else if($scope.periodDisplayType == 'Month' ){
-                            reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),$scope.dt1.date.getMonth(),1);
-                            reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),$scope.dt1.date.getMonth() + 1,0);
-                    }
-                    else if($scope.periodDisplayType == 'Quarter' ){
-                         if($scope.quarterDisplayType == 'Q1 (Jan to Mar)'){
-                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
-                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),2,31);
-                         }
-                         if($scope.quarterDisplayType == 'Q2 (Apr to Jun)'){
-                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
-                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),5,30);
-                         }
-                         if($scope.quarterDisplayType == 'Q3 (Jul to Sep)'){
-                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),6,1);
-                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),8,30);
-                         }
-                         if($scope.quarterDisplayType == 'Q4 (Oct to Dec)'){
-                         reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),9,1);
-                         reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),11,31);
-                         }
-
-                    }
-                    else{
-                        reportRequest.fromDate = $scope.dt1.date;
-                        reportRequest.toDate = $scope.dt2.date;
-                    }
-                }
-
-                console.log(reportRequest);
-			    $scope.waiting = true;
-
-                $scope.headerFromDate = reportRequest.fromDate;
-                $scope.headerToDate = reportRequest.toDate;
-
-				$http({
-					method  : 'POST',
-					url     : $scope.getReportUrl,
-					data    : reportRequest, //forms user object
-					headers : {'Content-Type': 'application/json'} 
-				})
+			$scope.getReport = function() {
+			return	UserFormFactory.isLoggedIn()
 				.then(function(result){
-					if($scope.isLineListingReport()){
-					    $scope.waiting = false;
-                        $scope.status = result.data.status;
-                        if($scope.status == 'success'){
-                            $scope.fileName = result.data.file;
-                            $scope.pathName = result.data.path;
-                            angular.element('#downloadReportLink').trigger('click');
-                        }
-                        if($scope.status == 'fail'){
-                        console.log("failed")
+					if(!result.data){
+						$state.go('login', {});
+					}else{
 
-                        }
+						if ($scope.report == null) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a report")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a report")
+								return;
+							}
+						} else if ($scope.report.name != 'Academy Rejected Line-Listing Report' && $scope.report.name != 'Inactive Users Line-Listing Report' && $scope.course == null) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a Course")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a Course")
+								return;
+							}
+						} else if ($scope.periodDisplayType == '' && ($scope.isAggregateReport())
+							&& ($scope.report.name != 'Cumulative Summary Report')) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a period type")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a period type")
+								return;
+							}
+						} else if ($scope.dt1.date == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType != 'Custom Range' && ($scope.periodDisplayType != 'Quarter') && ($scope.report.name != 'Cumulative Summary Report'))) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a " + $scope.periodDisplayType)
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a " + $scope.periodDisplayType)
+								return;
+							}
+						} else if ($scope.dt1.date == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType == 'Custom Range')) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a start date")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a start date")
+								return;
+							}
+						} else if ($scope.dt1.date == null && ($scope.isAggregateReport()) && ($scope.periodDisplayType == 'Quarter')) {
 
-					}
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a year")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a year")
+								return;
+							}
 
-					if($scope.isAggregateReport()){
-					    $scope.waiting = false;
+						} else if ($scope.dt2.date == null && ($scope.periodDisplayType == 'Custom Range' || $scope.report.name == 'Cumulative Summary Report')) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select an end date")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select an end date")
+								return;
+							}
 
-					    if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
-					        $scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
-					    }
-					    else if($scope.report.reportEnum == 'WA_Performance_Report'){
-					        $scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
-					    }
-					    else if($scope.report.reportEnum == 'WA_Subscriber_Report'){
-					        $scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
-					    }
-					    else if($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'){
-                            $scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
-                        }
+						} else if ($scope.periodDisplayType == 'Quarter' && $scope.quarterDisplayType == '' && ($scope.isAggregateReport())) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a quarter type")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a quarter type")
+								return;
+							}
+
+						} else if (($scope.periodDisplayType == 'Custom Range') && ($scope.dt2.date < $scope.dt1.date)) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("End date should be greater than start date")
+								return;
+							} else {
+								UserFormFactory.showAlert("End date should be greater than start date")
+								return;
+							}
+
+						}
 
 
-                         $scope.gridOptions = $scope.gridOptions1;
-                        // $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
-                         $scope.gridOptions.data = result.data.tableData;
-                         $scope.reportBreadCrumbData = result.data.breadCrumbData;
+						reportRequest.reportType = $scope.report.reportEnum;
 
-                        if(!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'))
-                        {
-					        if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'NATIONAL')
-                            {
-                                $scope.gridOptions1.columnDefs[1].displayName = 'State';
-                            }
-                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'STATE')
-                            {
-                                $scope.gridOptions1.columnDefs[1].displayName = 'District';
-                            }
-                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'DISTRICT')
-                            {
-                                $scope.gridOptions1.columnDefs[1].displayName = 'Block';
-                            }
-                            else{
-                             $scope.gridOptions1.columnDefs[1].displayName = 'Panchayat';
-                            }
-                        }
-						let filename_1 = $scope.report.name;
-						$scope.fileName = filename_1.split(" ").join("") + " for " + ($scope.course).split(" ").join("");
+						reportRequest.stateId = 0;
+						reportRequest.districtId = 0;
+						reportRequest.blockId = 0;
+						reportRequest.circleId = 0;
+						if ($scope.course == 'Wash Academy Course') {
+							reportRequest.courseId = 1;
+						} else if ($scope.course == 'Wash Academy Course Plus') {
+							reportRequest.courseId = 2;
+						}
 
-                        $scope.hideGrid = false;
 
-                    }
-                }
+						if (!$scope.isCircleReport()) {
 
-				)
+							if (!$scope.isAggregateReport()) {
+								if ($scope.state != null) {
+									reportRequest.stateId = $scope.state.stateId;
+								} else {
+									if (UserFormFactory.isInternetExplorer()) {
+										alert("Please select a state")
+										return;
+									} else {
+										UserFormFactory.showAlert("Please select a state")
+										return;
+									}
+								}
+							} else {
+								if ($scope.state != null) {
+									reportRequest.stateId = $scope.state.stateId;
+								}
+							}
+							if ($scope.district != null) {
+								reportRequest.districtId = $scope.district.districtId;
+							}
+							if ($scope.block != null) {
+								reportRequest.blockId = $scope.block.blockId;
+							}
+						} else {
+							if ($scope.circle != null) {
+								reportRequest.circleId = $scope.circle.circleId;
+							} else {
+								reportRequest.circleId = 0;
+							}
+						}
+
+						if ((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM') {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a week")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a week")
+								return;
+							}
+						}
+
+						if ($scope.dt.date == null && (!$scope.isAggregateReport())) {
+							if (UserFormFactory.isInternetExplorer()) {
+								alert("Please select a month")
+								return;
+							} else {
+								UserFormFactory.showAlert("Please select a month")
+								return;
+							}
+						}
+
+						if (!$scope.isAggregateReport()) {
+							reportRequest.fromDate = $scope.dt.date;
+						} else {
+							$scope.currentDate = new Date();
+							$scope.currentPeriodDate = new Date($scope.currentDate.getFullYear(), $scope.currentDate.getMonth(), 0).getDate();
+							reportRequest.periodType = $scope.periodDisplayType;
+
+							if ($scope.periodDisplayType == 'Year') {
+								reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), 0, 1);
+								reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), 11, 31);
+							}
+							else if($scope.periodDisplayType == 'Financial Year'){
+
+								if($scope.dt1.date.getFullYear() == new Date().getFullYear() && $scope.currentDate.getMonth() >=3){
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),$scope.currentDate.getMonth() -1,$scope.currentPeriodDate);
+									reportRequest.periodType = 'CURRENT FINANCIAL YEAR';
+
+								}
+								else if($scope.dt1.date.getFullYear() == new Date().getFullYear()-1 && $scope.currentDate.getMonth() < 3) {
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear()+1,$scope.currentDate.getMonth() -1,$scope.currentPeriodDate);
+									reportRequest.periodType = 'CURRENT FINANCIAL YEAR';
+
+								}
+								else{
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear()+1,2,31);
+								}
+
+								dateString = reportRequest.fromDate.getDate() + "_" + (reportRequest.fromDate.getMonth() + 1 ) + "_" + reportRequest.fromDate.getFullYear() + "to" + reportRequest.toDate.getDate() + "_" +  ( reportRequest.toDate.getMonth() + 1 ) +
+									"_" + reportRequest.toDate.getFullYear();
+								excelHeaderName.timePeriod = reportRequest.fromDate.getDate() + "-" + (reportRequest.fromDate.getMonth() + 1 ) + "-" + reportRequest.fromDate.getFullYear() + " to " + reportRequest.toDate.getDate() + "-" +  ( reportRequest.toDate.getMonth() + 1 ) +
+									"-" + reportRequest.toDate.getFullYear();
+								toDateVal = reportRequest.toDate;
+
+							}
+							else if ($scope.periodDisplayType == 'Month') {
+								reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), $scope.dt1.date.getMonth(), 1);
+								reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), $scope.dt1.date.getMonth() + 1, 0);
+							} else if ($scope.periodDisplayType == 'Quarter') {
+								if ($scope.quarterDisplayType == 'Q1 (Jan to Mar)') {
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), 0, 1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), 2, 31);
+								}
+								if ($scope.quarterDisplayType == 'Q2 (Apr to Jun)') {
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), 3, 1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), 5, 30);
+								}
+								if ($scope.quarterDisplayType == 'Q3 (Jul to Sep)') {
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), 6, 1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), 8, 30);
+								}
+								if ($scope.quarterDisplayType == 'Q4 (Oct to Dec)') {
+									reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(), 9, 1);
+									reportRequest.toDate = new Date($scope.dt1.date.getFullYear(), 11, 31);
+								}
+
+							} else {
+								reportRequest.fromDate = $scope.dt1.date;
+								reportRequest.toDate = $scope.dt2.date;
+							}
+						}
+
+						console.log(reportRequest);
+						$scope.waiting = true;
+
+						$scope.headerFromDate = reportRequest.fromDate;
+						$scope.headerToDate = reportRequest.toDate;
+
+						$http({
+							method: 'POST',
+							url: $scope.getReportUrl,
+							data: reportRequest, //forms user object
+							headers: {'Content-Type': 'application/json'}
+						})
+							.then(function (result) {
+									if ($scope.isLineListingReport()) {
+										$scope.waiting = false;
+										$scope.status = result.data.status;
+										if ($scope.status == 'success') {
+											$scope.fileName = result.data.file;
+											$scope.pathName = result.data.path;
+											angular.element('#downloadReportLink').trigger('click');
+										}
+										if ($scope.status == 'fail') {
+											console.log("failed")
+
+										}
+
+									}
+
+									if ($scope.isAggregateReport()) {
+										$scope.waiting = false;
+
+										if ($scope.report.reportEnum == 'WA_Cumulative_Summary') {
+											$scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
+										} else if ($scope.report.reportEnum == 'WA_Performance_Report') {
+											$scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
+										} else if ($scope.report.reportEnum == 'WA_Subscriber_Report') {
+											$scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
+										} else if ($scope.report.reportEnum == 'WA_Anonymous_Users_Summary') {
+											$scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
+										}
+
+
+										$scope.gridOptions = $scope.gridOptions1;
+										// $scope.gridOptions_Message_Matrix = $scope.gridOptions2;
+										$scope.gridOptions.data = result.data.tableData;
+										$scope.reportBreadCrumbData = result.data.breadCrumbData;
+
+										if (!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary')) {
+											if (angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'NATIONAL') {
+												$scope.gridOptions1.columnDefs[1].displayName = 'State';
+											} else if (angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'STATE') {
+												$scope.gridOptions1.columnDefs[1].displayName = 'District';
+											} else if (angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'DISTRICT') {
+												$scope.gridOptions1.columnDefs[1].displayName = 'Block';
+											} else {
+												$scope.gridOptions1.columnDefs[1].displayName = 'Panchayat';
+											}
+										}
+										let filename_1 = $scope.report.name;
+										$scope.fileName = filename_1.split(" ").join("") + " for " + ($scope.course).split(" ").join("");
+
+										$scope.hideGrid = false;
+
+									}
+								}
+							)
+						}
+					})
 			}
 
 			$scope.exportCSV = function(reportName){
