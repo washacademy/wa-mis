@@ -64,7 +64,7 @@ var waReportsApp = angular
 			})
 			.state('userManagement.userTable', {
 				url: '',
-				templateUrl: 'views/userTuiGridable.html'
+				templateUrl: 'views/userTable.html'
 			})
 			.state('userManagement.bulkUpload', {
 				url: '/bulkUpload',
