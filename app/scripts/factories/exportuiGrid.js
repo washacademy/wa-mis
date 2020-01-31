@@ -21,6 +21,7 @@
             this.Sheets = {};
         }
 
+        //Not used at the moment 31/1/2020
         function exportToCsv1(gridApi, gridApi1, rowTypes, colTypes, excelHeaderName, rejectionStart) {
 
             var columns = gridApi.grid.options.showHeader ? uiGridExporterService.getColumnHeaders(gridApi.grid, colTypes) : [];
@@ -103,83 +104,86 @@
                     } else if (ft.displayName == "Total Billable Minutes Played" && excelHeaderName.reportName == "Kilkari Cumulative Summary") {
                         var temp = ft.getAggregationValue();
                         v = Math.floor(parseFloat(temp) * 100) / 100;
-                    } else if (ft.displayName == "% Not Started Course" && excelHeaderName.reportName == "MA Cumulative Summary") {
-                        var temp = gridApi.grid.columns[2].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[4].getAggregationValue() / gridApi.grid.columns[2].getAggregationValue()) * 100;
-                        v = Math.floor(parseFloat(temp) * 100) / 100;
-                    } else if (ft.displayName == "% Successfully Completed" && excelHeaderName.reportName == "MA Cumulative Summary") {
-                        var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
-                        v = Math.floor(parseFloat(temp) * 100) / 100;
+                    } else if (ft.displayName == "% Not Started course" && excelHeaderName.reportName == "MA Cumulative Summary") {
+                        // var temp = gridApi.grid.columns[2].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[4].getAggregationValue() / gridApi.grid.columns[2].getAggregationValue()) * 100;
+                        // v = Math.floor(parseFloat(temp) * 100) / 100;
+                        v = "N/A";
+                    } else if (ft.displayName == "% Successfully Completed course" && excelHeaderName.reportName == "MA Cumulative Summary") {
+                        // var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
+                        // v = Math.floor(parseFloat(temp) * 100) / 100;
+                        v = "N/A";
                     }else if(ft.displayName == "Total Beneficiary Records Rejected" && excelHeaderName.reportName == "Kilkari Subscriber"&&!rejectionStart){
                         v = "N/A";
                     }else if (ft.displayName == "% Failed the course" && excelHeaderName.reportName == "MA Cumulative Summary") {
-                        var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
-                        v = Math.floor(parseFloat(temp) * 100) / 100;
+                        // var temp = gridApi.grid.columns[3].getAggregationValue() == 0 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
+                        // v = Math.floor(parseFloat(temp) * 100) / 100;
+                        v = "N/A";
 //                        parseFloat(Math.round(temp * 100) / 100).toFixed(2);
                     } else {
                         v = ft.getAggregationValue();
                     }
 
                     if (ft.displayName != "S No.") {
-                    if (ft.displayName == "Location Name") {
-                        v = "Total";
-                    } else if (v == undefined) {
-                            v = "";
-                    }
-                        row += v + ',';
+                        if (ft.displayName == "Location Name") {
+                            v = "Total";
+                        } else if (v == undefined) {
+                                v = "N/A";
+                        }
+                            row += v + ',';
                     }
 
                 }, this);
                 row = row.slice(0, -1);
                 CSV += row;
             }
-            if (excelHeaderName.reportName == "kilkari message matrix for only successful calls") {
-                CSV += '\n\nKilkari Child Content Data\r\n\n';
-            }
-            if (excelHeaderName.reportName == "Kilkari Repeat Listener Month Wise") {
-                CSV += '\n\nBeneficiary Percentage\r\n\n';
-            }
-            if (excelHeaderName.reportName == "kilkari message matrix for only successful calls" || excelHeaderName.reportName == "Kilkari Repeat Listener Month Wise") {
-                var row = "";
-                columns1.forEach(function(c) {
-                    var v = c.displayName || c.value || columns[i].name;
-                    row += v + ',';
-                }, this);
-                row = row.slice(0, -1);
-                CSV += row + '\r\n';
-                data1.forEach(function(ds) {
-                    var row = "";
-                    ds.forEach(function(d) {
-                        var v = d.value.replace(/,/g, "");
-                        row += v + ',';
-                    });
-                    row = row.slice(0, -1);
-                    CSV += row + '\r\n';
-                }, this);
-
-                var v1;
-                var row1 = "";
-                if(excelHeaderName.reportName == "kilkari message matrix for only successful calls"){
-                    gridApi1.grid.columns.forEach(function (ft1) {
-
-                        if(ft1.displayName == "Message Week" )
-                            v1 = "Total";
-                        else{
-                            v1 = ft1.getAggregationValue();
-                        }
-
-                        if(ft1.displayName != "S No."){
-                            if (ft1.displayName == "Location Name") {
-                                v1 = "Total";
-                            }
-                            row1 += v1 + ',';
-                        }
-
-                    }, this);
-                    row1 = row1.slice(0, -1);
-                    CSV += row1;}
-
-
-            }
+            // if (excelHeaderName.reportName == "kilkari message matrix for only successful calls") {
+            //     CSV += '\n\nKilkari Child Content Data\r\n\n';
+            // }
+            // if (excelHeaderName.reportName == "Kilkari Repeat Listener Month Wise") {
+            //     CSV += '\n\nBeneficiary Percentage\r\n\n';
+            // }
+            // if (excelHeaderName.reportName == "kilkari message matrix for only successful calls" || excelHeaderName.reportName == "Kilkari Repeat Listener Month Wise") {
+            //     var row = "";
+            //     columns1.forEach(function(c) {
+            //         var v = c.displayName || c.value || columns[i].name;
+            //         row += v + ',';
+            //     }, this);
+            //     row = row.slice(0, -1);
+            //     CSV += row + '\r\n';
+            //     data1.forEach(function(ds) {
+            //         var row = "";
+            //         ds.forEach(function(d) {
+            //             var v = d.value.replace(/,/g, "");
+            //             row += v + ',';
+            //         });
+            //         row = row.slice(0, -1);
+            //         CSV += row + '\r\n';
+            //     }, this);
+            //
+            //     var v1;
+            //     var row1 = "";
+            //     if(excelHeaderName.reportName == "kilkari message matrix for only successful calls"){
+            //         gridApi1.grid.columns.forEach(function (ft1) {
+            //
+            //             if(ft1.displayName == "Message Week" )
+            //                 v1 = "Total";
+            //             else{
+            //                 v1 = ft1.getAggregationValue();
+            //             }
+            //
+            //             if(ft1.displayName != "S No."){
+            //                 if (ft1.displayName == "Location Name") {
+            //                     v1 = "Total";
+            //                 }
+            //                 row1 += v1 + ',';
+            //             }
+            //
+            //         }, this);
+            //         row1 = row1.slice(0, -1);
+            //         CSV += row1;}
+            //
+            //
+            // }
 
             if (CSV == '') {
                 alert("Invalid data");
@@ -363,20 +367,23 @@
             //Columns
             gridApi.grid.columns.forEach(function(ft) {
 
-                if (ft.displayName == "State" || ft.displayName == "District" || ft.displayName == "Block" || ft.displayName == "Subcenter" || ft.displayName == "Message Number (Week)")
+                if (ft.displayName == "State" || ft.displayName == "District" || ft.displayName == "Block" || ft.displayName == "Circle"|| ft.displayName == "Subcenter" || ft.displayName == "Message Number (Week)")
                     v = "Total";
 
-                else if (ft.displayName == "% Not Started Course" && excelHeaderName.reportName == "Cumulative Summary Report") {
-                    var temp = gridApi.grid.columns[2].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[4].getAggregationValue() / gridApi.grid.columns[2].getAggregationValue()) * 100;
-                    v = Math.floor(indianDecimal(temp) * 100) / 100;
+                else if (ft.displayName == "% Not Started course" && excelHeaderName.reportName == "Cumulative Summary Report") {
+                    // var temp = gridApi.grid.columns[2].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[4].getAggregationValue() / gridApi.grid.columns[2].getAggregationValue()) * 100;
+                    // v = Math.floor(indianDecimal(temp) * 100) / 100;
+                    v = "N/A"
                 }
-                else if (ft.displayName == "% Successfully Completed" && excelHeaderName.reportName == "Cumulative Summary Report") {
-                    var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
-                    v = Math.floor(indianDecimal(temp) * 100) / 100;
+                else if (ft.displayName == "% Successfully Completed course" && excelHeaderName.reportName == "Cumulative Summary Report") {
+                    // var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[5].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
+                    // v = Math.floor(indianDecimal(temp) * 100) / 100;
+                    v = "N/A"
                 }
                 else if (ft.displayName == "% Failed the course" && excelHeaderName.reportName == "Cumulative Summary Report") {
-                    var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
-                    v = Math.floor(indianDecimal(temp) * 100) / 100;
+                    // var temp = gridApi.grid.columns[3].getAggregationValue() == 0.00 ? 0.00 : (gridApi.grid.columns[6].getAggregationValue() / gridApi.grid.columns[3].getAggregationValue()) * 100;
+                    // v = Math.floor(indianDecimal(temp) * 100) / 100;
+                    v = "N/A"
                 }
                 else {
                         if (ft.displayName != "S No.") {
@@ -384,7 +391,7 @@
                            v = "Total";
                         } else {
                             if (typeof(ft.getAggregationValue()) == 'undefined') {
-                              v = 'N/A'
+                              v = "N/A";
                             }
                             else{
 //                                console.log('Aggregate value : ' + ft.getAggregationValue())
@@ -621,7 +628,7 @@
 
         }
 
-
+        //Not used at the moment 31/1/2020
         function exportToExcel1(sheetName, gridApi, gridApi1, rowTypes, colTypes, excelHeaderName) {
             var columns = gridApi.grid.options.showHeader ? uiGridExporterService.getColumnHeaders(gridApi.grid, colTypes) : [];
             var data = uiGridExporterService.getData(gridApi.grid, rowTypes, colTypes);

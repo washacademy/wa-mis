@@ -18,6 +18,7 @@
 				}
 			})
 
+			var ExcelData = {};
 			var reportRequest = {};
             $scope.sundays = [];
  			$scope.reports = [];
@@ -57,7 +58,8 @@
                             stateName : "ALL",
                             districtName : "ALL",
                             blockName : "ALL",
-                            reportName : "ALL"
+                            reportName : "ALL",
+							circleFullName : "ALL"
 
             };
             var rejectionStart;
@@ -221,6 +223,7 @@
 
 			$scope.selectReport = function(item){
 				$scope.report = item;
+				excelHeaderName.reportName = $scope.report.name;
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
@@ -443,6 +446,8 @@
 					$scope.getDistricts(state.stateId);
 					$scope.clearState();
 					$scope.state = state;
+					excelHeaderName.stateName = state.stateName;
+
 				}
 				$scope.periodDisplayType = '';
                 $scope.dt1 = {date : null};
@@ -455,6 +460,7 @@
 			}
 			$scope.clearState = function(){
 				$scope.state = null;
+				excelHeaderName.stateName = "ALL";
 				$scope.clearDistrict();
 				$scope.districts = [];
 				$scope.periodDisplayType = '';
@@ -471,6 +477,7 @@
 					$scope.getBlocks(district.districtId);
 					$scope.clearDistrict()
 					$scope.district = district;
+					excelHeaderName.districtName = district.districtName;
 				}
                 $scope.periodDisplayType = '';
 				$scope.dt1 = {date : null};
@@ -482,6 +489,7 @@
 			}
 			$scope.clearDistrict = function(){
 				$scope.district = null;
+				excelHeaderName.districtName = "ALL";
 				$scope.clearBlock();
 				$scope.blocks = [];
 				$scope.periodDisplayType = '';
@@ -497,6 +505,8 @@
 				if(block != null){
 					$scope.clearBlock();
 					$scope.block = block;
+					excelHeaderName.blockName = block.blockName;
+
 				}
 				$scope.periodDisplayType = '';
                 $scope.dt1 = {date : null};
@@ -508,6 +518,7 @@
 			}
 			$scope.clearBlock = function(){
 				$scope.block = null;
+				excelHeaderName.blockName = "ALL";
 				$scope.periodDisplayType = '';
                 $scope.dt1 = {date : null};
                 $scope.dt2 = {date : null};
@@ -520,6 +531,7 @@
 			$scope.selectCircle = function(circle){
 				if(circle != null){
 					$scope.circle = circle;
+					excelHeaderName.circleFullName = circle.circleFullName;
 				}
                 $scope.periodDisplayType = '';
 				$scope.dt1 = {date : null};
@@ -530,6 +542,8 @@
 			}
 			$scope.clearCircle = function(){
 			$scope.circle = null;
+			excelHeaderName.circleFullName = "ALL";
+
 			}
 
 			$scope.waiting = false;
@@ -837,7 +851,9 @@
                             }
                         }
 
-                        $scope.hideGrid = false;
+						let filename_1 = $scope.report.name;
+						$scope.fileName = filename_1.split(" ").join("");
+						$scope.hideGrid = false;
 
                     }
                 }
@@ -850,12 +866,34 @@
                  var grid = $scope.gridApi.grid;
                  var fileName = reportName.split(" ").join("")+ ".csv";
 
-                 exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
-                     var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
-                     var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
-                     var csvContent = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
-                         exportService.downloadFile(fileName, csvContent, grid.options.exporterOlderExcelCompatibility);
-                   });
+				exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
+					var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
+					var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
+					var totalRow;
+					var v1=0,v2 =0,v3=0,v4=0,v5 =0,v6=0;
+					for ( let i = 0; i< exportData.length ;i++){
+						exportData[i][0].value = i+1;
+
+						v1 = v1+exportData[i][2].value;
+						v2 = v2+exportData[i][3].value;
+						v3 = v3+exportData[i][4].value;
+						v4 = v4+exportData[i][5].value;
+						v5 = v5 +exportData[i][6].value;
+						if(reportName == "Subscriber Report"){
+							v6 = v6 +exportData[i][7].value;
+						}
+
+					}
+					if(reportName == "Subscriber Report"){
+						totalRow = [{value:undefined},{value: "Total"},{value:v1},{value:v2},{value:v3},{value:v4},{value:v5},{value:v6}];
+					}else {
+						totalRow = [{value:undefined},{value: "Total"},{value:v1},{value:v2},{value:v3},{value:v4},{value:v5}];
+					}
+					exportData.push(totalRow);
+
+					var csvContent = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
+					exportService.downloadFile(fileName, csvContent, grid.options.exporterOlderExcelCompatibility);
+				});
             }
 
             /*$scope.renderPdf = function(){
@@ -900,20 +938,137 @@
 //                 pdfMake.createPdf(docDefinition).download(fileName);
             }
 
-            $scope.exportExcel = function(reportName){
-                             var exportService = uiGridExporterService;
-                             var grid = $scope.gridApi.grid;
-                             var fileName = reportName.split(" ").join("");
-                            excelHeaderName.reportName = $scope.report.name;
+//             $scope.exportExcel = function(reportName){
+//                              var exportService = uiGridExporterService;
+//                              var grid = $scope.gridApi.grid;
+//                              var fileName = reportName.split(" ").join("");
+//                             excelHeaderName.reportName = $scope.report.name;
+//
+//                             exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
+//                                  var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
+//                                  var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
+//                                  var content = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
+// //                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
+//                                });
+//                              exportUiGridService.exportToExcel1('Sheet1', $scope.gridApi, $scope.gridApi1, 'visible', 'visible', excelHeaderName);
+//                         }
 
-                            exportService.loadAllDataIfNeeded(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE).then(function() {
-                                 var exportColumnHeaders = exportService.getColumnHeaders(grid, uiGridExporterConstants.VISIBLE);
-                                 var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
-                                 var content = exportService.formatAsCsv(exportColumnHeaders, exportData, grid.options.exporterCsvColumnSeparator);
-//                                     exportService.downloadFile(fileName, content, grid.options.exporterOlderExcelCompatibility);
-                               });
-                             exportUiGridService.exportToExcel1('Sheet1', $scope.gridApi, $scope.gridApi1, 'visible', 'visible', excelHeaderName);
-                        }
+			$scope.exportDataFn = function(){
+
+				columns = $scope.gridApi.grid.options.showHeader ? uiGridExporterService.getColumnHeaders($scope.gridApi.grid, 'visible') : [];
+
+				var headers=[]
+				columns.forEach(function (c) {
+					headers.push( c.displayName || c.value || columns[i].name);
+				}, this);
+				ExcelData.columnHeaders = headers;
+
+				var exportData = uiGridExporterService.getData($scope.gridApi.grid, "visible", "visible");
+				var data = [];
+
+				for (i = 0; i < exportData.length; i++) {
+					var temprow=[];
+					for (j = 0; j < exportData[i].length; j++) {
+						var temp = exportData[i][j].value;
+						temprow.push(temp);
+					}
+					data.push(temprow);
+				}
+				ExcelData.reportData = data;
+
+				var footerData=[];
+				var v;
+
+				$scope.gridApi.grid.columns.forEach(function (ft) {
+
+					if(ft.displayName == "Message Week" || ft.displayName == "State" || ft.displayName == "District" || ft.displayName == "Block" || ft.displayName == "Subcenter" || ft.displayName == "Circle" || ft.displayName == "Message Number (Week)" )
+						v = "Total";
+
+					else if(ft.displayName == "No of Registered Swachchagrahi" || ft.displayName == "No. of Swachchagrahi Started course" || ft.displayName =="No. of Swachchagrahi Registered But Not Completed the course(Period Start)" || ft.displayName =="No. of anonymous users started course"){
+						var temp = $scope.gridApi.grid.columns[2].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else if(ft.displayName == "No. of anonymous users pursuing course" ||ft.displayName == "No. of Swachchagrahi Records Received Through Web Service" ||ft.displayName == "No. of Swachchagrahi Pursuing course" || ft.displayName == "No of Swachchagrahi Started course"){
+						var temp = $scope.gridApi.grid.columns[3].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else if(ft.displayName == "No of Swachchagrahi Not Started course" ||ft.displayName == "No. of Swachchagrahi not Pursuing course" ||ft.displayName == "No. of Swachchagrahi Records Rejected" || ft.displayName == "No. of anonymous users not pursuing course") {
+						var temp = $scope.gridApi.grid.columns[4].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else if(ft.displayName == "No of Swachchagrahi Successfully Completed the course" ||ft.displayName == "No. of Swachchagrahi Successfully Completed course" ||ft.displayName == "No. of Swachchagrahi Subscriptions Added" || ft.displayName == "No. of anonymous users successfully completed the course") {
+						var temp = $scope.gridApi.grid.columns[5].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else if(ft.displayName == "No of Swachchagrahi who failed the course" ||ft.displayName == "No. of Swachchagrahi who Failed the course" ||ft.displayName == "No. of Swachchagrahi Successfully Completed the course" || ft.displayName == "No. of anonymous users failed the course") {
+						var temp = $scope.gridApi.grid.columns[6].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else if(ft.displayName == "No. of Swachchagrahi Registered But Not Completed the course (Period End)" && excelHeaderName.reportName == "Subscriber Report"){
+						var temp = $scope.gridApi.grid.columns[7].getAggregationValue();
+						v = (parseFloat(temp));
+					}
+					else{
+						v = ft.getAggregationValue();
+					}
+
+					// if(ft.displayName != "S No."){
+					// 	if (ft.displayName == "Location Name") {
+					// 		v = "Total";
+					// 	}
+					// 	footerData.push(v);
+					// }
+					footerData.push(v);
+
+				}, this);
+
+				ExcelData.columnHeaders1 = [];
+				ExcelData.reportData1 = [];
+
+
+				var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+				var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
+
+				if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+					excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
+				else{
+					var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
+					excelHeaderName.timePeriod = fromDateString+" "+months[$scope.headerFromDate.getMonth()]+" "+$scope.headerFromDate.getFullYear()+
+						" to "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();
+				}
+
+
+
+				ExcelData.colunmFooters = footerData;
+				ExcelData.stateName = excelHeaderName.stateName;
+				ExcelData.districtName = excelHeaderName.districtName;
+				ExcelData.blockName = excelHeaderName.blockName;
+				ExcelData.reportName = excelHeaderName.reportName;
+				ExcelData.timePeriod = excelHeaderName.timePeriod;
+				ExcelData.circleFullName = excelHeaderName.circleFullName;
+				ExcelData.fileName = $scope.fileName ? $scope.fileName: 'document';
+				console.log(ExcelData);
+			}
+
+			$scope.exportToExcel = function(reportName){
+				$scope.exportDataFn(reportName);
+				$http({
+					method  : 'POST',
+					url     : backend_root + 'wa/user/generateAgg',
+					data    : ExcelData, //forms user object
+					//responseType: 'arraybuffer',
+					headers : {'Content-Type': 'application/json '}
+				}).then(function(response){
+						if(response.data =="success"){
+							var fileName = $scope.fileName ? $scope.fileName : 'dokuman';
+							fileName += '.xlsx';
+							window.location.href = backend_root + 'wa/user/downloadAgg?fileName='+fileName;
+
+						}
+					}
+				);
+
+			}
 
 			$scope.getReportUrl = backend_root + 'wa/user/getReport';
 			$scope.$watch('pathName', function(){
