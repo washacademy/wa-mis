@@ -11,6 +11,8 @@ import com.beehyv.wareporting.enums.AccessType;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.enums.ReportType;
 import com.beehyv.wareporting.model.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,9 +26,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
@@ -474,6 +474,73 @@ public class UserController {
         return m;
     }
 
+    @RequestMapping(value = "/generateAgg", method = RequestMethod.POST,produces = "application/vnd.ms-excel")
+    @ResponseBody
+    public String generateAggregates(@RequestBody AggregateExcelDto data, HttpServletResponse response) throws ParseException, java.text.ParseException {
+        response.setContentType("APPLICATION/OCTECT-STREAM");
+
+        String filename = data.getFileName()+".xlsx";
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet spreadsheet = workbook.createSheet(
+                "Sheet 1");
+        waAggregateReportsService.createSpecificAggreagateExcel(workbook,data);
+
+
+        FileOutputStream out1 = null;
+        try {
+            out1 = new FileOutputStream(new File(reports+"/"+filename));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            workbook.write(out1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out1.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // workbook.write(response.getOutputStream());
+
+        return "success";
+    }
+
+    @RequestMapping(value = "/downloadAgg", method = RequestMethod.GET,produces = "application/vnd.ms-excel")
+    @ResponseBody
+    public String downloadAggregates(HttpServletResponse response, @DefaultValue("") @QueryParam("fileName") String fileName) throws ParseException, java.text.ParseException {
+//        adminService.getBulkDataImportCSV();
+        response.setContentType("APPLICATION/OCTECT-STREAM");
+        if (StringUtils.isEmpty(fileName)) {
+            fileName = "";
+            return "fail";
+        }
+        try {
+            ServletOutputStream out = response.getOutputStream();
+            response.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
+            FileInputStream fl = new FileInputStream(reports+"/"+fileName);
+            int i;
+            while ((i = fl.read()) != -1) {
+                out.write(i);
+            }
+            fl.close();
+            out.close();
+            //workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            File file = new File(reports + "/" + fileName);
+            file.delete();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "success";
+    }
 
     @RequestMapping(value = "/downloadReport", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
     @ResponseBody
