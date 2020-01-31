@@ -634,7 +634,6 @@ public class AdminServiceImpl implements AdminService {
                 List<WACircleWiseAnonymousUsersLineListing> anonymousUsersListCircle = anonymousUsersDao.getAnonymousUsersByCircle(fromDate,toDate,circleName);
                 getCircleWiseAnonymousUsers(anonymousUsersListCircle, rootPathCircle, circleFullName, toDate, reportRequest);
         }
-
         else if(reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())){
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(reportRequest.getFromDate());
@@ -681,8 +680,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
 
-    private void getCumulativeRejectedSwcImports(List<SwcImportRejection> rejectedSwcImports, String rootPath,
-                                                 String place, Date toDate, ReportRequest reportRequest) {
+    private void getCumulativeRejectedSwcImports(List<SwcImportRejection> rejectedSwcImports, String rootPath,String place, Date toDate, ReportRequest reportRequest) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
@@ -693,6 +691,7 @@ public class AdminServiceImpl implements AdminService {
         Map<String, Object[]> empinfo =
                 new TreeMap<String, Object[]>();
         empinfo.put("1", new Object[]{
+                "S.No",
                 "State Name",
                 "District Name",
                 "Block Name",
@@ -707,18 +706,19 @@ public class AdminServiceImpl implements AdminService {
         if(rejectedSwcImports.isEmpty()) {
             empinfo.put(counter.toString(), new Object[]{"No Records to display"});
         }
-        for (SwcImportRejection swcRejection : rejectedSwcImports) {
+        for (int i =0; i<rejectedSwcImports.size();i++ ) {
             empinfo.put((counter.toString()), new Object[]{
-                    (swcRejection.getStateId() == null) ? "No State Name": stateDao.findByStateId(swcRejection.getStateId()).getStateName(),
-                    (swcRejection.getDistrictName() == null) ? "No District Name": swcRejection.getDistrictName(),
-                    (swcRejection.getBlockName() == null) ? "No  Block": swcRejection.getBlockName(),
+                    (i+1),
+                    (rejectedSwcImports.get(i).getStateId() == null) ? "No State Name": stateDao.findByStateId(rejectedSwcImports.get(i).getStateId()).getStateName(),
+                    (rejectedSwcImports.get(i).getDistrictName() == null) ? "No District Name": rejectedSwcImports.get(i).getDistrictName(),
+                    (rejectedSwcImports.get(i).getBlockName() == null) ? "No  Block": rejectedSwcImports.get(i).getBlockName(),
                    // (swcRejection.getPhcName() == null) ? "No  Facility" : swcRejection.getPhcName(),
-                    (swcRejection.getPanchayatName() == null) ? "No Panchayat" : swcRejection.getPanchayatName(),
-                    (swcRejection.getSwcId() == null) ? "No Swachchagrahi ID": swcRejection.getSwcId(),
-                    (swcRejection.getFullName() == null) ? "No Swachchagrahi Name": swcRejection.getFullName(),
-                    (swcRejection.getJobStatus() == null) ? "No Swachchagrahi Job Status": swcRejection.getJobStatus(),
-                    (swcRejection.getMobileNumber() == null) ? "No Swachchagrahi Mobile Number": swcRejection.getMobileNumber(),
-                    (swcRejection.getRejectionReason() == null) ? "No Rejection Reason": swcRejection.getRejectionReason(),
+                    (rejectedSwcImports.get(i).getPanchayatName() == null) ? "No Panchayat" : rejectedSwcImports.get(i).getPanchayatName(),
+                    (rejectedSwcImports.get(i).getSwcId() == null) ? "No Swachchagrahi ID": rejectedSwcImports.get(i).getSwcId(),
+                    (rejectedSwcImports.get(i).getFullName() == null) ? "No Swachchagrahi Name": rejectedSwcImports.get(i).getFullName(),
+                    (rejectedSwcImports.get(i).getJobStatus() == null) ? "No Swachchagrahi Job Status": rejectedSwcImports.get(i).getJobStatus(),
+                    (rejectedSwcImports.get(i).getMobileNumber() == null) ? "No Swachchagrahi Mobile Number": rejectedSwcImports.get(i).getMobileNumber(),
+                    (rejectedSwcImports.get(i).getRejectionReason() == null) ? "No Rejection Reason": rejectedSwcImports.get(i).getRejectionReason(),
             });
             counter++;
 //            System.out.println("Added "+counter);
@@ -728,9 +728,10 @@ public class AdminServiceImpl implements AdminService {
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 1; i < 10; i++) {
             spreadsheet.setColumnWidth(i, 4000);
         }
+        spreadsheet.setColumnWidth(0,2000);
 
         int rowid=7;
         for (String key : keyid) {
@@ -746,7 +747,7 @@ public class AdminServiceImpl implements AdminService {
                 }
                 if(rowid == 9 && rejectedSwcImports.isEmpty()){
                     CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
-                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:L6"));
+                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A9:J9"));
                 }
             }
         }
@@ -754,6 +755,280 @@ public class AdminServiceImpl implements AdminService {
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(new File(rootPath + ReportType.swcRejected.getReportType() + "_" + place + "_" + getDateMonthYear(toDate) + ".xlsx"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            workbook.write(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCumulativeCourseCompletion(List<WACourseFirstCompletion> successfulCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
+        //Create blank workbook
+
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        //Create a blank sheet
+        XSSFSheet spreadsheet = workbook.createSheet(
+                " WA Course Completion Report ");
+        //Create row object
+        XSSFRow row;
+        //This data needs to be written (Object[])
+        Map<String, Object[]> empinfo =
+                new TreeMap<String, Object[]>();
+        empinfo.put("1", new Object[]{
+                "S.No",
+                "Mobile Number",
+                "State",
+                "District",
+                "Block",
+                "Panchayat",
+                "Swachchagrahi Name",
+                "Swachchagrahi ID",
+                "Swachchagrahi Creation Date",
+                "Course Start Date",
+                "First Completion Date",
+                "SMS Sent Notification"
+        });
+        Integer counter = 2;
+        if(successfulCandidates.isEmpty()) {
+            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
+        }
+        for (int i = 0; i<successfulCandidates.size();i++) {
+            empinfo.put((counter.toString()), new Object[]{
+                    i+1,
+                    (successfulCandidates.get(i).getMobileNumber() == null) ? "No Mobile Number":successfulCandidates.get(i).getMobileNumber(),
+                    (successfulCandidates.get(i).getStateId() == null) ? "No State":stateDao.findByStateId(successfulCandidates.get(i).getStateId()).getStateName(),
+                    (successfulCandidates.get(i).getDistrictId() == null) ? "No District":districtDao.findByDistrictId(successfulCandidates.get(i).getDistrictId()).getDistrictName(),
+                    (successfulCandidates.get(i).getBlockId() == null) ? "No Block" : blockDao.findByBlockId(successfulCandidates.get(i).getBlockId()).getBlockName(),
+                    (successfulCandidates.get(i).getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(successfulCandidates.get(i).getPanchayatId()).getPanchayatName(),
+                    (successfulCandidates.get(i).getFullName() == null) ? "No Name":successfulCandidates.get(i).getFullName(),
+                    (successfulCandidates.get(i).getSwcId() == null) ? "No Swc_Id":successfulCandidates.get(i).getSwcId(),
+                    (successfulCandidates.get(i).getCreationDate() == null) ? "No Creation_date":successfulCandidates.get(i).getCreationDate(),
+                    (successfulCandidates.get(i).getCourseStartDate() == null) ? "No Course Start Date":successfulCandidates.get(i).getCourseStartDate(),
+                    (successfulCandidates.get(i).getFirstCompletionDate() == null) ? "No Date":successfulCandidates.get(i).getFirstCompletionDate(),
+                    (successfulCandidates.get(i).getSentNotification() == null) ? "No Details": successfulCandidates.get(i).getSentNotification()
+            });
+            counter++;
+//            System.out.println("Added "+counter);
+        }
+        Set<String> keyid = empinfo.keySet();
+        createHeadersForReportFiles(workbook, reportRequest);
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 1; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+        spreadsheet.setColumnWidth(0,2000);
+        int rowid=8;
+        for (String key : keyid) {
+            row = spreadsheet.createRow(rowid++);
+            Object[] objectArr = empinfo.get(key);
+            int cellid = 0;
+            for (Object obj : objectArr) {
+                Cell cell = row.createCell(cellid++);
+                cell.setCellValue(obj.toString());
+                if(rowid ==9){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid == 10 && successfulCandidates.isEmpty()){
+                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
+                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A10:L10"));
+                }
+            }
+        }
+        //Write the workbook in file system
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            workbook.write(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        //Create a blank sheet
+        XSSFSheet spreadsheet = workbook.createSheet(
+                "Circle-wise Anonymous Users Report");
+        //Create row object
+        XSSFRow row;
+        //This data needs to be written (Object[])
+        Map<String, Object[]> empinfo =
+                new TreeMap<String, Object[]>();
+        empinfo.put("1", new Object[]{
+                "S.No",
+                "Id",
+                "Mobile Number",
+                "Operator",
+                "Circle Name",
+                "Course Start Date",
+                "Course First Successful End",
+                "Last Call End Date",
+                "Last Call End Time",
+                "Total Minutes Used",
+                "SMS Sent",
+                "SMS Reference Number",
+                "No. Of Attempts"
+        });
+        Integer counter = 2;
+        if(anonymousUsersList.isEmpty()) {
+            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
+        }
+        for (int i =0 ; i<anonymousUsersList.size();i++) {
+            empinfo.put((counter.toString()), new Object[]{
+                    i+1,
+                    (anonymousUsersList.get(i).getId() == null) ? "No Id":anonymousUsersList.get(i).getId(),
+                    (anonymousUsersList.get(i).getMobileNumber() == null) ? "No Mobile Number":anonymousUsersList.get(i).getMobileNumber(),
+                    (anonymousUsersList.get(i).getOperator() == null) ? "No Operator":anonymousUsersList.get(i).getOperator(),
+                    (anonymousUsersList.get(i).getCircleName() == null) ? "No Circle":anonymousUsersList.get(i).getCircleName(),
+                    (anonymousUsersList.get(i).getCourseStartDate() == null) ? "No Date":anonymousUsersList.get(i).getCourseStartDate(),
+                    (anonymousUsersList.get(i).getFirstCompletionDate() == null) ? "No Date":anonymousUsersList.get(i).getFirstCompletionDate(),
+                    (anonymousUsersList.get(i).getLastCallEndDate() == null) ? "No Details":anonymousUsersList.get(i).getLastCallEndDate(),
+                    (anonymousUsersList.get(i).getLastCallEndTime() == null) ? "No Details":anonymousUsersList.get(i).getLastCallEndTime(),
+                    (anonymousUsersList.get(i).getTotalMinutesUsed() == null) ? "No Details":anonymousUsersList.get(i).getTotalMinutesUsed(),
+                    (anonymousUsersList.get(i).getSMSSent() == null) ? "No Details":anonymousUsersList.get(i).getSMSSent(),
+                    (anonymousUsersList.get(i).getSMSReferenceNo() == null) ? "No Details":anonymousUsersList.get(i).getSMSReferenceNo(),
+                    (anonymousUsersList.get(i).getNoOfAttempts() == null) ? "No Details":anonymousUsersList.get(i).getNoOfAttempts()
+            });
+            counter++;
+        }
+        Set<String> keyid = empinfo.keySet();
+        createHeadersForReportFiles(workbook, reportRequest);
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 1; i < 13; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+        spreadsheet.setColumnWidth(0,2000);
+
+        int rowid=8;
+        for (String key : keyid) {
+            row = spreadsheet.createRow(rowid++);
+            Object[] objectArr = empinfo.get(key);
+            int cellid = 0;
+            for (Object obj : objectArr) {
+                Cell cell = row.createCell(cellid++);
+                cell.setCellValue(obj.toString());
+                if (rowid ==9){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid==10 && anonymousUsersList.isEmpty()) {
+                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
+                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A10:M10"));
+                }
+            }
+        }
+        //Write the workbook in file system
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            workbook.write(out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCumulativeInactiveUsers(List<Swachchagrahi> inactiveCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        //Create a blank sheet
+        XSSFSheet spreadsheet = workbook.createSheet(
+                "Cumulative Inactive Users Report "+place+"_"+getMonthYear(toDate));
+        //Create row object
+        XSSFRow row;
+        //This data needs to be written (Object[])
+        Map<String, Object[]> empinfo =
+                new TreeMap<String, Object[]>();
+        empinfo.put("1", new Object[]{
+                "S.No",
+                "Mobile Number",
+                "State",
+                "District",
+                "Block",
+                "Panchayat",
+                "Swachchagrahi Name",
+                "Swachchagrahi ID",
+                "Swachchagrahi Creation Date"
+        });
+        Integer counter = 2;
+        if(inactiveCandidates.isEmpty()) {
+            empinfo.put(counter.toString(),new Object[]{"No Records to display"});
+        }
+        for (int i = 0;i< inactiveCandidates.size();i++) {
+            empinfo.put((counter.toString()), new Object[]{
+                    i+1,
+                    (inactiveCandidates.get(i).getMobileNumber() == null) ? "No Mobile Number":inactiveCandidates.get(i).getMobileNumber(),
+                    (inactiveCandidates.get(i).getStateId() == null) ? "No State":stateDao.findByStateId(inactiveCandidates.get(i).getStateId()).getStateName(),
+                    (inactiveCandidates.get(i).getDistrictId() == null) ? "No District":districtDao.findByDistrictId(inactiveCandidates.get(i).getDistrictId()).getDistrictName(),
+                    (inactiveCandidates.get(i).getBlockId() == null) ? "No Block" : blockDao.findByBlockId(inactiveCandidates.get(i).getBlockId()).getBlockName(),
+                    (inactiveCandidates.get(i).getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(inactiveCandidates.get(i).getPanchayatId()).getPanchayatName(),
+                    (inactiveCandidates.get(i).getFullName() == null) ? "No Name":inactiveCandidates.get(i).getFullName(),
+                    (inactiveCandidates.get(i).getSwcId() == null) ? "No Swc_Id":inactiveCandidates.get(i).getSwcId(),
+                    (inactiveCandidates.get(i).getCreationDate() == null) ? "No Creation_date":inactiveCandidates.get(i).getCreationDate()
+                    //(swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
+            });
+            counter++;
+        }
+        Set<String> keyid = empinfo.keySet();
+        createHeadersForReportFiles(workbook, reportRequest);
+        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        for (int i = 1; i < 9; i++) {
+            spreadsheet.setColumnWidth(i, 4000);
+        }
+        spreadsheet.setColumnWidth(0,2000);
+
+        int rowid=7;
+        for (String key : keyid) {
+            row = spreadsheet.createRow(rowid++);
+            Object[] objectArr = empinfo.get(key);
+            int cellid = 0;
+            for (Object obj : objectArr) {
+                Cell cell = row.createCell(cellid++);
+                cell.setCellValue(obj.toString());
+                if (rowid ==8 ){
+                    row.setHeight((short) 1100);
+                    cell.setCellStyle(backgroundStyle);
+                }
+                if(rowid==9 && inactiveCandidates.isEmpty()) {
+                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
+                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A9:I9"));
+                }
+            }
+        }
+        //Write the workbook in file system
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(new File(rootPath + ReportType.waInactive.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -792,273 +1067,6 @@ public class AdminServiceImpl implements AdminService {
         backgroundStyle.setFont(font);
 
         return backgroundStyle;
-    }
-
-
-    private void getCumulativeCourseCompletion(List<WACourseFirstCompletion> successfulCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
-        //Create blank workbook
-
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        //Create a blank sheet
-        XSSFSheet spreadsheet = workbook.createSheet(
-                " WA Course Completion Report ");
-        //Create row object
-        XSSFRow row;
-        //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
-                "Mobile Number",
-                "State",
-                "District",
-                "Block",
-                "Panchayat",
-                "Swachchagrahi Name",
-                "Swachchagrahi ID",
-                "Swachchagrahi Creation Date",
-                "Course Start Date",
-                "First Completion Date",
-                "SMS Sent Notification"
-        });
-        Integer counter = 2;
-        if(successfulCandidates.isEmpty()) {
-            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
-        }
-        for (WACourseFirstCompletion waCourseFirstCompletion : successfulCandidates) {
-            empinfo.put((counter.toString()), new Object[]{
-                    (waCourseFirstCompletion.getMobileNumber() == null) ? "No Mobile Number":waCourseFirstCompletion.getMobileNumber(),
-                    (waCourseFirstCompletion.getStateId() == null) ? "No State":stateDao.findByStateId(waCourseFirstCompletion.getStateId()).getStateName(),
-                    (waCourseFirstCompletion.getDistrictId() == null) ? "No District":districtDao.findByDistrictId(waCourseFirstCompletion.getDistrictId()).getDistrictName(),
-                    (waCourseFirstCompletion.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(waCourseFirstCompletion.getBlockId()).getBlockName(),
-                    (waCourseFirstCompletion.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(waCourseFirstCompletion.getPanchayatId()).getPanchayatName(),
-                    (waCourseFirstCompletion.getFullName() == null) ? "No Name":waCourseFirstCompletion.getFullName(),
-                    (waCourseFirstCompletion.getSwcId() == null) ? "No Swc_Id":waCourseFirstCompletion.getSwcId(),
-                    (waCourseFirstCompletion.getCreationDate() == null) ? "No Creation_date":waCourseFirstCompletion.getCreationDate(),
-                    (waCourseFirstCompletion.getCourseStartDate() == null) ? "No Course Start Date":waCourseFirstCompletion.getCourseStartDate(),
-                    (waCourseFirstCompletion.getFirstCompletionDate() == null) ? "No Date":waCourseFirstCompletion.getFirstCompletionDate(),
-                    (waCourseFirstCompletion.getSentNotification() == null) ? "No Details": waCourseFirstCompletion.getSentNotification()
-            });
-            counter++;
-//            System.out.println("Added "+counter);
-        }
-        Set<String> keyid = empinfo.keySet();
-        createHeadersForReportFiles(workbook, reportRequest);
-        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
-
-        for (int i = 0; i < 12; i++) {
-            spreadsheet.setColumnWidth(i, 4000);
-        }
-
-        int rowid=8;
-        for (String key : keyid) {
-            row = spreadsheet.createRow(rowid++);
-            Object[] objectArr = empinfo.get(key);
-            int cellid = 0;
-            for (Object obj : objectArr) {
-                Cell cell = row.createCell(cellid++);
-                cell.setCellValue(obj.toString());
-                if(rowid ==9){
-                    row.setHeight((short) 1100);
-                    cell.setCellStyle(backgroundStyle);
-                }
-                if(rowid == 10 && successfulCandidates.isEmpty()){
-                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
-                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:N6"));
-                }
-            }
-        }
-        //Write the workbook in file system
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCourseCompletion.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            workbook.write(out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        //Create a blank sheet
-        XSSFSheet spreadsheet = workbook.createSheet(
-                "Circle-wise Anonymous Users Report");
-        //Create row object
-        XSSFRow row;
-        //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
-                "Id",
-                "Mobile Number",
-                "Operator",
-                "Circle Name",
-                "Course Start Date",
-                "Course First Successful End",
-                "Last Call End Date",
-                "Last Call End Time",
-                "Total Minutes Used",
-                "SMS Sent",
-                "SMS Reference Number",
-                "No. Of Attempts"
-        });
-        Integer counter = 2;
-        if(anonymousUsersList.isEmpty()) {
-            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
-        }
-        for (WACircleWiseAnonymousUsersLineListing anonymousUser : anonymousUsersList) {
-            empinfo.put((counter.toString()), new Object[]{
-                    (anonymousUser.getId() == null) ? "No Id":anonymousUser.getId(),
-                    (anonymousUser.getMobileNumber() == null) ? "No Mobile Number":anonymousUser.getMobileNumber(),
-                    (anonymousUser.getOperator() == null) ? "No Operator":anonymousUser.getOperator(),
-                    (anonymousUser.getCircleName() == null) ? "No Circle":anonymousUser.getCircleName(),
-                    (anonymousUser.getCourseStartDate() == null) ? "No Date":anonymousUser.getCourseStartDate(),
-                    (anonymousUser.getFirstCompletionDate() == null) ? "No Date":anonymousUser.getFirstCompletionDate(),
-                    (anonymousUser.getLastCallEndDate() == null) ? "No Details":anonymousUser.getLastCallEndDate(),
-                    (anonymousUser.getLastCallEndTime() == null) ? "No Details":anonymousUser.getLastCallEndTime(),
-                    (anonymousUser.getTotalMinutesUsed() == null) ? "No Details":anonymousUser.getTotalMinutesUsed(),
-                    (anonymousUser.getSMSSent() == null) ? "No Details":anonymousUser.getSMSSent(),
-                    (anonymousUser.getSMSReferenceNo() == null) ? "No Details":anonymousUser.getSMSReferenceNo(),
-                    (anonymousUser.getNoOfAttempts() == null) ? "No Details":anonymousUser.getNoOfAttempts()
-            });
-            counter++;
-        }
-        Set<String> keyid = empinfo.keySet();
-        createHeadersForReportFiles(workbook, reportRequest);
-        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
-
-        for (int i = 0; i < 12; i++) {
-            spreadsheet.setColumnWidth(i, 4000);
-        }
-
-        int rowid=8;
-        for (String key : keyid) {
-            row = spreadsheet.createRow(rowid++);
-            Object[] objectArr = empinfo.get(key);
-            int cellid = 0;
-            for (Object obj : objectArr) {
-                Cell cell = row.createCell(cellid++);
-                cell.setCellValue(obj.toString());
-                if (rowid ==9){
-                    row.setHeight((short) 1100);
-                    cell.setCellStyle(backgroundStyle);
-                }
-                if(rowid==10 && anonymousUsersList.isEmpty()) {
-                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
-                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:C6"));
-                }
-            }
-        }
-        //Write the workbook in file system
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waCircleWiseAnonymous.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            workbook.write(out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void getCumulativeInactiveUsers(List<Swachchagrahi> inactiveCandidates, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        //Create a blank sheet
-        XSSFSheet spreadsheet = workbook.createSheet(
-                "Cumulative Inactive Users Report "+place+"_"+getMonthYear(toDate));
-        //Create row object
-        XSSFRow row;
-        //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
-                "Mobile Number",
-                "State",
-                "District",
-                "Block",
-                "Panchayat",
-                "Swachchagrahi Name",
-                "Swachchagrahi ID",
-                "Swachchagrahi Creation Date"
-        });
-        Integer counter = 2;
-        if(inactiveCandidates.isEmpty()) {
-            empinfo.put(counter.toString(),new Object[]{"No Records to display"});
-        }
-        for (Swachchagrahi swachchagrahi : inactiveCandidates) {
-            empinfo.put((counter.toString()), new Object[]{
-                    (swachchagrahi.getMobileNumber() == null) ? "No Mobile Number":swachchagrahi.getMobileNumber(),
-                    (swachchagrahi.getStateId() == null) ? "No State":stateDao.findByStateId(swachchagrahi.getStateId()).getStateName(),
-                    (swachchagrahi.getDistrictId() == null) ? "No District":districtDao.findByDistrictId(swachchagrahi.getDistrictId()).getDistrictName(),
-                    (swachchagrahi.getBlockId() == null) ? "No Block" : blockDao.findByBlockId(swachchagrahi.getBlockId()).getBlockName(),
-                    (swachchagrahi.getPanchayatId() == null) ? "No Panchayat" : panchayatDao.findByPanchayatId(swachchagrahi.getPanchayatId()).getPanchayatName(),
-                    (swachchagrahi.getFullName() == null) ? "No Name":swachchagrahi.getFullName(),
-                    (swachchagrahi.getSwcId() == null) ? "No Swc_Id":swachchagrahi.getSwcId(),
-                    (swachchagrahi.getCreationDate() == null) ? "No Creation_date":swachchagrahi.getCreationDate()
-                    //(swachchagrahi.getJobStatus() == null) ? "No Details":swachchagrahi.getJobStatus()
-            });
-            counter++;
-        }
-        Set<String> keyid = empinfo.keySet();
-        createHeadersForReportFiles(workbook, reportRequest);
-        XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
-
-        for (int i = 0; i < 12; i++) {
-            spreadsheet.setColumnWidth(i, 4000);
-        }
-
-        int rowid=7;
-        for (String key : keyid) {
-            row = spreadsheet.createRow(rowid++);
-            Object[] objectArr = empinfo.get(key);
-            int cellid = 0;
-            for (Object obj : objectArr) {
-                Cell cell = row.createCell(cellid++);
-                cell.setCellValue(obj.toString());
-                if (rowid ==8 ){
-                    row.setHeight((short) 1100);
-                    cell.setCellStyle(backgroundStyle);
-                }
-                if(rowid==9 && inactiveCandidates.isEmpty()) {
-                    CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
-                    spreadsheet.addMergedRegion(CellRangeAddress.valueOf("A6:L6"));
-                }
-            }
-        }
-        //Write the workbook in file system
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(new File(rootPath + ReportType.waInactive.getReportType() + "_" + place + "_" + getMonthYear(toDate) + ".xlsx"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            workbook.write(out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
