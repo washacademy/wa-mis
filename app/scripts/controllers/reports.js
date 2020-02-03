@@ -851,7 +851,7 @@
                             }
                         }
 
-						let filename_1 = $scope.report.name;
+						var filename_1 = $scope.report.name;
 						$scope.fileName = filename_1.split(" ").join("");
 						$scope.hideGrid = false;
 
@@ -871,7 +871,7 @@
 					var exportData = exportService.getData(grid, uiGridExporterConstants.ALL, uiGridExporterConstants.VISIBLE);
 					var totalRow;
 					var v1=0,v2 =0,v3=0,v4=0,v5 =0,v6=0;
-					for ( let i = 0; i< exportData.length ;i++){
+					for ( var i = 0; i< exportData.length ;i++){
 						exportData[i][0].value = i+1;
 
 						v1 = v1+exportData[i][2].value;
