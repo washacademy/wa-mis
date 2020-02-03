@@ -688,9 +688,9 @@ public class AdminServiceImpl implements AdminService {
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
+        Map<Integer, Object[]> empinfo =
+                new TreeMap<>();
+        empinfo.put(1, new Object[]{
                 "S.No",
                 "State Name",
                 "District Name",
@@ -704,10 +704,10 @@ public class AdminServiceImpl implements AdminService {
         });
         Integer counter = 2;
         if(rejectedSwcImports.isEmpty()) {
-            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
+            empinfo.put(counter, new Object[]{"No Records to display"});
         }
         for (int i =0; i<rejectedSwcImports.size();i++ ) {
-            empinfo.put((counter.toString()), new Object[]{
+            empinfo.put((counter), new Object[]{
                     (i+1),
                     (rejectedSwcImports.get(i).getStateId() == null) ? "No State Name": stateDao.findByStateId(rejectedSwcImports.get(i).getStateId()).getStateName(),
                     (rejectedSwcImports.get(i).getDistrictName() == null) ? "No District Name": rejectedSwcImports.get(i).getDistrictName(),
@@ -723,7 +723,7 @@ public class AdminServiceImpl implements AdminService {
             counter++;
 //            System.out.println("Added "+counter);
         }
-        Set<String> keyid = empinfo.keySet();
+        Set<Integer> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
@@ -734,7 +734,7 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.setColumnWidth(0,2000);
 
         int rowid=7;
-        for (String key : keyid) {
+        for (Integer key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
             int cellid = 0;
@@ -781,9 +781,9 @@ public class AdminServiceImpl implements AdminService {
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
+        Map<Integer, Object[]> empinfo =
+                new TreeMap<>();
+        empinfo.put(1, new Object[]{
                 "S.No",
                 "Mobile Number",
                 "State",
@@ -799,10 +799,10 @@ public class AdminServiceImpl implements AdminService {
         });
         Integer counter = 2;
         if(successfulCandidates.isEmpty()) {
-            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
+            empinfo.put(counter, new Object[]{"No Records to display"});
         }
         for (int i = 0; i<successfulCandidates.size();i++) {
-            empinfo.put((counter.toString()), new Object[]{
+            empinfo.put((counter), new Object[]{
                     i+1,
                     (successfulCandidates.get(i).getMobileNumber() == null) ? "No Mobile Number":successfulCandidates.get(i).getMobileNumber(),
                     (successfulCandidates.get(i).getStateId() == null) ? "No State":stateDao.findByStateId(successfulCandidates.get(i).getStateId()).getStateName(),
@@ -819,7 +819,7 @@ public class AdminServiceImpl implements AdminService {
             counter++;
 //            System.out.println("Added "+counter);
         }
-        Set<String> keyid = empinfo.keySet();
+        Set<Integer> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
@@ -828,7 +828,7 @@ public class AdminServiceImpl implements AdminService {
         }
         spreadsheet.setColumnWidth(0,2000);
         int rowid=8;
-        for (String key : keyid) {
+        for (Integer key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
             int cellid = 0;
@@ -872,9 +872,9 @@ public class AdminServiceImpl implements AdminService {
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
+        Map<Integer, Object[]> empinfo =
+                new TreeMap<>();
+        empinfo.put(1, new Object[]{
                 "S.No",
                 "Id",
                 "Mobile Number",
@@ -891,10 +891,10 @@ public class AdminServiceImpl implements AdminService {
         });
         Integer counter = 2;
         if(anonymousUsersList.isEmpty()) {
-            empinfo.put(counter.toString(), new Object[]{"No Records to display"});
+            empinfo.put(counter, new Object[]{"No Records to display"});
         }
         for (int i =0 ; i<anonymousUsersList.size();i++) {
-            empinfo.put((counter.toString()), new Object[]{
+            empinfo.put((counter), new Object[]{
                     i+1,
                     (anonymousUsersList.get(i).getId() == null) ? "No Id":anonymousUsersList.get(i).getId(),
                     (anonymousUsersList.get(i).getMobileNumber() == null) ? "No Mobile Number":anonymousUsersList.get(i).getMobileNumber(),
@@ -911,7 +911,7 @@ public class AdminServiceImpl implements AdminService {
             });
             counter++;
         }
-        Set<String> keyid = empinfo.keySet();
+        Set<Integer> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
@@ -921,7 +921,7 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.setColumnWidth(0,2000);
 
         int rowid=8;
-        for (String key : keyid) {
+        for (Integer key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
             int cellid = 0;
@@ -966,9 +966,9 @@ public class AdminServiceImpl implements AdminService {
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
-        Map<String, Object[]> empinfo =
-                new TreeMap<String, Object[]>();
-        empinfo.put("1", new Object[]{
+        Map<Integer, Object[]> empinfo =
+                new TreeMap<>();
+        empinfo.put(1, new Object[]{
                 "S.No",
                 "Mobile Number",
                 "State",
@@ -981,10 +981,10 @@ public class AdminServiceImpl implements AdminService {
         });
         Integer counter = 2;
         if(inactiveCandidates.isEmpty()) {
-            empinfo.put(counter.toString(),new Object[]{"No Records to display"});
+            empinfo.put(counter,new Object[]{"No Records to display"});
         }
         for (int i = 0;i< inactiveCandidates.size();i++) {
-            empinfo.put((counter.toString()), new Object[]{
+            empinfo.put((counter), new Object[]{
                     i+1,
                     (inactiveCandidates.get(i).getMobileNumber() == null) ? "No Mobile Number":inactiveCandidates.get(i).getMobileNumber(),
                     (inactiveCandidates.get(i).getStateId() == null) ? "No State":stateDao.findByStateId(inactiveCandidates.get(i).getStateId()).getStateName(),
@@ -998,7 +998,7 @@ public class AdminServiceImpl implements AdminService {
             });
             counter++;
         }
-        Set<String> keyid = empinfo.keySet();
+        Set<Integer> keyid = empinfo.keySet();
         createHeadersForReportFiles(workbook, reportRequest);
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
@@ -1008,7 +1008,7 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.setColumnWidth(0,2000);
 
         int rowid=7;
-        for (String key : keyid) {
+        for (Integer key : keyid) {
             row = spreadsheet.createRow(rowid++);
             Object[] objectArr = empinfo.get(key);
             int cellid = 0;
