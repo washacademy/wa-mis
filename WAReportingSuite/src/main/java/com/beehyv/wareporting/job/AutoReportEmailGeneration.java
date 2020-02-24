@@ -46,10 +46,14 @@ public class AutoReportEmailGeneration {
             adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
             adminService.createFiles(ReportType.waInactive.getReportType());
 
-            adminService.getCircleWiseAnonymousFiles(fromDate, toDate);
-            System.out.println("WA_Circle_Wise_Anonymous_Users reports generated");
-            adminService.getCumulativeCourseCompletionFiles(toDate);
-            System.out.println("WA_Cumulative_Course_Completion reports generated");
+            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,1);
+            System.out.println("WA_Circle_Wise_Anonymous_Users reports for Wash Academy Course generated");
+            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,2);
+            System.out.println("WA_Circle_Wise_Anonymous_Users reports for Wash Academy Course Plus generated");
+            adminService.getCumulativeCourseCompletionFiles(toDate,1);
+            System.out.println("WA_Cumulative_Course_Completion reports for Wash Academy Course generated");
+            adminService.getCumulativeCourseCompletionFiles(toDate,2);
+            System.out.println("WA_Cumulative_Course_Completion reports for Wash Academy Course Plus generated");
             adminService.getCumulativeInactiveFiles(toDate);
             System.out.println("WA_Cumulative_Inactive_Users reports generated");
             System.out.println("Report generation done");

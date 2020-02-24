@@ -22,6 +22,8 @@ public interface UserService {
 
     void saveUser(User user);
 
+    void updateUser(User user);
+
     void setLoggedIn();
 
     User findUserByEmailId(String emailId);
@@ -52,13 +54,13 @@ public interface UserService {
 
     String createMaster();
 
-    Map<Integer, String> changePassword(PasswordDto changePasswordDTO);
+    Map<Integer, String> changePassword(PasswordDto changePasswordDTO) throws Exception;
 
     Role getRoleById(Integer roleId);
 
     void TrackModifications(User oldUser, User newUser);
 
-    Map<Integer, String> forgotPasswordCredentialChecker(ForgotPasswordDto forgotPasswordDto);
+//    Map<Integer, String> forgotPasswordCredentialChecker(ForgotPasswordDto forgotPasswordDto);
 
 
 }

@@ -10,23 +10,32 @@ import com.beehyv.wareporting.enums.AccessLevel;
 import com.beehyv.wareporting.enums.AccessType;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.enums.ReportType;
-import com.beehyv.wareporting.model.*;
+import com.beehyv.wareporting.model.ModificationTracker;
+import com.beehyv.wareporting.model.Role;
+import com.beehyv.wareporting.model.User;
+import com.beehyv.wareporting.utils.ServiceFunctions;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
@@ -41,6 +50,9 @@ import static com.beehyv.wareporting.utils.ServiceFunctions.dateAdder;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private WAAggregateReportsService waAggregateReportsService;
@@ -78,6 +90,9 @@ public class UserController {
     @Autowired
     private BreadCrumbService breadCrumbService;
 
+    private ServiceFunctions serviceFunctions;
+
+    private final String USER_AGENT = "Mozilla/5.0";
     private final Date bigBang = new Date(0);
     private final String documents = retrieveDocuments();
     private final String reports = documents + "Reports/";
@@ -284,40 +299,91 @@ public class UserController {
 
     @RequestMapping(value = {"/resetPassword"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map resetPassword(@RequestBody PasswordDto passwordDto) {
-
-        User user = userService.findUserByUserId(passwordDto.getUserId());
-        Map<Integer, String> map = userService.changePassword(passwordDto);
-        if (map.get(0).equals("Password changed successfully")) {
-            ModificationTracker modification = new ModificationTracker();
-            modification.setModificationDate(new Date(System.currentTimeMillis()));
-            modification.setModificationType(ModificationType.UPDATE.getModificationType());
-            modification.setModifiedUserId(passwordDto.getUserId());
-            modification.setModifiedField("password");
-            modification.setModifiedByUserId(userService.getCurrentUser().getUserId());
-            modificationTrackerService.saveModification(modification);
-        }
-        return map;
+    public Map resetPassword(@RequestBody PasswordDto passwordDto) throws Exception {
+        User currentUser = userService.getCurrentUser();
+        if(currentUser != null){
+            Map<Integer, String >map=  userService.changePassword(passwordDto);
+            if(map.get(0).equals("Password changed successfully")){
+                ModificationTracker modification = new ModificationTracker();
+                modification.setModificationDate(new Date(System.currentTimeMillis()));
+                modification.setModificationType(ModificationType.UPDATE.getModificationType());
+                modification.setModifiedUserId(passwordDto.getUserId());
+                modification.setModifiedField("password");
+                modification.setModifiedByUserId(userService.getCurrentUser().getUserId());
+                modificationTrackerService.saveModification(modification);
+            }
+            return map;
+        } else
+            return null;
     }
 
 
     @RequestMapping(value = {"/forgotPassword"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map forgotPassword(@RequestBody ForgotPasswordDto forgotPasswordDto) {
+    public String forgotPassword(@RequestBody ForgotPasswordDto forgotPasswordDto, HttpServletRequest request) throws Exception {
 
-        User user = userService.findUserByUsername(forgotPasswordDto.getUsername());
-        Map<Integer, String> map = userService.forgotPasswordCredentialChecker(forgotPasswordDto);
-        if (map.get(0).equals("Password changed successfully")) {
-            ModificationTracker modification = new ModificationTracker();
-            modification.setModificationDate(new Date(System.currentTimeMillis()));
-            modification.setModificationType(ModificationType.UPDATE.getModificationType());
-            modification.setModifiedUserId(user.getUserId());
-            modification.setModifiedField("password");
-            modification.setModifiedByUserId(user.getUserId());
-            modificationTrackerService.saveModification(modification);
+        HttpSession session = request.getSession();
+
+//        String captcha = decrypt(new LoginUser(forgotPasswordDto.getCaptcha()));
+        if (serviceFunctions.validateCaptcha(forgotPasswordDto.getCaptchaResponse()).equals("success")) {
+//            if (captcha.equals(session.getAttribute("captcha"))) {
+            String userName = forgotPasswordDto.getUsername();
+            User user = userService.findUserByUsername(userName);
+
+            if (user != null) {
+                String email = user.getEmailId();
+                String password = serviceFunctions.generatePassword();
+                byte[] encoded = Base64.encodeBase64((email + "||" + password).getBytes());
+                String encrypted = new String(encoded);
+                String url = "http://192.168.200.4:8080/WAReportingSuite/wa/mail/sendPassword/" + encrypted;
+                URL obj = new URL(url);
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+                // optional default is GET
+                con.setRequestMethod("GET");
+
+                //add request header
+                con.setRequestProperty("User-Agent", USER_AGENT);
+
+                int responseCode = con.getResponseCode();
+                System.out.println("\nSending 'GET' request to URL : " + url);
+                System.out.println("Response Code : " + responseCode);
+
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                //print result
+                System.out.println(response.toString());
+                if ((response.toString()).equals("success")) {
+                    user.setPassword(passwordEncoder.encode(password));
+                    user.setDefault(true);
+                    user.setUnSuccessfulAttempts(0);
+                    userService.updateUser(user);
+                    ModificationTracker modification = new ModificationTracker();
+                    modification.setModificationDate(new Date(System.currentTimeMillis()));
+                    modification.setModificationType(ModificationType.UPDATE.getModificationType());
+                    modification.setModifiedUserId(user.getUserId());
+                    modification.setModifiedField("password");
+                    modification.setModifiedByUserId(user.getUserId());
+                    modificationTrackerService.saveModification(modification);
+                    session.removeAttribute("captcha");
+                    session.invalidate();
+                }
+
+                return "success";
+            }
+            return "invalid user";
         }
-        return map;
+        return "invalid captcha";
     }
+
 
 
     @RequestMapping(value = {"/deleteUser/{id}"}, method = RequestMethod.GET)

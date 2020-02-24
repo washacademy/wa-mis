@@ -6,9 +6,8 @@ package com.beehyv.wareporting.entity;
 public class ForgotPasswordDto {
 
     private String username;
-    private String phoneNumber;
-    private String newPassword;
-    private String confirmPassword;
+
+    private String captchaResponse;
 
     public String getUsername() {
         return username;
@@ -18,27 +17,7 @@ public class ForgotPasswordDto {
         this.username = username;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    public String getCaptchaResponse() {  return captchaResponse;  }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
+    public void setCaptchaResponse(String captchaResponse) {   this.captchaResponse = captchaResponse;  }
 }

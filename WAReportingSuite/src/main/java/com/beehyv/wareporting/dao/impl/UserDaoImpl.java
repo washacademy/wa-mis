@@ -172,4 +172,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         else return true;
     }
 
+    @Override
+    public void updateUser(User user){
+        update(user);
+    }
+
 }
