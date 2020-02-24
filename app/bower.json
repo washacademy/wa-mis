@@ -17,6 +17,11 @@
     "angular-material": "^1.1.5",
     "angularjs-captcha": "1.2.0",
     "ng-device-detector": "^4.0.3",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angularjs-crypto": "^1.4.0",
+    "angular-cryptography": "^1.0.1"
+  },
+  "resolutions": {
+    "angular": "1.6.7"
   }
 }

@@ -8,7 +8,7 @@
 		<div class="form-horizontal col-xs-offset-4 col-xs-4">
 			<h1>Login</h1>
 
-			<form  id="loginForm" name="loginForm" ng-submit="login($event)">
+			<form  id="loginForm" name="loginForm" ng-submit="login($event)" autocomplete="off">
 			<!-- <form> -->
 				<div class="form-group">
 					<p class="error">{{errorMessage}}</p>
@@ -19,7 +19,7 @@
 
 				</div>
 				<div class="form-group" >
-					<input type="password" class="form-control input input-sm" ng-model="user.password" name="password" placeholder="Password" >
+					<input class="form-control input input-sm" ng-model="user.password" name="password" placeholder="Password" >
 
 				</div>
 				<div class="captcha">
@@ -29,18 +29,6 @@
 
 				</div>
 
-
-				<!--<div class="form-group">-->
-					<!--<a ui-sref="forgotPassword">Forgot Password?</a>-->
-				<!--</div>-->
-				<!--
-				<div class="form-group checkbox">
-					<label>
-						<input type="checkbox" ng-model="user.rememberMe">
-						Remember me
-					</label>
-				</div>
-				-->
 				<div class="form-group login-submit">
 					<button type="submit"  class="btn btn-sm btn-primary">Login</button>
 					<a ui-sref="forgotPassword">Forgot Password?</a>

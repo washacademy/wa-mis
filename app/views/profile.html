@@ -73,7 +73,7 @@
 					<div ng-class="{'has-error':contactsForm.email.$invalid && !contactsForm.email.$pristine}">
 						<label class="control-label col-xs-2">Email</label>
 						<div class="col-xs-2">
-							<input name="email" type="email" class="form-control input input-sm" ng-model="contact.email" placeholder="Email" required>
+							<input name="email" type="email" autocomplete="off" class="form-control input input-sm" ng-model="contact.email" placeholder="Email" required>
 							<div class="errorMessage" ng-messages="contactsForm.email.$error" role="alert" ng-show="!contactsForm.email.$pristine">
 								<div ng-message="required">This field cannot be empty</div>
 								<div ng-message="email">Enter a valid email</div>
@@ -84,7 +84,7 @@
 					<div ng-class="{'has-error':contactsForm.phoneNumber.$invalid && !contactsForm.phoneNumber.$pristine}">
 						<label class="control-label col-xs-2">Contact no.</label>
 						<div class="col-xs-2">
-							<input name="phoneNumber" type="text" class="form-control input input-sm" ng-model="contact.phoneNumber" placeholder="Contact no." required
+							<input name="phoneNumber" type="text" autocomplete="off" class="form-control input input-sm" ng-model="contact.phoneNumber" placeholder="Contact no." required
 							ng-pattern="/^[0-9]*$/" ng-minlength="10" ng-maxlength="10">
 
 							<div class="errorMessage" ng-messages="contactsForm.phoneNumber.$error" role="alert" ng-show="!contactsForm.phoneNumber.$pristine">
@@ -107,52 +107,7 @@
 
 			</form>
 
-			<!--<form name="changePasswordForm" class="form-horizontal" novalidate>-->
 
-				<!--<div class="form-group" ng-class="{'has-error':changePasswordForm.oldPassword.$invalid && !changePasswordForm.oldPassword.$pristine}">-->
-					<!--<label class="control-label col-xs-2">Old Password</label>-->
-					<!--<div class="col-xs-10">-->
-						<!--<input name="oldPassword" id="oldPassword" type="password" class="form-control input input-sm" ng-model="password.oldPassword" placeholder="Old Password" required>-->
-
-						<!--<div class="errorMessage" ng-messages="changePasswordForm.oldPassword.$error" role="alert" ng-show="!changePasswordForm.oldPassword.$pristine">-->
-							<!--<div ng-message="required">This field cannot be empty</div>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-
-
-				<!--<div class="form-group" ng-class="{'has-error':changePasswordForm.newPassword.$invalid && !changePasswordForm.newPassword.$pristine}">-->
-					<!--<label class="control-label col-xs-2">New Password</label>-->
-					<!--<div class="col-xs-10">-->
-						<!--<input name="newPassword" id="newPassword" type="password" class="form-control input input-sm" ng-model="password.newPassword" placeholder="New Password" ng-minlength="6" required>-->
-
-						<!--<div class="errorMessage" ng-messages="changePasswordForm.newPassword.$error" role="alert" ng-show="!changePasswordForm.newPassword.$pristine">-->
-							<!--<div ng-message="required">This field cannot be empty</div>-->
-							<!--<div ng-message="minlength">Password has to be atleast 6 characters long</div>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-
-				<!--<div class="form-group" ng-class="{'has-error':changePasswordForm.confirmPassword.$invalid && !changePasswordForm.confirmPassword.$pristine && (changePasswordForm.newPassword != changePasswordForm.confirmPassword)}">-->
-					<!--<label class="control-label col-xs-2">Confirm Password</label>-->
-					<!--<div class="col-xs-10">-->
-						<!--<input name="confirmPassword" id="confirmPassword" type="password" class="form-control input input-sm" ng-model="confirmPassword" placeholder="Confirm Password" required -->
-						<!--ui-validate="'$value==password.newPassword'" ui-validate-watch=" 'password.newPassword'">-->
-
-						<!--<div class="errorMessage" ng-messages="changePasswordForm.confirmPassword.$error" role="alert" ng-show="!changePasswordForm.confirmPassword.$pristine">-->
-							<!--<div ng-message="required">This field cannot be empty</div>-->
-							<!--<div ng-message="validator">Password does not match</div>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-
-				<!--<div class="form-group">-->
-					<!--<div class="col-xs-offset-2 col-xs-10">-->
-						<!--<button type="button" ng-click="clearForm()" class="btn btn-sm btn-default">Clear</button>-->
-						<!--<button type="button" ng-click="changePasswordSubmit()" class="btn btn-sm btn-primary">Change Password</button>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</form>-->
 		</div>
 	</div>
 </div>

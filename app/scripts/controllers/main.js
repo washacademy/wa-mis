@@ -157,16 +157,7 @@
 				}
 			});
 
-			// $scope.hovered = function () {
-			// 	$scope.ondropdown = true;
-			// 	$scope.show = !$scope.show;
-			// }
-			// $scope.ondropdownfn = function () {
-			// 	$scope.ondropdown = false;
-			// }
-			// $scope.removed = function () {
-			// 	$scope.show = false;
-			// }
+
 			$window.addEventListener('click', function() {
 				localStorage.setItem('lastEventTime', new Date().getTime());
 				if($scope.show&&!$scope.ondropdown){

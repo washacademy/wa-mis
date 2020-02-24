@@ -9,7 +9,7 @@
 			<div class="form-group" ng-class="{'has-error':editUserForm.fullName.$invalid && !editUserForm.fullName.$pristine}">
 				<label class="control-label col-xs-2">Full Name</label>
 				<div class="col-xs-10">
-					<input name="fullName" id="fullName" type="text" class="form-control input input-sm" placeholder="Name" ng-model="editUser.fullName" required 
+					<input name="fullName" id="fullName" type="text" autocomplete="off"  class="form-control input input-sm" placeholder="Name" ng-model="editUser.fullName" required
 					ng-pattern="/^[A-Za-z ]*$/" ng-minlength="3">
 
 					<div class="errorMessage" ng-messages="editUserForm.fullName.$error" role="alert" ng-show="!editUserForm.fullName.$pristine">
@@ -22,7 +22,7 @@
 			<div class="form-group" ng-class="{'has-error':editUserForm.username.$invalid && !editUserForm.username.$pristine}">
 				<label class="control-label col-xs-2">Username</label>
 				<div class="col-xs-10">
-					<input name="username" type="text" class="form-control input input-sm" placeholder="Username" ng-model="editUser.username" ng-disabled="true">
+					<input name="username" type="text" autocomplete="off" class="form-control input input-sm" placeholder="Username" ng-model="editUser.username" ng-disabled="true">
 				</div>
 			</div>
 
@@ -79,7 +79,7 @@
 			<div class="form-group" ng-class="{'has-error':editUserForm.emailId.$invalid && !editUserForm.emailId.$pristine}">
 				<label class="control-label col-xs-2">Email Id</label>
 				<div class="col-xs-10">
-					<input name="emailId" id="emailId" type="email" class="form-control input input-sm" ng-model="editUser.emailId" placeholder="Email" required>
+					<input name="emailId" id="emailId" type="email" autocomplete="off" class="form-control input input-sm" ng-model="editUser.emailId" placeholder="Email" required>
 
 					<div class="errorMessage" ng-messages="editUserForm.emailId.$error" role="alert" ng-show="!editUserForm.emailId.$pristine">
 						<div ng-message="required">This field cannot be empty</div>
@@ -91,7 +91,7 @@
 			<div class="form-group" ng-class="{'has-error':editUserForm.phoneNumber.$invalid && !editUserForm.phoneNumber.$pristine}">
 				<label class="control-label col-xs-2">Contact no.</label>
 				<div class="col-xs-10">
-					<input name="phoneNumber" id="phoneNumber" type="text" class="form-control input input-sm" ng-model="editUser.phoneNumber" placeholder="Contact no." required
+					<input name="phoneNumber" id="phoneNumber" autocomplete="off" type="text" class="form-control input input-sm" ng-model="editUser.phoneNumber" placeholder="Contact no." required
 					ng-pattern="/^[0-9]*$/" ng-minlength="10" ng-maxlength="10">
 
 					<div class="errorMessage" ng-messages="editUserForm.phoneNumber.$error" role="alert" ng-show="!editUserForm.phoneNumber.$pristine">
@@ -103,24 +103,8 @@
 				</div>
 
 			</div>
-<!-- 
-			<div class="form-group" ng-class="{'has-error':editUserForm.newPassword.$invalid && !editUserForm.newPassword.$pristine}">
-				<label class="control-label col-xs-2">New Password</label>
-				<div class="col-xs-10">
-					<input name="newPassword" id="newPassword" type="password" class="form-control input input-sm" ng-model="editUser.newPassword" placeholder="New Password" required
-					tooltip-placement="top" uib-tooltip="Errors: {{editUserForm.newPassword.$error|json}}">
-				</div>
-			</div>
 
-			<div class="form-group" ng-class="{'has-error':editUserForm.confirmPassword.$invalid && !editUserForm.confirmPassword.$pristine && (editUserForm.newPassword != editUserForm.confirmPassword)}">
-				<label class="control-label col-xs-2">Confirm Password</label>
-				<div class="col-xs-10">
-					<input name="confirmPassword" id="confirmPassword" type="password" class="form-control input input-sm" ng-model="confirmPassword" placeholder="Confirm Password" required 
-					ui-validate="'$value==editUser.newPassword'" ui-validate-watch=" 'newPassword'"
-					tooltip-placement="top" uib-tooltip="Errors: {{editUserForm.confirmPassword.$error|json}}">
-				</div>
-			</div>
- -->		<hr>
+ 			<hr>
  			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
 					<button type="button" class="btn btn-sm btn-default" ui-sref="userManagement.userTable">Cancel</button>
@@ -130,32 +114,8 @@
 				</div>
 			</div>
 
-
-
-			<!--<div class="form-group">-->
-				<!--<div class="col-xs-offset-2 col-xs-10">-->
-
-				<!--</div>-->
-			<!--</div>-->
-
 		</form>
-<!-- 
-		<div>
-			<script type="text/ng-template" id="myModalContent.html">
-				<div class="modal-header">
-					<h3>I'm a modal!</h3>
-				</div>
-				<div class="modal-body">
 
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-				</div>
-			</script>
-
-			<button class="btn" ng-click="open()">Open me!</button>
-		</div>
- -->
 	</div>
 	
 </div>

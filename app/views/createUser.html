@@ -9,7 +9,7 @@
 			<div class="form-group" ng-class="{'has-error':createUserForm.fullName.$invalid && !createUserForm.fullName.$pristine}">
 				<label class="control-label col-xs-2">Full Name</label>
 				<div class="col-xs-10">
-					<input name="fullName" id="fullName" type="text" class="form-control input input-sm" placeholder="Full Name" ng-model="newUser.fullName" required 
+					<input name="fullName" id="fullName" type="text" autocomplete="off" class="form-control input input-sm" placeholder="Full Name" ng-model="newUser.fullName" required
 					ng-pattern="/^[A-Za-z ]*$/" ng-minlength="3">
 
 					<div class="errorMessage" ng-messages="createUserForm.fullName.$error" role="alert" ng-show="!createUserForm.fullName.$pristine">
@@ -23,7 +23,7 @@
 			<div class="form-group" ng-class="{'has-error':createUserForm.username.$invalid && !createUserForm.username.$pristine}">
 				<label class="control-label col-xs-2">Username</label>
 				<div class="col-xs-10">
-					<input name="username" id="username" type="text" class="form-control input input-sm" placeholder="Username" ng-model="newUser.username" required 
+					<input name="username" id="username" type="text" autocomplete="off" class="form-control input input-sm" placeholder="Username" ng-model="newUser.username" required
 					ng-pattern="/^[A-Za-z0-9]*$/" ng-minlength="5">
 
 					<div class="errorMessage" ng-messages="createUserForm.username.$error" role="alert" ng-show="!createUserForm.username.$pristine">
@@ -91,7 +91,7 @@
 			<div class="form-group" ng-class="{'has-error':createUserForm.emailId.$invalid && !createUserForm.emailId.$pristine}">
 				<label class="control-label col-xs-2">Email</label>
 				<div class="col-xs-10">
-					<input name="emailId" id="emailId" type="email" class="form-control input input-sm" class="form-control input input-sm" ng-model="newUser.emailId" placeholder="Email" required>
+					<input name="emailId" id="emailId" type="email" autocomplete="off" class="form-control input input-sm" class="form-control input input-sm" ng-model="newUser.emailId" placeholder="Email" required>
 
 					<div class="errorMessage" ng-messages="createUserForm.emailId.$error" role="alert" ng-show="!createUserForm.emailId.$pristine">
 						<div ng-message="required">This field cannot be empty</div>
@@ -103,7 +103,7 @@
 			<div class="form-group" ng-class="{'has-error':createUserForm.phoneNumber.$invalid && !createUserForm.phoneNumber.$pristine}">
 				<label class="control-label col-xs-2">Contact no.</label>
 				<div class="col-xs-10">
-					<input name="phoneNumber" id="phoneNumber" type="text" class="form-control input input-sm" ng-model="newUser.phoneNumber" placeholder="Contact no." required
+					<input name="phoneNumber" id="phoneNumber" type="text" autocomplete="off" class="form-control input input-sm" ng-model="newUser.phoneNumber" placeholder="Contact no." required
 					ng-pattern="/^[0-9]*$/" ng-minlength="10" ng-maxlength="10">
 
 					<div class="errorMessage" ng-messages="createUserForm.phoneNumber.$error" role="alert" ng-show="!createUserForm.phoneNumber.$pristine">
@@ -116,38 +116,13 @@
 
 			</div>
 			<hr>
-<!-- 
-			<div class="form-group" ng-class="{'has-error':createUserForm.newPassword.$invalid && !createUserForm.newPassword.$pristine}">
-				<label class="control-label col-xs-2">New Password</label>
-				<div class="col-xs-10">
-					<input name="newPassword" id="newPassword" type="password" class="form-control input input-sm" ng-model="newUser.newPassword" placeholder="New Password" required
-					tooltip-placement="top" uib-tooltip="Errors: {{createUserForm.newPassword.$error|json}}">
-				</div>
-			</div>
 
-			<div class="form-group" ng-class="{'has-error':createUserForm.confirmPassword.$invalid && !createUserForm.confirmPassword.$pristine && (createUserForm.newPassword != createUserForm.confirmPassword)}">
-				<label class="control-label col-xs-2">Confirm Password</label>
-				<div class="col-xs-10">
-					<input name="confirmPassword" id="confirmPassword" type="password" class="form-control input input-sm" ng-model="confirmPassword" placeholder="Confirm Password" required 
-					ui-validate="'$value==newUser.newPassword'" ui-validate-watch=" 'newPassword'"
-					tooltip-placement="top" uib-tooltip="Errors: {{createUserForm.confirmPassword.$error|json}}">
-				</div>
-			</div>
- -->
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
 					<button  type="button" class="btn btn-sm btn-default" ui-sref="userManagement.userTable">Cancel</button>
 					<button  type="button" ng-click="createUserSubmit()" class="btn btn-sm btn-primary">Create New User</button>
 				</div>
 			</div>
-<!-- 
-			<div class="form-group">
-				<div class="col-xs-offset-2 col-xs-10">
-					<button class="btn btn-sm btn-default" ui-sref="userManagement.userTable">Cancel</button>
-					<button ng-click="editUserSubmit()" class="btn btn-sm btn-primary">Update User</button>
-				</div>
-			</div>
- -->
 
 		</form>
 	</div>
