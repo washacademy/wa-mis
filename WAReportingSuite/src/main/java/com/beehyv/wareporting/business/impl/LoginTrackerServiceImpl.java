@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service("loginTrackerService")
 @Transactional
 public class LoginTrackerServiceImpl implements LoginTrackerService{
@@ -17,5 +19,10 @@ public class LoginTrackerServiceImpl implements LoginTrackerService{
     @Override
     public void saveLoginDetails(LoginTracker loginTracker) {
         loginTrackerDao.saveLoginDetails(loginTracker);
+    }
+
+    @Override
+    public Date getLastLoginTime(Integer userId) {
+        return loginTrackerDao.getLastLoginTime(userId);
     }
 }

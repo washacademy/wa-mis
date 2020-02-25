@@ -60,6 +60,9 @@ public interface UserService {
 
     void TrackModifications(User oldUser, User newUser);
 
+    void setUnSuccessfulAttemptsCount(Integer userId, Integer unSuccessfulCount);
+
+
 //    Map<Integer, String> forgotPasswordCredentialChecker(ForgotPasswordDto forgotPasswordDto);
 
 

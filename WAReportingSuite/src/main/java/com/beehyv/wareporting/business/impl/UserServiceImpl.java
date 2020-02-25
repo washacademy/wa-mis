@@ -849,5 +849,19 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    @Override
+    public void setUnSuccessfulAttemptsCount(Integer userId, Integer unSuccessfulCount) {
+        User user = userDao.findByUserId(userId);
+        if (unSuccessfulCount  == null) {
+            if (user.getUnSuccessfulAttempts() == null) {
+                user.setUnSuccessfulAttempts(0);
+            }
+
+            user.setUnSuccessfulAttempts(user.getUnSuccessfulAttempts() + 1);
+        } else {
+            user.setUnSuccessfulAttempts(unSuccessfulCount);
+        }
+
+    }
 
 }
