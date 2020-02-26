@@ -94,7 +94,7 @@
                 },
 
 				showAlert2 : function (message) {
-					let confirmAlert = $mdDialog.show(
+					var confirmAlert = $mdDialog.show(
 						$mdDialog.alert()
 							.parent(angular.element(document.querySelector('#popupContainer')))
 							//.clickOutsideToClose(true)

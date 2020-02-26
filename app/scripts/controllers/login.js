@@ -96,7 +96,7 @@
                 var captchaId = captcha.captchaId;
 
                 // captcha code input value for validating captcha at server-side
-                var captchaCode = angular.uppercase($scope.user.captchaCode);
+                var captchaCode = ($scope.user.captchaCode).toUpperCase();
 
                 var postData = {
                   captchaId: captchaId,
