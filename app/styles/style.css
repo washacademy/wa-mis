@@ -498,7 +498,7 @@ div.footer{
 
 .btn-info, 
 .btn-success,
-.btn-danger,{
+.btn-danger{
 	display: none;
 }
 
@@ -638,7 +638,7 @@ color: white !important;
 }
 
 .md-button.md-default-theme.md-primary, .md-button.md-primary{
-    background-color:##2164b2 !important;
+    background-color:#2164b2 !important;
 }
 
 md-dialog{
@@ -761,6 +761,7 @@ md-dialog{
 #submitRow{
     height : 68px !important;
 }
+.offline{display:block;background-color:#ff3f00;color:white;text-align:center;font-size:large;}
 
 
 

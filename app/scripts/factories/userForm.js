@@ -31,6 +31,9 @@
 				getRoles: function() {
 					return $http.get(backend_root + 'wa/user/roles');
 				},
+				logoutUser: function(){
+					return $http.get(backend_root + 'wa/logout');
+				},
 
 				downloadUsers: function(id){
 					return $http.get(backend_root + 'wa/user/list');
