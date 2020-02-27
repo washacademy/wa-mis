@@ -38,7 +38,7 @@
 			$scope.hideMessageMatrix = true;
 			$scope.showEmptyData = false;
 			$scope.content = "There is no data available for the selected inputs";
-			$scope.periodType = ['Year','Month','Quarter', 'Custom Range'];
+			$scope.periodType = ['Year','Financial Year','Month','Quarter', 'Custom Range'];
 			$scope.quarterType = ['Q1 (Jan to Mar)','Q2 (Apr to Jun)','Q3 (Jul to Sep)', 'Q4 (Oct to Dec)'];
 			$scope.periodDisplayType = "";
 			$scope.dataPickermode = "";
@@ -166,6 +166,18 @@
                     $scope.datePickerOptions.minMode = 'year';
                     $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
                 }
+				if($scope.periodDisplayType == 'Financial Year'){
+					$scope.periodTypeContent = "Select Start Year";
+					$scope.dateFormat = "yyyy";
+					$scope.datePickerOptions.minMode = '';
+					$scope.datePickerOptions.datepickerMode = 'year';
+					$scope.datePickerOptions.minMode = 'year';
+					if(new Date().getMonth()>3){
+						$scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear());
+					}else{
+						$scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
+					}
+				}
                 if($scope.periodDisplayType == 'Month'){
                     $scope.periodTypeContent = "Select Month";
                     $scope.dateFormat = "yyyy-MM";
@@ -241,7 +253,7 @@
                 	$scope.selectCircle($scope.circles[0]);
                 }
                 else
-                    $scope.periodType = ['Year','Month','Quarter', 'Custom Range'];
+                    $scope.periodType = ['Year','Financial Year','Month','Quarter', 'Custom Range'];
                 if(angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) {
                 	$scope.datePickerContent = "Select Week";
                 }
@@ -752,6 +764,32 @@
                          reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
                          reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),11,31);
                     }
+					else if($scope.periodDisplayType == 'Financial Year'){
+
+						if($scope.dt1.date.getFullYear() == new Date().getFullYear() && $scope.currentDate.getMonth() >=3){
+							reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+							reportRequest.toDate = new Date($scope.dt1.date.getFullYear(),$scope.currentDate.getMonth() -1,$scope.currentPeriodDate);
+							reportRequest.periodType = 'CURRENT FINANCIAL YEAR';
+
+						}
+						else if($scope.dt1.date.getFullYear() == new Date().getFullYear()-1 && $scope.currentDate.getMonth() < 3) {
+							reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+							reportRequest.toDate = new Date($scope.dt1.date.getFullYear()+1,$scope.currentDate.getMonth() -1,$scope.currentPeriodDate);
+							reportRequest.periodType = 'CURRENT FINANCIAL YEAR';
+
+						}
+						else{
+							reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),3,1);
+							reportRequest.toDate = new Date($scope.dt1.date.getFullYear()+1,2,31);
+						}
+
+						dateString = reportRequest.fromDate.getDate() + "_" + (reportRequest.fromDate.getMonth() + 1 ) + "_" + reportRequest.fromDate.getFullYear() + "to" + reportRequest.toDate.getDate() + "_" +  ( reportRequest.toDate.getMonth() + 1 ) +
+							"_" + reportRequest.toDate.getFullYear();
+						excelHeaderName.timePeriod = reportRequest.fromDate.getDate() + "-" + (reportRequest.fromDate.getMonth() + 1 ) + "-" + reportRequest.fromDate.getFullYear() + " to " + reportRequest.toDate.getDate() + "-" +  ( reportRequest.toDate.getMonth() + 1 ) +
+							"-" + reportRequest.toDate.getFullYear();
+						toDateVal = reportRequest.toDate;
+
+					}
 
                     else if($scope.periodDisplayType == 'Month' ){
                             reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),$scope.dt1.date.getMonth(),1);
