@@ -89,6 +89,19 @@
                     );
                 },
 
+				showAlert2 : function (message) {
+					var confirmAlert = $mdDialog.show(
+						$mdDialog.alert()
+							.parent(angular.element(document.querySelector('#popupContainer')))
+							//.clickOutsideToClose(true)
+							.title('Session Timeout')
+							.textContent(message)
+							.ariaLabel('Alert Dialog Demo')
+							.ok('OK')
+					);
+					return confirmAlert;
+				},
+
                 isInternetExplorer : function(){
                     if(deviceDetector.browser == "ie" && (deviceDetector.browser_version = "10.0"))
                      return true;

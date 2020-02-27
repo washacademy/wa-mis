@@ -1,8 +1,9 @@
  (function(){
 	var waReportsApp = angular
 		.module('waReports')
-		.controller("MainController", ['$scope', '$state', '$http', 'UserFormFactory','$rootScope', function($scope, $state, $http, UserFormFactory,$rootScope){
-			
+		.controller("MainController", ['$scope', '$state', '$http', 'UserFormFactory','$rootScope','$window', function($scope, $state, $http, UserFormFactory,$rootScope,$window){
+			$scope.logoutUrl = backend_root + "wa/logout";
+			$scope.ondropdown = false;
 			$scope.breadCrumbDict = {
 				'userManagement.userTable': [
 					{
@@ -86,6 +87,22 @@
 
             $scope.child = {};
 
+			$scope.checkLogin = function(){
+				return (($state.current.name=="login" || $state.current.name=="forgotPassword" || !$scope.currentUser));
+			};
+			$scope.checkProfile = function(){
+				return (($state.current.name=="profile" || $state.current.name=="changePassword" ));
+			};
+
+			UserFormFactory.downloadCurrentUser()
+				.then(function(result){
+					UserFormFactory.setCurrentUser(result.data);
+					$scope.currentUser = UserFormFactory.getCurrentUser();
+					window.localStorage.setItem('prev_userId', $scope.currentUser.userId);
+					console.log($scope.currentUser);
+				})
+
+
 			$scope.getBreadCrumb = function(state){
 				return $scope.breadCrumbDict[state];
 			}
@@ -139,20 +156,38 @@
 				}
 			});
 
+			$window.addEventListener('click', function() {
+				localStorage.setItem('lastEventTime', new Date().getTime());
+				if($scope.show&&!$scope.ondropdown){
+					$scope.removed();
+				}
+			});
+			$scope.$on('$userIdle', function () {
+				if(new Date().getTime()-localStorage.lastEventTime>1800000){
+					if ($scope.currentUser){
+						if(UserFormFactory.isInternetExplorer()){
+							alert("Sorry, Your Session timed out after a long time of inactivity. Please, login again");
+							$scope.goToLogout();
+							return;
+						}
+						else{
+							var a= UserFormFactory.showAlert2("Sorry, Your Session timed out after a long time of inactivity. Please, login in again");
+							a.then(function () {
+								$scope.goToLogout();
+								return;
+							});
 
-			// $scope.breadCrumb = ['User Management', 'Create User'];
-			UserFormFactory.downloadCurrentUser()
-			.then(function(result){
-				UserFormFactory.setCurrentUser(result.data);
-				$scope.currentUser = UserFormFactory.getCurrentUser();
-				console.log($scope.currentUser);
-			})
+						}
+					}}
 
-			$scope.logoutUrl = backend_root + "wa/logout";
-
-
+			});
 
 
 		}
-	])}
+ ])
+	 .config(function ($idleProvider, $keepaliveProvider) {
+		 $idleProvider.setIdleTime(1800);
+		 $idleProvider.setTimeoutTime(10);
+	 })
+ }
 )()

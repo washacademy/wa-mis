@@ -400,27 +400,27 @@
 
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
-			        var minDate = new Date(2016, 11, 01);
+			        var minDate = new Date(2016, 11, 1);
 			    }
                 else{
-                    var minDate = new Date(2015, 09, 01);
+                    var minDate = new Date(2015, 9, 1);
                 }
 				if($scope.report != null){
-					minDate = new Date(2015, 10, 01);
+					minDate = new Date(2015, 10, 1);
 				}
 				if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Inactive_Users'){
-                	minDate = new Date(2017, 04, 30);
+                	minDate = new Date(2017, 4, 30);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users'){
-                    minDate = new Date(2017, 04, 30);
+                    minDate = new Date(2017, 4, 30);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2017,2, 01);
+                    minDate = new Date(2017,2, 1);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
-                    minDate = new Date(2017,2, 01);
+                    minDate = new Date(2017,2, 1);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;

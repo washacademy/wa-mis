@@ -9,11 +9,12 @@
  * Main module of the application.
  */
 var waReportsApp = angular
-	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector'])
-	.run( ['$rootScope', '$state', '$stateParams','$window',
-		function ($rootScope, $state, $stateParams,$window) {
+	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector','$idle'])
+	.run( ['$rootScope', '$state', '$stateParams','$window','$idle',
+		function ($rootScope, $state, $stateParams,$window,$idle) {
 			$rootScope.$state = $state;
 			$rootScope.$stateParams = $stateParams;
+			$idle.watch();
 			$rootScope.online = navigator.onLine;
 			$window.addEventListener("offline", function() {
 				$rootScope.$apply(function() {
@@ -27,6 +28,31 @@ var waReportsApp = angular
 			}, false);
 		}
 	])
+	.factory('authorizationRole', ['$http', '$state',
+		function($http, $state) {
+			return {
+				authorize: function() {
+					return $http.post(backend_root + 'wa/user/isLoggedIn')
+						.then(function(result){
+							console.log("You are here")
+							if(!result.data){
+								$state.go('login', {});
+							}
+							else {
+								return $http.post(backend_root + 'wa/user/currentUser')
+									.then(function(result1){
+										if(result1.data.roleName == 'USER'){
+											$state.go('reports', {});
+										}
+									});
+
+							}
+						});
+				}
+			};
+		}
+	])
+
 	.config(function ($stateProvider, $urlRouterProvider, $httpProvider,captchaSettingsProvider) {
 		$stateProvider
 		
