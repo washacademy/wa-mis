@@ -32,6 +32,9 @@
 			if(error == null){
 				$scope.errorMessage = "";
 			}
+            else if (error === 'blocked'){
+                $scope.errorMessage = "3 unsuccessful attempts.Please try again in 24 hrs.";
+            }
 			else{
 				$scope.errorMessage = "Invalid Username/Password";
 			}

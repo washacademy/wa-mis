@@ -10,6 +10,7 @@ import com.beehyv.wareporting.enums.AccessType;
 import com.beehyv.wareporting.enums.AccountStatus;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.model.*;
+import com.beehyv.wareporting.utils.LoginUser;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,9 @@ import javax.transaction.Transactional;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.beehyv.wareporting.utils.CryptoService.decrypt;
+
 
 /**
  * Created by beehyv on 15/3/17.
@@ -626,7 +630,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Map<Integer, String> changePassword(PasswordDto passwordDto) {
+    public Map<Integer, String> changePassword(PasswordDto passwordDto) throws Exception {
 
         Integer rowNum = 0;
         Map<Integer, String> responseMap = new HashMap<>();
@@ -650,14 +654,16 @@ public class UserServiceImpl implements UserService{
             return responseMap;
         }
 
-        System.out.println(passwordDto.getNewPassword());
-        System.out.println(currentUser.getPassword());
-        if(!passwordEncoder.matches(passwordDto.getOldPassword(), currentUser.getPassword())){
+        String oldPassword  = decrypt(new LoginUser(passwordDto.getOldPassword()));
+        //String oldPassword  = decrypt(new LoginUser(passwordDto.getCipherTextHexOld(), passwordDto.getSaltHexOld()));
+        if(!passwordEncoder.matches(oldPassword, currentUser.getPassword())){
             String authorityError = "Current Password is incorrect";
             responseMap.put(rowNum, authorityError);
             return responseMap;
         }
-        currentUser.setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
+        String newPassword = decrypt(new LoginUser(passwordDto.getNewPassword()));
+        //String newPassword  = decrypt(new LoginUser(passwordDto.getCipherTextHexNew(), passwordDto.getSaltHexNew()));
+        currentUser.setPassword(passwordEncoder.encode(newPassword));
         currentUser.setDefault(false);
         String success="Password changed successfully";
         responseMap.put(rowNum, success);
@@ -836,6 +842,21 @@ public class UserServiceImpl implements UserService{
             modificationTracker.setNewValue(newUser.getAccessLevel());
             modificationTracker.setPreviousValue(oldUser.getAccessLevel());
             modificationTrackerDao.saveModification(modificationTracker);
+        }
+
+    }
+
+    @Override
+    public void setUnSuccessfulAttemptsCount(Integer userId, Integer unSuccessfulCount) {
+        User user = userDao.findByUserId(userId);
+        if (unSuccessfulCount  == null) {
+            if (user.getUnSuccessfulAttempts() == null) {
+                user.setUnSuccessfulAttempts(0);
+            }
+
+            user.setUnSuccessfulAttempts(user.getUnSuccessfulAttempts() + 1);
+        } else {
+            user.setUnSuccessfulAttempts(unSuccessfulCount);
         }
 
     }

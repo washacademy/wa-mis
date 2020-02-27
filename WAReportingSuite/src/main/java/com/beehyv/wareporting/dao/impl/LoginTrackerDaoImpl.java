@@ -4,6 +4,8 @@ import com.beehyv.wareporting.dao.AbstractDao;
 import com.beehyv.wareporting.dao.LoginTrackerDao;
 import com.beehyv.wareporting.model.LoginTracker;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +45,13 @@ public class LoginTrackerDaoImpl extends AbstractDao<Integer, LoginTracker> impl
 
         return criteria.list();
     }
-
+    @Override
+    public Date  getLastLoginTime(Integer userId) {
+        Criteria criteria = createEntityCriteria();
+        ProjectionList projList = Projections.projectionList();
+        criteria.add(Restrictions.eq("userId", userId));
+        projList.add(Projections.max("loginTime"));
+        criteria.setProjection(projList);
+        return (Date) criteria.uniqueResult();
+    }
 }

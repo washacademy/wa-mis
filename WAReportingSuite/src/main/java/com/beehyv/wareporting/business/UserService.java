@@ -52,7 +52,7 @@ public interface UserService {
 
     String createMaster();
 
-    Map<Integer, String> changePassword(PasswordDto changePasswordDTO);
+    Map<Integer, String> changePassword(PasswordDto changePasswordDTO) throws Exception;
 
     Role getRoleById(Integer roleId);
 
@@ -60,5 +60,6 @@ public interface UserService {
 
     Map<Integer, String> forgotPasswordCredentialChecker(ForgotPasswordDto forgotPasswordDto);
 
+    void setUnSuccessfulAttemptsCount(Integer userId, Integer unSuccessfulCount);
 
 }

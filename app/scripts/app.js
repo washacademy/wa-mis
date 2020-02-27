@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 var waReportsApp = angular
-	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector','$idle'])
+	.module('waReports', ['ui.bootstrap', 'ui.validate', 'ngMessages','ngAnimate','ui.router', 'ui.grid', 'ui.grid.exporter','ngMaterial', 'BotDetectCaptcha','ng.deviceDetector','$idle','mdo-angular-cryptography'])
 	.run( ['$rootScope', '$state', '$stateParams','$window','$idle',
 		function ($rootScope, $state, $stateParams,$window,$idle) {
 			$rootScope.$state = $state;
@@ -26,6 +26,21 @@ var waReportsApp = angular
 					$rootScope.online = true;
 				});
 			}, false);
+		}
+	])
+	.factory('authorization', ['$http', '$state',
+		function($http, $state) {
+			return {
+				authorize: function() {
+					return $http.post(backend_root + 'wa/user/isLoggedIn')
+						.then(function(result){
+							console.log("You are here")
+							if(!result.data){
+								$state.go('login', {});
+							}
+						});
+				}
+			};
 		}
 	])
 	.factory('authorizationRole', ['$http', '$state',
@@ -60,47 +75,87 @@ var waReportsApp = angular
 				url: '/userManagement',
 				abstract: true,
 				templateUrl: 'views/userManagement.html',
+				resolve : {
+					user : function (authorizationRole) {
+						return authorizationRole.authorize();
+					}
+				}
 			})
 			.state('userManagement.userTable', {
 				url: '',
-				templateUrl: 'views/userTable.html'
+				templateUrl: 'views/userTable.html',
+				resolve : {
+					user : function (authorizationRole) {
+						return authorizationRole.authorize();
+					}
+				}
 			})
 			.state('userManagement.bulkUpload', {
 				url: '/bulkUpload',
-				templateUrl: 'views/bulkUser.html'
+				templateUrl: 'views/bulkUser.html',
+				resolve : {
+					user : function (authorizationRole) {
+						return authorizationRole.authorize();
+					}
+				}
 			})
 			.state('userManagement.createUser', {
 				url: '/create',
-				templateUrl: 'views/createUser.html'
+				templateUrl: 'views/createUser.html',
+				resolve : {
+					user : function (authorizationRole) {
+						return authorizationRole.authorize();
+					}
+				}
 			})
 			.state('userManagement.editUser', {
 				url: '/edit/{id}',
-				templateUrl: 'views/editUser.html'
+				templateUrl: 'views/editUser.html',
+				resolve : {
+					user : function (authorizationRole) {
+						return authorizationRole.authorize();
+					}
+				}
 			})
 
 			.state('login', {
 				url: '/login',
-				templateUrl: 'views/login.html',
+				templateUrl: 'views/login.html'
 			})
 
 			.state('reports', {
 				url: '/reports',
 				templateUrl: 'views/reports.html',
+				resolve : {
+					user : function ( authorization) {
+						return authorization.authorize();
+					}
+				}
 			})
 			
 			.state('profile', {
 				url: '/profile',
 				templateUrl: 'views/profile.html',
+				resolve : {
+					user : function ( authorization) {
+						return authorization.authorize();
+					}
+				}
 			})
 
 			.state('forgotPassword', {
             	url: '/forgotPassword',
-            	templateUrl: 'views/forgotPassword.html',
+            	templateUrl: 'views/forgotPassword.html'
             })
 
             .state('changePassword', {
                 url: '/changePassword',
                 templateUrl: 'views/changePassword.html',
+				resolve : {
+					user : function ( authorization) {
+						return authorization.authorize();
+					}
+				}
             })
 		$urlRouterProvider
 			.otherwise('/login')
@@ -114,4 +169,7 @@ var waReportsApp = angular
 		$httpProvider.defaults.headers.post = {};
 		$httpProvider.defaults.headers.put = {};
 		$httpProvider.defaults.headers.patch = {};
-	});
+	})
+	.config(['$cryptoProvider', function($cryptoProvider) {
+		$cryptoProvider.setCryptographyKey('ABCD123');
+	}]);

@@ -94,6 +94,12 @@ public class User {
 	@Column(name = "isPasswordDefault", columnDefinition = "BIT(1)")
 	private Boolean isDefault;
 
+	private Integer unSuccessfulAttempts = 0;
+
+	public Integer getUnSuccessfulAttempts() { return unSuccessfulAttempts;	}
+
+	public void setUnSuccessfulAttempts(Integer unSuccessfulAttempts) {	this.unSuccessfulAttempts = unSuccessfulAttempts;	}
+
 	public Integer getUserId() {
 		return userId;
 	}

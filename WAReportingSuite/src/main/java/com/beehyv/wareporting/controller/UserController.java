@@ -279,20 +279,22 @@ public class UserController {
 
     @RequestMapping(value = {"/resetPassword"}, method = RequestMethod.POST)
     @ResponseBody
-    public Map resetPassword(@RequestBody PasswordDto passwordDto) {
-
-        User user = userService.findUserByUserId(passwordDto.getUserId());
-        Map<Integer, String> map = userService.changePassword(passwordDto);
-        if (map.get(0).equals("Password changed successfully")) {
-            ModificationTracker modification = new ModificationTracker();
-            modification.setModificationDate(new Date(System.currentTimeMillis()));
-            modification.setModificationType(ModificationType.UPDATE.getModificationType());
-            modification.setModifiedUserId(passwordDto.getUserId());
-            modification.setModifiedField("password");
-            modification.setModifiedByUserId(userService.getCurrentUser().getUserId());
-            modificationTrackerService.saveModification(modification);
-        }
-        return map;
+    public Map resetPassword(@RequestBody PasswordDto passwordDto) throws Exception {
+        User currentUser = userService.getCurrentUser();
+        if(currentUser != null){
+            Map<Integer, String >map=  userService.changePassword(passwordDto);
+            if(map.get(0).equals("Password changed successfully")){
+                ModificationTracker modification = new ModificationTracker();
+                modification.setModificationDate(new Date(System.currentTimeMillis()));
+                modification.setModificationType(ModificationType.UPDATE.getModificationType());
+                modification.setModifiedUserId(passwordDto.getUserId());
+                modification.setModifiedField("password");
+                modification.setModifiedByUserId(userService.getCurrentUser().getUserId());
+                modificationTrackerService.saveModification(modification);
+            }
+            return map;
+        } else
+            return null;
     }
 
 

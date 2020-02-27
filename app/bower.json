@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.6.7",
+    "angular": "1.7.3",
     "angular-bootstrap": "^2.5.0",
     "angular-messages": "^1.6.3",
     "angular-ui-router": "0.4.2",
@@ -17,6 +17,8 @@
     "angular-material": "^1.1.5",
     "angularjs-captcha": "1.2.0",
     "ng-device-detector": "^4.0.3",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angularjs-crypto": "^1.4.0",
+    "angular-cryptography": "^1.0.1"
   }
 }
