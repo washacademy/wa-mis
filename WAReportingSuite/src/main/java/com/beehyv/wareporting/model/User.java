@@ -4,6 +4,7 @@ import com.beehyv.wareporting.enums.AccountStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Entity
@@ -15,12 +16,14 @@ public class User {
 	private Integer userId;
 
 	@Column(name="username", columnDefinition = "VARCHAR(25)")
+	@Pattern(regexp="[A-Za-z0-9]+")
 	private String username;
 
 	@Column(name="password", columnDefinition = "VARCHAR(255)")
 	private String password;
 
 	@Column(name="full_name", columnDefinition = "VARCHAR(255)")
+	@Pattern(regexp="[A-Za-z ]+")
 	private String fullName;
 
 	@Column(name="phone_no", columnDefinition = "BIGINT(20)")

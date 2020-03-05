@@ -167,9 +167,9 @@ public class UserServiceImpl implements UserService{
             responseMap.put(rowNum, userNameError);
             return responseMap;
         }
-        String EWAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(EWAIL_PATTERN);
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(user.getEmailId());
         if (!matcher.matches()){
             String userNameError = "Please enter the valid Email for user";
@@ -366,9 +366,9 @@ public class UserServiceImpl implements UserService{
             responseMap.put(rowNum, userNameError);
             return responseMap;
         }
-        String EWAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(EWAIL_PATTERN);
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(emailId);
         if (!matcher.matches()){
             String userNameError = "Please enter the valid Email for user";
@@ -433,9 +433,9 @@ public class UserServiceImpl implements UserService{
             responseMap.put(rowNum, userNameError);
             return responseMap;
         }
-        String EWAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(EWAIL_PATTERN);
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(user.getEmailId());
         if (!matcher.matches()){
             String userNameError = "Please enter the valid Email for user";

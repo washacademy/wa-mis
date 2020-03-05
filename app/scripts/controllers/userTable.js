@@ -89,8 +89,8 @@
 				var districts = [];
 				var users = UserTableFactory.getAllUsers();
 				for(var i=0;i<users.length;i++){
-					if((angular.lowercase(users[i].state).indexOf(angular.lowercase($scope.stateName) > -1 ||''))&&
-					(angular.lowercase(users[i].block).indexOf(angular.lowercase($scope.blockName) > -1 ||''))&&
+					if((((users[i].state).toLowerCase()).indexOf(($scope.stateName).toLowerCase() > -1 ||''))&&
+					(((users[i].block).toLowerCase).indexOf(($scope.blockName).toLowerCase() > -1 ||''))&&
 					((users[i].district!="")&&(districts.indexOf(users[i].district)==-1))) {
 						districts.push(users[i].district);
 					}
@@ -105,8 +105,8 @@
 				var blocks = [];
 				var users = UserTableFactory.getAllUsers();
 				for(var i=0;i<users.length;i++){
-					if((angular.lowercase(users[i].state).indexOf(angular.lowercase($scope.stateName) > -1 ||'')) &&
-					(angular.lowercase(users[i].district).indexOf(angular.lowercase($scope.districtName) > -1 ||''))&&
+					if((((users[i].state).toLowerCase()).indexOf(($scope.stateName).toLowerCase() > -1 ||'')) &&
+					(((users[i].district).toLowerCase()).indexOf(($scope.districtName).toLowerCase() > -1 ||''))&&
 					((users[i].block!="")&&(blocks.indexOf(users[i].block)==-1))) {
 						blocks.push(users[i].block);
 					}
@@ -163,19 +163,19 @@
 			    {
 			        row.block = "";
 			    }
-				return (angular.lowercase(row.name).indexOf(angular.lowercase($scope.filterText) || '') > -1 ||
-						angular.lowercase(row.username).indexOf(angular.lowercase($scope.filterText) || '') > -1 ||
-						angular.lowercase(row.phoneNumber).indexOf(angular.lowercase($scope.filterText)  || '')> -1 ||
-						angular.lowercase(row.email).indexOf(angular.lowercase($scope.filterText) || '')> -1  ||
-						angular.lowercase(row.accessLevel).indexOf(angular.lowercase($scope.filterText)  || '')> -1 ||
-						angular.lowercase(row.state).indexOf(angular.lowercase($scope.filterText)  || '')> -1 ||
-						angular.lowercase(row.district).indexOf(angular.lowercase($scope.filterText)  || '')> -1 ||
-						angular.lowercase(row.block).indexOf(angular.lowercase($scope.filterText) || '') > -1 ) &&(
-						angular.lowercase(row.accessType).indexOf(angular.lowercase($scope.accType)  ||'')> -1 )&&(
-						angular.lowercase(row.accessLevel).indexOf(angular.lowercase($scope.accLevel) ||'') > -1 )&&(
-						angular.lowercase(row.state).indexOf(angular.lowercase($scope.stateName)  ||'') > -1)&&(
-						angular.lowercase(row.district).indexOf(angular.lowercase($scope.districtName)  ||'')> -1 )&&(
-						angular.lowercase(row.block).indexOf(angular.lowercase($scope.blockName)  ||'')> -1
+				return (((row.name).toLowerCase()).indexOf(($scope.filterText).toLowerCase() || '') > -1 ||
+					((row.username).toLowerCase()).indexOf(($scope.filterText).toLowerCase() || '') > -1 ||
+					((row.phoneNumber).toLowerCase()).indexOf(($scope.filterText).toLowerCase()  || '')> -1 ||
+					((row.email).toLowerCase()).indexOf(($scope.filterText).toLowerCase() || '')> -1  ||
+					((row.accessLevel).toLowerCase()).indexOf(($scope.filterText).toLowerCase()  || '')> -1 ||
+					((row.state).toLowerCase()).indexOf(($scope.filterText).toLowerCase()  || '')> -1 ||
+					((row.district).toLowerCase()).indexOf(($scope.filterText).toLowerCase()  || '')> -1 ||
+					((row.block).toLowerCase()).indexOf(($scope.filterText).toLowerCase() || '') > -1 ) &&(
+					((row.accessType).toLowerCase()).indexOf(($scope.accType).toLowerCase()  ||'')> -1 )&&(
+					((row.accessLevel).toLowerCase()).indexOf(($scope.accLevel).toLowerCase() ||'') > -1 )&&(
+					((row.state).toLowerCase()).indexOf(($scope.stateName).toLowerCase()  ||'') > -1)&&(
+					((row.district).toLowerCase()).indexOf(($scope.districtName).toLowerCase()  ||'')> -1 )&&(
+					((row.block).toLowerCase()).indexOf(($scope.blockName).toLowerCase()  ||'')> -1
 						);
 			};
 			$scope.sorter = 'id';

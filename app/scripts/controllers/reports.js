@@ -254,7 +254,7 @@
                 }
                 else
                     $scope.periodType = ['Year','Financial Year','Month','Quarter', 'Custom Range'];
-                if(angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) {
+                if((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) {
                 	$scope.datePickerContent = "Select Week";
                 }
                 else
@@ -570,7 +570,7 @@
                  return;
                 }
                 $scope.format = 'yyyy-MM';
-			    if(($scope.report !=null) && (angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.dt.date != null) {
+			    if(($scope.report !=null) && ((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) && $scope.dt.date != null) {
 			    	 $scope.getSundays($scope.dt.date);
                      $scope.sundaysTable = true;
 			    	 $scope.popup1.opened = true;
@@ -729,7 +729,7 @@
                     }
 		    	}
 
-		    	if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && $scope.format == 'yyyy-MM'){
+		    	if(((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) && $scope.format == 'yyyy-MM'){
                     if(UserFormFactory.isInternetExplorer()){
                         alert("Please select a week")
                             return;
@@ -757,8 +757,9 @@
                 }
                 else
                 {
-
-                    reportRequest.periodType = $scope.periodDisplayType;
+					$scope.currentDate = new Date();
+					$scope.currentPeriodDate = new Date($scope.currentDate.getFullYear(), $scope.currentDate.getMonth(), 0).getDate();
+					reportRequest.periodType = $scope.periodDisplayType;
 
                     if($scope.periodDisplayType == 'Year' ){
                          reportRequest.fromDate = new Date($scope.dt1.date.getFullYear(),0,1);
@@ -872,15 +873,15 @@
 
                         if(!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'))
                         {
-					        if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'NATIONAL')
+					        if(($scope.lastBread($scope.reportBreadCrumbData)).toUpperCase() == 'NATIONAL')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'State';
                             }
-                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'STATE')
+                            else if(($scope.lastBread($scope.reportBreadCrumbData)).toUpperCase() == 'STATE')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'District';
                             }
-                            else if(angular.uppercase($scope.lastBread($scope.reportBreadCrumbData)) == 'DISTRICT')
+                            else if(($scope.lastBread($scope.reportBreadCrumbData)).toUpperCase() == 'DISTRICT')
                             {
                                 $scope.gridOptions1.columnDefs[1].displayName = 'Block';
                             }
@@ -1175,7 +1176,7 @@
 				var currentDate = new Date();
 
 				console.log(currentDate.getMonth() + " " + currentDate.getDate() + " " +currentDate.getFullYear());
-				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) ){
+				if(((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) ){
 				    if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2017 && $scope.getSundays(currentDate) > 0){
 				        $scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth());
 				    }
@@ -1197,7 +1198,7 @@
 
 				}
 
-				if((angular.lowercase($scope.report.name).indexOf(angular.lowercase("Rejected")) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
+				if(((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) && ($scope.format == 'yyyy-MM-dd' || $scope.format == 'yyyy-MM' )){
                     $scope.getSundays($scope.dt.date);
                     $scope.sundaysTable = true;
                 }
@@ -1423,7 +1424,7 @@
 
                 $scope.drillDownData = function(locationId,locationType,locationName){
 
-                  if(angular.lowercase(locationType) == "state"){
+                  if((locationType).toLowerCase() == "state"){
                     reportRequest.stateId = locationId;
                     reportRequest.districtId = 0;
                     reportRequest.blockId = 0;
@@ -1461,7 +1462,7 @@
 
                         })
                   }
-                  else if(angular.lowercase(locationType) == "national"){
+                  else if((locationType).toLowerCase() == "national"){
                        reportRequest.stateId = 0;
                        reportRequest.districtId = 0;
                        reportRequest.blockId = 0;
@@ -1498,7 +1499,7 @@
 
                            })
                      }
-                  else if(angular.lowercase(locationType) == "district"){
+                  else if((locationType).toLowerCase() == "district"){
                      reportRequest.districtId = locationId;
                      reportRequest.blockId = 0;
                      $scope.waiting = true;
@@ -1533,7 +1534,7 @@
 
                          })
                   }
-                  else if(angular.lowercase(locationType) == "block"){
+                  else if((locationType).toLowerCase() == "block"){
                     reportRequest.blockId = locationId;
                     $scope.waiting = true;
                     $http({
