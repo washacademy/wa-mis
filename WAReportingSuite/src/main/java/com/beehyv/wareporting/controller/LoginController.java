@@ -11,6 +11,7 @@ import com.captcha.botdetect.web.servlet.SimpleCaptcha;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import jdk.nashorn.internal.runtime.logging.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -20,10 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +32,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import static com.beehyv.wareporting.utils.CryptoService.decrypt;
 import static com.beehyv.wareporting.utils.Global.retrieveUiAddress;
 
 /**
@@ -57,8 +56,10 @@ public class LoginController extends HttpServlet{
         return "redirect:"+ retrieveUiAddress() +"login";
     }
 
+
+    @ResponseBody
     @RequestMapping(value={"/wa/login"}, method= RequestMethod.POST)
-    public String login(Model model, @ModelAttribute LoginUser loginUser, BindingResult errors) {
+    public String login(@RequestBody LoginUser loginUser, BindingResult errors,HttpServletResponse response) throws Exception {
 
         User user=userService.findUserByUsername(loginUser.getUsername());
 
@@ -89,7 +90,7 @@ public class LoginController extends HttpServlet{
                 return "redirect:" + retrieveUiAddress() + "login?error";
             }
             Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(loginUser.getUsername(), loginUser.getPassword(), loginUser.isRememberMe());
+            UsernamePasswordToken token = new UsernamePasswordToken(loginUser.getUsername(),decrypt(loginUser), loginUser.isRememberMe());
             try {
                 ensureUserIsLoggedOut();
                 subject.login(token);
@@ -106,6 +107,7 @@ public class LoginController extends HttpServlet{
                     return "redirect:"+ retrieveUiAddress() +"changePassword";
                 }
                 userService.setLoggedIn();
+                System.out.println("redircting to reports");
                 return "redirect:"+ retrieveUiAddress() +"reports";
             } catch (AuthenticationException e) {
                 errors.reject("error.login.generic", "Invalid username or password.  Please try again.");
@@ -154,7 +156,14 @@ public class LoginController extends HttpServlet{
         JsonParser parser = new JsonParser();
         JsonObject formDataObj = (JsonObject) parser.parse(request.getReader());
         String captchaId = formDataObj.get("captchaId").getAsString();
-        String captchaCode = formDataObj.get("captchaCode").getAsString();
+        String encryptedCaptchaCode = formDataObj.get("captchaCode").getAsString();
+        String captchaCode = null;
+        try {
+            captchaCode = decrypt(encryptedCaptchaCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         // validate captcha
         SimpleCaptcha captcha = SimpleCaptcha.load(request);

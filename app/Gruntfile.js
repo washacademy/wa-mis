@@ -22,9 +22,8 @@ module.exports = function(grunt) {
         separator: ';\n\n'
       },
       dist1: {
-        src: ['bower_components/angular/angular.min.js','scripts/app.js','scripts/factories/userForm.js','scripts/controllers/main.js', 'scripts/global/urls.js', 'scripts/controllers/login.js','scripts/controllers/reports.js', 'scripts/controllers/bulkUser.js', 'scripts/controllers/changePassword.js',
-        'scripts/controllers/createUser.js','scripts/controllers/downloads.js','scripts/controllers/editUser.js','scripts/controllers/faq.js',
-        'scripts/controllers/feedbackForm.js','scripts/controllers/forgotPassword.js', 'scripts/controllers/profile.js', 'scripts/controllers/contactUs.js', 'scripts/controllers/contactUsResponse.js',
+        src: ['bower_components/angular/angular.min.js','bower_components/angularjs-captcha/dist/angularjs-captcha.min.js','scripts/app.js','scripts/factories/userForm.js','scripts/controllers/main.js', 'scripts/global/urls.js', 'scripts/controllers/login.js','scripts/controllers/reports.js', 'scripts/controllers/bulkUser.js', 'scripts/controllers/changePassword.js',
+        'scripts/controllers/createUser.js','scripts/controllers/downloads.js','scripts/controllers/editUser.js','scripts/controllers/forgotPassword.js', 'scripts/controllers/profile.js',
         'scripts/controllers/staticPages.js','scripts/controllers/userManagement.js','scripts/controllers/userManual.js', 'scripts/directives/pagination.js','scripts/controllers/userTable.js'],
         dest: 'dist/app1.js'
       },
