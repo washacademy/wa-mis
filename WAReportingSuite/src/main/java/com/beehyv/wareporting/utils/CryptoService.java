@@ -51,6 +51,43 @@ public class CryptoService {
 
     }
 
+    public static String decrypt(String encryptedCaptcha) throws Exception {
+
+        String password = "ABCD123";
+        int keySize = 8; // 8 words = 256-bit
+        int ivSize = 4; // 4 words = 128-bit
+        String cipherTextHex="";
+        String saltHex="";
+
+        String mistoken = encryptedCaptcha;
+        mistoken = mistoken + "=";
+        byte[] decoded = Base64.decodeBase64(mistoken);
+        mistoken = new String(decoded, "UTF-8");
+        String[] tokenItems = mistoken.split("\\|\\|");
+
+        cipherTextHex = tokenItems[0];
+        saltHex = tokenItems[1];
+
+
+
+
+        byte[] salt = hexStringToByteArray(saltHex);
+        byte[] cipherText = hexStringToByteArray(cipherTextHex);
+
+        byte[] javaKey = new byte[keySize * 4];
+        byte[] javaIv = new byte[ivSize * 4];
+        evpKDF(password.getBytes("UTF-8"), keySize, ivSize, salt, javaKey, javaIv);
+
+        Cipher aesCipherForEncryption = Cipher.getInstance("AES/CBC/PKCS5Padding"); // Must specify the mode explicitly as most JCE providers default to ECB mode!!
+
+        IvParameterSpec ivSpec = new IvParameterSpec(javaIv);
+        aesCipherForEncryption.init(Cipher.DECRYPT_MODE, new SecretKeySpec(javaKey, "AES"), ivSpec);
+
+        byte[] byteMsg = aesCipherForEncryption.doFinal(cipherText);
+
+        return new String(byteMsg);
+    }
+
     private static byte[] evpKDF(byte[] password, int keySize, int ivSize, byte[] salt, byte[] resultKey, byte[] resultIv) throws NoSuchAlgorithmException {
         return evpKDF(password, keySize, ivSize, salt, 1, "MD5", resultKey, resultIv);
     }
