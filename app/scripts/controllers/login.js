@@ -25,8 +25,8 @@
 			var url = $location.absUrl();
 			var error = url.split('?')[1]
 
-			console.log(url.split('?')[0])
-			console.log(error)
+			// console.log(url.split('?')[0])
+			// console.log(error)
 
 			$scope.errorMessage = "";
 			if(error == null){
@@ -72,7 +72,7 @@
 
 			$scope.login = function(e){
 
-                            console.log($scope.user);
+                            // console.log($scope.user);
                             if($scope.user.username == null || $scope.user.username == ""){
                                 if(UserFormFactory.isInternetExplorer()){
                                     alert("Please specify a username")
@@ -130,9 +130,9 @@
                                 data    : postData, //forms user object
                                 headers : {'Content-Type': 'application/json'}
                             }).then(function(response){
-                                console.log(response.data.success);
+                                // console.log(response.data.success);
                                 if(response.data.success){
-                                    console.log("captcha approved");
+                                    // console.log("captcha approved");
 
                                     var encrypted = CryptoJS.AES.encrypt($scope.user.password, 'ABCD123');
                                     var cipherTextHex = encrypted.ciphertext.toString();
@@ -144,7 +144,7 @@
                                         "username": $scope.user.username,
                                         "password" : mistoken1
                                     }
-                                    console.log("sending login request");
+                                    // console.log("sending login request");
 
                                     $http({
                                         method: 'POST',
@@ -152,12 +152,12 @@
                                         data: JSON.stringify(data),
                                         headers: {'Content-Type': 'application/json'}
                                     }).then(function(success) {
-                                        console.log("request successful");
-                                        console.log(success.data);
+                                        // console.log("request successful");
+                                        // console.log(success.data);
                                         var url = success.data.split('redirect:')[1];
-                                        console.log(url);
+                                        // console.log(url);
                                         var error = url.split('?')[1];
-                                        console.log(error);
+                                        // console.log(error);
                                         $scope.errorMessage = "";
                                         if(error != null){
                                             if (error == 'blocked'){

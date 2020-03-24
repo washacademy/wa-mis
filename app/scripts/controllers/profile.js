@@ -16,7 +16,7 @@
 				$scope.populateLists()
 				$scope.resetContacts();
 
-				console.log($scope.user);
+				// console.log($scope.user);
 			})
 
 			$scope.populateLists = function(){
@@ -49,7 +49,7 @@
 				if ($scope.contactsForm.$valid) {
 					delete $scope.contact.$$hashKey;
 					$scope.contact.userId = $scope.user.id;
-					console.log($scope.contact);
+					// console.log($scope.contact);
 					$http({
 						method  : 'POST',
 						url     : backend_root + 'wa/user/updateContacts',

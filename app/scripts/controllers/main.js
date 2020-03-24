@@ -99,7 +99,7 @@
 					UserFormFactory.setCurrentUser(result.data);
 					$scope.currentUser = UserFormFactory.getCurrentUser();
 					window.localStorage.setItem('prev_userId', $scope.currentUser.userId);
-					console.log($scope.currentUser);
+					// console.log($scope.currentUser);
 				})
 
 
