@@ -96,6 +96,9 @@ public class User {
 
 	private Integer unSuccessfulAttempts = 0;
 
+	@Column(name = "accessibleCourses", columnDefinition = "VARCHAR(255)")
+	private String accessibleCourses;
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -291,4 +294,8 @@ public class User {
 	public Integer getUnSuccessfulAttempts() {	return unSuccessfulAttempts;	}
 
 	public void setUnSuccessfulAttempts(Integer unSuccessfulAttempts) {	this.unSuccessfulAttempts = unSuccessfulAttempts;	}
+
+	public String getAccessibleCourses() {	return accessibleCourses;	}
+
+	public void setAccessibleCourses(String accessibleCourses) {	this.accessibleCourses = accessibleCourses;	}
 }

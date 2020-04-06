@@ -116,6 +116,17 @@
 
 			</div>
 			<hr>
+			<div >
+			<label class="control-label col-xs-2">Select Courses For Access</label>
+				<div ng-repeat="item in $scope.currentUser.accessibleCourses">
+					<input type="radio" id="courses" >
+					<label >{{item}}</label><br>
+				</div>
+
+
+			</div>
+
+			<hr>
 
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">

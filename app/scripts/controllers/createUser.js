@@ -2,7 +2,7 @@
 	var waReportsApp = angular
 		.module('waReports')
 		.controller("CreateUserController", ['$scope', '$state', 'UserFormFactory', '$http', function($scope, $state, UserFormFactory, $http,$location){
-			
+
 			UserFormFactory.isLoggedIn()
 			.then(function(result){
 				if(!result.data){
@@ -13,6 +13,8 @@
 			UserFormFactory.downloadCurrentUser()
 			.then(function(result){
 				UserFormFactory.setCurrentUser(result.data);
+				$scope.currentUser = result.data;
+				console.log($scope.currentUser);
 			})
 
 			$scope.roleLoading = true;
