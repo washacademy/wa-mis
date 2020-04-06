@@ -13,8 +13,8 @@
 			UserFormFactory.downloadCurrentUser()
 			.then(function(result){
 				UserFormFactory.setCurrentUser(result.data);
-				$scope.currentUser = result.data;
-				console.log($scope.currentUser);
+				// $scope.currentUser = result.data;
+				// console.log($scope.currentUser);
 			})
 
 			$scope.roleLoading = true;
@@ -99,6 +99,10 @@
 				var levelIndex = $scope.accessLevelList.indexOf(UserFormFactory.getCurrentUser().accessLevel);
 				return ($scope.accessLevelList.indexOf(accessLevel) >= levelIndex) && temp;
 			}
+
+			$scope.adminCourses = UserFormFactory.getAccessibleCourses();
+			$scope.accessibleCourses = (($scope.adminCourses).toString()).split(',');
+			console.log($scope.accessibleCourses);
 
 			// $scope.showAccess = function(level){
 			// 	var levelIndex = $scope.accessLevelList.indexOf(UserFormFactory.getCurrentUser().accessLevel);

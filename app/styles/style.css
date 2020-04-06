@@ -763,6 +763,9 @@ md-dialog{
 }
 .offline{display:block;background-color:#ff3f00;color:white;text-align:center;font-size:large;}
 
+.d-flex{
+	display: inline-flex;
+}
 
 
 /*

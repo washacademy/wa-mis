@@ -116,11 +116,13 @@
 
 			</div>
 			<hr>
-			<div >
-			<label class="control-label col-xs-2">Select Courses For Access</label>
-				<div ng-repeat="item in $scope.currentUser.accessibleCourses">
-					<input type="radio" id="courses" >
-					<label >{{item}}</label><br>
+			<div class="form-group">
+				<label class="control-label col-xs-2">Select Courses For Access</label>
+				<div  style="display: inline-flex;">
+					<div ng-repeat="course in accessibleCourses" style="padding-right: 20px; ">
+						<input id="{{course}}" type="checkbox" >
+						<label for="{{course}}">{{course}}</label>
+					</div>
 				</div>
 
 

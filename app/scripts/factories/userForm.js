@@ -15,6 +15,9 @@
 				getCurrentUser: function(){
 					return currentUser;
 				},
+				getAccessibleCourses: function(){
+					return currentUser.accessibleCourses;
+				},
 
 				deactivateUser: function(userId){
 					return $http.get(backend_root + 'wa/user/deleteUser/' + userId);
