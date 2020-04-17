@@ -101,9 +101,19 @@
 			}
 
 			$scope.adminCourses = UserFormFactory.getAccessibleCourses();
-			$scope.accessibleCourses = (($scope.adminCourses).toString()).split(',');
-			console.log($scope.accessibleCourses);
+			$scope.selectableCourses = (($scope.adminCourses).toString()).split(',');
+			console.log($scope.selectableCourses);
+			$scope.selectedAtLeastOneCourse = false;
 
+
+			for (var i =0; i < ($scope.selectableCourses).size; i++){
+				var x = document.getElementById($scope.selectableCourses[i]).value;
+				if (x == true){
+					$scope.selectedAtLeastOneCourse = true;
+				}
+
+
+			}
 			// $scope.showAccess = function(level){
 			// 	var levelIndex = $scope.accessLevelList.indexOf(UserFormFactory.getCurrentUser().accessLevel);
 			// 	return ($scope.accessLevelList.indexOf(level) >= levelIndex)
