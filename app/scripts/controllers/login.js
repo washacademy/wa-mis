@@ -41,7 +41,10 @@
 
             UserFormFactory.downloadCurrentUser()
                 .then(function(result){
-                    if(!(typeof(result.data) == "string")){
+                    console.log("printing user data");
+                    console.log(typeof (result.data));
+                    var isDefault = result.data.default;
+                    if(!(typeof(result.data) == "string") && !isDefault){
                         if(UserFormFactory.isInternetExplorer()){
                             $window.location.replace('#!/reports');
                             return;
@@ -51,8 +54,17 @@
                             return;
                         }
                     }
+                    else if(!(typeof(result.data) == "string") && isDefault){
+                        if(UserFormFactory.isInternetExplorer()){
+                            $window.location.replace('#!/changePassword');
+                            return;
+                        }
+                        else{
+                            $window.location.replace('#!/changePassword');
+                            return;
+                        }
+                    }
                 })
-
 //			$scope.login = function(){
 //				$http.post($scope.loginUrl,
 //					angular.toJson($scope.user),
