@@ -527,10 +527,8 @@
                 $scope.clearFile();
 			}
 
-			UserFormFactory.getCourseList()
-				.then(function (result) {
-					$scope.courses = result.data;
-				})
+			$scope.courses = ((UserFormFactory.getAccessibleCourses()).toString()).split(',');
+
 
 			$scope.selectCourse = function(item){
 				// if(item != null){

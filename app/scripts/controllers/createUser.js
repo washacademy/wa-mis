@@ -102,26 +102,40 @@
 
 			$scope.adminCourses = UserFormFactory.getAccessibleCourses();
 			$scope.selectableCourses = (($scope.adminCourses).toString()).split(',');
+			var selectableCourses = (($scope.adminCourses).toString()).split(',');
 			console.log($scope.selectableCourses);
+			console.log(selectableCourses.length);
 			$scope.selectedAtLeastOneCourse = false;
+			$scope.selectedCourses = "";
 
 
-			for (var i =0; i < ($scope.selectableCourses).size; i++){
-				var x = document.getElementById($scope.selectableCourses[i]).value;
-				if (x == true){
-					$scope.selectedAtLeastOneCourse = true;
-				}
-
-
-			}
 			// $scope.showAccess = function(level){
 			// 	var levelIndex = $scope.accessLevelList.indexOf(UserFormFactory.getCurrentUser().accessLevel);
 			// 	return ($scope.accessLevelList.indexOf(level) >= levelIndex)
 			// }
 
 			$scope.createUserSubmit = function() {
-				if ($scope.createUserForm.$valid) {
+				for (var i =0; i < selectableCourses.length; i++){
+					var x = document.getElementById(selectableCourses[i]).checked;
+					console.log(x);
+					if (x == true){
+						$scope.selectedAtLeastOneCourse = true;
+						if($scope.selectedCourses == ""){
+							$scope.selectedCourses = $scope.selectableCourses[i]
+						}
+						else {
+							$scope.selectedCourses = $scope.selectedCourses + "," + selectableCourses[i]
+						}
+					}
+
+				}
+
+				if ($scope.createUserForm.$valid && $scope.selectedAtLeastOneCourse) {
 					delete $scope.newUser.$$hashKey;
+					console.log("printing user form details");
+					$scope.newUser.accessibleCourses = $scope.selectedCourses;
+					console.log($scope.newUser);
+
 					$http({
 						method  : 'post',
 						url     : backend_root + 'wa/user/createUser',
@@ -140,6 +154,11 @@
 						$location.url('/userManagement');
 
 					})
+				}
+				else if($scope.createUserForm.$valid && !$scope.selectedAtLeastOneCourse){
+					console.log($scope.selectedCourses);
+					window.alert("Select at least One Course");
+
 				}
 				else{
 					angular.forEach($scope.createUserForm.$error, function (field) {

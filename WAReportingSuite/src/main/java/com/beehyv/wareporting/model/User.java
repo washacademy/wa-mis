@@ -4,6 +4,7 @@ import com.beehyv.wareporting.enums.AccountStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -97,6 +98,7 @@ public class User {
 	private Integer unSuccessfulAttempts = 0;
 
 	@Column(name = "accessibleCourses", columnDefinition = "VARCHAR(255)")
+	@NotNull
 	private String accessibleCourses;
 
 	public Integer getUserId() {
