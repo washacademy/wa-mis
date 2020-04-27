@@ -578,8 +578,12 @@ public class UserServiceImpl implements UserService{
         }
 
         entity.setStateId(user.getStateId());
+        entity.setStateName(user.getStateName());
         entity.setDistrictId(user.getDistrictId());
+        entity.setDistrictName(user.getDistrictName());
         entity.setBlockId(user.getBlockId());
+        entity.setBlockName(user.getBlockName());
+        entity.setAccessibleCourses(user.getAccessibleCourses());
 
         responseMap.put(rowNum, "User Updated");
         return responseMap;
@@ -796,6 +800,8 @@ public class UserServiceImpl implements UserService{
             modificationTracker.setModifiedUserId(oldUser.getUserId());
             modificationTracker.setNewValue(newUser.getStateId().toString());
             modificationTracker.setPreviousValue(oldUser.getStateId().toString());
+            modificationTracker.setNewValue(newUser.getStateName());
+            modificationTracker.setPreviousValue(oldUser.getStateName());
             modificationTrackerDao.saveModification(modificationTracker);
         }
 
@@ -846,6 +852,19 @@ public class UserServiceImpl implements UserService{
             modificationTracker.setPreviousValue(oldUser.getAccessLevel());
             modificationTrackerDao.saveModification(modificationTracker);
         }
+
+        if(!oldUser.getAccessibleCourses().equals(newUser.getAccessibleCourses())){
+            ModificationTracker modificationTracker=new ModificationTracker();
+            modificationTracker.setModifiedField("accessibleCourses");
+            modificationTracker.setModificationDate(new Date());
+            modificationTracker.setModificationType(ModificationType.UPDATE.getModificationType());
+            modificationTracker.setModifiedByUserId(getCurrentUser().getUserId());
+            modificationTracker.setModifiedUserId(oldUser.getUserId());
+            modificationTracker.setNewValue(newUser.getAccessibleCourses());
+            modificationTracker.setPreviousValue(oldUser.getAccessibleCourses());
+            modificationTrackerDao.saveModification(modificationTracker);
+        }
+
 
     }
 

@@ -103,8 +103,19 @@
 				</div>
 
 			</div>
+			<hr>
+			<div class="form-group">
+				<label class="control-label col-xs-2">Select Courses For Access</label>
+				<div class="col-xs-10" style="display: inline-flex;" >
+					<div ng-repeat="course in selectableCourses" class="form-control input input-sm">
+						<input  name="accessCourse" id="{{course}}" type="checkbox" >
+						<label for="{{course}}">{{course}}</label>
+					</div>
+				</div>
 
- 			<hr>
+			</div>
+			<hr>
+
  			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
 					<button type="button" class="btn btn-sm btn-default" ui-sref="userManagement.userTable">Cancel</button>

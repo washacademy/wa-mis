@@ -147,12 +147,35 @@
 				}
 			});
 
+			$scope.adminCourses = UserFormFactory.getAccessibleCourses();
+			$scope.selectableCourses = (($scope.adminCourses).toString()).split(',');
+			var selectableCourses = (($scope.adminCourses).toString()).split(',');
+			$scope.selectedAtLeastOneCourse = false;
+			$scope.selectedCourses = "";
+
 			$scope.editUserSubmit = function() {
-				if ($scope.editUserForm.$valid) {
+
+				for (var i =0; i < selectableCourses.length; i++){
+					var y = document.getElementById(selectableCourses[i]).checked;
+					if (y == true){
+						$scope.selectedAtLeastOneCourse = true;
+						if($scope.selectedCourses == ""){
+							$scope.selectedCourses = $scope.selectableCourses[i]
+						}
+						else {
+							$scope.selectedCourses = $scope.selectedCourses + "," + selectableCourses[i]
+						}
+					}
+
+				}
+
+				if ($scope.editUserForm.$valid && $scope.selectedAtLeastOneCourse) {
 					$scope.editUser.stateId = $scope.place.stateId;
 					$scope.editUser.districtId = $scope.place.districtId;
 					$scope.editUser.blockId = $scope.place.blockId;
+					$scope.editUser.accessibleCourses = $scope.selectedCourses;
 					delete $scope.editUser.$$hashKey;
+					console.log("selected course:" + $scope.selectedAtLeastOneCourse )
 					$http({
 						method  : 'POST',
 						url     : backend_root + 'wa/user/updateUser',
@@ -171,6 +194,10 @@
 						}
 						$location.url('/userManagement');
 					})
+				}
+				else if(!($scope.selectedAtLeastOneCourse)){
+					console.log($scope.selectedCourses);
+					window.alert("Select at least One Course");
 				}
 				else{
 					angular.forEach($scope.editUserForm.$error, function (field) {
