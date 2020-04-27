@@ -168,8 +168,9 @@
 					}
 
 				}
+				var valid =  $scope.editUserForm.$valid;
 
-				if ($scope.editUserForm.$valid && $scope.selectedAtLeastOneCourse) {
+				if (valid && $scope.selectedAtLeastOneCourse) {
 					$scope.editUser.stateId = $scope.place.stateId;
 					$scope.editUser.districtId = $scope.place.districtId;
 					$scope.editUser.blockId = $scope.place.blockId;
@@ -195,7 +196,7 @@
 						$location.url('/userManagement');
 					})
 				}
-				else if(!($scope.selectedAtLeastOneCourse)){
+				else if(!($scope.selectedAtLeastOneCourse) && valid){
 					console.log($scope.selectedCourses);
 					window.alert("Select at least One Course");
 				}
