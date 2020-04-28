@@ -116,15 +116,13 @@
 
 			</div>
 			<hr>
-			<div class="form-group" ng-class="{'has-error':createUserForm.accessCourse.$invalid && !createUserForm.accessCourse.$pristine}">
+			<div class="form-group" >
 				<label class="control-label col-xs-2">Select Courses For Access</label>
 				<div class="col-xs-10" style="display: inline-flex;" >
 					<div ng-repeat="course in selectableCourses" class="form-control input input-sm">
-						<input  name="accessCourse" id="{{course}}" type="checkbox" >
+						<input  name="accessCourse" id="{{course}}" type="checkbox"  >
 						<label for="{{course}}">{{course}}</label>
-						<div class="errorMessage" ng-messages="createUserForm.accessCourse.$error" role="alert" ng-show="!createUserForm.accessCourse.$pristine">
-							<div ng-message="required">This field cannot be empty</div>
-						</div>
+
 					</div>
 				</div>
 

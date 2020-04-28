@@ -108,11 +108,22 @@
 			$scope.selectedAtLeastOneCourse = false;
 			$scope.selectedCourses = "";
 
+			setTimeout(check, 50);
+			function check() {
+				if(selectableCourses.length ==1){
+					document.getElementById(selectableCourses[0]).checked = true;
+					document.getElementById(selectableCourses[0]).disabled = true;
+					// console.log(document.getElementById(selectableCourses[0]));
+				}
+			}
+
+
 
 			// $scope.showAccess = function(level){
 			// 	var levelIndex = $scope.accessLevelList.indexOf(UserFormFactory.getCurrentUser().accessLevel);
 			// 	return ($scope.accessLevelList.indexOf(level) >= levelIndex)
 			// }
+
 
 			$scope.createUserSubmit = function() {
 				for (var i =0; i < selectableCourses.length; i++){
@@ -129,6 +140,7 @@
 					}
 
 				}
+
 
 				if ($scope.createUserForm.$valid && $scope.selectedAtLeastOneCourse) {
 					delete $scope.newUser.$$hashKey;

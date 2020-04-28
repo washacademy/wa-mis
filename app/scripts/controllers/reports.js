@@ -528,6 +528,11 @@
 			}
 
 			$scope.courses = ((UserFormFactory.getAccessibleCourses()).toString()).split(',');
+			$scope.disableIfOnlyOneCourse = function(){
+				$scope.course = $scope.courses[0];
+				return (($scope.courses).length == 1)
+
+			}
 
 
 			$scope.selectCourse = function(item){

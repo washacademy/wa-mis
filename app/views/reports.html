@@ -33,7 +33,7 @@
                             <label>Select Course</label>
                             <div class="btn-group" uib-dropdown dropdown-append-to-body>
                                 <button id="selectCourse" type="button" class="btn btn-sm btn-default btn-block"
-                                        uib-dropdown-toggle>
+                                        ng-disabled="disableIfOnlyOneCourse()"  uib-dropdown-toggle>
                                     <span class="dropHeader">
                                     <span class="dropdownTitle" ng-if="course!= null">{{course}}</span>
                                     <span ng-if="course == null">Select</span>

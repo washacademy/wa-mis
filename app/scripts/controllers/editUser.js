@@ -17,6 +17,11 @@
 				UserFormFactory.getUser($stateParams.id)
 				.then(function(result){
 					$scope.editUser = result.data;
+					$scope.previousCourses = $scope.editUser.accessibleCourses.toString().split(',');
+					for(var i =0; i<$scope.previousCourses.length;i++ ){
+						console.log($scope.previousCourses);
+						document.getElementById($scope.previousCourses[i]).checked = true;
+					}
 				});
 			})
 
@@ -152,6 +157,15 @@
 			var selectableCourses = (($scope.adminCourses).toString()).split(',');
 			$scope.selectedAtLeastOneCourse = false;
 			$scope.selectedCourses = "";
+
+			setTimeout(check, 50);
+			function check() {
+				if(selectableCourses.length ==1){
+					document.getElementById(selectableCourses[0]).checked = true;
+					document.getElementById(selectableCourses[0]).disabled = true;
+					// console.log(document.getElementById(selectableCourses[0]));
+				}
+			}
 
 			$scope.editUserSubmit = function() {
 
