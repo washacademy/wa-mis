@@ -12,7 +12,6 @@
 					UserFormFactory.downloadCurrentUser()
 					.then(function(result){
 						UserFormFactory.setCurrentUser(result.data);
-
 						$scope.getStates();
 					})
 				}
@@ -90,6 +89,15 @@
             $scope.setDate = function(year, month, day) {
                 $scope.dt2 = { date : new Date(year, month, day)};
             };
+
+			$scope.courses = ((UserFormFactory.getAccessibleCourses()).toString()).split(',');
+			$scope.disableIfOnlyOneCourse = function(){
+				if (($scope.courses).length == 1){
+					$scope.course = $scope.courses[0];
+				}
+				return (($scope.courses).length == 1)
+
+			}
 
 			$scope.disableDate = function(){
 				return $scope.report == null || $scope.report.reportEnum == null;
@@ -526,14 +534,6 @@
                 $scope.showEmptyData = false;
                 $scope.clearFile();
 			}
-
-			$scope.courses = ((UserFormFactory.getAccessibleCourses()).toString()).split(',');
-			$scope.disableIfOnlyOneCourse = function(){
-				$scope.course = $scope.courses[0];
-				return (($scope.courses).length == 1)
-
-			}
-
 
 			$scope.selectCourse = function(item){
 				// if(item != null){

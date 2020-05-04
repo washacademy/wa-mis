@@ -163,8 +163,8 @@
                     <div class="col-xs-4">
                         <label>Select Course</label>
                         <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                            <button id="selectCourseCag" type="button" class="btn btn-sm btn-default btn-block"
-                                    uib-dropdown-toggle>
+                            <button id="selectCourseCag" type="button" ng-disabled="disableIfOnlyOneCourse()" class="btn btn-sm btn-default btn-block"
+                                    uib-dropdown-toggle >
                                     <span class="dropHeader">
                                     <span class="dropdownTitle" ng-if="course!= null">{{course}}</span>
                                     <span ng-if="course == null">Select</span>
@@ -331,7 +331,7 @@
                         <div class="col-xs-2" ng-if="(report.name == 'Completion Line-Listing Report' ) || (report.name == 'Circle-Wise Anonymous Users Line-Listing Report')" >
                             <label>Select Course</label>
                             <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                                <button id="selectCourseLl" type="button" class="btn btn-sm btn-default btn-block"
+                                <button id="selectCourseLl" type="button" ng-disabled="disableIfOnlyOneCourse()" class="btn btn-sm btn-default btn-block"
                                         uib-dropdown-toggle>
                                     <span class="dropHeader">
                                     <span class="dropdownTitle" ng-if="course!= null">{{course}}</span>
