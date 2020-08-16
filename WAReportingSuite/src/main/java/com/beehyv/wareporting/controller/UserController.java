@@ -98,10 +98,10 @@ public class UserController {
     private final String reports = documents + "Reports/";
     private Calendar c = Calendar.getInstance();
 
-    private final String WashAcademyCourse1 = "Wash Academy Course";
-    private final String WashAcademyCourse2 = "Wash Academy Course Plus";
-    private final String course1 = "Wash_Academy_Course";
-    private final String course2 = "Wash_Academy_Course_Plus";
+    private final String WashAcademyCourse1 = "ODF PLUS";
+    private final String WashAcademyCourse2 = "ODF";
+    private final String course1 = "ODF_PLUS";
+    private final String course2 = "ODF";
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public @ResponseBody

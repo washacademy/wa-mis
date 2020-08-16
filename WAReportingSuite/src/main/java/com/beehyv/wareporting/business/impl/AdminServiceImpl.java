@@ -79,8 +79,8 @@ public class AdminServiceImpl implements AdminService {
     private final String documents = retrieveDocuments();
     private final String reports = documents+"Reports/";
     private Calendar c =Calendar.getInstance();
-    private final String course1 = "Wash_Academy_Course";
-    private final String course2 = "Wash_Academy_Course_Plus";
+    private final String course1 = "ODF_PLUS";
+    private final String course2 = "ODF";
     @Override
     public HashMap startBulkDataImport(User loggedInUser) {
         Pattern pattern;
@@ -487,7 +487,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void createFiles(String reportType) {
 
-        String[] courses = {"Wash_Academy_Course","Wash_Academy_Course_Plus"};
+        String[] courses = {"ODF_PLUS","ODF"};
 
         List<State> states = stateDao.getAllStates();
         String rootPath = reports;
@@ -563,7 +563,7 @@ public class AdminServiceImpl implements AdminService {
 
         @Override
     public void createFolders(String reportType) {
-        String[] courses = {"Wash_Academy_Course","Wash_Academy_Course_Plus"};
+        String[] courses = {"ODF_PLUS","ODF"};
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports;
         for (int i =0;i < courses.length; i++){
@@ -970,8 +970,8 @@ public class AdminServiceImpl implements AdminService {
 
     private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
         XSSFWorkbook workbook = new XSSFWorkbook();
-        final String course1 = "Wash_Academy_Course";
-        final String course2 = "Wash_Academy_Course_Plus";
+        final String course1 = "ODF_PLUS";
+        final String course2 = "ODF";
         String course = "";
         Integer courseId = 0;
         try {

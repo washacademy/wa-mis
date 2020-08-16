@@ -200,11 +200,11 @@ public class UserServiceImpl implements UserService{
         if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.NATIONAL.getAccessLevel())) {
             if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
                 User nationalAdmin = userDao.getNationalAdmin(getAdminRole());
-                if (nationalAdmin != null) {
-                    String authorityError = "Admin exists at this level";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (nationalAdmin != null) {
+//                    String authorityError = "Admin exists at this level";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             user.setStateId(null);
             user.setDistrictId(null);
@@ -213,11 +213,11 @@ public class UserServiceImpl implements UserService{
         else if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.STATE.getAccessLevel())) {
             if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
                 User stateAdmin = userDao.getStateAdmin(getAdminRole(), stateDao.findByStateId(user.getStateId()));
-                if (stateAdmin != null) {
-                    String authorityError = "Admin exists in this state";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (stateAdmin != null) {
+//                    String authorityError = "Admin exists in this state";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             if(user.getStateId() == null) {
                 String authorityError = "missing property: state";
@@ -236,11 +236,11 @@ public class UserServiceImpl implements UserService{
         else if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.DISTRICT.getAccessLevel())) {
             if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
                 User districtAdmin = userDao.getDistrictAdmin(getAdminRole(), districtDao.findByDistrictId(user.getDistrictId()));
-                if (districtAdmin != null) {
-                    String authorityError = "Admin exists in this district";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (districtAdmin != null) {
+//                    String authorityError = "Admin exists in this district";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             if(user.getStateId() == null) {
                 String authorityError = "missing property: district";
@@ -464,11 +464,11 @@ public class UserServiceImpl implements UserService{
         if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.NATIONAL.getAccessLevel())) {
             User nationalAdmin = userDao.getNationalAdmin(getAdminRole());
             if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
-                if (nationalAdmin != null && !nationalAdmin.getUserId().equals(user.getUserId())) {
-                    String authorityError = "Admin exists at this level";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (nationalAdmin != null && !nationalAdmin.getUserId().equals(user.getUserId())) {
+//                    String authorityError = "Admin exists at this level";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             user.setStateId(null);
             user.setDistrictId(null);
@@ -477,11 +477,11 @@ public class UserServiceImpl implements UserService{
         else if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.STATE.getAccessLevel())) {
             User stateAdmin = userDao.getStateAdmin(getAdminRole(), stateDao.findByStateId(user.getStateId()));
             if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
-                if (stateAdmin != null && !stateAdmin.getUserId().equals(user.getUserId())) {
-                    String authorityError = "Admin exists in this State";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (stateAdmin != null && !stateAdmin.getUserId().equals(user.getUserId())) {
+//                    String authorityError = "Admin exists in this State";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             if(user.getStateId() == null) {
                 String authorityError = "missing property: state";
@@ -500,11 +500,11 @@ public class UserServiceImpl implements UserService{
         else if (user.getAccessLevel().equalsIgnoreCase(AccessLevel.DISTRICT.getAccessLevel())) {
             User districtAdmin = userDao.getDistrictAdmin(getAdminRole(), districtDao.findByDistrictId(user.getDistrictId()));
             if (districtAdmin != null && !districtAdmin.getUserId().equals(user.getUserId())) {
-                if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
-                    String authorityError = "Admin exists at this District";
-                    responseMap.put(rowNum, authorityError);
-                    return responseMap;
-                }
+//                if (roleDao.findByRoleId(user.getRoleId()).getRoleDescription().equalsIgnoreCase(AccessType.ADMIN.getAccessType())) {
+//                    String authorityError = "Admin exists at this District";
+//                    responseMap.put(rowNum, authorityError);
+//                    return responseMap;
+//                }
             }
             if(user.getStateId() == null) {
                 String authorityError = "missing property: state";
