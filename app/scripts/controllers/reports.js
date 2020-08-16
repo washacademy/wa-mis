@@ -717,9 +717,9 @@
 						reportRequest.districtId = 0;
 						reportRequest.blockId = 0;
 						reportRequest.circleId = 0;
-						if ($scope.course == 'Wash Academy Course') {
+						if ($scope.course == 'ODF PLUS') {
 							reportRequest.courseId = 1;
-						} else if ($scope.course == 'Wash Academy Course Plus') {
+						} else if ($scope.course == 'ODF') {
 							reportRequest.courseId = 2;
 						}
 
