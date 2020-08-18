@@ -41,10 +41,10 @@ public class WAAnonymousSummaryServiceImpl implements WAAnonymousSummaryService 
 
 
     @Override
-    public Long getNotAccessedcount(Integer circleId, Date fromDate, Date toDate){
+    public Long getNotAccessedcount(Integer circleId, Date fromDate, Date toDate, Integer courseId){
 
         Long count = (long)0;
-        count =  waAnonymousSummaryDao.accessedNotOnce(circleId,fromDate,toDate);
+        count =  waAnonymousSummaryDao.accessedNotOnce(circleId,fromDate,toDate,courseId);
         return count;
     }
 

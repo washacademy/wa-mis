@@ -27,6 +27,7 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:4.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:4.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:4.0.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.ibm.icu:icu4j:4.8" level="project" />
     <orderEntry type="library" name="Maven: com.captcha:botdetect-jsp20:4.0.beta3" level="project" />
     <orderEntry type="library" name="Maven: com.captcha:botdetect-servlet:4.0.beta3" level="project" />
     <orderEntry type="library" name="Maven: com.captcha:botdetect:4.0.beta3" level="project" />
@@ -59,24 +60,25 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro.samples:samples-spring-client:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro.samples:samples-spring-client:1.4.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-log4j12:1.7.21" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.7.21" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-core:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-ogdl:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-core:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-ogdl:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.4" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-event:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-spring:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-event:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-spring:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.5.3" level="project" />
+    <orderEntry type="library" name="Maven: org.owasp.encoder:encoder:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:3.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.8" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.5" level="project" />
