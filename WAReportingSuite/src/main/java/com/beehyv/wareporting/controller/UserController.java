@@ -466,7 +466,7 @@ public class UserController {
         if (reportRequest.getReportType().equals(ReportType.waPerformance.getReportType())) {
 
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
-            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+            Date toDate = dateAdder(reportRequest.getToDate(), 0);
 
             aggregateResponseDto = waAggregateReportsService.getWAPerformanceReport(fromDate, toDate, circleId,stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
@@ -476,7 +476,7 @@ public class UserController {
         if (reportRequest.getReportType().equals(ReportType.waSubscriber.getReportType())) {
 
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
-            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+            Date toDate = dateAdder(reportRequest.getToDate(), 0);
 
             aggregateResponseDto = waAggregateReportsService.getWASubscriberReport(fromDate, toDate, circleId, stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
@@ -485,7 +485,7 @@ public class UserController {
 
         if (reportRequest.getReportType().equals(ReportType.waCumulativeSummary.getReportType())) {
 
-            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+            Date toDate = dateAdder(reportRequest.getToDate(), 0);
 
             aggregateResponseDto = waAggregateReportsService.getWACumulativeSummaryReport(toDate, circleId, stateId, districtId, blockIdId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
@@ -496,7 +496,7 @@ public class UserController {
         if (reportRequest.getReportType().equals(ReportType.waAnonymousSummary.getReportType())) {
 
             Date fromDate = dateAdder(reportRequest.getFromDate(), 0);
-            Date toDate = dateAdder(reportRequest.getToDate(), 1);
+            Date toDate = dateAdder(reportRequest.getToDate(), 0);
 
             aggregateResponseDto = waAggregateReportsService.getWAAnonymousSummaryReport(fromDate, toDate, circleId, courseId);
             aggregateResponseDto.setBreadCrumbData(breadCrumbs);
