@@ -488,7 +488,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
                     }
                     summaryDto1.setAnonUsersFailedCourse(waAnonymousSummaryService.getAnonUsersFailed(summaryDto1.getCircleId(), fromDate, toDate, courseId));
                     summaryDto1.setAnonUsersPursuingCourse(waAnonymousSummaryService.getAccessedCount(summaryDto1.getCircleId(), fromDate, toDate, courseId));
-                    summaryDto1.setAnonUsersNotPursuingCourse(waAnonymousSummaryService.getNotAccessedcount(summaryDto1.getCircleId(), fromDate, toDate));
+                    summaryDto1.setAnonUsersNotPursuingCourse(waAnonymousSummaryService.getNotAccessedcount(summaryDto1.getCircleId(), fromDate, toDate, courseId));
                     if (summaryDto1.getAnonUsersCompletedCourse() + summaryDto1.getAnonUsersFailedCourse() +
                             summaryDto1.getAnonUsersStartedCourse() + summaryDto1.getAnonUsersPursuingCourse() +
                             summaryDto1.getAnonUsersNotPursuingCourse() != 0) {
