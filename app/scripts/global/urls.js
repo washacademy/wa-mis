@@ -1,4 +1,3 @@
-//backend_root = 'http://192.168.200.65:8080/WAReportingSuite/'
-  backend_root = 'http://localhost:9090/WAReportingSuite/'
-//backend_root = ' https://rchivrreports.in/WAReportingSuite/'
-//backend_root = 'http://192.168.200.112:8080/WAReportingSuite/'
+  backend_root = 'https://sbmacademy.co.in/WAReportingSuite/'
+//backend_root = ' http://localhost:9090/WAReportingSuite/'
+//backend_root = 'http://172.17.80.12:9090/WAReportingSuite/'

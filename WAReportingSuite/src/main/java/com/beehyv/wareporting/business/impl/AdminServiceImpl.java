@@ -1180,11 +1180,15 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.createRow(rowid++);
 
         String encodingPrefix = "base64,";
-        String pngImageURL = Constants.header_base64;
+        String pngImageURL = Constants.header_DDWS_base64;
+        String pngImageURL1 = Constants.header_SBM_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
+        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
+        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
 
         final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
+        final int pictureIndex1 = workbook.addPicture(imageData1,Workbook.PICTURE_TYPE_PNG);
 
 
         final CreationHelper helper = workbook.getCreationHelper();
@@ -1197,8 +1201,17 @@ public class AdminServiceImpl implements AdminService {
         anchor.setCol1( 0 );
         anchor.setRow1( 0 );
         anchor.setRow2( 4 );
-        anchor.setCol2( 12 );
+        anchor.setCol2( 8 );
         drawing.createPicture( anchor, pictureIndex );
+
+        final ClientAnchor anchor1 = helper.createClientAnchor();
+        anchor1.setAnchorType( ClientAnchor.MOVE_AND_RESIZE );
+
+        anchor1.setRow1(0);
+        anchor1.setRow2(4);
+        anchor1.setCol1(8);
+        anchor1.setCol2(12);
+        drawing.createPicture(anchor1,pictureIndex1);
 
         XSSFCellStyle style1 = workbook.createCellStyle();//Create style
         style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align

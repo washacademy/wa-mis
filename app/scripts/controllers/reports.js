@@ -409,27 +409,27 @@
 
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
-			        var minDate = new Date(2016, 11, 1);
+			        var minDate = new Date(2020, 7, 1);
 			    }
                 else{
-                    var minDate = new Date(2015, 9, 1);
+                    var minDate = new Date(2020, 7, 1);
                 }
 				if($scope.report != null){
-					minDate = new Date(2015, 10, 1);
+					minDate = new Date(2020, 7, 1);
 				}
 				if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Inactive_Users'){
-                	minDate = new Date(2017, 4, 30);
+                	minDate = new Date(2020, 7, 1);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users'){
-                    minDate = new Date(2017, 4, 30);
+                    minDate = new Date(2020, 7, 1);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2017,2, 1);
+                    minDate = new Date(2020, 7, 1);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
-                    minDate = new Date(2017,2, 1);
+                    minDate = new Date(2020, 7, 1);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
@@ -1190,13 +1190,13 @@
 
 				console.log(currentDate.getMonth() + " " + currentDate.getDate() + " " +currentDate.getFullYear());
 				if(((($scope.report.name).toLowerCase()).indexOf(("Rejected").toLowerCase()) > -1) ){
-				    if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2017 && $scope.getSundays(currentDate) > 0){
+				    if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2020 && $scope.getSundays(currentDate) > 0){
 				        $scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth());
 				    }
-				    else if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2017 && $scope.getSundays(currentDate) == 0){
+				    else if(currentDate.getMonth() == startMonth && currentDate.getDate() >= startDate && currentDate.getFullYear() == 2020 && $scope.getSundays(currentDate) == 0){
                     	$scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth() - 1);
                      }
-				    else if(currentDate.getMonth() == startMonth && currentDate.getDate() < startDate && currentDate.getFullYear() == 2017){
+				    else if(currentDate.getMonth() == startMonth && currentDate.getDate() < startDate && currentDate.getFullYear() == 2020){
 				         $scope.dateOptions.maxDate = new Date().setMonth(new Date().getMonth() - 1);
 				    }
 				    else {
@@ -1270,7 +1270,7 @@
                 var getTot = null;
                 var sun = new Array(); //Declaring array for inserting Sundays
                 var today = new Date();
-                if(d.getMonth() == startMonth && d.getFullYear() == 2017 ){
+                if(d.getMonth() == startMonth && d.getFullYear() == 2020 ){
                     if(d.getMonth() == today.getMonth()){
                         for(var i=startDate;i<=today.getDate()-1;i++){    //looping through days in month
                             var newDate = new Date(d.getFullYear(),d.getMonth(),i)

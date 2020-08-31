@@ -2,8 +2,7 @@
 <html ng-app="waReports" ng-controller="MainController">
 <head>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
+	<link rel="icon" href="images/DDWS.png" type="image/x-icon">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -89,9 +88,12 @@
 <body>
 	<div class="main" >
 		<div class='nav-bar'>
-			<div class="nav-header">
-				<img alt="Wash Academy & information System" src="images/logo.png">
-				<span ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" ||  currentUser.default || currentUser.default == null '><b>Hello {{currentUser.fullName}}</b></span>
+			<div class="nav-header" style="display:flex;justify-content:space-between">
+
+				<img alt="SBM Academy & information System" src="images/DDWS.png" width="300" height="70">
+				<span  ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" ||  currentUser.default || currentUser.default == null ' ><b>Hello {{currentUser.fullName}}</b></span>
+				<img alt="Mahatma Gandhi" src="images/SBM.png" width="200" height="70"  >
+
 			</div>
 
 			<div class="nav">
@@ -127,7 +129,7 @@
 		</div>
 
 		<div class='footer'>
-			<span>2018 all rights reserved - Wash Academy Information system</span>
+			<span>2018 all rights reserved - SBM Academy Information system</span>
 		</div>
 	</div>
 
