@@ -6,14 +6,14 @@ package com.beehyv.wareporting.enums;
 public enum ReportType {
 
 
-    waPerformance("WA_Performance_Report","Performance Report","M","WA Performance Aggregate Report"),
-    waSubscriber("WA_Subscriber_Report","Subscriber Report","M","WA Subscriber Aggregate Report"),
-    waCumulativeSummary("WA_Cumulative_Summary","Cumulative Summary Report","M","WA Cumulative Summery Aggregate Report"),
-    waCourseCompletion("WA_Cumulative_Course_Completion", "Completion Line-Listing Report", "M","WA Completion Line-Listing Report"),
-    waCircleWiseAnonymous("WA_Circle_Wise_Anonymous_Users", "Circle-Wise Anonymous Users Line-Listing Report", "M", "WA Circle Wise Anonymous Line-Listing Report"),
-    waInactive("WA_Cumulative_Inactive_Users", "Inactive Users Line-Listing Report", "M", "WA Inactive Users Line-Listing Report"),
-    swcRejected("WA_Swachchagrahi_Import_Rejects","Academy Rejected Line-Listing Report", "M", "WA Rejected Line-Listing Report"),
-    waAnonymousSummary("WA_Anonymous_Users_Summary", "Anonymous Users Summary Report", "M", "WA Anonymous Users Summary Report");
+    waPerformance("SBM_Performance_Report","Performance Report","M","SBM Performance Aggregate Report"),
+    waSubscriber("SBM_Subscriber_Report","Subscriber Report","M","SBM Subscriber Aggregate Report"),
+    waCumulativeSummary("SBM_Cumulative_Summary","Cumulative Summary Report","M","SBM Cumulative Summery Aggregate Report"),
+    waCourseCompletion("SBM_Cumulative_Course_Completion", "Completion Line-Listing Report", "M","SBM Completion Line-Listing Report"),
+    waCircleWiseAnonymous("SBM_Circle_Wise_Anonymous_Users", "Circle-Wise Anonymous Users Line-Listing Report", "M", "SBM Circle Wise Anonymous Line-Listing Report"),
+    waInactive("SBM_Cumulative_Inactive_Users", "Inactive Users Line-Listing Report", "M", "SBM Inactive Users Line-Listing Report"),
+    swcRejected("SBM_Swachchagrahi_Import_Rejects","Academy Rejected Line-Listing Report", "M", "SBM Rejected Line-Listing Report"),
+    waAnonymousSummary("SBM_Anonymous_Users_Summary", "Anonymous Users Summary Report", "M", "SBM Anonymous Users Summary Report");
 
     private String reportType;
     private String reportName;

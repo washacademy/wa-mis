@@ -22,7 +22,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
+import static com.beehyv.wareporting.utils.Global.*;
 import static com.beehyv.wareporting.utils.ServiceFunctions.StReplace;
 
 /**
@@ -35,6 +35,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private CourseDao courseDao;
 
     @Autowired
     private RoleDao roleDao;
@@ -75,12 +78,21 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    private final Integer[] courseIds = retrieveCourseIdsFromFileLocationProperties();
     private final String documents = retrieveDocuments();
     private final String reports = documents+"Reports/";
     private Calendar c =Calendar.getInstance();
-    private final String course1 = "ODF_PLUS";
-    private final String course2 = "ODF";
+
+
+
+    String[] getCourseNamesArray(){
+        String[] courses = new String[courseIds.length];
+        for(int i =0;i<courseIds.length;i++){
+            courses[i]= courseDao.findByCourseId(courseIds[i]).getName();
+        }
+        return courses;
+    };
+
     @Override
     public HashMap startBulkDataImport(User loggedInUser) {
         Pattern pattern;
@@ -486,9 +498,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void createFiles(String reportType) {
-
-        String[] courses = {"ODF_PLUS","ODF"};
-
+        String[] courses = getCourseNamesArray();
         List<State> states = stateDao.getAllStates();
         String rootPath = reports;
         for (int i =0;i < courses.length; i++){
@@ -563,7 +573,7 @@ public class AdminServiceImpl implements AdminService {
 
         @Override
     public void createFolders(String reportType) {
-        String[] courses = {"ODF_PLUS","ODF"};
+        String[] courses = getCourseNamesArray();
         List<Circle> circleList = circleDao.getAllCircles();
         String rootPath = reports;
         for (int i =0;i < courses.length; i++){
@@ -586,20 +596,13 @@ public class AdminServiceImpl implements AdminService {
         String course = "";
         Integer courseId = 0;
         String rootPath = "";
-        if ((reportRequest.getReportType().equals("WA_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("WA_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("SBM_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("SBM_Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
-            if(courseId == 1)
-                course = course1;
-            if(courseId == 2 )
-                course = course2;
+            course = courseDao.findByCourseId(courseId).getName();
         }
 
-        if(courseId == 1 || courseId == 2){
-          rootPath  = reports + course + "/" + reportRequest.getReportType()+ "/";
-        }
-        else {
-            rootPath = reports+reportRequest.getReportType() + "/";
-        }
+        rootPath  = reports + course + "/" + reportRequest.getReportType()+ "/";
+
 
 //        Date toDate = reportRequest.getToDate();
         Date startDate=new Date(0);
@@ -870,17 +873,14 @@ public class AdminServiceImpl implements AdminService {
         Integer courseId = 0;
         try {
             courseId = reportRequest.getCourseId();
-            if(courseId == 1)
-                course = course1;
-            if(courseId == 2 )
-                course = course2;
+            course = courseDao.findByCourseId(courseId).getName();
         }
         catch(Exception NullPointerException) {
             //caught
         }
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                " WA Course Completion Report for "+ course);
+                " SBM Course Completion Report for "+ course);
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -970,16 +970,12 @@ public class AdminServiceImpl implements AdminService {
 
     private void getCircleWiseAnonymousUsers(List<WACircleWiseAnonymousUsersLineListing> anonymousUsersList, String rootPath, String place, Date toDate, ReportRequest reportRequest) {
         XSSFWorkbook workbook = new XSSFWorkbook();
-        final String course1 = "ODF_PLUS";
-        final String course2 = "ODF";
+
         String course = "";
         Integer courseId = 0;
         try {
             courseId = reportRequest.getCourseId();
-            if(courseId == 1)
-                course = course1;
-            if(courseId == 2 )
-                course = course2;
+            course = courseDao.findByCourseId(courseId).getName();
         }
         catch(Exception NullPointerException) {
             //caught
@@ -1168,12 +1164,9 @@ public class AdminServiceImpl implements AdminService {
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
         String course = "";
         Integer courseId =0;
-        if ((reportRequest.getReportType().equals("WA_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("WA_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("SBM_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("SBM_Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
-            if(courseId == 1)
-                course = course1;
-            if(courseId == 2 )
-                course = course2;
+            course = courseDao.findByCourseId(courseId).getName();
         }
         int rowid = 0;
         XSSFSheet spreadsheet = workbook.getSheetAt(0);
@@ -1319,19 +1312,17 @@ public class AdminServiceImpl implements AdminService {
 
 
 
-        if(courseId ==1 || courseId == 2){
-            XSSFRow courseRow = spreadsheet.createRow(7);
-            Cell cell11 = courseRow.createCell(0);
-            Cell cell12 = courseRow.createCell(1);
-            cell11.setCellValue("Course: ");
-            cell12.setCellValue(course);
-            cell11.setCellStyle(style);
-            cell12.setCellStyle(style);
-            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,4));
-            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
 
+        XSSFRow courseRow = spreadsheet.createRow(7);
+        Cell cell11 = courseRow.createCell(0);
+        Cell cell12 = courseRow.createCell(1);
+        cell11.setCellValue("Course: ");
+        cell12.setCellValue(course);
+        cell11.setCellStyle(style);
+        cell12.setCellStyle(style);
+        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,4));
+        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
 
-        }
 
     }
 
@@ -1555,6 +1546,7 @@ public class AdminServiceImpl implements AdminService {
             }
         }
     }
+
 
     private String retrievePropertiesFromFileLocationProperties() {
         Properties prop = new Properties();

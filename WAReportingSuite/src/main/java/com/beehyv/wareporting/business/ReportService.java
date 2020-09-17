@@ -3,8 +3,10 @@ package com.beehyv.wareporting.business;
 import com.beehyv.wareporting.entity.ReportRequest;
 import com.beehyv.wareporting.enums.ReportType;
 import com.beehyv.wareporting.model.Circle;
+import com.beehyv.wareporting.model.Course;
 import com.beehyv.wareporting.model.User;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,5 +29,8 @@ public interface ReportService {
 
     String getDateMonthYear(Date toDate);
 
+    ArrayList<Course> getCourses();
+
+    Course getCourseByCourseId(Integer courseId);
 
 }

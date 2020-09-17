@@ -1,15 +1,13 @@
 package com.beehyv.wareporting.controller;
 
 import com.beehyv.wareporting.business.*;
-import com.beehyv.wareporting.dao.BlockDao;
-import com.beehyv.wareporting.dao.DistrictDao;
-import com.beehyv.wareporting.dao.PanchayatDao;
-import com.beehyv.wareporting.dao.StateDao;
+import com.beehyv.wareporting.dao.*;
 import com.beehyv.wareporting.entity.*;
 import com.beehyv.wareporting.enums.AccessLevel;
 import com.beehyv.wareporting.enums.AccessType;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.enums.ReportType;
+import com.beehyv.wareporting.model.Course;
 import com.beehyv.wareporting.model.ModificationTracker;
 import com.beehyv.wareporting.model.Role;
 import com.beehyv.wareporting.model.User;
@@ -90,6 +88,9 @@ public class UserController {
     @Autowired
     private BreadCrumbService breadCrumbService;
 
+    @Autowired
+    private CourseDao courseDao;
+
     private ServiceFunctions serviceFunctions;
 
     private final String USER_AGENT = "Mozilla/5.0";
@@ -98,10 +99,7 @@ public class UserController {
     private final String reports = documents + "Reports/";
     private Calendar c = Calendar.getInstance();
 
-    private final String WashAcademyCourse1 = "ODF PLUS";
-    private final String WashAcademyCourse2 = "ODF";
-    private final String course1 = "ODF_PLUS";
-    private final String course2 = "ODF";
+
 
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public @ResponseBody
@@ -433,16 +431,11 @@ public class UserController {
         Integer courseId = 0;
         try {
             courseId = reportRequest.getCourseId();
-            if(courseId == 1)
-                course = course1;
-            if(courseId == 2 )
-                course = course2;
+            course = reportService.getCourseByCourseId(courseId).getName();
         }
         catch(Exception NullPointerException) {
             //caught
         }
-
-
 
 
         Map<String, String> m = new HashMap<>();
@@ -760,14 +753,6 @@ public class UserController {
         return l;
     }
 
-    @RequestMapping(value = {"/courses"}, method =  RequestMethod.GET)
-    public @ResponseBody
-    ArrayList<String> getCourseList() {
-       ArrayList<String> courseList = new ArrayList<>();
-       courseList.add(WashAcademyCourse1);
-       courseList.add(WashAcademyCourse2);
-       return  courseList;
-    }
 
     @RequestMapping(value = {"/createMaster"}, method = RequestMethod.GET)
     @ResponseBody

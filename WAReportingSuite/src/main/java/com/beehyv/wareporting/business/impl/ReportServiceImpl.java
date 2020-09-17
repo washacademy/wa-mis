@@ -6,6 +6,7 @@ import com.beehyv.wareporting.entity.ReportRequest;
 import com.beehyv.wareporting.enums.AccessLevel;
 import com.beehyv.wareporting.enums.ReportType;
 import com.beehyv.wareporting.model.Circle;
+import com.beehyv.wareporting.model.Course;
 import com.beehyv.wareporting.model.StateCircle;
 import com.beehyv.wareporting.model.User;
 import com.beehyv.wareporting.utils.Global;
@@ -16,6 +17,7 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.util.*;
 
+import static com.beehyv.wareporting.utils.Global.retrieveCourseIdsFromFileLocationProperties;
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
 import static com.beehyv.wareporting.utils.ServiceFunctions.StReplace;
 
@@ -44,10 +46,33 @@ public class ReportServiceImpl implements ReportService{
     @Autowired
     private ReportTypeDao reportTypeDao;
 
+    @Autowired
+    private CourseDao courseDao;
+
 
 
     private final String documents = retrieveDocuments();
     private final String reports = documents+"Reports/";
+
+    @Override
+    public ArrayList<Course> getCourses(){
+        Integer[] courseIds = retrieveCourseIdsFromFileLocationProperties();
+        ArrayList<Course> courses= new ArrayList<Course>();
+        for(int i=0;i<courseIds.length;i++){
+            Course course =  courseDao.findByCourseId(courseIds[i]);
+            course.setPassingScore(null);
+            course.setContent(null);
+            course.setNoOfChapters(null);
+            courses.add(course);
+        }
+        return courses;
+    }
+
+    @Override
+    public Course getCourseByCourseId(Integer courseId) {
+        return courseDao.findByCourseId(courseId);
+    }
+
 
     @Override
     public List<String> getReportPathName(ReportRequest reportRequest) {

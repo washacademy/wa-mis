@@ -12,6 +12,35 @@ import java.util.Properties;
 
 public  final class Global {
 
+    public static Integer[] retrieveCourseIdsFromFileLocationProperties() {
+        Properties prop = new Properties();
+        InputStream input = null;
+        String courseIdsString = null;
+        try {
+            input = new FileInputStream("../webapps/WAReportingSuite/WEB-INF/classes/app.properties");
+            // load a properties file
+            prop.load(input);
+            courseIdsString = prop.getProperty("courseIds");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        String[] courses = courseIdsString.split(",");
+        Integer [] courseIds = new Integer[courses.length];
+        for (int i =0;i<courses.length;i++){
+            courseIds[i] = Integer.parseInt(courses[i]);
+        }
+        return courseIds;
+    }
+
+
     public static String retrieveDocuments() {
         Properties prop = new Properties();
         InputStream input = null;

@@ -1,12 +1,11 @@
 package com.beehyv.wareporting.controller;
 
-import com.beehyv.wareporting.business.AdminService;
-import com.beehyv.wareporting.business.LocationService;
-import com.beehyv.wareporting.business.ModificationTrackerService;
-import com.beehyv.wareporting.business.UserService;
+import com.beehyv.wareporting.business.*;
+import com.beehyv.wareporting.dao.CourseDao;
 import com.beehyv.wareporting.entity.PasswordDto;
 import com.beehyv.wareporting.enums.ModificationType;
 import com.beehyv.wareporting.enums.ReportType;
+import com.beehyv.wareporting.model.Course;
 import com.beehyv.wareporting.model.ModificationTracker;
 import com.beehyv.wareporting.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,7 @@ import java.io.*;
 import java.util.*;
 
 import static com.beehyv.wareporting.enums.ReportType.waCourseCompletion;
+import static com.beehyv.wareporting.utils.Global.retrieveCourseIdsFromFileLocationProperties;
 import static com.beehyv.wareporting.utils.Global.retrieveDocuments;
 
 
@@ -42,6 +42,9 @@ public class AdminController {
 
     @Autowired
     private ModificationTrackerService modificationTrackerService;
+
+    @Autowired
+    private ReportService reportService;
 
     private final String documents = retrieveDocuments();
     private final String reports = documents+"Reports/";
@@ -140,6 +143,12 @@ public class AdminController {
         }
         return map;
     }
+    @RequestMapping(value = {"/courses"},method = RequestMethod.GET)
+    @ResponseBody
+    public List<Course> getCourse(){
+        return reportService.getCourses();
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     @ResponseBody
     public String createFolders() throws ParseException {

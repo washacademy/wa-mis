@@ -595,15 +595,23 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 
 
         spreadsheet.autoSizeColumn(0);
-        for (int i = 1; i < 12; i++) {
+        for (int i = 1; i < 5; i++) {
             spreadsheet.setColumnWidth(i, 6000);
         }
+        for (int i = 5; i < 12; i++) {
+            spreadsheet.setColumnWidth(i, 4620);
+        }
+
 
         XSSFRow row;
+        for (int i =0;i<4;i++){
+            row = spreadsheet.createRow(i);
+            row.setHeight((short) 1480);
+        }
         int rowid = 8;
 
         row = spreadsheet.createRow(rowid++);
-        row.setHeight((short) 1100);
+        row.setHeight((short) 1300);
         int colid = 0;
         int tabrow = 0;
         for (String header : gridData.getColumnHeaders()) {
