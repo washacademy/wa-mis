@@ -16,6 +16,11 @@
 					})
 				}
 			})
+			var allCourses;
+			UserFormFactory.getAllCourses()
+                .then(function(result){
+                    allCourses = result.data;
+                })
 			var ExcelData = {};
 			var reportRequest = {};
             $scope.sundays = [];
@@ -314,7 +319,7 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && (($scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'WA_Anonymous_Users_Summary'));
+				return $scope.report != null && (($scope.report.reportEnum == 'SBM_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary'));
 			}
 
             $scope.isAggregateReport = function(){
@@ -417,18 +422,18 @@
 				if($scope.report != null){
 					minDate = new Date(2020, 7, 1);
 				}
-				if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Inactive_Users'){
+				if($scope.report != null && $scope.report.reportEnum == 'SBM_Cumulative_Inactive_Users'){
                 	minDate = new Date(2020, 7, 1);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'WA_Circle_Wise_Anonymous_Users'){
+                if($scope.report != null && $scope.report.reportEnum == 'SBM_Circle_Wise_Anonymous_Users'){
                     minDate = new Date(2020, 7, 1);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
-                if($scope.report != null && $scope.report.reportEnum == 'WA_Swachchagrahi_Import_Rejects'){
+                if($scope.report != null && $scope.report.reportEnum == 'SBM_Swachchagrahi_Import_Rejects'){
                     minDate = new Date(2020, 7, 1);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'WA_Cumulative_Course_Completion'){
+                if($scope.report != null && $scope.report.reportEnum == 'SBM_Cumulative_Course_Completion'){
                     minDate = new Date(2020, 7, 1);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
@@ -717,11 +722,21 @@
 						reportRequest.districtId = 0;
 						reportRequest.blockId = 0;
 						reportRequest.circleId = 0;
-						if ($scope.course == 'ODF PLUS') {
-							reportRequest.courseId = 1;
-						} else if ($scope.course == 'ODF') {
-							reportRequest.courseId = 2;
+
+                        for (i=0;i<allCourses.length;i++){
+						        if ($scope.course == allCourses[i].name) {
+						            console.log("printing courseName: "+ allCourses[i].name);
+						            console.log("CourseId:" + allCourses[i].courseId);
+                                    reportRequest.courseId = allCourses[i].courseId;
+                                    console.log(reportRequest);
+                                    break;
+                                }
 						}
+//						if ($scope.course == 'ODF_PLUS') {
+//							reportRequest.courseId = 1;
+//						} else if ($scope.course == 'ODF') {
+//							reportRequest.courseId = 2;
+//						}
 
 
 						if (!$scope.isCircleReport()) {
@@ -872,13 +887,13 @@
 									if ($scope.isAggregateReport()) {
 										$scope.waiting = false;
 
-										if ($scope.report.reportEnum == 'WA_Cumulative_Summary') {
+										if ($scope.report.reportEnum == 'SBM_Cumulative_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'WA_Performance_Report') {
+										} else if ($scope.report.reportEnum == 'SBM_Performance_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'WA_Subscriber_Report') {
+										} else if ($scope.report.reportEnum == 'SBM_Subscriber_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'WA_Anonymous_Users_Summary') {
+										} else if ($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
 										}
 
@@ -888,7 +903,7 @@
 										$scope.gridOptions.data = result.data.tableData;
 										$scope.reportBreadCrumbData = result.data.breadCrumbData;
 
-										if (!($scope.report.reportEnum == 'WA_Anonymous_Users_Summary')) {
+										if (!($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary')) {
 											if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'NATIONAL') {
 												$scope.gridOptions1.columnDefs[1].displayName = 'State';
 											} else if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'STATE') {
@@ -970,7 +985,7 @@
                 excelHeaderName.reportName = $scope.report.name;
                 excelHeaderName.course = $scope.course;
 
-                if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+                if($scope.report.reportEnum == 'SBM_Cumulative_Summary'){
                 excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
                 else{
                 var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
@@ -1080,7 +1095,7 @@
 				var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 				var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
 
-				if($scope.report.reportEnum == 'WA_Cumulative_Summary'){
+				if($scope.report.reportEnum == 'SBM_Cumulative_Summary'){
 					excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
 				else{
 					var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
@@ -1420,11 +1435,11 @@
                                                                         enableHiding: false,width:"14%",
 
                                                                      },
-                                                                     { field: 'anonUsersStartedCourse', displayName: 'No. of anonymous users started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                                     { field: 'anonUsersPursuingCourse', displayName: 'No. of anonymous users pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                                     { field: 'anonUsersNotPursuingCourse', displayName: 'No. of anonymous users not pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                                     { field: 'anonUsersCompletedCourse', displayName: 'No. of anonymous users successfully completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
-                                                                     { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                                     { field: 'anonUsersStartedCourse', displayName: 'No. of anonymous users started course in the selected duration', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersPursuingCourse', displayName: 'No. of anonymous users pursuing course who started before the selected duration', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                                     { field: 'anonUsersNotPursuingCourse', displayName: 'No. of anonymous users not pursuing course who started before the selected duration', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                                     { field: 'anonUsersCompletedCourse', displayName: 'No. of anonymous users successfully completed course in the selected duration', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                                     { field: 'anonUsersFailedCourse',  displayName: 'No. of anonymous users failed course in the selected duration', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
 
                                                                     ],
 

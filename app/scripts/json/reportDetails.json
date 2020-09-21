@@ -6,49 +6,49 @@
     "options": [
       {
         "name": "Completion Line-Listing Report",
-        "reportEnum": "WA_Cumulative_Course_Completion",
+        "reportEnum": "SBM_Cumulative_Course_Completion",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Circle-Wise Anonymous Users Line-Listing Report",
-        "reportEnum": "WA_Circle_Wise_Anonymous_Users",
+        "reportEnum": "SBM_Circle_Wise_Anonymous_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Inactive Users Line-Listing Report",
-        "reportEnum": "WA_Cumulative_Inactive_Users",
+        "reportEnum": "SBM_Cumulative_Inactive_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Academy Rejected Line-Listing Report",
-        "reportEnum": "WA_Swachchagrahi_Import_Rejects",
+        "reportEnum": "SBM_Swachchagrahi_Import_Rejects",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Cumulative Summary Report",
-        "reportEnum": "WA_Cumulative_Summary",
+        "reportEnum": "SBM_Cumulative_Summary",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Subscriber Report",
-        "reportEnum": "WA_Subscriber_Report",
+        "reportEnum": "SBM_Subscriber_Report",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Performance Report",
-        "reportEnum": "WA_Performance_Report",
+        "reportEnum": "SBM_Performance_Report",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Anonymous Users Summary Report",
-        "reportEnum": "WA_Anonymous_Users_Summary",
+        "reportEnum": "SBM_Anonymous_Users_Summary",
         "icon": "images/drop-down-2.png",
         "service": "M"
       }

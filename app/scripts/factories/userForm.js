@@ -18,6 +18,9 @@
 				getAccessibleCourses: function(){
 					return currentUser.accessibleCourses;
 				},
+				getAllCourses: function(){
+				    return $http.get(backend_root +'/wa/admin/courses');
+				},
 
 				deactivateUser: function(userId){
 					return $http.get(backend_root + 'wa/user/deleteUser/' + userId);
@@ -77,7 +80,7 @@
 				},
 
 				getCourseList: function(){
-					return $http.get(backend_root + 'wa/user/courses/')
+					return $http.get(backend_root + 'wa/user/courseNames/')
 				},
 
 				getUserDto: function(id){
