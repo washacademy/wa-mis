@@ -176,7 +176,7 @@
                     $scope.datePickerOptions.minMode = '';
                     $scope.datePickerOptions.datepickerMode = 'year';
                     $scope.datePickerOptions.minMode = 'year';
-                    $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() -1);
+                    $scope.datePickerOptions.maxDate = new Date().setYear(new Date().getFullYear() );
                 }
 				if($scope.periodDisplayType == 'Financial Year'){
 					$scope.periodTypeContent = "Select Start Year";
@@ -732,11 +732,6 @@
                                     break;
                                 }
 						}
-//						if ($scope.course == 'ODF_PLUS') {
-//							reportRequest.courseId = 1;
-//						} else if ($scope.course == 'ODF') {
-//							reportRequest.courseId = 2;
-//						}
 
 
 						if (!$scope.isCircleReport()) {

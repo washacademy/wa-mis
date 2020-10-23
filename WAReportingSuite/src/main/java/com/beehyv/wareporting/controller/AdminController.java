@@ -145,8 +145,9 @@ public class AdminController {
     }
     @RequestMapping(value = {"/courses"},method = RequestMethod.GET)
     @ResponseBody
-    public List<Course> getCourse(){
+    public ArrayList<Course> getCourse(){
         return reportService.getCourses();
+
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

@@ -165,7 +165,7 @@
                           }).then(function(success) {
                               // console.log("request successful");
                               // console.log(success.data);
-                              var url = success.data.split('redirect:')[1];
+                              var url = success.data;
                               // console.log(url);
                               var error = url.split('?')[1];
                               // console.log(error);
