@@ -143,11 +143,12 @@ public class AdminController {
         }
         return map;
     }
+
+
     @RequestMapping(value = {"/courses"},method = RequestMethod.GET)
     @ResponseBody
     public ArrayList<Course> getCourse(){
         return reportService.getCourses();
-
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
