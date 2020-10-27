@@ -252,7 +252,7 @@
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
-				$scope.course = null;
+//				$scope.course = null;
 				if(!$scope.userHasDistrict()){
 					$scope.clearDistrict();
 				}
@@ -541,10 +541,10 @@
 			}
 
 			$scope.selectCourse = function(item){
-				// if(item != null){
-				// 	$scope.course = null;
-				// 	$scope.course = item;
-				// }
+                if($scope.report !=null){
+                    $scope.report = null;
+                }
+
 				$scope.course = item;
 				if(!$scope.userHasState()){
 					$scope.clearState();
