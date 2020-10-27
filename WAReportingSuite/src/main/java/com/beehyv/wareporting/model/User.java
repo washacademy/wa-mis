@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="user_details")
+@Table(name="pradhan_user_details")
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -1173,8 +1173,8 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.createRow(rowid++);
 
         String encodingPrefix = "base64,";
-        String pngImageURL = Constants.header_DDWS_base64;
-        String pngImageURL1 = Constants.header_SBM_base64;
+        String pngImageURL = Constants.header_Pradan_base64;
+        String pngImageURL1 = Constants.header_Pradan_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
         int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
