@@ -47,15 +47,15 @@ public class AutoReportEmailGeneration {
             adminService.createFiles(ReportType.waInactive.getReportType());
 
             adminService.getCircleWiseAnonymousFiles(fromDate, toDate,1);
-            System.out.println("SBM_Circle_Wise_Anonymous_Users reports for SBM Academy Course generated");
+            System.out.println("Bharpoor_Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course generated");
             adminService.getCircleWiseAnonymousFiles(fromDate, toDate,2);
-            System.out.println("SBM_Circle_Wise_Anonymous_Users reports for SBM Academy Course Plus generated");
+            System.out.println("Bharpoor_Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course Plus generated");
             adminService.getCumulativeCourseCompletionFiles(toDate,1);
-            System.out.println("SBM_Cumulative_Course_Completion reports for SBM Academy Course generated");
+            System.out.println("Bharpoor_Cumulative_Course_Completion reports for Bharpoor Academy Course generated");
             adminService.getCumulativeCourseCompletionFiles(toDate,2);
-            System.out.println("SBM_Cumulative_Course_Completion reports for SBM Academy Course Plus generated");
+            System.out.println("Bharpoor_Cumulative_Course_Completion reports for Bharpoor Academy Course Plus generated");
             adminService.getCumulativeInactiveFiles(toDate);
-            System.out.println("SBM_Cumulative_Inactive_Users reports generated");
+            System.out.println("Bharpoor_Cumulative_Inactive_Users reports generated");
             System.out.println("Report generation done");
 
             return true;
@@ -81,21 +81,21 @@ public class AutoReportEmailGeneration {
 
     public HashMap sendFirstMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waCircleWiseAnonymous);
-        System.out.println("SBM_Anonymous: ");
+        System.out.println("Bharpoor_Anonymous: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendSecondMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waCourseCompletion);
-        System.out.println("SBM_Course: ");
+        System.out.println("Bharpoor_Course: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendThirdMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waInactive);
-        System.out.println("SBM_Inactive: ");
+        System.out.println("Bharpoor_Inactive: ");
         System.out.println(reports.toString());
         return reports;
     }

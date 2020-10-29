@@ -319,7 +319,7 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && (($scope.report.reportEnum == 'SBM_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary'));
+				return $scope.report != null && (($scope.report.reportEnum == 'Bharpoor_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary'));
 			}
 
             $scope.isAggregateReport = function(){
@@ -422,18 +422,18 @@
 				if($scope.report != null){
 					minDate = new Date(2020, 7, 1);
 				}
-				if($scope.report != null && $scope.report.reportEnum == 'SBM_Cumulative_Inactive_Users'){
+				if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Inactive_Users'){
                 	minDate = new Date(2020, 7, 1);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'SBM_Circle_Wise_Anonymous_Users'){
+                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Circle_Wise_Anonymous_Users'){
                     minDate = new Date(2020, 7, 1);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
-                if($scope.report != null && $scope.report.reportEnum == 'SBM_Swachchagrahi_Import_Rejects'){
+                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Swachchagrahi_Import_Rejects'){
                     minDate = new Date(2020, 7, 1);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'SBM_Cumulative_Course_Completion'){
+                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Course_Completion'){
                     minDate = new Date(2020, 7, 1);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
@@ -882,13 +882,13 @@
 									if ($scope.isAggregateReport()) {
 										$scope.waiting = false;
 
-										if ($scope.report.reportEnum == 'SBM_Cumulative_Summary') {
+										if ($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'SBM_Performance_Report') {
+										} else if ($scope.report.reportEnum == 'Bharpoor_Performance_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'SBM_Subscriber_Report') {
+										} else if ($scope.report.reportEnum == 'Bharpoor_Subscriber_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary') {
+										} else if ($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
 										}
 
@@ -898,7 +898,7 @@
 										$scope.gridOptions.data = result.data.tableData;
 										$scope.reportBreadCrumbData = result.data.breadCrumbData;
 
-										if (!($scope.report.reportEnum == 'SBM_Anonymous_Users_Summary')) {
+										if (!($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary')) {
 											if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'NATIONAL') {
 												$scope.gridOptions1.columnDefs[1].displayName = 'State';
 											} else if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'STATE') {
@@ -980,7 +980,7 @@
                 excelHeaderName.reportName = $scope.report.name;
                 excelHeaderName.course = $scope.course;
 
-                if($scope.report.reportEnum == 'SBM_Cumulative_Summary'){
+                if($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary'){
                 excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
                 else{
                 var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
@@ -1090,7 +1090,7 @@
 				var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 				var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
 
-				if($scope.report.reportEnum == 'SBM_Cumulative_Summary'){
+				if($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary'){
 					excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
 				else{
 					var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();

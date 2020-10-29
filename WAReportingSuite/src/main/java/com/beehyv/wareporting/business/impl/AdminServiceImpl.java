@@ -596,7 +596,7 @@ public class AdminServiceImpl implements AdminService {
         String course = "";
         Integer courseId = 0;
         String rootPath = "";
-        if ((reportRequest.getReportType().equals("SBM_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("SBM_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("Bharpoor_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Bharpoor_Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
             course = courseDao.findByCourseId(courseId).getName();
         }
@@ -880,7 +880,7 @@ public class AdminServiceImpl implements AdminService {
         }
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                " SBM Course Completion Report for "+ course);
+                " Bharpoor Course Completion Report for "+ course);
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -1164,7 +1164,7 @@ public class AdminServiceImpl implements AdminService {
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
         String course = "";
         Integer courseId =0;
-        if ((reportRequest.getReportType().equals("SBM_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("SBM_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("Bharpoor_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Bharpoor_Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
             course = courseDao.findByCourseId(courseId).getName();
         }

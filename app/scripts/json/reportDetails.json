@@ -1,54 +1,54 @@
 [
   {
     "service": "M",
-    "name": "SBM Academy Reports",
+    "name": "Bharpoor Academy Reports",
     "icon": "images/drop-down-3.png",
     "options": [
       {
         "name": "Completion Line-Listing Report",
-        "reportEnum": "SBM_Cumulative_Course_Completion",
+        "reportEnum": "Bharpoor_Cumulative_Course_Completion",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Circle-Wise Anonymous Users Line-Listing Report",
-        "reportEnum": "SBM_Circle_Wise_Anonymous_Users",
+        "reportEnum": "Bharpoor_Circle_Wise_Anonymous_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Inactive Users Line-Listing Report",
-        "reportEnum": "SBM_Cumulative_Inactive_Users",
+        "reportEnum": "Bharpoor_Cumulative_Inactive_Users",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Academy Rejected Line-Listing Report",
-        "reportEnum": "SBM_Swachchagrahi_Import_Rejects",
+        "reportEnum": "Bharpoor_Swachchagrahi_Import_Rejects",
         "icon": "images/drop-down-3.png",
         "service": "M"
       },
       {
         "name": "Cumulative Summary Report",
-        "reportEnum": "SBM_Cumulative_Summary",
+        "reportEnum": "Bharpoor_Cumulative_Summary",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Subscriber Report",
-        "reportEnum": "SBM_Subscriber_Report",
+        "reportEnum": "Bharpoor_Subscriber_Report",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Performance Report",
-        "reportEnum": "SBM_Performance_Report",
+        "reportEnum": "Bharpoor_Performance_Report",
         "icon": "images/drop-down-2.png",
         "service": "M"
       },
       {
         "name": "Anonymous Users Summary Report",
-        "reportEnum": "SBM_Anonymous_Users_Summary",
+        "reportEnum": "Bharpoor_Anonymous_Users_Summary",
         "icon": "images/drop-down-2.png",
         "service": "M"
       }

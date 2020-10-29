@@ -194,7 +194,7 @@
                                     ng-disabled="disableCircle()" uib-dropdown-toggle
                                     ng-class="{loading: circlesLoading}">
 								<span class="block">
-									<span ng-if="circle != null">{{circle.circleName}}</span>
+									<span ng-if="circle != null">{{circle.circleFullName}}</span>
                                     <span ng-if="circle == null">All</span>
 									<span class="caret"></span>
 								</span>
@@ -203,8 +203,8 @@
                                 aria-labelledby="selectAgrCircle">
                                 <li role="menuitem"><a ng-click="clearCircle()">All</a>
                                 <li role="menuitem"
-                                    ng-repeat="item in circles | orderBy : 'circleName'"><a
-                                        class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
+                                    ng-repeat="item in circles | orderBy : 'circleFullName'"><a
+                                        class="select_circle" ng-click='selectCircle(item)'>{{item.circleFullName}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -363,7 +363,7 @@
                                         ng-disabled="disableCircle()" uib-dropdown-toggle
                                         ng-class="{loading: circlesLoading}">
 								<span class="dropHeader">
-									<span  class="dropdownTitle" ng-if="circle!=null">{{circle.circleName}}</span>
+									<span  class="dropdownTitle" ng-if="circle!=null">{{circle.circleFullName}}</span>
                                     <span class="caret" id="LLCircleCaret" ng-if="circle == null"></span>
                                     <span class="caret" ng-if="circle != null"></span>
 								</span>
@@ -371,8 +371,8 @@
                                 <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
                                     aria-labelledby="selectLLCircle">
                                     <li role="menuitem"
-                                        ng-repeat="item in circles | orderBy : 'circleName'"><a
-                                            class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
+                                        ng-repeat="item in circles | orderBy : 'circleFullName'"><a
+                                            class="select_circle" ng-click='selectCircle(item)'>{{item.circleFullName}}</a>
                                     </li>
                                 </ul>
                             </div>
