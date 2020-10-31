@@ -50,6 +50,20 @@ public class LocationController {
         return states;
     }
 
+    @RequestMapping(value = {"/accessibleStates"}, method = RequestMethod.GET)
+    public @ResponseBody List<State> getAllAccessibleStates() {
+        User user = userService.getCurrentUser();
+        List<State> states;
+        if(user.getAccessLevel().equals(AccessLevel.NATIONAL.getAccessLevel())) {
+            states = locationService.getAllAccessibleStates();
+        }
+        else{
+            states = new ArrayList<>();
+            states.add(locationService.findStateById(user.getStateId()));
+        }
+        return states;
+    }
+
     /*--------------------------District-----------------------------*/
 
     @RequestMapping(value = {"/districts/{stateId}"}, method = RequestMethod.GET)

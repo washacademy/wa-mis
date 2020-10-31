@@ -15,6 +15,8 @@ public interface LocationService {
 
     List<State> getAllStates();
 
+    List<State> getAllAccessibleStates();
+
     /*----------------------State-------------------------*/
 
     State findStateById(Integer stateId);

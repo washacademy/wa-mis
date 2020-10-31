@@ -51,6 +51,9 @@
 				getStates: function(){
 					return $http.get(backend_root + 'wa/location/states');
 				},
+				getAccessibleStates: function(){
+                					return $http.get(backend_root + 'wa/location/accessibleStates');
+                },
 				getStatesByService: function(service){
 					return $http.get(backend_root + 'wa/location/state/' + service);
 				},

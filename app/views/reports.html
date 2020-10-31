@@ -6,28 +6,6 @@
             <div class="row" ng-if="!isLineListingReport()" id="aggregateRow">
                 <div class="col-xs-7" ng-if="!isCircleReport()">
                     <div class="row">
-                        <div class="col-xs-3">
-                            <label>Select Reports</label><br>
-                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                                <button id="selectAgrReport" type="button" class="btn btn-sm btn-default btn-block"
-                                        uib-dropdown-toggle>
-                                    <span class="dropHeader">
-                                    <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
-                                    <span ng-if="report.name == null">Select</span>
-                                    <span class="caret"></span>
-                                    </span>
-                                </button>
-                                <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
-                                    aria-labelledby="selectAgrReport">
-                                    <li role="menuitem" ng-repeat="item in reportNames">
-                                        <a class="select_report" ng-click='selectReport(item)'>
-                                            <img class='block' src="{{item.icon}}">
-                                            <span>{{item.name}}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
 
                         <div class="col-xs-3">
                             <label>Select Course</label>
@@ -49,6 +27,29 @@
                                         </a>
                                     </li>
 
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <label>Select Reports</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="selectAgrReport" type="button" class="btn btn-sm btn-default btn-block"
+                                        uib-dropdown-toggle>
+                                    <span class="dropHeader">
+                                    <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
+                                    <span ng-if="report.name == null">Select</span>
+                                    <span class="caret"></span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
+                                    aria-labelledby="selectAgrReport">
+                                    <li role="menuitem" ng-repeat="item in reportNames">
+                                        <a class="select_report" ng-click='selectReport(item)'>
+                                            <img class='block' src="{{item.icon}}">
+                                            <span>{{item.name}}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -137,28 +138,6 @@
                 </div>
 
                 <div class="col-xs-5" ng-if="isCircleReport()" id="anon">
-                    <div class="col-xs-4" id="slReCirAg">
-                        <label>Select Reports</label><br>
-                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                            <button id="selectAgrReportC" type="button" class="btn btn-sm btn-default btn-block"
-                                    uib-dropdown-toggle>
-                                    <span class="dropHeader">
-                                    <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
-                                    <span ng-if="report.name == null">Select</span>
-                                    <span class="caret"></span>
-                                    </span>
-                            </button>
-                            <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
-                                aria-labelledby="selectAgrReportC">
-                                <li role="menuitem" ng-repeat="item in reportNames">
-                                    <a class="select_report" ng-click='selectReport(item)'>
-                                        <img class='block' src="{{item.icon}}">
-                                        <span>{{item.name}}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
                     <div class="col-xs-4">
                         <label>Select Course</label>
@@ -184,6 +163,28 @@
                         </div>
                     </div>
 
+                    <div class="col-xs-4" id="slReCirAg">
+                        <label>Select Reports</label><br>
+                        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                            <button id="selectAgrReportC" type="button" class="btn btn-sm btn-default btn-block"
+                                    uib-dropdown-toggle>
+                                    <span class="dropHeader">
+                                    <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
+                                    <span ng-if="report.name == null">Select</span>
+                                    <span class="caret"></span>
+                                    </span>
+                            </button>
+                            <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
+                                aria-labelledby="selectAgrReportC">
+                                <li role="menuitem" ng-repeat="item in reportNames">
+                                    <a class="select_report" ng-click='selectReport(item)'>
+                                        <img class='block' src="{{item.icon}}">
+                                        <span>{{item.name}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
                     <div class="col-xs-3" id="slCirAg">
                         <label>Select Circle</label><br>
@@ -192,7 +193,7 @@
                                     ng-disabled="disableCircle()" uib-dropdown-toggle
                                     ng-class="{loading: circlesLoading}">
 								<span class="block">
-									<span ng-if="circle != null">{{circle.circleName}}</span>
+									<span ng-if="circle != null">{{circle.circleFullName}}</span>
                                     <span ng-if="circle == null">All</span>
 									<span class="caret"></span>
 								</span>
@@ -201,8 +202,8 @@
                                 aria-labelledby="selectAgrCircle">
                                 <li role="menuitem"><a ng-click="clearCircle()">All</a>
                                 <li role="menuitem"
-                                    ng-repeat="item in circles | orderBy : 'circleName'"><a
-                                        class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
+                                    ng-repeat="item in circles | orderBy : 'circleFullName'"><a
+                                        class="select_circle" ng-click='selectCircle(item)'>{{item.circleFullName}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -306,29 +307,7 @@
             <div class="row" ng-if="isLineListingReport()" id="llRow">
                 <div class="col-xs-12">
                     <div class="row">
-                        <div class="col-xs-2">
-                            <label>Select Reports</label><br>
-                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                                <button id="selectLLReport" type="button" class="btn btn-sm btn-default btn-block"
-                                        uib-dropdown-toggle>
-                                    <span class="dropHeader">
-                                        <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
-                                        <span ng-if="report.name == null">Select</span>
-                                        <span class="caret"></span>
-                                    </span>
-                                </button>
-                                <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
-                                    aria-labelledby="selectLLReport">
-                                    <li role="menuitem" ng-repeat="item in reportNames">
-                                        <a class="select_report" ng-click='selectReport(item)'>
-                                            <img class='block' src="{{item.icon}}">
-                                            <span>{{item.name}}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xs-2" ng-if="(report.name == 'Completion Line-Listing Report' ) || (report.name == 'Circle-Wise Anonymous Users Line-Listing Report')" >
+                        <div class="col-xs-2" ng-if="(report.name == 'Completion Line-Listing Report' ) || (report.name == 'Circle-Wise Anonymous Users Line-Listing Report') || (report.name == 'Inactive Users Line-Listing Report' ) || (report.name == 'Academy Rejected Line-Listing Report' )" >
                             <label>Select Course</label>
                             <div class="btn-group" uib-dropdown dropdown-append-to-body>
                                 <button id="selectCourseLl" type="button" ng-disabled="disableIfOnlyOneCourse()" class="btn btn-sm btn-default btn-block"
@@ -352,6 +331,29 @@
                             </div>
                         </div>
 
+                        <div class="col-xs-2">
+                            <label>Select Reports</label><br>
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                <button id="selectLLReport" type="button" class="btn btn-sm btn-default btn-block"
+                                        uib-dropdown-toggle>
+                                    <span class="dropHeader">
+                                        <span class="dropdownTitle" ng-if="report.name != null">{{report.name}}</span>
+                                        <span ng-if="report.name == null">Select</span>
+                                        <span class="caret"></span>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu big" uib-dropdown-menu role="menu"
+                                    aria-labelledby="selectLLReport">
+                                    <li role="menuitem" ng-repeat="item in reportNames">
+                                        <a class="select_report" ng-click='selectReport(item)'>
+                                            <img class='block' src="{{item.icon}}">
+                                            <span>{{item.name}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="form-group col-xs-1"
                              ng-if="isCircleReport()">
                             <label>Select Circle</label><br>
@@ -360,7 +362,7 @@
                                         ng-disabled="disableCircle()" uib-dropdown-toggle
                                         ng-class="{loading: circlesLoading}">
 								<span class="dropHeader">
-									<span  class="dropdownTitle" ng-if="circle!=null">{{circle.circleName}}</span>
+									<span  class="dropdownTitle" ng-if="circle!=null">{{circle.circleFullName}}</span>
                                     <span class="caret" id="LLCircleCaret" ng-if="circle == null"></span>
                                     <span class="caret" ng-if="circle != null"></span>
 								</span>
@@ -368,8 +370,8 @@
                                 <ul class="dropdown-menu type-aggregate" uib-dropdown-menu role="menu"
                                     aria-labelledby="selectLLCircle">
                                     <li role="menuitem"
-                                        ng-repeat="item in circles | orderBy : 'circleName'"><a
-                                            class="select_circle" ng-click='selectCircle(item)'>{{item.circleName}}</a>
+                                        ng-repeat="item in circles | orderBy : 'circleFullName'"><a
+                                            class="select_circle" ng-click='selectCircle(item)'>{{item.circleFullName}}</a>
                                     </li>
                                 </ul>
                             </div>

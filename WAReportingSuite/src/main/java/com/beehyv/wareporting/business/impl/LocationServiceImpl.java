@@ -2,15 +2,13 @@ package com.beehyv.wareporting.business.impl;
 
 import com.beehyv.wareporting.business.LocationService;
 import com.beehyv.wareporting.dao.*;
-import com.beehyv.wareporting.entity.CircleDto;
-import com.beehyv.wareporting.enums.AccessLevel;
 import com.beehyv.wareporting.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,8 +18,13 @@ import java.util.List;
 @Transactional
 public class LocationServiceImpl implements LocationService {
 
+    private Logger logger = LoggerFactory.getLogger(LocationServiceImpl.class);
+
     @Autowired
     private StateDao stateDao;
+
+    @Autowired
+    private StateServiceDao stateServiceDao;
 
     @Autowired
     private DistrictDao districtDao;
@@ -48,6 +51,20 @@ public class LocationServiceImpl implements LocationService {
     public List<State> getAllStates() {
         return stateDao.getAllStates();
     }
+
+    @Override
+    public List<State> getAllAccessibleStates(){
+        List<StateService> allStateService = stateServiceDao.getAllStatesService();
+        List<State> accessibleState= new ArrayList<>();
+        logger.debug("printing size of accessible stste list:"+allStateService.size());
+        for(int i =0;i<allStateService.size();i++){
+            Integer stateId = allStateService.get(i).getStateId();
+            logger.debug("stateService state ID:"+stateId);
+            State state = stateDao.findByStateId(stateId);
+            accessibleState.add(state);
+        }
+        return accessibleState;
+    };
 
     /*----------------------State-------------------------*/
 

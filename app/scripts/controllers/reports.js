@@ -252,7 +252,6 @@
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
-				$scope.course = null;
 				if(!$scope.userHasDistrict()){
 					$scope.clearDistrict();
 				}
@@ -336,7 +335,7 @@
             	$scope.statesLoading = true;
             	$scope.states = [];
             	$scope.clearState();
-                return UserFormFactory.getStates()
+                return UserFormFactory.getAccessibleStates()
                 .then(function(result){
                 $scope.states = result.data;
                                     $scope.districts = [];
@@ -541,11 +540,9 @@
 			}
 
 			$scope.selectCourse = function(item){
-				// if(item != null){
-				// 	$scope.course = null;
-				// 	$scope.course = item;
-				// }
+
 				$scope.course = item;
+				$scope.report = null;
 				if(!$scope.userHasState()){
 					$scope.clearState();
 				}
