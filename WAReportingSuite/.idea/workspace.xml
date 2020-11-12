@@ -5,73 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fa312be-f9b4-405a-83ae-51dff44a1d0b" name="Default" comment="Course name hardcoding removed and repository added for course and configured courseIds in properties file.">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_samples_samples_spring_client_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_cache_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_core_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_config_ogdl_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_core_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_cipher_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_core_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_crypto_hash_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_ehcache_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_event_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_lang_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_spring_1_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_shiro_shiro_web_1_4_0.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/images/bhoomididi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/images/bhoomididi2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/beehyv/wareporting/controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/WAReportingSuite.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/WAReportingSuite.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LoginTrackerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/LoginTrackerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/ReportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/ReportService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/WAPerformanceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/WAPerformanceService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/AdminServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/EmailServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LoginTrackerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/LoginTrackerServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/ReportServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/WAPerformanceServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/business/impl/WAPerformanceServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AggregateCumulativeWADao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AggregateCumulativeWADao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/AnonymousUsersDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/LoginTrackerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/LoginTrackerDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/WACourseAttemptDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/WACourseAttemptDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/WAPerformanceDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/WAPerformanceDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AggregateCumulativeWADaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/AnonymousUsersDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/LoginTrackerDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/LoginTrackerDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WACourseAttemptDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WACourseAttemptDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/dao/impl/WAPerformanceDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ForgotPasswordDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ForgotPasswordDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ReportRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/entity/ReportRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/enums/ReportType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/enums/ReportType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/job/AutoReportEmailGeneration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAAggregateDaily.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WAAggregateDaily.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACallDetailMeasure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACircleWiseAnonymousUsersLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACompletionLineListing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseCompletion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseCompletion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseFirstCompletion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACourseFirstCompletion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/model/WACumulativeSummary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/Global.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/LoginUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/ServiceFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/beehyv/wareporting/utils/ServiceFunctions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/scripts/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/scripts/controllers/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/scripts/controllers/reports.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/scripts/controllers/reports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/scripts/factories/exportuiGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/scripts/factories/exportuiGrid.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/scripts/global/urls.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/scripts/global/urls.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -116,7 +68,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../app" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -179,6 +131,7 @@
       <workItem from="1589814350714" duration="599000" />
       <workItem from="1589895221585" duration="598000" />
       <workItem from="1589963992376" duration="41000" />
+      <workItem from="1604912152336" duration="13819000" />
     </task>
     <task id="LOCAL-00001" summary="fixed model and Dto classes">
       <created>1515676276667</created>
@@ -264,11 +217,18 @@
       <option name="project" value="LOCAL" />
       <updated>1600353370233</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="image header for LL xlsx reports">
+      <created>1605076022487</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605076022487</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -294,25 +254,26 @@
     <MESSAGE value="date changes" />
     <MESSAGE value="Headers changes SBM from Wash" />
     <MESSAGE value="Course name hardcoding removed and repository added for course and configured courseIds in app.properties file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Course name hardcoding removed and repository added for course and configured courseIds in app.properties file." />
+    <MESSAGE value="image header for LL xlsx reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="image header for LL xlsx reports" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="524" y="83" width="374" height="626" key="#com.intellij.ide.util.MemberChooser" timestamp="1600352021349">
+    <state x="524" y="83" width="374" height="626" key="#com.intellij.ide.util.MemberChooser" timestamp="1604132656426">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="524" y="83" width="374" height="626" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1600352021349" />
-    <state x="297" y="27" width="921" height="741" key="CommitChangelistDialog2" timestamp="1600353369154">
+    <state x="524" y="83" width="374" height="626" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1604132656426" />
+    <state x="297" y="27" width="948" height="741" key="CommitChangelistDialog2" timestamp="1605076020064">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="297" y="27" width="921" height="741" key="CommitChangelistDialog2/67.27.1299.741@67.27.1299.741" timestamp="1600353369154" />
-    <state x="187" y="86" width="1039" height="622" key="DiffContextDialog" timestamp="1603437845053">
+    <state x="297" y="27" width="948" height="741" key="CommitChangelistDialog2/67.27.1299.741@67.27.1299.741" timestamp="1605076020064" />
+    <state x="187" y="86" width="1039" height="622" key="DiffContextDialog" timestamp="1605075950704">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="187" y="86" width="1039" height="622" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1603437845053" />
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1601044024434">
+    <state x="187" y="86" width="1039" height="622" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1605075950704" />
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1605004924991">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1601044024434" />
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1605004924991" />
     <state x="311" y="118" width="800" height="556" key="Vcs.Push.Dialog.v2" timestamp="1600353443783">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -321,18 +282,18 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="521" y="27" width="381" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1299.741@67.27.1299.741" timestamp="1597584839359" />
-    <state x="468" y="27" width="698" height="594" key="find.popup" timestamp="1603430738133">
+    <state x="468" y="27" width="713" height="594" key="find.popup" timestamp="1605000125085">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="468" y="27" width="698" height="594" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1603430738133" />
+    <state x="468" y="27" width="713" height="594" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1605000125085" />
     <state x="67" y="100" width="1289" height="592" key="new project wizard" timestamp="1600766135508">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="67" y="100" width="1289" height="592" key="new project wizard/67.27.1299.741@67.27.1299.741" timestamp="1600766135508" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1603429665062">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1605004863933">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1603429665062" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1605004863933" />
   </component>
   <component name="masterDetails">
     <states>

@@ -203,7 +203,7 @@
                     $scope.dateFormat = "yyyy-MM-dd";
                     delete $scope.datePickerOptions.datepickerMode;
                     $scope.datePickerOptions.minMode = '';
-                    $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 1);
+                    $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 2);
                 }
 
             }
@@ -414,27 +414,27 @@
 
 			$scope.setDateOptions =function(){
 			    if($scope.isAggregateReport()){
-			        var minDate = new Date(2020, 7, 1);
+			        var minDate = new Date(2020, 9, 20);
 			    }
                 else{
-                    var minDate = new Date(2020, 7, 1);
+                    var minDate = new Date(2020, 9, 20);
                 }
 				if($scope.report != null){
-					minDate = new Date(2020, 7, 1);
+					minDate = new Date(2020, 9, 20);
 				}
 				if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Inactive_Users'){
-                	minDate = new Date(2020, 7, 1);
+                	minDate = new Date(2020, 9, 20);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Circle_Wise_Anonymous_Users'){
-                    minDate = new Date(2020, 7, 1);
+                    minDate = new Date(2020, 9, 20);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
                 if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Swachchagrahi_Import_Rejects'){
-                    minDate = new Date(2020, 7, 1);
+                    minDate = new Date(2020, 9, 20);
                 }
                 if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Course_Completion'){
-                    minDate = new Date(2020, 7, 1);
+                    minDate = new Date(2020, 9, 20);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
 					minDate = $scope.state.serviceStartDate;
@@ -461,7 +461,7 @@
 
 				$scope.endDatePickerOptions = {
                     formatYear: 'yyyy',
-                    maxDate: new Date() - 1,
+                    maxDate:  new Date().setDate(new Date().getDate()-1 ),
                     minDate: minDate,
                     startingDay: 1
                 };
