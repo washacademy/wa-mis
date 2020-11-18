@@ -203,7 +203,7 @@
                     $scope.dateFormat = "yyyy-MM-dd";
                     delete $scope.datePickerOptions.datepickerMode;
                     $scope.datePickerOptions.minMode = '';
-                    $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 1);
+                    $scope.datePickerOptions.maxDate = new Date().setDate(new Date().getDate() - 2);
                 }
 
             }
@@ -460,7 +460,7 @@
 
 				$scope.endDatePickerOptions = {
                     formatYear: 'yyyy',
-                    maxDate: new Date() - 1,
+                    maxDate: new Date().setDate(new Date().getDate() - 1),
                     minDate: minDate,
                     startingDay: 1
                 };

@@ -754,6 +754,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Swachchagrahi Import Rejected Details");
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -797,6 +798,7 @@ public class AdminServiceImpl implements AdminService {
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
+        /** Dont change column width, image header is adjusted to this width **/
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
         }
@@ -881,6 +883,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 " SBM Course Completion Report for "+ course);
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -927,6 +930,7 @@ public class AdminServiceImpl implements AdminService {
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
+        /** Dont change column width, image header is adjusted to this width **/
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
         }
@@ -983,6 +987,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Circle-wise Anonymous Users Report for" + course);
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
 
@@ -1031,6 +1036,7 @@ public class AdminServiceImpl implements AdminService {
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
+        /** Dont change column width, image header is adjusted to this width **/
         for (int i = 1; i < 13; i++) {
             spreadsheet.setColumnWidth(i, 4000);
         }
@@ -1079,6 +1085,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Cumulative Inactive Users Report "+place+"_"+getMonthYear(toDate));
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -1119,6 +1126,7 @@ public class AdminServiceImpl implements AdminService {
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
 
+        /** Dont change column width, image header is adjusted to this width **/
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
         }
@@ -1173,16 +1181,11 @@ public class AdminServiceImpl implements AdminService {
         spreadsheet.createRow(rowid++);
 
         String encodingPrefix = "base64,";
-        String pngImageURL = Constants.header_DDWS_base64;
-        String pngImageURL1 = Constants.header_SBM_base64;
+        String pngImageURL = Constants.header_SBM_LL_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
-        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
-        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
 
         final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
-        final int pictureIndex1 = workbook.addPicture(imageData1,Workbook.PICTURE_TYPE_PNG);
-
 
         final CreationHelper helper = workbook.getCreationHelper();
         final Drawing drawing = spreadsheet.createDrawingPatriarch();
@@ -1194,17 +1197,8 @@ public class AdminServiceImpl implements AdminService {
         anchor.setCol1( 0 );
         anchor.setRow1( 0 );
         anchor.setRow2( 4 );
-        anchor.setCol2( 8 );
+        anchor.setCol2( 12 );
         drawing.createPicture( anchor, pictureIndex );
-
-        final ClientAnchor anchor1 = helper.createClientAnchor();
-        anchor1.setAnchorType( ClientAnchor.MOVE_AND_RESIZE );
-
-        anchor1.setRow1(0);
-        anchor1.setRow2(4);
-        anchor1.setCol1(8);
-        anchor1.setCol2(12);
-        drawing.createPicture(anchor1,pictureIndex1);
 
         XSSFCellStyle style1 = workbook.createCellStyle();//Create style
         style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
@@ -1302,16 +1296,17 @@ public class AdminServiceImpl implements AdminService {
         cell5.setCellStyle(style);
         cell6.setCellStyle(style);
 
-
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,0));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,4));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,5,5));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,6,8));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,9,9));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
-
-
-
+        if(!reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,0));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,4));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,5,5));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,6,8));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,9,9));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
+        }
+        else {
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,11));
+        }
 
         XSSFRow courseRow = spreadsheet.createRow(7);
         Cell cell11 = courseRow.createCell(0);
@@ -1320,9 +1315,8 @@ public class AdminServiceImpl implements AdminService {
         cell12.setCellValue(course);
         cell11.setCellStyle(style);
         cell12.setCellStyle(style);
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,4));
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
-
+        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
+//        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
 
     }
 
