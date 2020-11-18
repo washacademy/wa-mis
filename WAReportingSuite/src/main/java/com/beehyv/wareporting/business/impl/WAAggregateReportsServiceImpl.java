@@ -593,7 +593,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         style.setWrapText(true);
         backgroundStyle3.setFont(font2);
 
-
+    /** PLEASE DONT CHANGE COLUMN WIDTH IT IS ADJUSTED FOR IMAGE HEADERS **/
         spreadsheet.autoSizeColumn(0);
         for (int i = 1; i < 5; i++) {
             spreadsheet.setColumnWidth(i, 6000);
@@ -604,14 +604,14 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 
 
         XSSFRow row;
-        for (int i =0;i<4;i++){
-            row = spreadsheet.createRow(i);
-            row.setHeight((short) 1480);
-        }
+//        for (int i =0;i<4;i++){
+//            row = spreadsheet.createRow(i);
+//            row.setHeight((short) 1480);
+//        }
         int rowid = 8;
 
         row = spreadsheet.createRow(rowid++);
-        row.setHeight((short) 1300);
+        row.setHeight((short) 1400);
         int colid = 0;
         int tabrow = 0;
         for (String header : gridData.getColumnHeaders()) {
@@ -702,16 +702,16 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 
 
         String encodingPrefix = "base64,";
-        String pngImageURL = Constants.header_Pradan_base64;
-        String pngImageURL1 = Constants.header_Bhoomi_base64;
+        String pngImageURL = Constants.header_Pradan_agg_base64;
+//        String pngImageURL1 = Constants.header_Bhoomi_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
-        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
+//        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
 
-        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
+//        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
 
         final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
-        final int pictureIndex1 = workbook.addPicture(imageData1, Workbook.PICTURE_TYPE_PNG);
+//        final int pictureIndex1 = workbook.addPicture(imageData1, Workbook.PICTURE_TYPE_PNG);
 
         final CreationHelper helper = workbook.getCreationHelper();
         final Drawing drawing = spreadsheet.createDrawingPatriarch();
@@ -723,17 +723,17 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         anchor.setCol1(0);
         anchor.setRow1(0);
         anchor.setRow2(4);
-        anchor.setCol2(5);
+        anchor.setCol2(8);
         drawing.createPicture(anchor, pictureIndex);
 
-        final ClientAnchor anchor1 = helper.createClientAnchor();
-        anchor1.setAnchorType(ClientAnchor.MOVE_AND_RESIZE);
-
-        anchor1.setCol1(5);
-        anchor1.setRow1(0);
-        anchor1.setRow2(4);
-        anchor1.setCol2(8);
-        drawing.createPicture(anchor1, pictureIndex1);
+//        final ClientAnchor anchor1 = helper.createClientAnchor();
+//        anchor1.setAnchorType(ClientAnchor.MOVE_AND_RESIZE);
+//
+//        anchor1.setCol1(5);
+//        anchor1.setRow1(0);
+//        anchor1.setRow2(4);
+//        anchor1.setCol2(8);
+//        drawing.createPicture(anchor1, pictureIndex1);
 
 
 
@@ -843,7 +843,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         String YearString = String.valueOf(DateYear);
 
         cellB.setCellValue(DateString + " " + MonthString + " " + YearString);
-        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 5, 6);
+        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 5, 7);
         cleanBeforeMergeOnValidCells(spreadsheet, dateRange, style);
         spreadsheet.addMergedRegion(dateRange);
 

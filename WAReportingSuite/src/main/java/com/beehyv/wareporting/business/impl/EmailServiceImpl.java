@@ -177,7 +177,7 @@ public class EmailServiceImpl implements EmailService{
             body+="\tPlease find attached the list of anonymous callers to the WASH Academy course from the telecom " +
                     "circle of " + place + ". We presume that these numbers are used by Swachchagrahis working in your state/UT but " +
                     "have not been registered in MDWS Application. Please contact these numbers and if they belong " +
-                    "to a registered Swachchagrahi in " + place + " then please tell them to either use their registered number " +
+                    "to a registered User in " + place + " then please tell them to either use their registered number " +
                     "to access the WASH Academy course or register their correct numbers in the MDWS Application so " +
                     "that they can access the WASH Academy course.\n\n" +
                     "This is for your information.\n\n";

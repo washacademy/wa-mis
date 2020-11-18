@@ -6,14 +6,14 @@ package com.beehyv.wareporting.enums;
 public enum ReportType {
 
 
-    waPerformance("Bharpoor_Performance_Report","Performance Report","M","Bharpoor Performance Aggregate Report"),
-    waSubscriber("Bharpoor_Subscriber_Report","Subscriber Report","M","Bharpoor Subscriber Aggregate Report"),
-    waCumulativeSummary("Bharpoor_Cumulative_Summary","Cumulative Summary Report","M","Bharpoor Cumulative Summery Aggregate Report"),
-    waCourseCompletion("Bharpoor_Cumulative_Course_Completion", "Completion Line-Listing Report", "M","Bharpoor Completion Line-Listing Report"),
-    waCircleWiseAnonymous("Bharpoor_Circle_Wise_Anonymous_Users", "Circle-Wise Anonymous Users Line-Listing Report", "M", "Bharpoor Circle Wise Anonymous Line-Listing Report"),
-    waInactive("Bharpoor_Cumulative_Inactive_Users", "Inactive Users Line-Listing Report", "M", "Bharpoor Inactive Users Line-Listing Report"),
-    swcRejected("Bharpoor_Swachchagrahi_Import_Rejects","Academy Rejected Line-Listing Report", "M", "Bharpoor Rejected Line-Listing Report"),
-    waAnonymousSummary("Bharpoor_Anonymous_Users_Summary", "Anonymous Users Summary Report", "M", "Bharpoor Anonymous Users Summary Report");
+    waPerformance("Performance_Report","Performance Report","M","Performance Aggregate Report"),
+    waSubscriber("Subscriber_Report","Subscriber Report","M","Subscriber Aggregate Report"),
+    waCumulativeSummary("Cumulative_Summary","Cumulative Summary Report","M","Cumulative Summery Aggregate Report"),
+    waCourseCompletion("Cumulative_Course_Completion", "Completion Line-Listing Report", "M","Completion Line-Listing Report"),
+    waCircleWiseAnonymous("Circle_Wise_Anonymous_Users", "Circle-Wise Anonymous Users Line-Listing Report", "M", "Circle Wise Anonymous Line-Listing Report"),
+    waInactive("Cumulative_Inactive_Users", "Inactive Users Line-Listing Report", "M", "Inactive Users Line-Listing Report"),
+    swcRejected("User_Import_Rejects","Academy Rejected Line-Listing Report", "M", "Rejected Line-Listing Report"),
+    waAnonymousSummary("Anonymous_Users_Summary", "Anonymous Users Summary Report", "M", "Anonymous Users Summary Report");
 
     private String reportType;
     private String reportName;

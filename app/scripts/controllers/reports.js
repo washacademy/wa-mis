@@ -319,7 +319,7 @@
             }
 
 			$scope.isCircleReport = function(){
-				return $scope.report != null && (($scope.report.reportEnum == 'Bharpoor_Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary'));
+				return $scope.report != null && (($scope.report.reportEnum == 'Circle_Wise_Anonymous_Users')||($scope.report.reportEnum == 'Anonymous_Users_Summary'));
 			}
 
             $scope.isAggregateReport = function(){
@@ -422,18 +422,18 @@
 				if($scope.report != null){
 					minDate = new Date(2020, 9, 20);
 				}
-				if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Inactive_Users'){
+				if($scope.report != null && $scope.report.reportEnum == 'Cumulative_Inactive_Users'){
                 	minDate = new Date(2020, 9, 20);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Circle_Wise_Anonymous_Users'){
+                if($scope.report != null && $scope.report.reportEnum == 'Circle_Wise_Anonymous_Users'){
                     minDate = new Date(2020, 9, 20);
                 }
 
                 //In case of change in minDate for rejection reports, please change startMonth and startDate variable accordingly
-                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Swachchagrahi_Import_Rejects'){
+                if($scope.report != null && $scope.report.reportEnum == 'User_Import_Rejects'){
                     minDate = new Date(2020, 9, 20);
                 }
-                if($scope.report != null && $scope.report.reportEnum == 'Bharpoor_Cumulative_Course_Completion'){
+                if($scope.report != null && $scope.report.reportEnum == 'Cumulative_Course_Completion'){
                     minDate = new Date(2020, 9, 20);
                 }
 				if(!$scope.isCircleReport() && $scope.state != null && Date.parse($scope.state.serviceStartDate) > minDate){
@@ -882,13 +882,13 @@
 									if ($scope.isAggregateReport()) {
 										$scope.waiting = false;
 
-										if ($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary') {
+										if ($scope.report.reportEnum == 'Cumulative_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Cumulative_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'Bharpoor_Performance_Report') {
+										} else if ($scope.report.reportEnum == 'Performance_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Performance_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'Bharpoor_Subscriber_Report') {
+										} else if ($scope.report.reportEnum == 'Subscriber_Report') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Subscriber_Column_Definitions;
-										} else if ($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary') {
+										} else if ($scope.report.reportEnum == 'Anonymous_Users_Summary') {
 											$scope.gridOptions1.columnDefs = $scope.WA_Anonymous_Column_Definitions;
 										}
 
@@ -898,7 +898,7 @@
 										$scope.gridOptions.data = result.data.tableData;
 										$scope.reportBreadCrumbData = result.data.breadCrumbData;
 
-										if (!($scope.report.reportEnum == 'Bharpoor_Anonymous_Users_Summary')) {
+										if (!($scope.report.reportEnum == 'Anonymous_Users_Summary')) {
 											if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'NATIONAL') {
 												$scope.gridOptions1.columnDefs[1].displayName = 'State';
 											} else if (($scope.lastBread($scope.reportBreadCrumbData).toUpperCase()) == 'STATE') {
@@ -980,7 +980,7 @@
                 excelHeaderName.reportName = $scope.report.name;
                 excelHeaderName.course = $scope.course;
 
-                if($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary'){
+                if($scope.report.reportEnum == 'Cumulative_Summary'){
                 excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
                 else{
                 var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
@@ -1045,27 +1045,27 @@
 					if(ft.displayName == "Message Week" || ft.displayName == "State" || ft.displayName == "District" || ft.displayName == "Block" || ft.displayName == "Subcenter" || ft.displayName == "Circle" || ft.displayName == "Message Number (Week)" )
 						v = "Total";
 
-					else if(ft.displayName == "No of Registered Swachchagrahi" || ft.displayName == "No. of Swachchagrahi Started course" || ft.displayName =="No. of Swachchagrahi Registered But Not Completed the course(Period Start)" || ft.displayName =="No. of anonymous users started course"){
+					else if(ft.displayName == "No of Registered Users" || ft.displayName == "No. of Users Started course" || ft.displayName =="No. of Users Registered But Not Completed the course(Period Start)" || ft.displayName =="No. of anonymous users started course"){
 						var temp = $scope.gridApi.grid.columns[2].getAggregationValue();
 						v = (parseFloat(temp));
 					}
-					else if(ft.displayName == "No. of anonymous users pursuing course" ||ft.displayName == "No. of Swachchagrahi Records Received Through Web Service" ||ft.displayName == "No. of Swachchagrahi Pursuing course" || ft.displayName == "No of Swachchagrahi Started course"){
+					else if(ft.displayName == "No. of anonymous users pursuing course" ||ft.displayName == "No. of Users Records Received Through Web Service" ||ft.displayName == "No. of Users Pursuing course" || ft.displayName == "No of Users Started course"){
 						var temp = $scope.gridApi.grid.columns[3].getAggregationValue();
 						v = (parseFloat(temp));
 					}
-					else if(ft.displayName == "No of Swachchagrahi Not Started course" ||ft.displayName == "No. of Swachchagrahi not Pursuing course" ||ft.displayName == "No. of Swachchagrahi Records Rejected" || ft.displayName == "No. of anonymous users not pursuing course") {
+					else if(ft.displayName == "No of Users Not Started course" ||ft.displayName == "No. of Users not Pursuing course" ||ft.displayName == "No. of Users Records Rejected" || ft.displayName == "No. of anonymous users not pursuing course") {
 						var temp = $scope.gridApi.grid.columns[4].getAggregationValue();
 						v = (parseFloat(temp));
 					}
-					else if(ft.displayName == "No of Swachchagrahi Successfully Completed the course" ||ft.displayName == "No. of Swachchagrahi Successfully Completed course" ||ft.displayName == "No. of Swachchagrahi Subscriptions Added" || ft.displayName == "No. of anonymous users successfully completed the course") {
+					else if(ft.displayName == "No of Users Successfully Completed the course" ||ft.displayName == "No. of Users Successfully Completed course" ||ft.displayName == "No. of Users Subscriptions Added" || ft.displayName == "No. of anonymous users successfully completed the course") {
 						var temp = $scope.gridApi.grid.columns[5].getAggregationValue();
 						v = (parseFloat(temp));
 					}
-					else if(ft.displayName == "No of Swachchagrahi who failed the course" ||ft.displayName == "No. of Swachchagrahi who Failed the course" ||ft.displayName == "No. of Swachchagrahi Successfully Completed the course" || ft.displayName == "No. of anonymous users failed the course") {
+					else if(ft.displayName == "No of Users who failed the course" ||ft.displayName == "No. of Users who Failed the course" ||ft.displayName == "No. of Users Successfully Completed the course" || ft.displayName == "No. of anonymous users failed the course") {
 						var temp = $scope.gridApi.grid.columns[6].getAggregationValue();
 						v = (parseFloat(temp));
 					}
-					else if(ft.displayName == "No. of Swachchagrahi Registered But Not Completed the course (Period End)" && excelHeaderName.reportName == "Subscriber Report"){
+					else if(ft.displayName == "No. of Users Registered But Not Completed the course (Period End)" && excelHeaderName.reportName == "Subscriber Report"){
 						var temp = $scope.gridApi.grid.columns[7].getAggregationValue();
 						v = (parseFloat(temp));
 					}
@@ -1090,7 +1090,7 @@
 				var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 				var toDateString = $scope.headerToDate.getDate()<10?"0"+$scope.headerToDate.getDate():$scope.headerToDate.getDate();
 
-				if($scope.report.reportEnum == 'Bharpoor_Cumulative_Summary'){
+				if($scope.report.reportEnum == 'Cumulative_Summary'){
 					excelHeaderName.timePeriod = "till "+toDateString+" "+months[$scope.headerToDate.getMonth()]+" "+$scope.headerToDate.getFullYear();}
 				else{
 					var fromDateString = $scope.headerFromDate.getDate()<10?"0"+$scope.headerFromDate.getDate():$scope.headerFromDate.getDate();
@@ -1384,11 +1384,11 @@
                                                          cellTemplate:'<a class="btn aggregate-location" title="{{COL_FIELD}}"  ng-click="grid.appScope.drillDownData(row.entity.locationId,row.entity.locationType,row.entity.locationName)">{{ COL_FIELD }}</a>',
                                                          width: '12%', enableHiding: false,
                                                        },
-                                                       { field: 'swachchagrahisRegistered', displayName : 'No of Registered Swachchagrahi', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisStarted', displayName : 'No of Swachchagrahi Started course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisNotStarted', displayName : 'No of Swachchagrahi Not Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                       { field: 'swachchagrahisCompleted' , displayName : 'No of Swachchagrahi Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
-                                                       { field: 'swachchagrahisFailed' , displayName : 'No of Swachchagrahi who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'Users Registered', displayName : 'No of Registered Users', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'Users Started', displayName : 'No of Users Started course',  aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'Users NotStarted', displayName : 'No of Users Not Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                       { field: 'Users Completed' , displayName : 'No of Users Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"13%", enableHiding: false},
+                                                       { field: 'Users Failed' , displayName : 'No of Users who failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                        { field: 'notStartedPercentage' , displayName : '% Not Started course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[4].getAggregationValue()/grid.columns[2].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
                                                        { field: 'completedPercentage' , displayName : '% Successfully Completed course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[5].getAggregationValue()/grid.columns[3].getAggregationValue())*100 | number:4}}</div>', width:"*", enableHiding: false},
                                                        { field: 'failedPercentage' , displayName : '% Failed the course', footerCellTemplate: '<div class="ui-grid-cell-contents" >{{(grid.columns[6].getAggregationValue()/grid.columns[3].getAggregationValue()) *100 | number:4}}</div>', width:"*", enableHiding: false},
@@ -1401,11 +1401,11 @@
                                                             enableHiding: false, width:"12%",
 
                                                          },
-                                                         { field: 'swachchagrahisStartedCourse', displayName: 'No. of Swachchagrahi Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
-                                                         { field: 'swachchagrahisPursuingCourse', displayName: 'No. of Swachchagrahi Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                         { field: 'swachchagrahisNotPursuingCourse', displayName: 'No. of Swachchagrahi not Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisCompletedCourse', displayName: 'No. of Swachchagrahi Successfully Completed course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
-                                                         { field: 'swachchagrahisFailedCourse',  displayName: 'No. of Swachchagrahi who Failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'Users Started Course', displayName: 'No. of Users Started course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*",enableHiding: false },
+                                                         { field: 'Users Pursuing Course', displayName: 'No. of Users Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                         { field: 'Users Not Pursuing Course', displayName: 'No. of Users not Pursuing course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'Users Completed Course', displayName: 'No. of Users Successfully Completed course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"18%",enableHiding: false},
+                                                         { field: 'Users Failed In Course',  displayName: 'No. of Users who Failed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
                                                         ],
 
             $scope.WA_Subscriber_Column_Definitions =[
@@ -1415,12 +1415,12 @@
                                                             enableHiding: false,width:"14%",
 
                                                          },
-                                                         { field: 'registeredNotCompletedStart', displayName: 'No. of Swachchagrahi Registered But Not Completed the course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
-                                                         { field: 'recordsReceived', displayName: 'No. of Swachchagrahi Records Received Through Web Service', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
-                                                         { field: 'recordsRejected', displayName: 'No. of Swachchagrahi Records Rejected', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'swachchagrahisRegistered', displayName: 'No. of Swachchagrahi Subscriptions Added', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'successfullyFirstCompleted',  displayName: 'No. of Swachchagrahi Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
-                                                         { field: 'registeredNotCompletedEnd',  displayName: 'No. of Swachchagrahi Registered But Not Completed the course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
+                                                         { field: 'registeredNotCompletedStart', displayName: 'No. of Users Registered But Not Completed the course(Period Start)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false },
+                                                         { field: 'recordsReceived', displayName: 'No. of Users Records Received Through Web Service', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false },
+                                                         { field: 'recordsRejected', displayName: 'No. of Users Records Rejected', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'UsersRegistered', displayName: 'No. of Users Subscriptions Added', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'successfullyFirstCompleted',  displayName: 'No. of Users Successfully Completed the course', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"*", enableHiding: false},
+                                                         { field: 'registeredNotCompletedEnd',  displayName: 'No. of Users Registered But Not Completed the course (Period End)', aggregationType: uiGridConstants.aggregationTypes.sum, aggregationHideLabel: true, width:"16%", enableHiding: false},
                                                         ],
 
             $scope.WA_Anonymous_Column_Definitions =[

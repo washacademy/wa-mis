@@ -596,7 +596,7 @@ public class AdminServiceImpl implements AdminService {
         String course = "";
         Integer courseId = 0;
         String rootPath = "";
-        if ((reportRequest.getReportType().equals("Bharpoor_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Bharpoor_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
             course = courseDao.findByCourseId(courseId).getName();
         }
@@ -753,7 +753,8 @@ public class AdminServiceImpl implements AdminService {
         XSSFWorkbook workbook = new XSSFWorkbook();
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
-                "Swachchagrahi Import Rejected Details");
+                "Users Import Rejected Details");
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -765,10 +766,10 @@ public class AdminServiceImpl implements AdminService {
                 "District Name",
                 "Block Name",
                 "Panchayat Name",
-                "Swachchagrahi Id",
-                "Swachchagrahi Name",
-                "Swachchagrahi Job Status",
-                "Swachchagrahi Mobile Number",
+                "User Id",
+                "User Name",
+                "User Job Status",
+                "User Mobile Number",
                 "Reason For Rejection"
         });
         Integer counter = 2;
@@ -783,10 +784,10 @@ public class AdminServiceImpl implements AdminService {
                     (rejectedSwcImports.get(i).getBlockName() == null) ? "No  Block": rejectedSwcImports.get(i).getBlockName(),
                    // (swcRejection.getPhcName() == null) ? "No  Facility" : swcRejection.getPhcName(),
                     (rejectedSwcImports.get(i).getPanchayatName() == null) ? "No Panchayat" : rejectedSwcImports.get(i).getPanchayatName(),
-                    (rejectedSwcImports.get(i).getSwcId() == null) ? "No Swachchagrahi ID": rejectedSwcImports.get(i).getSwcId(),
-                    (rejectedSwcImports.get(i).getFullName() == null) ? "No Swachchagrahi Name": rejectedSwcImports.get(i).getFullName(),
-                    (rejectedSwcImports.get(i).getJobStatus() == null) ? "No Swachchagrahi Job Status": rejectedSwcImports.get(i).getJobStatus(),
-                    (rejectedSwcImports.get(i).getMobileNumber() == null) ? "No Swachchagrahi Mobile Number": rejectedSwcImports.get(i).getMobileNumber(),
+                    (rejectedSwcImports.get(i).getSwcId() == null) ? "No User ID": rejectedSwcImports.get(i).getSwcId(),
+                    (rejectedSwcImports.get(i).getFullName() == null) ? "No User Name": rejectedSwcImports.get(i).getFullName(),
+                    (rejectedSwcImports.get(i).getJobStatus() == null) ? "No User Job Status": rejectedSwcImports.get(i).getJobStatus(),
+                    (rejectedSwcImports.get(i).getMobileNumber() == null) ? "No User Mobile Number": rejectedSwcImports.get(i).getMobileNumber(),
                     (rejectedSwcImports.get(i).getRejectionReason() == null) ? "No Rejection Reason": rejectedSwcImports.get(i).getRejectionReason(),
             });
             counter++;
@@ -796,6 +797,8 @@ public class AdminServiceImpl implements AdminService {
         createHeadersForReportFiles(workbook, reportRequest);
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        /** PLEASE DONT CHANGE COLUMN WIDTH IT IS ADJUSTED FOR IMAGE HEADERS **/
 
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
@@ -882,6 +885,7 @@ public class AdminServiceImpl implements AdminService {
         XSSFSheet spreadsheet = workbook.createSheet(
                 " Bharpoor Course Completion Report for "+ course);
         //Create row object
+        spreadsheet.protectSheet("123");
         XSSFRow row;
         //This data needs to be written (Object[])
         Map<Integer, Object[]> empinfo =
@@ -893,9 +897,9 @@ public class AdminServiceImpl implements AdminService {
                 "District",
                 "Block",
                 "Panchayat",
-                "Swachchagrahi Name",
-                "Swachchagrahi ID",
-                "Swachchagrahi Creation Date",
+                "User Name",
+                "User ID",
+                "User Creation Date",
                 "Course Start Date",
                 "First Completion Date",
                 "SMS Sent Notification"
@@ -926,6 +930,8 @@ public class AdminServiceImpl implements AdminService {
         createHeadersForReportFiles(workbook, reportRequest);
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        /** PLEASE DONT CHANGE COLUMN WIDTH IT IS ADJUSTED FOR IMAGE HEADERS **/
 
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
@@ -983,6 +989,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Circle-wise Anonymous Users Report for" + course);
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
 
@@ -1030,6 +1037,8 @@ public class AdminServiceImpl implements AdminService {
         createHeadersForReportFiles(workbook, reportRequest);
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        /** PLEASE DONT CHANGE COLUMN WIDTH IT IS ADJUSTED FOR IMAGE HEADERS **/
 
         for (int i = 1; i < 13; i++) {
             spreadsheet.setColumnWidth(i, 4000);
@@ -1079,6 +1088,7 @@ public class AdminServiceImpl implements AdminService {
         //Create a blank sheet
         XSSFSheet spreadsheet = workbook.createSheet(
                 "Cumulative Inactive Users Report "+place+"_"+getMonthYear(toDate));
+        spreadsheet.protectSheet("123");
         //Create row object
         XSSFRow row;
         //This data needs to be written (Object[])
@@ -1091,9 +1101,9 @@ public class AdminServiceImpl implements AdminService {
                 "District",
                 "Block",
                 "Panchayat",
-                "Swachchagrahi Name",
-                "Swachchagrahi ID",
-                "Swachchagrahi Creation Date"
+                "User Name",
+                "User ID",
+                "User Creation Date"
         });
         Integer counter = 2;
         if(inactiveCandidates.isEmpty()) {
@@ -1118,6 +1128,8 @@ public class AdminServiceImpl implements AdminService {
         createHeadersForReportFiles(workbook, reportRequest);
 
         XSSFCellStyle backgroundStyle = createColumnHeaderStyle(workbook);
+
+        /** PLEASE DONT CHANGE COLUMN WIDTH IT IS ADJUSTED FOR IMAGE HEADERS **/
 
         for (int i = 1; i < 12; i++) {
             spreadsheet.setColumnWidth(i, 4000);
@@ -1164,7 +1176,7 @@ public class AdminServiceImpl implements AdminService {
     private void createHeadersForReportFiles(XSSFWorkbook workbook, ReportRequest reportRequest) {
         String course = "";
         Integer courseId =0;
-        if ((reportRequest.getReportType().equals("Bharpoor_Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Bharpoor_Cumulative_Course_Completion"))){
+        if ((reportRequest.getReportType().equals("Circle_Wise_Anonymous_Users") || reportRequest.getReportType().equals("Cumulative_Course_Completion"))){
             courseId = reportRequest.getCourseId();
             course = courseDao.findByCourseId(courseId).getName();
         }
@@ -1243,6 +1255,14 @@ public class AdminServiceImpl implements AdminService {
         Cell cell8=row1.createCell(6);
         Cell cell9=row1.createCell(9);
         Cell cell10=row1.createCell(10);
+
+        cell1.setCellStyle(style);
+        cell2.setCellStyle(style);
+        cell3.setCellStyle(style);
+        cell4.setCellStyle(style);
+        cell5.setCellStyle(style);
+        cell6.setCellStyle(style);
+
         cell1.setCellValue("Report:");
         cell2.setCellValue(ReportType.getType(reportRequest.getReportType()).getReportHeader());
         if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
@@ -1295,20 +1315,18 @@ public class AdminServiceImpl implements AdminService {
             cell10.setCellStyle(style);
         }
 
-        cell1.setCellStyle(style);
-        cell2.setCellStyle(style);
-        cell3.setCellStyle(style);
-        cell4.setCellStyle(style);
-        cell5.setCellStyle(style);
-        cell6.setCellStyle(style);
+        if(!reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,0));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,4));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,5,5));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,6,8));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,9,9));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
+        }
+        else{
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,11));
+        }
 
-
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,0));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,4));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,5,5));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,6,8));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,9,9));
-        spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
 
 
 
@@ -1320,8 +1338,8 @@ public class AdminServiceImpl implements AdminService {
         cell12.setCellValue(course);
         cell11.setCellStyle(style);
         cell12.setCellStyle(style);
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,4));
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
+        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
+//        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
 
 
     }

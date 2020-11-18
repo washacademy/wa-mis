@@ -46,16 +46,16 @@ public class AutoReportEmailGeneration {
             adminService.createFolders(ReportType.waCircleWiseAnonymous.getReportType());
             adminService.createFiles(ReportType.waInactive.getReportType());
 
-            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,1);
-            System.out.println("Bharpoor_Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course generated");
-            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,2);
-            System.out.println("Bharpoor_Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course Plus generated");
-            adminService.getCumulativeCourseCompletionFiles(toDate,1);
-            System.out.println("Bharpoor_Cumulative_Course_Completion reports for Bharpoor Academy Course generated");
-            adminService.getCumulativeCourseCompletionFiles(toDate,2);
-            System.out.println("Bharpoor_Cumulative_Course_Completion reports for Bharpoor Academy Course Plus generated");
+            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,11);
+            System.out.println("Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course BA1 generated");
+            adminService.getCircleWiseAnonymousFiles(fromDate, toDate,12);
+            System.out.println("Circle_Wise_Anonymous_Users reports for Bharpoor Academy Course BA2 generated");
+            adminService.getCumulativeCourseCompletionFiles(toDate,11);
+            System.out.println("Cumulative_Course_Completion reports for Bharpoor Academy Course BA1 generated");
+            adminService.getCumulativeCourseCompletionFiles(toDate,12);
+            System.out.println("Cumulative_Course_Completion reports for Bharpoor Academy Course BA2 generated");
             adminService.getCumulativeInactiveFiles(toDate);
-            System.out.println("Bharpoor_Cumulative_Inactive_Users reports generated");
+            System.out.println("Cumulative_Inactive_Users reports generated");
             System.out.println("Report generation done");
 
             return true;
@@ -72,7 +72,7 @@ public class AutoReportEmailGeneration {
             adminService.createFiles(ReportType.swcRejected.getReportType());
 
             adminService.createSwcImportRejectedFiles(toDate);
-            System.out.println("SWC_Rejection reports generated");
+            System.out.println("Users_Rejection reports generated");
             
             return true;
         }
@@ -81,28 +81,28 @@ public class AutoReportEmailGeneration {
 
     public HashMap sendFirstMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waCircleWiseAnonymous);
-        System.out.println("Bharpoor_Anonymous: ");
+        System.out.println("Anonymous: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendSecondMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waCourseCompletion);
-        System.out.println("Bharpoor_Course: ");
+        System.out.println("Course: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendThirdMail() {
         HashMap reports = emailService.sendAllMails(ReportType.waInactive);
-        System.out.println("Bharpoor_Inactive: ");
+        System.out.println("Inactive: ");
         System.out.println(reports.toString());
         return reports;
     }
 
     public HashMap sendWeeklyThirdMail() {
         HashMap reports = emailService.sendAllMails(ReportType.swcRejected);
-        System.out.println("Swc Rejected reports: ");
+        System.out.println("User Rejected reports: ");
         System.out.println(reports.toString());
         return reports;
     }
