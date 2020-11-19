@@ -1226,6 +1226,8 @@ public class AdminServiceImpl implements AdminService {
         Cell cell2=row.createCell(1);
         Cell cell3=row.createCell(7);
         Cell cell4=row.createCell(8);
+        Cell cell14=row.createCell(11);
+        cell14.setCellStyle(style);
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,0,0));
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,1,6));
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,7,7));
@@ -1237,6 +1239,8 @@ public class AdminServiceImpl implements AdminService {
         Cell cell8=row1.createCell(6);
         Cell cell9=row1.createCell(9);
         Cell cell10=row1.createCell(10);
+        Cell cell15=row1.createCell(11);
+        cell15.setCellStyle(style);
         cell1.setCellValue("Report:");
         cell2.setCellValue(ReportType.getType(reportRequest.getReportType()).getReportHeader());
         if(reportRequest.getReportType().equals(ReportType.waCircleWiseAnonymous.getReportType())){
@@ -1305,18 +1309,44 @@ public class AdminServiceImpl implements AdminService {
             spreadsheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
         }
         else {
-            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,0,11));
+            spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,11));
         }
 
         XSSFRow courseRow = spreadsheet.createRow(7);
         Cell cell11 = courseRow.createCell(0);
         Cell cell12 = courseRow.createCell(1);
+        Cell cell13 = courseRow.createCell(11);
+        Cell cell16 = courseRow.createCell(5);
         cell11.setCellValue("Course: ");
         cell12.setCellValue(course);
         cell11.setCellStyle(style);
         cell12.setCellStyle(style);
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
-//        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
+        cell13.setCellStyle(style);
+        cell16.setCellStyle(style);
+        if(!reportRequest.getReportType().equals(ReportType.waInactive.getReportType()) && !reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())){
+            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
+        }
+
+    }
+
+    private void cleanBeforeMergeOnValidCells(XSSFSheet sheet, CellRangeAddress region, XSSFCellStyle cellStyle) {
+        for (int rowNum = region.getFirstRow(); rowNum <= region.getLastRow(); rowNum++) {
+            XSSFRow row = sheet.getRow(rowNum);
+            if (row == null) {
+                row = sheet.createRow(rowNum);
+            }
+            for (int colNum = region.getFirstColumn(); colNum <= region.getLastColumn(); colNum++) {
+                XSSFCell currentCell = row.getCell(colNum);
+                if (currentCell == null) {
+                    currentCell = row.createCell(colNum);
+
+                }
+
+                currentCell.setCellStyle(cellStyle);
+
+            }
+        }
+
 
     }
 

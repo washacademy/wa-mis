@@ -796,7 +796,7 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         String YearString = String.valueOf(DateYear);
 
         cellB.setCellValue(DateString + " " + MonthString + " " + YearString);
-        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 5, 6);
+        CellRangeAddress dateRange = new CellRangeAddress(7, 7, 5, 7);
         cleanBeforeMergeOnValidCells(spreadsheet, dateRange, style);
         spreadsheet.addMergedRegion(dateRange);
 
