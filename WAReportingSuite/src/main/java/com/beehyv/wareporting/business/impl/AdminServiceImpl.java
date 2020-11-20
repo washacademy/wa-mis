@@ -1186,15 +1186,10 @@ public class AdminServiceImpl implements AdminService {
 
         String encodingPrefix = "base64,";
         String pngImageURL = Constants.header_BharpoorCommon_base64;
-//        String pngImageURL1 = Constants.header_Bhoomi_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
-//        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
-//        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
 
         final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
-//        final int pictureIndex1 = workbook.addPicture(imageData1,Workbook.PICTURE_TYPE_PNG);
-
 
         final CreationHelper helper = workbook.getCreationHelper();
         final Drawing drawing = spreadsheet.createDrawingPatriarch();
@@ -1208,15 +1203,6 @@ public class AdminServiceImpl implements AdminService {
         anchor.setRow2( 4 );
         anchor.setCol2( 12 );
         drawing.createPicture( anchor, pictureIndex );
-
-//        final ClientAnchor anchor1 = helper.createClientAnchor();
-//        anchor1.setAnchorType( ClientAnchor.MOVE_AND_RESIZE );
-
-//        anchor1.setRow1(0);
-//        anchor1.setRow2(4);
-//        anchor1.setCol1(8);
-//        anchor1.setCol2(12);
-//        drawing.createPicture(anchor1,pictureIndex1);
 
         XSSFCellStyle style1 = workbook.createCellStyle();//Create style
         style1.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
@@ -1244,17 +1230,40 @@ public class AdminServiceImpl implements AdminService {
         Cell cell2=row.createCell(1);
         Cell cell3=row.createCell(7);
         Cell cell4=row.createCell(8);
+        Cell cell14=row.createCell(11);
+        cell14.setCellStyle(style);
+        XSSFCellStyle styleNew = workbook.createCellStyle();//Create style
+        Font fontNew = workbook.createFont();//Create font
+        font.setBoldweight(Font.BOLDWEIGHT_BOLD);//Make font bold
+        styleNew.setFont(fontNew);//set it to bold
+        styleNew.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //vertical align
+        styleNew.setBorderBottom(CellStyle.BORDER_MEDIUM);
+        styleNew.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        styleNew.setBorderLeft(CellStyle.BORDER_MEDIUM);
+        styleNew.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        styleNew.setBorderRight(CellStyle.BORDER_MEDIUM);
+        styleNew.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        styleNew.setBorderTop(CellStyle.BORDER_MEDIUM);
+        styleNew.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,0,0));
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,1,6));
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,7,7));
         spreadsheet.addMergedRegion(new CellRangeAddress(4,5,8,11));
         XSSFRow row1=spreadsheet.createRow(++rowid);
+
         Cell cell5=row1.createCell(0);
         Cell cell6=row1.createCell(1);
         Cell cell7=row1.createCell(5);
         Cell cell8=row1.createCell(6);
         Cell cell9=row1.createCell(9);
         Cell cell10=row1.createCell(10);
+        CellRangeAddress range1 = new CellRangeAddress(4,8, 0, 11);
+        setCellStyle(spreadsheet, range1, styleNew);
+
+
+        Cell cell13=row1.createCell(11);
+        cell13.setCellStyle(style);
 
         cell1.setCellStyle(style);
         cell2.setCellStyle(style);
@@ -1327,22 +1336,61 @@ public class AdminServiceImpl implements AdminService {
             spreadsheet.addMergedRegion(new CellRangeAddress(6,6,1,11));
         }
 
-
-
-
-
         XSSFRow courseRow = spreadsheet.createRow(7);
         Cell cell11 = courseRow.createCell(0);
         Cell cell12 = courseRow.createCell(1);
+
+        Cell cell16 = courseRow.createCell(2);
+        Cell cell17 = courseRow.createCell(3);
+        Cell cell18 = courseRow.createCell(4);
+        Cell cell19 = courseRow.createCell(5);
+        Cell cell20 = courseRow.createCell(6);
+        Cell cell21 = courseRow.createCell(7);
+        Cell cell22 = courseRow.createCell(8);
+        Cell cell23 = courseRow.createCell(9);
+        Cell cell24 = courseRow.createCell(10);
+        Cell cell25 = courseRow.createCell(11);
+
         cell11.setCellValue("Course: ");
         cell12.setCellValue(course);
         cell11.setCellStyle(style);
         cell12.setCellStyle(style);
-        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
-//        spreadsheet.addMergedRegion(new CellRangeAddress(7,7,5,11));
+        cell16.setCellStyle(style);
+        cell17.setCellStyle(style);
+        cell18.setCellStyle(style);
+        cell19.setCellStyle(style);
+        cell20.setCellStyle(style);
+        cell21.setCellStyle(style);
+        cell22.setCellStyle(style);
+        cell23.setCellStyle(style);
+        cell24.setCellStyle(style);
+        cell25.setCellStyle(style);
 
+        if(!reportRequest.getReportType().equals(ReportType.waInactive.getReportType()) && !reportRequest.getReportType().equals(ReportType.swcRejected.getReportType())){
+            spreadsheet.addMergedRegion(new CellRangeAddress(7,7,1,11));
+        }
 
     }
+
+
+    private void setCellStyle(XSSFSheet sheet, CellRangeAddress region, XSSFCellStyle cellStyle) {
+        for (int rowNum = region.getFirstRow(); rowNum <= region.getLastRow(); rowNum++) {
+            XSSFRow row = sheet.getRow(rowNum);
+            if (row == null) {
+                row = sheet.createRow(rowNum);
+            }
+            for (int colNum = region.getFirstColumn(); colNum <= region.getLastColumn(); colNum++) {
+                XSSFCell currentCell = row.getCell(colNum);
+                if (currentCell == null) {
+                    currentCell = row.createCell(colNum);
+                }
+                currentCell.setCellStyle(cellStyle);
+
+            }
+        }
+
+    }
+
 
     @Override
     public void createSwcImportRejectedFiles(Date toDate) {

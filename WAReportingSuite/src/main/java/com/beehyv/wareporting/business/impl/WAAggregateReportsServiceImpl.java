@@ -703,15 +703,10 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 
         String encodingPrefix = "base64,";
         String pngImageURL = Constants.header_Pradan_agg_base64;
-//        String pngImageURL1 = Constants.header_Bhoomi_base64;
         int contentStartIndex = pngImageURL.indexOf(encodingPrefix) + encodingPrefix.length();
-//        int contentStartIndex1 = pngImageURL1.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL.substring(contentStartIndex));//workbook.addPicture can use this byte array
 
-//        byte[] imageData1 = org.apache.commons.codec.binary.Base64.decodeBase64(pngImageURL1.substring(contentStartIndex1));
-
         final int pictureIndex = workbook.addPicture(imageData, Workbook.PICTURE_TYPE_PNG);
-//        final int pictureIndex1 = workbook.addPicture(imageData1, Workbook.PICTURE_TYPE_PNG);
 
         final CreationHelper helper = workbook.getCreationHelper();
         final Drawing drawing = spreadsheet.createDrawingPatriarch();
@@ -719,24 +714,11 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
         final ClientAnchor anchor = helper.createClientAnchor();
         anchor.setAnchorType(ClientAnchor.MOVE_AND_RESIZE);
 
-
         anchor.setCol1(0);
         anchor.setRow1(0);
         anchor.setRow2(4);
         anchor.setCol2(8);
         drawing.createPicture(anchor, pictureIndex);
-
-//        final ClientAnchor anchor1 = helper.createClientAnchor();
-//        anchor1.setAnchorType(ClientAnchor.MOVE_AND_RESIZE);
-//
-//        anchor1.setCol1(5);
-//        anchor1.setRow1(0);
-//        anchor1.setRow2(4);
-//        anchor1.setCol2(8);
-//        drawing.createPicture(anchor1, pictureIndex1);
-
-
-
 
         spreadsheet.addMergedRegion(new CellRangeAddress(0, 3, 0, 7));
 
@@ -878,7 +860,6 @@ public class WAAggregateReportsServiceImpl implements WAAggregateReportsService 
 
             }
         }
-
 
     }
 
