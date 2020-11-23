@@ -861,7 +861,7 @@ public class AdminServiceImpl implements AdminService {
         Font font = workbook.createFont();
         font.setColor(HSSFColor.WHITE.index);
         font.setFontName(HSSFFont.FONT_ARIAL);
-        font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        font.setBoldweight(Font.BOLDWEIGHT_NORMAL);
         backgroundStyle.setFont(font);
 
         return backgroundStyle;
@@ -1753,28 +1753,5 @@ public class AdminServiceImpl implements AdminService {
 
         return fromStringDate+"-"+fromMonthString+"-"+fromYearString+" to " +toDateString + "-" +toMonthString +"-"+ toYearString;
     }
-
-//    private void cleanBeforeMergeOnValidCells(XSSFSheet sheet,CellRangeAddress region, XSSFCellStyle cellStyle )
-//    {
-//        for(int rowNum =region.getFirstRow();rowNum<=region.getLastRow();rowNum++){
-//            XSSFRow row= sheet.getRow(rowNum);
-//            if(row==null){
-//                row = sheet.createRow(rowNum);
-//            }
-//            for(int colNum=region.getFirstColumn();colNum<=region.getLastColumn();colNum++){
-//                XSSFCell currentCell = row.getCell(colNum);
-//                if(currentCell==null){
-//                    currentCell = row.createCell(colNum);
-//
-//                }
-//
-//                currentCell.setCellStyle(cellStyle);
-//
-//            }
-//        }
-//
-//
-//    }
-
 
 }
