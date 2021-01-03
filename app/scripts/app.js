@@ -159,6 +159,53 @@ var waReportsApp = angular
 					}
 				}
             })
+			.state('userManual', {
+				url: '/userManual',
+				templateUrl: 'views/userManual.html',
+				resolve : {
+					user : function ( authorization) {
+						return authorization.authorize();
+					}
+				}
+			}).state('userManual.websiteInformation', {
+			url: '/WebsiteInformation',
+			templateUrl: 'views/userManual_websiteInformation.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}}).state('userManual.mobileAcademy', {
+			url: '/mobileAcademy',
+			templateUrl: 'views/userManual_mobileAcademy.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}}).state('userManual.mobileAcademyAggregate', {
+			url: '/mobileAcademyAggregate',
+			templateUrl: 'views/userManual_mobileAcademyAgg.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}}).state('userManual.userManual_Management', {
+			url: '/userManual_Management',
+			templateUrl: 'views/userManual_Management.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}}).state('userManual.userManual_Profile', {
+			url: '/userManual_Profile',
+			templateUrl: 'views/userManual_Profile.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}
+		})
+
+
 		$urlRouterProvider
 			.otherwise('/login')
 

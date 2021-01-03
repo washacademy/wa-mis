@@ -115,6 +115,10 @@
 <!--					<li >-->
 <!--						<span  ng-hide='$state.current.name=="login" || $state.current.name=="forgotPassword" ||  currentUser.default || currentUser.default == null ' ><b>Hello {{currentUser.fullName}}</b></span>-->
 <!--					</li>-->
+					<li data-ng-if='!checkLogin()' data-ng-class="{active: activeTab('userManual')}">
+						<a  data-ng-class="{dis1: disableCursor()}" data-ng-click="goToUserManual()" class="pointer" >USER MANUAL</a>
+<!--						<a ui-sref="userManual">USER MANUAL</a>-->
+					</li>
 					<li ng-class="{active: activeTab('userManagement')}" ng-if="currentUser.roleId!= null && currentUser.roleName != 'USER'">
 						<a ui-sref="userManagement.userTable">USER MANAGEMENT</a>
 					</li>

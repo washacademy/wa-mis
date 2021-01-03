@@ -1,0 +1,1022 @@
+<div class="container-fluid" data-ng-controller="mobileAcademyController" style="padding-left: 30px">
+
+    <div data-ng-hide="flag">
+        <h2 class="user-manual-header">SBM Academy Line Listing Reports</h2>
+        <div style="color: #0071bc; font-size: 16px">
+            <p>
+            <div data-ng-click="func('ccc')"><u>Course Completion</u></div>
+            </p>
+            <p>
+            <div data-ng-click="func('cwau')"><u>Circle wise Anonymous Users</u></div>
+            </p>
+            <p>
+            <div data-ng-click="func('ciu')"><u>Cumulative Inactive Users</u></div>
+            </p>
+            <p>
+            <div data-ng-click="func('arr')"><u>SWACHAGRAHI Rejected Records</u></div>
+            </p>
+        </div>
+    </div>
+
+    <div data-ng-hide="!flag" class="user-manual-reports">
+        <div><img alt="user manual" src="./images/back1.png" data-ng-click="flag=!flag" class="user-manual-back">
+            <div style="display: inline-block" class="imageModify"><b>SBM Academy Line Listing Report</b><br>
+                <div data-ng-hide="selectRole != 1 && selectRole !=5"><!--National User-->
+                    <div data-ng-hide="param!=='ccc'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Course Completion</b></p><br>
+                        <p>This report is generated from the launch of service in the state till the end of selected month </p>
+                        <p>This report gives the line-listing of all the swachhagrahi who have successfully completed the course
+                            for the very first time in the selected month, with details such as - when a swachhagrahi started the
+                            course and when he/ she completed the course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                S. No.
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                Swachhagrahi Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                            <li>
+                                Swachhagrahi Creation date
+                            </li>
+                            <li>
+                                Course Start Date
+                            </li>
+                            <li>
+                                First Completion Date
+                            </li>
+                            <li>
+                                SMS Sent Notification
+                            </li>
+
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course” dropdown select course, then</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_RC.png"
+                             alt="user Manual Mobile Academy Reports"><br><br><br>
+                        <p>3) Under "Select Reports" select "Completion Line Listing Report"</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Reports.png"
+                             alt="user manual Course Completion"><br><br><br>
+
+                        <p>4)Then select an option in the 'State' dropdown for a specific state or to get all states data, select 'All':</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_State.png"><br><br><br>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all)
+                        </p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Dist.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all)
+                        </p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Block.png"><br><br><br>
+                        <p>7) Select the Month for which the reports are needed</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_CCC_Cal.png"
+                             alt="user manual Reports Month"><br><br><br>
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Submit.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Download.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CCC_Submit-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='cwau'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Circle wise Anonymous Users</b></p><br>
+                        <p>The reports is based on telecom circle, which in most instances, match states (some of the exceptions are Bihar,
+                            which is covered by the Bihar/Jharkhand circle and Madhya Pradesh which is covered by Madhya Pradesh / Chhattisgarh
+                            circle). It provides information, of which anonymous mobile numbers have started the course and which have completed it</p>
+                        <p>The report displays the data in the following sequence of columns:</p>
+                        <ol>
+                            <li>
+                                Serial Number
+                            </li>
+                            <li>
+                                Id
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                Operator
+                            </li>
+                            <li>
+                                Circle Name
+                            </li>
+                            <li>
+                                Course Start
+                            </li>
+                            <li>
+                                Course First Successful End
+                            </li>
+                            <li>
+                                Last Call End Date
+                            </li>
+                            <li>
+                                Last Call End Time
+                            </li>
+                            <li>
+                                Total Minutes Used
+                            </li>
+                            <li>
+                                SMS Sent
+                            </li>
+                            <li>
+                                SMS Reference Number
+                            </li>
+                            <li>
+                                No. Of Attempts
+                            </li>
+
+                        </ol>
+                        <p>The report is based on telecom circle and thus not specific to State / UT.</p>
+                        <p>The rules governing this report as stated below:</p>
+                        <p>&nbsp; &nbsp; This will be a monthly report. The data reflects the details of the anonymous numbers that have called the toll-free number in the selected calendar month.</p>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Select Course" Dropdown select course, then</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Circle wise Anonymous Users"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+                        <p>4) Then select respective Circle from "Circle" dropdown:</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CWAU_CIRCLE.png"><br><br><br>
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CWAU_Cal.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CWAU_SUBMIT.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CWA_DOWNLOAD.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CWAU_SUBMIT-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='ciu'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                        <p style="font-size: 30px"><b>Cumulative Inactive Users</b></p><br>
+                        <p>This report gives the line-listing of all such swachhagrahi who have not yet started the course as on date.
+                            The State / UT can act on this report and contact the swachhagrahi and motivate them to access the SBMA Academy
+                            course and complete the course. In this way a higher percentage of swachhagrahi accessing and completing the SBMA
+                            Academy program can be achieved. This report is a very useful actionable report for the State / UT to monitor
+                            the swachhagrahi accessing the SBMA Academy course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                User Name
+                            </li>
+                            <li>
+                                User ID
+                            </li>
+                            <li>
+                                User Creation date
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course" dropdown select course, then</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_RC.png"><br><br><br>
+                        <p>3) Under "select Reports" select " Inactive Users Line Listing Report"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+                        <p>4) Then select an option in the 'State' dropdown for a specific state or to get all states
+                            data, select 'All':</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIA_STATE.png"><br><br><br>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if
+                            State is set to all)</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_DISTRICT.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if
+                            District is set to all)</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_BLOCK.png"><br><br><br>
+                        <p>7) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_CAL.png"><br><br><br>
+
+
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_SUBMIT.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_DOWNLOADS.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_CIU_SUBMIT-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='arr'">
+                        <p style="font-size: 30px"><b>SWACHAGRAHI Rejected Records</b></p><br>
+                        <p>This report provides a line-listing of all the Swachhagrahi mobile numbers that have been rejected by the
+                            SBM Academy system because the records provided are incorrect (duplicates, not the right number of digits,
+                            special characters etc.). These records would be rejected during the import to MOTECH backend database.
+                            It has following columns:</p>
+                        <ol>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course” dropdown select course, then</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Academy Rejected Line-Listing Report"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+                        <p>4) Then select an option in the 'State' dropdown for a specific state or to get all states
+                            data, select 'All':</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_STATE.png"><br><br><br>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if
+                            State is set to all)</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_DISTRICT.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if
+                            District is set to all)</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_BLOCK.png"><br><br><br>
+                        <p>7.a) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_CAL.png"><br><br><br>
+                        <p>7.b)Then select the 1st day of week(Sunday) for which the report is needed under "Select
+                            Week":</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_CalDate.png"><br><br><br>
+
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_SUBMIT.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_Download.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/National/MA/NA_MA_ARR_SUBMIT-Copy.png"><br>
+                    </div>
+                </div>
+                <div data-ng-hide="selectRole != 2 && selectRole !=6">
+                    <div data-ng-hide="param!=='ccc'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Course Completion</b></p><br>
+                        <p>This report is generated from the launch of service in the state till the end of selected month </p>
+                        <p>This report gives the line-listing of all the swachhagrahi who have successfully completed the course
+                            for the very first time in the selected month, with details such as - when a swachhagrahi started the
+                            course and when he/ she completed the course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                S. No.
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                Swachhagrahi Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                            <li>
+                                Swachhagrahi Creation date
+                            </li>
+                            <li>
+                                Course Start Date
+                            </li>
+                            <li>
+                                First Completion Date
+                            </li>
+                            <li>
+                                SMS Sent Notification
+                            </li>
+
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Reports Category" select "Mobile Academy Reports", then</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_RC.png"
+                             alt="user Manual Mobile Academy Reports"><br><br><br>
+                        <p>3) Under "Reports" select "Course Completion"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"
+                             alt="user manual Course Completion"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Select an option in the 'District' dropdown for a specific state or to get all districts
+                            data, select 'All':</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Dist.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if
+                            District is set to all)</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Block.png"><br><br><br>
+
+                        <p>7) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Cal.png"
+                             alt="user manual Reports Month"><br><br><br>
+
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Submit.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Download.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_CCC_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='cwau'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Circle wise Anonymous Users</b></p><br>
+                        <p>The reports is based on telecom circle, which in most instances, match states (some of the exceptions are Bihar,
+                            which is covered by the Bihar/Jharkhand circle and Madhya Pradesh which is covered by Madhya Pradesh / Chhattisgarh
+                            circle). It provides information, of which anonymous mobile numbers have started the course and which have completed it</p>
+                        <p>The report displays the data in the following sequence of columns:</p>
+                        <ol>
+                            <li>
+                                Serial Number
+                            </li>
+                            <li>
+                                Id
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                Operator
+                            </li>
+                            <li>
+                                Circle Name
+                            </li>
+                            <li>
+                                Course Start
+                            </li>
+                            <li>
+                                Course First Successful End
+                            </li>
+                            <li>
+                                Last Call End Date
+                            </li>
+                            <li>
+                                Last Call End Time
+                            </li>
+                            <li>
+                                Total Minutes Used
+                            </li>
+                            <li>
+                                SMS Sent
+                            </li>
+                            <li>
+                                SMS Reference Number
+                            </li>
+                            <li>
+                                No. Of Attempts
+                            </li>
+
+                        </ol>
+                        <p>The report is based on telecom circle and thus not specific to State / UT.</p>
+                        <p>The rules governing this report as stated below:</p>
+                        <p>&nbsp; &nbsp; This will be a monthly report. The data reflects the details of the anonymous numbers that have called the toll-free number in the selected calendar month.</p>
+
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Select Course" Dropdown select course, then</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Circle wise Anonymous Users"</p><br>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+
+                        <p>4) For State users, their 'Circle' option is already selected.</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Circle.png"><br><br><br>
+                        <p>5) Then select the Month for which the reports are needed</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Cal.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Submit.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='ciu'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                        <p style="font-size: 30px"><b>Cumulative Inactive Users</b></p><br>
+                        <p>This report gives the line-listing of all such swachhagrahi who have not yet started the course as on date.
+                            The State / UT can act on this report and contact the swachhagrahi and motivate them to access the SBMA Academy
+                            course and complete the course. In this way a higher percentage of swachhagrahi accessing and completing the SBMA
+                            Academy program can be achieved. This report is a very useful actionable report for the State / UT to monitor
+                            the swachhagrahi accessing the SBMA Academy course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                User Name
+                            </li>
+                            <li>
+                                User ID
+                            </li>
+                            <li>
+                                User Creation date
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course" dropdown select course, then</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_RC.png"><br><br><br>
+                        <p>3) Under "select Reports" select " Inactive Users Line Listing Report"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Select an option in the 'District' dropdown for a specific state or to get all districts
+                            data, select 'All':</p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_District.png"><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if
+                            District is set to all)</p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_Blocks.png"><br><br><br>
+                        <p>7) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_Month.png"><br><br><br>
+
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_Submit.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_Download.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/State/MA3/SA_MA_CIU_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='arr'">
+                        <p style="font-size: 30px"><b>SWACHAGRAHI Rejected Records</b></p><br>
+                        <p>This report provides a line-listing of all the Swachhagrahi mobile numbers that have been rejected by the
+                            SBM Academy system because the records provided are incorrect (duplicates, not the right number of digits,
+                            special characters etc.). These records would be rejected during the import to MOTECH backend database.
+                            It has following columns:</p>
+                        <ol>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course” dropdown select course, then</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Academy Rejected Line-Listing Report"</p>
+                        <img alt="user manual" src="./images/State/MA1/SA_MA_Rep.png"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Select an option in the 'District' dropdown for a specific state or to get all districts
+                            data, select 'All':</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Dist.png"><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if
+                            District is set to all)</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Block.png"><br><br><br>
+                        <p>7.a) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Cal.png"><br><br><br>
+                        <p>7.b)Then select the 1st day of week(Sunday) for which the report is needed under "Select
+                            Week":</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Caldate.png"><br><br><br>
+
+                        <p>8) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Submit.png"><br><br><br>
+                        <p>9) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Download.png"><br><br><br>
+                        <p>10) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/State/MA4/SA_MA_ARR_Reset.png"><br>
+                    </div>
+                </div>
+
+
+                <div data-ng-hide="selectRole != 3 && selectRole !=7"><!--District User-->
+                    <div data-ng-hide="param!=='ccc'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Course Completion</b></p><br>
+                        <p>This report is generated from the launch of service in the state till the end of selected month </p>
+                        <p>This report gives the line-listing of all the swachhagrahi who have successfully completed the course
+                            for the very first time in the selected month, with details such as - when a swachhagrahi started the
+                            course and when he/ she completed the course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                S. No.
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                Swachhagrahi Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                            <li>
+                                Swachhagrahi Creation date
+                            </li>
+                            <li>
+                                Course Start Date
+                            </li>
+                            <li>
+                                First Completion Date
+                            </li>
+                            <li>
+                                SMS Sent Notification
+                            </li>
+
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Reports Category" select "Mobile Academy Reports", then</p>
+                        <img alt="user manual" src="./images/District/MA/DA_RC.png"
+                             alt="user Manual Mobile Academy Reports"><br><br><br>
+                        <p>3) Under "Reports" select "Course Completion"</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_All.png"
+                             alt="user manual Course Completion"><br><br><br>
+
+                        <p>4) Since this is for District user/admin, Select any/all block from 'Block', under specified
+                            "District" and "State".</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CCC_Block.png"><br><br><br>
+
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CCC_Cal.png"
+                             alt="user manual Reports Month"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CCC_Sub.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CCC_DownLoad.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CCC_Sub-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='cwau'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Circle wise Anonymous Users</b></p><br>
+                        <p>The reports is based on telecom circle, which in most instances, match states (some of the exceptions are Bihar,
+                            which is covered by the Bihar/Jharkhand circle and Madhya Pradesh which is covered by Madhya Pradesh / Chhattisgarh
+                            circle). It provides information, of which anonymous mobile numbers have started the course and which have completed it</p>
+                        <p>The report displays the data in the following sequence of columns:</p>
+                        <ol>
+                            <li>
+                                Serial Number
+                            </li>
+                            <li>
+                                Id
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                Operator
+                            </li>
+                            <li>
+                                Circle Name
+                            </li>
+                            <li>
+                                Course Start
+                            </li>
+                            <li>
+                                Course First Successful End
+                            </li>
+                            <li>
+                                Last Call End Date
+                            </li>
+                            <li>
+                                Last Call End Time
+                            </li>
+                            <li>
+                                Total Minutes Used
+                            </li>
+                            <li>
+                                SMS Sent
+                            </li>
+                            <li>
+                                SMS Reference Number
+                            </li>
+                            <li>
+                                No. Of Attempts
+                            </li>
+
+                        </ol>
+                        <p>The report is based on telecom circle and thus not specific to State / UT.</p>
+                        <p>The rules governing this report as stated below:</p>
+                        <p>&nbsp; &nbsp; This will be a monthly report. The data reflects the details of the anonymous numbers that have called the toll-free number in the selected calendar month.</p>
+
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Select Course" Dropdown select course, then</p>
+                        <img alt="user manual" src="./images/District/MA/DA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Circle wise Anonymous Users"</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_All.png"><br><br><br>
+
+                        <p>4) For District users, their 'Circle' option is already selected.</p>
+                        <img alt="user manual" src="./images/State/MA2/SA_MA_CWAU_Circle.png"><br><br><br>
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CWAU_Cal.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CWAU_sub.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CWAU_dowload.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CWAU_sub-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='ciu'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                        <p style="font-size: 30px"><b>Cumulative Inactive Users</b></p><br>
+                        <p>This report gives the line-listing of all such swachhagrahi who have not yet started the course as on date.
+                            The State / UT can act on this report and contact the swachhagrahi and motivate them to access the SBMA Academy
+                            course and complete the course. In this way a higher percentage of swachhagrahi accessing and completing the SBMA
+                            Academy program can be achieved. This report is a very useful actionable report for the State / UT to monitor
+                            the swachhagrahi accessing the SBMA Academy course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                User Name
+                            </li>
+                            <li>
+                                User ID
+                            </li>
+                            <li>
+                                User Creation date
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course" dropdown select course, then</p>
+                        <img alt="user manual" src="./images/District/MA/DA_RC.png"><br><br><br>
+                        <p>3) Under "select Reports" select " Inactive Users Line Listing Report"</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_All.png"><br><br><br>
+
+                        <p>4) Since this is for District user/admin, Select any/all block from 'Block', under specified
+                            "District" and "State".</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CIU_Block.png"><br><br><br>
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CIU_Cal.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CIU_sub.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CIU_DownLoad.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_CIU_sub-Copy.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='arr'">
+                        <p style="font-size: 30px"><b>SWACHAGRAHI Rejected Records</b></p><br>
+                        <p>This report provides a line-listing of all the Swachhagrahi mobile numbers that have been rejected by the
+                            SBM Academy system because the records provided are incorrect (duplicates, not the right number of digits,
+                            special characters etc.). These records would be rejected during the import to MOTECH backend database.
+                            It has following columns:</p>
+                        <ol>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course” dropdown select course, theny" select "Mobile Academy Reports", then</p>
+                        <img alt="user manual" src="./images/District/MA/DA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Academy Rejected Line-Listing Report"</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_All.png"><br><br><br>
+
+                        <p>4) Since this is for District user/admin, Select any/all block from “Block”, under specified
+                            "District" and "State".</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_Block.png"><br><br><br>
+                        <p>5.a) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_Cal.png"><br><br><br>
+                        <p>5.b)Then select the 1st day of week(Sunday) for which the report is needed under "Select
+                            Week":</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_CalDate.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_sub.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/District/MA/DA_MA_ARR_sub-Copy.png"><br>
+                    </div>
+                </div>
+                <div data-ng-hide="selectRole != 4">
+                    <div data-ng-hide="param!=='ccc'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Course Completion</b></p><br>
+                        <p>This report is generated from the launch of service in the state till the end of selected month </p>
+                        <p>This report gives the line-listing of all the swachhagrahi who have successfully completed the course
+                            for the very first time in the selected month, with details such as - when a swachhagrahi started the
+                            course and when he/ she completed the course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                S. No.
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                Swachhagrahi Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                            <li>
+                                Swachhagrahi Creation date
+                            </li>
+                            <li>
+                                Course Start Date
+                            </li>
+                            <li>
+                                First Completion Date
+                            </li>
+                            <li>
+                                SMS Sent Notification
+                            </li>
+
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Reports Category" select "Mobile Academy Reports", then</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_RC.png"
+                             alt="user Manual Mobile Academy Reports"><br><br><br>
+                        <p>3) Under "Reports" select "Course Completion"</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_Report.png"
+                             alt="user manual Course Completion"><br><br><br>
+
+                        <p>4) Since this is for block user, location details upto “Block” are already selected.</p>
+
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_CCC_Cal.png"
+                             alt="user manual Reports Month"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_CCC_Submit.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_CCC_Download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_CCC_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='cwau'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Circle wise Anonymous Users</b></p><br>
+                        <p>The reports is based on telecom circle, which in most instances, match states (some of the exceptions are Bihar,
+                            which is covered by the Bihar/Jharkhand circle and Madhya Pradesh which is covered by Madhya Pradesh / Chhattisgarh
+                            circle). It provides information, of which anonymous mobile numbers have started the course and which have completed it</p>
+                        <p>The report displays the data in the following sequence of columns:</p>
+                        <ol>
+                            <li>
+                                Serial Number
+                            </li>
+                            <li>
+                                Id
+                            </li>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                Operator
+                            </li>
+                            <li>
+                                Circle Name
+                            </li>
+                            <li>
+                                Course Start
+                            </li>
+                            <li>
+                                Course First Successful End
+                            </li>
+                            <li>
+                                Last Call End Date
+                            </li>
+                            <li>
+                                Last Call End Time
+                            </li>
+                            <li>
+                                Total Minutes Used
+                            </li>
+                            <li>
+                                SMS Sent
+                            </li>
+                            <li>
+                                SMS Reference Number
+                            </li>
+                            <li>
+                                No. Of Attempts
+                            </li>
+
+                        </ol>
+                        <p>The report is based on telecom circle and thus not specific to State / UT.</p>
+                        <p>The rules governing this report as stated below:</p>
+                        <p>&nbsp; &nbsp; This will be a monthly report. The data reflects the details of the anonymous numbers that have called the toll-free number in the selected calendar month.</p>
+
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select Course" Dropdown select course, then</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_RC.png"><br><br><br>
+                        <p>3) Under "Reports" select "Circle wise Anonymous Users"</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_Report.png"><br><br><br>
+
+                        <p>5) For Block level users, the circle is selected by default and cannot be changed.</p>
+                        <p>4) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/Block/MA1/BU_MA_CWAU_Cal.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/Block/MA1/BU_MA_CWAU_Submit.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/Block/MA1/BU_MA_CWAU_Download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/Block/MA1/BU_MA_CWAU_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='ciu'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                        <p style="font-size: 30px"><b>Cumulative Inactive Users</b></p><br>
+                        <p>This report gives the line-listing of all such swachhagrahi who have not yet started the course as on date.
+                            The State / UT can act on this report and contact the swachhagrahi and motivate them to access the SBMA Academy
+                            course and complete the course. In this way a higher percentage of swachhagrahi accessing and completing the SBMA
+                            Academy program can be achieved. This report is a very useful actionable report for the State / UT to monitor
+                            the swachhagrahi accessing the SBMA Academy course. It has following columns:</p>
+                        <ol>
+                            <li>
+                                Mobile Number
+                            </li>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                District Name
+                            </li>
+                            <li>
+                                Block
+                            </li>
+                            <li>
+                                Panchayat
+                            </li>
+                            <li>
+                                User Name
+                            </li>
+                            <li>
+                                User ID
+                            </li>
+                            <li>
+                                User Creation date
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "Select Course" dropdown select course, then</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select " Inactive Users Line Listing Report"</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_Report.png"><br><br><br>
+
+                        <p>6) Since this is for block user, location details upto “Block” are already selected.</p>
+                        <p>5) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/Block/MA2/BU_MA_CIU_Month.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/Block/MA2/BU_MA_CIU_Submit.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/Block/MA2/BU_MA_CIU_Download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/Block/MA2/BU_MA_CIU_Reset.png"><br>
+                    </div>
+
+                    <div data-ng-hide="param!=='arr'">
+                        <p style="font-size: 30px"><b>SWACHAGRAHI Rejected Records</b></p><br>
+                        <p>This report provides a line-listing of all the Swachhagrahi mobile numbers that have been rejected by the
+                            SBM Academy system because the records provided are incorrect (duplicates, not the right number of digits,
+                            special characters etc.). These records would be rejected during the import to MOTECH backend database.
+                            It has following columns:</p>
+                        <ol>
+                            <li>
+                                State Name
+                            </li>
+                            <li>
+                                Swachhagrahi ID
+                            </li>
+                        </ol>
+                        <p>Steps to download the reports</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://sbmacademy.co.in">https://sbmacademy.co.in</a>.
+                        </p>
+                        <p>2) Under "select course” dropdown select course, then</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_RC.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Academy Rejected Line-Listing Report"</p>
+                        <img alt="user manual" src="./images/Block/MA0/BU_MA_Report.png"><br><br><br>
+
+                        <p>4) Since this is for block user, location details upto “Block” are already selected.</p>
+                        <p>5.a) Then select the Month for which the reports are needed </p>
+                        <img alt="user manual" src="./images/Block/MA3/BU_MA_ARR_Cal.png"><br><br><br>
+                        <p>5.b)Then select the 1st day of week(Sunday) for which the report is needed under "Select
+                            Week":</p>
+                        <img alt="user manual" src="./images/Block/MA3/BU_MA_ARR_CalDate.png"><br><br><br>
+
+                        <p>6) To view the result, click the "Submit" button.</p>
+                        <img alt="user manual" src="./images/Block/MA3/BU_MA_ARR_Submit.png"><br><br><br>
+                        <p>7) Click on the download link to download the report. The selected report will be downloaded
+                            in Excel files.</p>
+                        <img alt="user manual" src="./images/Block/MA3/BU_MA_ARR_Download.png"><br><br><br>
+                        <p>8) Clicking on ‘Reset’ button will reset all the fields to their default values.</p>
+                        <img alt="user manual" src="./images/Block/MA3/BU_MA_ARR_Reset.png"><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
