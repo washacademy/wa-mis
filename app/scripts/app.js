@@ -175,14 +175,14 @@ var waReportsApp = angular
 					return authorization.authorize();
 				}
 			}}).state('userManual.mobileAcademy', {
-			url: '/mobileAcademy',
+			url: '/Academy',
 			templateUrl: 'views/userManual_mobileAcademy.html',
 			resolve : {
 				user : function ( authorization) {
 					return authorization.authorize();
 				}
 			}}).state('userManual.mobileAcademyAggregate', {
-			url: '/mobileAcademyAggregate',
+			url: '/AcademyAggregate',
 			templateUrl: 'views/userManual_mobileAcademyAgg.html',
 			resolve : {
 				user : function ( authorization) {
