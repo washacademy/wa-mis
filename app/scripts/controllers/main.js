@@ -107,6 +107,14 @@
 				return $scope.breadCrumbDict[state];
 			}
 
+			$scope.disableCursor = function(){
+				return (($state.current.name)===("District-wise Performance of the State for Mobile Academy"))||(($state.current.name)===("MA Subscriber"));
+			};
+
+			$scope.removed = function () {
+				$scope.show = false;
+			}
+
 			$scope.getTitle = function(state){
 				var states = $scope.getBreadCrumb(state)
 				if(states != null){
@@ -124,6 +132,22 @@
 				else
 				    return false;
 			}
+
+			$scope.goToUserManual = function () {
+				UserFormFactory.downloadCurrentUser().then(function(result){
+					UserFormFactory.setCurrentUser(result.data);
+					$scope.currentUser = UserFormFactory.getCurrentUser();
+					localStorage.setItem("accessLevel",$scope.currentUser.accessLevel);
+					localStorage.setItem("roleName",$scope.currentUser.roleName);
+
+				});
+				if (!($scope.disableCursor())){
+					$state.go('userManual.websiteInformation', {pageNum: 1});
+				}
+				$scope.removed();
+
+			}
+
 
 			$scope.goToLogout = function () {
 

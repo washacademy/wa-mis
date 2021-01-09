@@ -159,6 +159,81 @@ var waReportsApp = angular
 					}
 				}
             })
+
+			.state('userManual', {
+				url: '/userManual',
+				templateUrl: 'views/userManual.html',
+				resolve : {
+					user : function ( authorization) {
+						return authorization.authorize();
+					}
+				}
+			})
+
+			.state('userManual.kilkari', {
+			url: '/kilkari',
+			templateUrl: 'views/userManual_kilkari.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.kilkariAggregate', {
+			url: '/kilkariAggregate',
+			templateUrl: 'views/userManual_kilkariAgg.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.websiteInformation', {
+			url: '/WebsiteInformation',
+			templateUrl: 'views/userManual_websiteInformation.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.mobileAcademy', {
+			url: '/Academy',
+			templateUrl: 'views/userManual_mobileAcademy.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.mobileAcademyAggregate', {
+			url: '/AcademyAggregate',
+			templateUrl: 'views/userManual_mobileAcademyAgg.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.userManual_Management', {
+			url: '/userManual_Management',
+			templateUrl: 'views/userManual_Management.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+			.state('userManual.userManual_Profile', {
+			url: '/userManual_Profile',
+			templateUrl: 'views/userManual_Profile.html',
+			resolve : {
+				user : function ( authorization) {
+					return authorization.authorize();
+				}
+			}})
+
+
 		$urlRouterProvider
 			.otherwise('/login')
 

@@ -768,6 +768,30 @@ md-dialog{
 }
 
 
+.pointer{cursor:pointer;outline:none;}
+/*for User Manual*/
+.usermanual-padding0{padding:0px;}
+.userManualPic img{max-width:828px;}
+.userManual-block{background-color:#0071bc;height:112px;padding:13px 0px 0px 8px;margin:0 0 55px 0;}
+.userManual-block p{padding:4px 32px 4px 32px;color:white;font-family:'Roboto', sans-serif;font-size:16px;}
+.userManual-block span.dropdown{padding:4px 32px 4px 32px;color:white;font-family:'Roboto', sans-serif;font-size:16px;}
+.userManual-block button{width:219px;font-size:large;}
+.user-manual div{margin:0px 20px 13px 20px;padding:11px 8px 11px 20px;font-size:15px;background-color:#f2f2f2;}
+.userManualSelectpicker{color:black;width:175px;padding:7px;margin:0px 0px 0px 4px;}
+.user-manual{text-align:left !important;color:#4d4d4d;margin:1px 0px 0px 0px;font-size:15px;}
+.userManual-right{background-color:#f2f2f2;margin:0px 50px 0px -12px;width:100%;}
+.user-manual-header{font-size:24px;color:#333333;}
+.user-manual-right-text{font-size:16px;color:#0071bc;}
+.user-manual-back{float:left;margin:15px 8px 0px -12px;}
+.user-manual-reports{padding:20px 0px 0 5px;}
+
+.report_category{padding:10px 25px !important;}
+.sideNavbar{background-color:#1f6e91 !important;color:white;}
+.plusSign{float:right;color:black;}
+.userManualPic1 img{max-width:600px;}
+.imageModify img{max-width:832px;}
+
+
 /*
 Copyright 2016 Google Inc. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.

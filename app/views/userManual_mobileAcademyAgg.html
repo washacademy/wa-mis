@@ -1,0 +1,1233 @@
+<div class="container-fluid" data-ng-controller="mobileAcademyAggregateController" style="padding-left: 30px">
+
+    <div data-ng-hide="flag">
+        <h2 class="user-manual-header">BA Aggregate Reports</h2>
+        <div style="color: #0071bc; font-size: 16px">
+            <p>
+            <div data-ng-click="func('csr')"><u>Cumulative Summary Report</u></div>
+            </p>
+            <p>
+            <div data-ng-click="func('sr')"><u>BA Subscriber Report</u></div>
+            </p>
+            <p>
+            <div data-ng-click="func('pr')"><u>BA Performance Report</u></div>
+            </p>
+            <div data-ng-click="func('aus')"><u>Anonymous Users Summary Report</u></div>
+            </p>
+        </div>
+    </div>
+
+    <div data-ng-hide="!flag" class="user-manual-reports" >
+        <div ><img alt="user manual" src="./images/back1.png" data-ng-click="flag=!flag" class="user-manual-back">
+            <div style="display: inline-block" class="imageModify"><b>BA Aggregate Report</b><br>
+                <div data-ng-hide="selectRole != 1 && selectRole !=5"><!--National User-->
+                    <div data-ng-hide="param!=='csr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Cumulative Summary Report</b></p><br>
+                        <p>This report provides the performance of the BA project from the launch date of
+                            the service in the state to till date or an ‘end date’. It gives information about the number of Users
+                            registered with the program, the number of Users that have started the course,
+                            the number of Users who have not yet started the course, the number of Users
+                            who have passed the course and the number of Users who have failed the course.
+                            All the above counts are for Users with status as ‘ACTIVE’. </p>
+                        <p>This report will help to represent the overall performance of course completion by USER in selected state or district or block.</p>
+                        <p>The report displays the data in the following sequence of columns.</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of registered User</li>
+                            <li>No of User started course</li>
+                            <li>No of User not started course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                            <li>% not started course</li>
+                            <li>% successfully completed</li>
+                            <li>% failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>Columns 6 & 9 take into consideration only the first successful completion and not
+                                repeat attempts.
+                            </li>
+                            <li>The percentages displayed in the report follow the below rules based on data in its
+                                respective rows only
+                                <ol>
+                                    <li>% Not Started Course: (Column 5/Column 3) * 100</li>
+                                    <li>% Successfully Completed: (Column 6/Column 4) * 100</li>
+                                    <li>% Failed the course: (Column 7/Column 4) * 100</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <p>The report displays data based on the As-On date selected while downloading the report</p>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_1.PNG"><br><br><br>
+                        <p>3) Under "Select Reports" select "Cumulative Summary Report"</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_2.PNG"><br><br><br>
+
+                        <p>4) Then select an option in the 'State' dropdown for a specific state or to get all states data, select 'All':</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_3.PNG"><br><br><br>
+
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_7.png"><br><br><br>
+
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_8.png"><br><br><br>
+
+                        <p>7) Select an ‘End Date’ for which the cumulative summary report is required. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_9.png"><br><br><br>
+                        <p>8) Click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_4.PNG"><br><br><br>
+                        <p>9) The report will be generated</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_5.PNG"><br><br><br>
+                        <p>10) Once the report is generated, it can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_6.PNG"><br><br><br>
+                    </div>
+                    <div data-ng-hide="param!=='sr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Subscriber Report</b></p><br>
+                        <p>This report provides a view of the data volume on the BA service. It shows how many users
+                            who have registered but not completed the course at the start of the period, the number of users
+                            who have joined the course and number of who have completed the course. All the above counts are for users
+                            with status ‘ACTIVE’.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No. of User registered but not completed (period start)</li>
+                            <li>No. of User records received through web service</li>
+                            <li>No. of User records rejected</li>
+                            <li>No. of User records added</li>
+                            <li>No. of User successfully completed the course</li>
+                            <li>No. of Users registered but not completed (period end)</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6, 7, 8 should be for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have registered in the ODF PLUS course prior to
+                                    the start of the selected period but have not completed the course.
+                                </li>
+                                <li>Column 4 displays the number of Users Records that have been received from web service during
+                                    the selected period.
+                                </li>
+                                <li>Column 5 displays the number of the records that have been rejected due to wrong mobile number and
+                                    other reasons in the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have been added/subscribed in course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 displays the number of Users who have successfully completed the course for the first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 8 displays the number of Users who have registered in the course prior to the end of
+                                    the selected period but have not completed the course.
+                                </li>
+                            </ol>
+                        </ol>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_1.PNG"><br><br><br>
+                        <p>3) Under "Select Reports" select "Subscriber Report", then</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_2.PNG"><br><br><br>
+
+                        <p>4) Then select an option in the 'State' dropdown for a specific state or to get all states data, select 'All':</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_13.png"><br><br><br>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_14.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_15.png"><br><br><br>
+
+                        <p>7) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_3.PNG"><br><br><br>
+                        <p>8) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_4.PNG"><br><br><br>
+                        <p>9) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_5.PNG"><br><br><br>
+                        <p>10) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_6.PNG"><br><br><br>
+                        <p>11) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_7.PNG"><br><br><br>
+                        <p>12) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_8.PNG"><br><br><br>
+                        <p>13) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_9.PNG"><br><br><br>
+                        <p>14) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>15) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_10.PNG"><br><br><br>
+                        <p>16) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>17) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_11.PNG"><br><br><br>
+                        <p>18) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>19) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_12.PNG"><br><br><br>
+                        <p>20) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                    <div data-ng-hide="param!=='pr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Performance Report</b></p><br>
+                        <p>This Report provides the information about how many Users have started the course in the selected period,
+                            number of Users who have accessed the course during the period, number of Users who had started
+                            the course previously but have not accessed the course during the selected period, number of Users
+                            who have completed the course successfully in the selected period and those who have completed the course in
+                            the selected period but could not secure pass marks. All the above counts are for Users with status is ‘ACTIVE’. </p>
+                        <p>The report displays the data in the following sequence of columns</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of User started course</li>
+                            <li>No of User pursuing course</li>
+                            <li>No of User not pursuing course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below.</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 and 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have started the course for the first time in the selected period.
+                                </li>
+                                <li>Column 4 displays the number of Users who had started the course before the selected period, had accessed
+                                    the course at least once with one bookmark during the selected period but not completed the course till the end of
+                                    the selected period
+                                </li>
+                                <li>Column 5 displays the number of Users who had started the course before the selected period but had not accessed
+                                    the course even once during the selected period. The count does NOT include User who have any successful
+                                    completion till the end of the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have successfully completed the course for first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 7 displays the number of Users who have completed the course during the selected period
+                                    but did not secure passing marks even once till the end of selected period.
+                                </li>
+                            </ol>
+                        </ol>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_1.PNG"><br><br><br>
+                        <p>3) Under "Select Reports" select "Performance Report",</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_2.PNG"><br><br><br>
+
+
+                        <p>4) Then select an option in the 'State' dropdown for a specific state or to get all states data, select 'All': </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_13.png"><br><br><br>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_14.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_15.png"><br><br><br>
+
+
+                        <p>7) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_3.PNG"><br><br><br>
+                        <p>8) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_4.PNG"><br><br><br>
+                        <p>9) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_5.PNG"><br><br><br>
+                        <p>10) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_6.PNG"><br><br><br>
+                        <p>11) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_7.PNG"><br><br><br>
+                        <p>12) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_8.PNG"><br><br><br>
+                        <p>13) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_9.PNG"><br><br><br>
+                        <p>14) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>15) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_10.PNG"><br><br><br>
+                        <p>16) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>17) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_11.PNG"><br><br><br>
+                        <p>18) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>19) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_12.PNG"><br><br><br>
+                        <p>20) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+
+                    <div data-ng-hide="param!=='aus'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Anonymous Users Summary Report</b></p><br>
+                        <p>This is a circle wise report which gives overview of the performance of anonymous users.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>Circle</li>
+                            <li>No of anonymous users Started Course in the selected duration</li>
+                            <li>No of anonymous users Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Not Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Successfully Completed the Course in the selected duration</li>
+                            <li>No of anonymous users who failed the course in the selected duration</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 & 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 will display of the anonymous users who started the course during the selected period.</li>
+                                <li>Column 4 will display the number of anonymous users who have started the course before the start date and
+                                    are still pursuing the course during the selected period but haven’t completed it yet.
+                                </li>
+                                <li>Column 5 will display of the anonymous users who started the course before the selected start date
+                                    but did not continue in the selected period.
+                                </li>
+                                <li>Column 6 will display the number of anonymous users who successfully completed
+                                    the course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 will display the number of anonymous users who have failed the course during the selected period
+                                    and do not have successful completion even before.
+                                </li>
+                            </ol>
+                        </ol>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_1.PNG"><br><br><br>
+                        <p>3) Under "Select Reports" select "Anonymous users Summary Report", then</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_2.PNG"><br><br><br>
+
+                        <p>4) Then select an option in the 'Circle' dropdown for a specific circle or to get all circle data, select 'All':</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_13.png"><br><br><br>
+
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_3.PNG"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_4.PNG"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_5.PNG"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_6.PNG"><br><br><br>
+
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_7.PNG"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_8.PNG"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_9.PNG"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_10.PNG"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_11.PNG"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_12.PNG"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                </div>
+                <div data-ng-hide="selectRole != 2 && selectRole != 6">
+                    <div data-ng-hide="param!=='csr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Cumulative Summary Report</b></p><br>
+
+                        <p>This report provides the performance of the BA project from the launch date of
+                            the service in the state to till date or an ‘end date’. It gives information about the number of Users
+                            registered with the program, the number of Users that have started the course,
+                            the number of Users who have not yet started the course, the number of Users
+                            who have passed the course and the number of Users who have failed the course.
+                            All the above counts are for Users with status as ‘ACTIVE’. </p>
+                        <p>This report will help to represent the overall performance of course completion by USER in selected state or district or block.</p>
+                        <p>The report displays the data in the following sequence of columns.</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of registered User</li>
+                            <li>No of User started course</li>
+                            <li>No of User not started course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                            <li>% not started course</li>
+                            <li>% successfully completed</li>
+                            <li>% failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>Columns 6 & 9 take into consideration only the first successful completion and not
+                                repeat attempts.
+                            </li>
+                            <li>The percentages displayed in the report follow the below rules based on data in its
+                                respective rows only
+                                <ol>
+                                    <li>% Not Started Course: (Column 5/Column 3) * 100</li>
+                                    <li>% Successfully Completed: (Column 6/Column 4) * 100</li>
+                                    <li>% Failed the course: (Column 7/Column 4) * 100</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <p>The report displays data based on the As-On date selected while downloading the report</p>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Cumulative Summary Report"</p>
+                        <img alt="user manual" src="./images/ma_agg/state/csr/2.png"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_7.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_8.png"><br><br><br>
+                        <p>7) Select an ‘End Date’ for which the cumulative summary report is required. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_9.png"><br><br><br>
+
+                        <p>7) Click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/state/csr/4.png"><br><br><br>
+                        <p>8) The report will be generated</p>
+                        <img alt="user manual" src="./images/ma_agg/state/csr/5.png"><br><br><br>
+                        <p>9) Once the report is generated, it can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/csr/d.png"><br><br><br>
+                    </div>
+                    <div data-ng-hide="param!=='sr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Subscriber Report</b></p><br>
+                        <p>This report provides a view of the data volume on the BA service. It shows how many users
+                            who have registered but not completed the course at the start of the period, the number of users
+                            who have joined the course and number of who have completed the course. All the above counts are for users
+                            with status ‘ACTIVE’.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No. of User registered but not completed (period start)</li>
+                            <li>No. of User records received through web service</li>
+                            <li>No. of User records rejected</li>
+                            <li>No. of User records added</li>
+                            <li>No. of User successfully completed the course</li>
+                            <li>No. of Users registered but not completed (period end)</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6, 7, 8 should be for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have registered in the ODF PLUS course prior to
+                                    the start of the selected period but have not completed the course.
+                                </li>
+                                <li>Column 4 displays the number of Users Records that have been received from web service during
+                                    the selected period.
+                                </li>
+                                <li>Column 5 displays the number of the records that have been rejected due to wrong mobile number and
+                                    other reasons in the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have been added/subscribed in course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 displays the number of Users who have successfully completed the course for the first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 8 displays the number of Users who have registered in the course prior to the end of
+                                    the selected period but have not completed the course.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Subscriber Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/2.png"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_14.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_15.png"><br><br><br>
+
+                        <p>7) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/3.png"><br><br><br>
+                        <p>8) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/4.png"><br><br><br>
+                        <p>9) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/5.png"><br><br><br>
+                        <p>10) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/6.png"><br><br><br>
+                        <p>11) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/d.png"><br><br><br>
+                        <p>12) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/7.png"><br><br><br>
+                        <p>13) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/8.png"><br><br><br>
+                        <p>14) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>15) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/9.png"><br><br><br>
+                        <p>16) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>17) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/10.png"><br><br><br>
+                        <p>18) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>19) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/11.png"><br><br><br>
+                        <p>20) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                    <div data-ng-hide="param!=='pr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Performance Report</b></p><br>
+                        <p>This Report provides the information about how many Users have started the course in the selected period,
+                            number of Users who have accessed the course during the period, number of Users who had started
+                            the course previously but have not accessed the course during the selected period, number of Users
+                            who have completed the course successfully in the selected period and those who have completed the course in
+                            the selected period but could not secure pass marks. All the above counts are for Users with status is ‘ACTIVE’. </p>
+                        <p>The report displays the data in the following sequence of columns</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of User started course</li>
+                            <li>No of User pursuing course</li>
+                            <li>No of User not pursuing course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below.</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 and 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have started the course for the first time in the selected period.
+                                </li>
+                                <li>Column 4 displays the number of Users who had started the course before the selected period, had accessed
+                                    the course at least once with one bookmark during the selected period but not completed the course till the end of
+                                    the selected period
+                                </li>
+                                <li>Column 5 displays the number of Users who had started the course before the selected period but had not accessed
+                                    the course even once during the selected period. The count does NOT include User who have any successful
+                                    completion till the end of the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have successfully completed the course for first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 7 displays the number of Users who have completed the course during the selected period
+                                    but did not secure passing marks even once till the end of selected period.
+                                </li>
+                            </ol>
+                        </ol>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Performance Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/2.png"><br><br><br>
+
+                        <p>4) For State users, their 'State' option is already selected.</p>
+                        <p>5) Next, select an option from the 'District' dropdown in the same manner: (does not work if State is set to all) </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_14.png"><br><br><br>
+                        <p>6) Next, select an option from the 'Block' dropdown in the same manner: (does not work if District is set to all)</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_15.png"><br><br><br>
+
+                        <p>7) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/3.png"><br><br><br>
+                        <p>8) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/4.png"><br><br><br>
+                        <p>9) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/5.png"><br><br><br>
+                        <p>10) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/6.png"><br><br><br>
+                        <p>11) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/d.png"><br><br><br>
+                        <p>12) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/7.png"><br><br><br>
+                        <p>13) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/8.png"><br><br><br>
+                        <p>14) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>15) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/9.png"><br><br><br>
+                        <p>16) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>17) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/10.png"><br><br><br>
+                        <p>18) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>19) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/state/pr/11.png"><br><br><br>
+                        <p>20) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+
+                    <div data-ng-hide="param!=='aus'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Anonymous Users Summary Report</b></p><br>
+                        <p>This is a circle wise report which gives overview of the performance of anonymous users.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>Circle</li>
+                            <li>No of anonymous users Started Course in the selected duration</li>
+                            <li>No of anonymous users Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Not Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Successfully Completed the Course in the selected duration</li>
+                            <li>No of anonymous users who failed the course in the selected duration</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 & 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 will display of the anonymous users who started the course during the selected period.</li>
+                                <li>Column 4 will display the number of anonymous users who have started the course before the start date and
+                                    are still pursuing the course during the selected period, but haven’t completed it yet.
+                                </li>
+                                <li>Column 5 will display of the anonymous users who started the course before the selected start date
+                                    but did not continue in the selected period.
+                                </li>
+                                <li>Column 6 will display the number of anonymous users who successfully completed
+                                    the course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 will display the number of anonymous users who have failed the course during the selected period
+                                    and do not have successful completion even before.
+                                </li>
+                            </ol>
+                        </ol>
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Anonymous users Summary Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/state/sr/2.png"><br><br><br>
+
+                        <p>4) For state user/admin "Select Circle" option is already selected.</p>
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_3.PNG"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_4.PNG"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_5.PNG"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_6.PNG"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_7.PNG"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_8.PNG"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_9.PNG"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_10.PNG"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_11.PNG"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_12.PNG"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+
+                    </div>
+                </div>
+                <div data-ng-hide="selectRole != 3 && selectRole != 7"><!--Disrict User-->
+                    <div data-ng-hide="param!=='csr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Cumulative Summary Report</b></p><br>
+
+                        <p>This report provides the performance of the BA project from the launch date of
+                            the service in the state to till date or an ‘end date’. It gives information about the number of Users
+                            registered with the program, the number of Users that have started the course,
+                            the number of Users who have not yet started the course, the number of Users
+                            who have passed the course and the number of Users who have failed the course.
+                            All the above counts are for Users with status as ‘ACTIVE’. </p>
+                        <p>This report will help to represent the overall performance of course completion by USER in selected state or district or block.</p>
+                        <p>The report displays the data in the following sequence of columns.</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of registered User</li>
+                            <li>No of User started course</li>
+                            <li>No of User not started course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                            <li>% not started course</li>
+                            <li>% successfully completed</li>
+                            <li>% failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>Columns 6 & 9 take into consideration only the first successful completion and not
+                                repeat attempts.
+                            </li>
+                            <li>The percentages displayed in the report follow the below rules based on data in its
+                                respective rows only
+                                <ol>
+                                    <li>% Not Started Course: (Column 5/Column 3) * 100</li>
+                                    <li>% Successfully Completed: (Column 6/Column 4) * 100</li>
+                                    <li>% Failed the course: (Column 7/Column 4) * 100</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <p>The report displays data based on the As-On date selected while downloading the report</p>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Cumulative Summary Report"</p>
+                        <img alt="user manual" src="./images/ma_agg/district/csr/2.png"><br><br><br>
+
+
+                        <p>4) Since this is for District user/admin, Select any/all block from 'Block', under specified "District" and "State".</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_8.png"><br><br><br>
+                        <p>5) Select an ‘End Date’ for which the cumulative summary report is required. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Cumul_Summary_9.png"><br><br><br>
+
+                        <p>6) Click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/district/csr/4.png"><br><br><br>
+                        <p>7) The report will be generated</p>
+                        <img alt="user manual" src="./images/ma_agg/district/csr/5.png"><br><br><br>
+                        <p>8) Once the report is generated, it can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/csr/d.png"><br><br><br>
+                    </div>
+                    <div data-ng-hide="param!=='sr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Subscriber Report</b></p><br>
+
+                        <p>This report provides a view of the data volume on the BA service. It shows how many users
+                            who have registered but not completed the course at the start of the period, the number of users
+                            who have joined the course and number of who have completed the course. All the above counts are for users
+                            with status ‘ACTIVE’.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No. of User registered but not completed (period start)</li>
+                            <li>No. of User records received through web service</li>
+                            <li>No. of User records rejected</li>
+                            <li>No. of User records added</li>
+                            <li>No. of User successfully completed the course</li>
+                            <li>No. of Users registered but not completed (period end)</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6, 7, 8 should be for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have registered in the ODF PLUS course prior to
+                                    the start of the selected period but have not completed the course.
+                                </li>
+                                <li>Column 4 displays the number of Users Records that have been received from web service during
+                                    the selected period.
+                                </li>
+                                <li>Column 5 displays the number of the records that have been rejected due to wrong mobile number and
+                                    other reasons in the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have been added/subscribed in course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 displays the number of Users who have successfully completed the course for the first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 8 displays the number of Users who have registered in the course prior to the end of
+                                    the selected period but have not completed the course.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Subscriber Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/2.png"><br><br><br>
+
+                        <p>4) Since this is for District user/admin, Select any/all block from 'Block', under specified "District" and "State"</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Sub_15.png"><br><br><br>
+
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/3.png"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/4.png"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/5.png"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/6.png"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/d.png"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/7.png"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/8.png"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/9.png"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/10.png"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/11.png"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                    <div data-ng-hide="param!=='pr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Performance Report</b></p><br>
+                        <p>This Report provides the information about how many Users have started the course in the selected period,
+                            number of Users who have accessed the course during the period, number of Users who had started
+                            the course previously but have not accessed the course during the selected period, number of Users
+                            who have completed the course successfully in the selected period and those who have completed the course in
+                            the selected period but could not secure pass marks. All the above counts are for Users with status is ‘ACTIVE’. </p>
+                        <p>The report displays the data in the following sequence of columns</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of User started course</li>
+                            <li>No of User pursuing course</li>
+                            <li>No of User not pursuing course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below.</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 and 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have started the course for the first time in the selected period.
+                                </li>
+                                <li>Column 4 displays the number of Users who had started the course before the selected period, had accessed
+                                    the course at least once with one bookmark during the selected period but not completed the course till the end of
+                                    the selected period
+                                </li>
+                                <li>Column 5 displays the number of Users who had started the course before the selected period but had not accessed
+                                    the course even once during the selected period. The count does NOT include User who have any successful
+                                    completion till the end of the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have successfully completed the course for first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 7 displays the number of Users who have completed the course during the selected period
+                                    but did not secure passing marks even once till the end of selected period.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Performance Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/2.png"><br><br><br>
+
+                        <p>4) Since this is for District user/admin, Select any/all block from 'Block', under specified "District" and "State".</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_Perf_15.png"><br><br><br>
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/3.png"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/4.png"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/5.png"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/6.png"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/d.png"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/7.png"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/8.png"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/9.png"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/10.png"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/district/pr/11.png"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+
+                    <div data-ng-hide="param!=='aus'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Anonymous Users Summary Report</b></p><br>
+                        <p>This is a circle wise report which gives overview of the performance of anonymous users.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>Circle</li>
+                            <li>No of anonymous users Started Course in the selected duration</li>
+                            <li>No of anonymous users Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Not Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Successfully Completed the Course in the selected duration</li>
+                            <li>No of anonymous users who failed the course in the selected duration</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 & 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 will display of the anonymous users who started the course during the selected period.</li>
+                                <li>Column 4 will display the number of anonymous users who have started the course before the start date and
+                                    are still pursuing the course during the selected period, but haven’t completed it yet.
+                                </li>
+                                <li>Column 5 will display of the anonymous users who started the course before the selected start date
+                                    but did not continue in the selected period.
+                                </li>
+                                <li>Column 6 will display the number of anonymous users who successfully completed
+                                    the course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 will display the number of anonymous users who have failed the course during the selected period
+                                    and do not have successful completion even before.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Anonymous users Summary Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/district/sr/2.png"><br><br><br>
+
+                        <p>4) For district user/admin "Select Circle" option is already selected.</p>
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_3.PNG"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_4.PNG"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_5.PNG"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_6.PNG"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_7.PNG"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_8.PNG"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_9.PNG"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_10.PNG"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_11.PNG"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_12.PNG"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+
+                    </div>
+                </div>
+                <div data-ng-hide="selectRole !=4">
+                    <div data-ng-hide="param!=='csr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Cumulative Summary Report</b></p><br>
+
+                        <p>This report provides the performance of the BA project from the launch date of
+                            the service in the state to till date or an ‘end date’. It gives information about the number of Users
+                            registered with the program, the number of Users that have started the course,
+                            the number of Users who have not yet started the course, the number of Users
+                            who have passed the course and the number of Users who have failed the course.
+                            All the above counts are for Users with status as ‘ACTIVE’. </p>
+                        <p>This report will help to represent the overall performance of course completion by USER in selected state or district or block.</p>
+                        <p>The report displays the data in the following sequence of columns.</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of registered User</li>
+                            <li>No of User started course</li>
+                            <li>No of User not started course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                            <li>% not started course</li>
+                            <li>% successfully completed</li>
+                            <li>% failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>Columns 6 & 9 take into consideration only the first successful completion and not
+                                repeat attempts.
+                            </li>
+                            <li>The percentages displayed in the report follow the below rules based on data in its
+                                respective rows only
+                                <ol>
+                                    <li>% Not Started Course: (Column 5/Column 3) * 100</li>
+                                    <li>% Successfully Completed: (Column 6/Column 4) * 100</li>
+                                    <li>% Failed the course: (Column 7/Column 4) * 100</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <p>The report displays data based on the As-On date selected while downloading the report</p>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Cumulative Summary Report"</p>
+                        <img alt="user manual" src="./images/ma_agg/block/csr/2.png"><br><br><br>
+                        <p>4) Since this is for block user, location details upto “Block” are already selected.</p>
+                        <p>5) Select an ‘End Date’ for which the cumulative summary report is required. </p>
+                        <img alt="user manual" src="./images/ma_agg/block/csr/3.png"><br><br><br>
+                        <p>6) Click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/block/csr/4.png"><br><br><br>
+                        <p>7) The report will be generated</p>
+                        <img alt="user manual" src="./images/ma_agg/block/csr/5.png"><br><br><br>
+                        <p>8) Once the report is generated, it can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/csr/d.png"><br><br><br>
+                    </div>
+                    <div data-ng-hide="param!=='sr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Subscriber Report</b></p><br>
+                        <p>This report provides a view of the data volume on the BA service. It shows how many users
+                            who have registered but not completed the course at the start of the period, the number of users
+                            who have joined the course and number of who have completed the course. All the above counts are for users
+                            with status ‘ACTIVE’.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No. of User registered but not completed (period start)</li>
+                            <li>No. of User records received through web service</li>
+                            <li>No. of User records rejected</li>
+                            <li>No. of User records added</li>
+                            <li>No. of User successfully completed the course</li>
+                            <li>No. of Users registered but not completed (period end)</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6, 7, 8 should be for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have registered in the ODF PLUS course prior to
+                                    the start of the selected period but have not completed the course.
+                                </li>
+                                <li>Column 4 displays the number of Users Records that have been received from web service during
+                                    the selected period.
+                                </li>
+                                <li>Column 5 displays the number of the records that have been rejected due to wrong mobile number and
+                                    other reasons in the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have been added/subscribed in course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 displays the number of Users who have successfully completed the course for the first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 8 displays the number of Users who have registered in the course prior to the end of
+                                    the selected period but have not completed the course.
+                                </li>
+                            </ol>
+                        </ol>
+
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Subscriber Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/2.png"><br><br><br>
+                        <p>4) Since this is for block user, location details upto “Block” are already selected.</p>
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/3.png"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/4.png"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/5.png"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/6.png"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/d.png"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/7.png"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/8.png"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/9.png"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/10.png"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/11.png"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                    <div data-ng-hide="param!=='pr'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>BA Performance Report</b></p><br>
+
+                        <p>This Report provides the information about how many Users have started the course in the selected period,
+                            number of Users who have accessed the course during the period, number of Users who had started
+                            the course previously but have not accessed the course during the selected period, number of Users
+                            who have completed the course successfully in the selected period and those who have completed the course in
+                            the selected period but could not secure pass marks. All the above counts are for Users with status is ‘ACTIVE’. </p>
+                        <p>The report displays the data in the following sequence of columns</p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>State</li>
+                            <li>No of User started course</li>
+                            <li>No of User pursuing course</li>
+                            <li>No of User not pursuing course</li>
+                            <li>No of User successfully completed the course</li>
+                            <li>No of User who failed the course</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below.</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 and 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 displays the number of Users who have started the course for the first time in the selected period.
+                                </li>
+                                <li>Column 4 displays the number of Users who had started the course before the selected period, had accessed
+                                    the course at least once with one bookmark during the selected period but not completed the course till the end of
+                                    the selected period
+                                </li>
+                                <li>Column 5 displays the number of Users who had started the course before the selected period but had not accessed
+                                    the course even once during the selected period. The count does NOT include User who have any successful
+                                    completion till the end of the selected period.
+                                </li>
+                                <li>Column 6 displays the number of Users who have successfully completed the course for first time,
+                                    during the selected period and secured pass marks.
+                                </li>
+                                <li>Column 7 displays the number of Users who have completed the course during the selected period
+                                    but did not secure passing marks even once till the end of selected period.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Performance Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/2.png"><br><br><br>
+
+                        <p>4) Since this is for block user, location details upto “Block” are already selected. </p>
+
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/3.png"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/4.png"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/5.png"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/6.png"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/d.png"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/7.png"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/8.png"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/9.png"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/10.png"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/ma_agg/block/pr/11.png"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+
+                    <div data-ng-hide="param!=='aus'" style="display: inline-block">
+                        <p style="font-size: 30px"><b>Anonymous Users Summary Report</b></p><br>
+                        <p>This is a circle wise report which gives overview of the performance of anonymous users.</p>
+                        <p>The report displays the data in the following sequence of columns </p>
+                        <ol>
+                            <li>Serial Number</li>
+                            <li>Circle</li>
+                            <li>No of anonymous users Started Course in the selected duration</li>
+                            <li>No of anonymous users Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Not Pursuing Course in the selected duration</li>
+                            <li>No of anonymous users Successfully Completed the Course in the selected duration</li>
+                            <li>No of anonymous users who failed the course in the selected duration</li>
+                        </ol>
+                        <p>The rules governing the display components of the report is given below</p>
+                        <ol>
+                            <li>The data pertaining to column 3, 4, 5, 6 & 7 is for the selected period only.
+                            </li>
+                            <ol>
+                                <li>Column 3 will display of the anonymous users who started the course during the selected period.</li>
+                                <li>Column 4 will display the number of anonymous users who have started the course before the start date and
+                                    are still pursuing the course during the selected period, but haven’t completed it yet.
+                                </li>
+                                <li>Column 5 will display of the anonymous users who started the course before the selected start date
+                                    but did not continue in the selected period.
+                                </li>
+                                <li>Column 6 will display the number of anonymous users who successfully completed
+                                    the course for the first time in the selected period.
+                                </li>
+                                <li>Column 7 will display the number of anonymous users who have failed the course during the selected period
+                                    and do not have successful completion even before.
+                                </li>
+                            </ol>
+                        </ol>
+
+                        <p>1) The users can login into the system using the URL: <a href="https://bharpooracademy.in:8443">https://bharpooracademy.in:8443</a>.
+                        </p>
+                        <p>2) Under "Select Course " Dropdown, select course, then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/1.png"><br><br><br>
+                        <p>3) Under "Select Reports" select "Anonymous users Summary Report", then</p>
+                        <img alt="user manual" src="./images/ma_agg/block/sr/2.png"><br><br><br>
+                        <p>4) For block user/admin "Select Circle" option is already selected.</p>
+                        <p>5) Select ‘Year’ under ‘Period Type’. </p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_3.PNG"><br><br><br>
+                        <p>6) Select the year for which report is needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_4.PNG"><br><br><br>
+                        <p>7) Click on ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_5.PNG"><br><br><br>
+                        <p>8) The report will be generated.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_6.PNG"><br><br><br>
+                        <p>9) Once report is generated, it can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_7.PNG"><br><br><br>
+                        <p>10) Select ‘Financial Year’ under ‘Period Type’ and choose the start year for which report is
+                            needed.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_8.PNG"><br><br><br>
+                        <p>11) Click on ‘Submit’ to generate the report</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_9.PNG"><br><br><br>
+                        <p>12) The report will be generated which can be downloaded in PDF, CSV or XLSX formats.</p>
+                        <p>13) Select ‘Quarter’ in the ‘Period Type’ and select the year and quarter for which the
+                            report is needed. Then click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_10.PNG"><br><br><br>
+                        <p>14) The generated report can be downloaded in PDF, CSV and XLSX formats.</p>
+                        <p>15) Select ‘Month’ under ‘Period type’ and choose a month and click ‘Submit’.</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_11.PNG"><br><br><br>
+                        <p>16) The report will be generated for the chosen month and can be downloaded in PDF, CSV and
+                            XLSX formats.</p>
+                        <p>17) ‘Custom Range’ under ‘Period Type’ can also be selected. After that, you need to select a
+                            start date and an end date for which report is needed, then click on ‘Submit’</p>
+                        <img alt="user manual" src="./images/aggregates/MA/MA_AUS_12.PNG"><br><br><br>
+                        <p>18) The report will be generated for the specified date range, which can be downloaded in
+                            PDF, CSV and XLSX formats.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
